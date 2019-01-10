@@ -4,7 +4,7 @@
 // [ImGui] - fixed some minor warnings
 
 // stb_textedit.h - v1.12  - public domain - Sean Barrett
-// Development of this library was sponsored by RAD Game Tools
+// Develoeboxnt of this library was sponsored by RAD Game Tools
 //
 // This C header file implements the guts of a multi-line text-editing
 // widget; you implement display, word-wrapping, and low-level string

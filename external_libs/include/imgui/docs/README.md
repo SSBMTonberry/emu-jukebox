@@ -3,7 +3,7 @@ dear imgui,
 [![Build Status](https://travis-ci.org/ocornut/imgui.svg?branch=master)](https://travis-ci.org/ocornut/imgui)
 [![Coverity Status](https://scan.coverity.com/projects/4720/badge.svg)](https://scan.coverity.com/projects/4720)
 
-_(This library is free but needs your support to sustain its development. There are many desirable features and maintenance ahead. If you are an individual using dear imgui, please consider donating via Patreon or PayPal. If your company is using dear imgui, please consider financial support (e.g. sponsoring a few weeks/months of development). I can invoice for technical support, custom development etc. Email: omarcornut at gmail)._
+_(This library is free but needs your support to sustain its develoeboxnt. There are many desirable features and maintenance ahead. If you are an individual using dear imgui, please consider donating via Patreon or PayPal. If your company is using dear imgui, please consider financial support (e.g. sponsoring a few weeks/months of develoeboxnt). I can invoice for technical support, custom develoeboxnt etc. Email: omarcornut at gmail)._
 
 Monthly donations via Patreon:
 <br>[![Patreon](https://cloud.githubusercontent.com/assets/8225057/5990484/70413560-a9ab-11e4-8942-1a63607c0b00.png)](http://www.patreon.com/imgui)
@@ -288,7 +288,7 @@ There is an auto-generated [c-api for Dear ImGui (cimgui)](https://github.com/ci
 Support dear imgui
 ------------------
 
-**How can I help financing further development of Dear ImGui?**
+**How can I help financing further develoeboxnt of Dear ImGui?**
 
 Your contributions are keeping the library alive. If you are an individual using dear imgui, please consider donating to enable me to spend more time improving the library.
 
@@ -298,8 +298,8 @@ Monthly donations via Patreon:
 One-off donations via PayPal:
 <br>[![PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5Q73FPZ9C526U)
 
-Ongoing dear imgui development is financially supported on [**Patreon**](http://www.patreon.com/imgui) and by private sponsors.
-If your company uses dear imgui, please consider financial support (e.g. sponsoring a few weeks/months of development. I can also invoice for private support, custom development etc. contact me for details: omarcornut at gmail). Thanks! 
+Ongoing dear imgui develoeboxnt is financially supported on [**Patreon**](http://www.patreon.com/imgui) and by private sponsors.
+If your company uses dear imgui, please consider financial support (e.g. sponsoring a few weeks/months of develoeboxnt. I can also invoice for private support, custom develoeboxnt etc. contact me for details: omarcornut at gmail). Thanks! 
 
 **Platinum-chocolate sponsors**
 - Blizzard Entertainment.

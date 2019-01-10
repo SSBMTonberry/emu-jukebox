@@ -340,7 +340,7 @@ enum ImGuiItemStatusFlags_
 #endif
 };
 
-// FIXME: this is in development, not exposed/functional as a generic feature yet.
+// FIXME: this is in develoeboxnt, not exposed/functional as a generic feature yet.
 enum ImGuiLayoutType_
 {
     ImGuiLayoutType_Vertical,

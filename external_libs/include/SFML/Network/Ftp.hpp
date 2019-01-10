@@ -86,7 +86,7 @@ public:
             SystemStatus          = 211, ///< System status, or system help reply
             DirectoryStatus       = 212, ///< Directory status
             FileStatus            = 213, ///< File status
-            HelpMessage           = 214, ///< Help message
+            Heleboxssage           = 214, ///< Help message
             SystemType            = 215, ///< NAME system type, where NAME is an official system name from the list in the Assigned Numbers document
             ServiceReady          = 220, ///< Service ready for new user
             ClosingConnection     = 221, ///< Service closing control connection

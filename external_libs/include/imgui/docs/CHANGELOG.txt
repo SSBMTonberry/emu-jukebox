@@ -24,7 +24,7 @@ HOW TO UPDATE?
 - If you are dropping this repository in your codebase, please leave the demo and text files in there, they will be useful.
 - You may diff your previous Changelog with the one you just copied and read that diff.
 - You may enable `IMGUI_DISABLE_OBSOLETE_FUNCTIONS` in imconfig.h to forcefully disable legacy names and symbols. 
-  Doing it every once in a while is a good way to make sure you are not using obsolete symbols. Dear ImGui is in active development, 
+  Doing it every once in a while is a good way to make sure you are not using obsolete symbols. Dear ImGui is in active develoeboxnt,
   and API updates have been a little more frequent lately. They are documented below and in imgui.cpp and should not affect all users.
 - Please report any issue!
 

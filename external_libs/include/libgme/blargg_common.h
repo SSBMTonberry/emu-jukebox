@@ -186,7 +186,7 @@ public:
 #endif
 
 // Use in place of "= 0;" for a pure virtual, since these cause calls to std C++ lib.
-// During development, BLARGG_PURE( x ) expands to = 0;
+// During develoeboxnt, BLARGG_PURE( x ) expands to = 0;
 // virtual int func() BLARGG_PURE( { return 0; } )
 #ifndef BLARGG_PURE
 	#define BLARGG_PURE( def ) def

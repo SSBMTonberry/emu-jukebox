@@ -3,6 +3,6 @@
 
 int theAnswer() { return 6*9; }
 
-TEST_CASE( "Fuckers gonna fuck!", "[42][theAnswer]" ) {
+TEST_CASE( "Test-test!", "[42][theAnswer]" ) {
     REQUIRE( theAnswer() == 54 );
 }
