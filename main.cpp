@@ -2,24 +2,13 @@
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
 #include "fmt/format.h"
+#include "src/managers/ProgramManager.h"
 
-int main()
+int main(int argc, char **argv, char** envp)
 {
-    std::cout << "Hello, World!" << std::endl;
-    sf::RenderWindow window(sf::VideoMode(800, 600), "emu-jukebox");
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            // Close window: exit
-            if (event.type == sf::Event::Closed)
-                window.close();
-
-        }
-        // Clear screen
-        window.clear(sf::Color(51,108,198));
-        window.display();
-    }
+    ebox::ProgramManager program(argc, argv, envp);
+    sf::VideoMode mode = sf::VideoMode::getDesktopMode();
+    program.initialize("Emu Jukebox", {mode.width, mode.height});
+    program.run();
     return 0;
 }

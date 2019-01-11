@@ -8,7 +8,6 @@
 #include "../../PixelmoundConfig.h"
 
 #include <sstream>
-#include <tinyc2.h>
 #include <cstdlib>
 #include <iostream>
 #include <vector>

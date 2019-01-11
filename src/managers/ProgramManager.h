@@ -9,6 +9,8 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Main.hpp"
 #include "../misc/Tools.hpp"
+#include "FormManager.h"
+
 namespace ebox
 {
     class ProgramManager
@@ -20,6 +22,14 @@ namespace ebox
 
         private:
             void initializeArgs(int argc, char **argv, char** envp);
+            void update();
+            void handleActions();
+            void processHotkeys();
+            void draw();
+
+            sf::RenderWindow m_window;
+            EventManager m_events;
+            FormManager m_formManager;
 
             std::vector<std::string> m_args;
             std::vector<std::string> m_environmentList;

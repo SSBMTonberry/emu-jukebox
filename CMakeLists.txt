@@ -91,7 +91,8 @@ set(GUI_SOURCE_FILES src/gui/controls/Button.cpp src/gui/controls/Button.h src/g
                      src/gui/properties/Tooltip.cpp src/gui/properties/Tooltip.h src/gui/themes/Theme.cpp src/gui/themes/Theme.h
                      src/gui/TextEditor.cpp src/gui/TextEditor.h)
 
-set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramManager.h src/audio/Voice.cpp src/audio/Voice.h)
+set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramManager.h src/audio/Voice.cpp src/audio/Voice.h
+                          src/managers/FormManager.cpp src/managers/FormManager.h src/managers/EventManager.cpp src/managers/EventManager.h)
 
 add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES})
 
