@@ -22,6 +22,13 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
     m_io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
     //Enable docking (New in ImGui 1.66 WIP) - Downloaded 14.10.2018
     m_io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+    initializeForms();
+}
+
+void ebox::FormManager::initializeForms()
+{
+    m_forms.push_back(&m_audioTestForm);
 }
 
 void ebox::FormManager::update()
@@ -42,6 +49,9 @@ void ebox::FormManager::draw()
     if(m_showImguiDemoWindow)
         ImGui::ShowDemoWindow();
 
+    for(auto const &item : m_forms)
+        item->draw();
+
     ImGui::SFML::Render(*m_window);
 }
 
@@ -54,5 +64,6 @@ bool ebox::FormManager::showImguiDemoWindow() const
 {
     return m_showImguiDemoWindow;
 }
+
 
 
