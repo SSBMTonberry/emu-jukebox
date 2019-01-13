@@ -8,6 +8,10 @@
 #include "../gui/forms/Form.h"
 #include "../gui/controls/Button.h"
 #include "../../content/files_mapper.h"
+#include "../gui/controls/ImageButton.h"
+#include "../audio/EmuStream.h"
+#include "../gui/controls/Label.h"
+#include "../gui/controls/Textbox.h"
 
 namespace ebox
 {
@@ -25,6 +29,19 @@ namespace ebox
         private:
             void initialize();
 
+            void drawAudioPanel();
+            void drawAudioButtons();
+            void drawAudioInfo();
+
+            EmuStream m_stream;
+
+            ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::actions::_RERUN_PNG, files_mapper::gui::actions::_RERUN_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_stopButton {"test_stop_button", files_mapper::gui::actions::_SUSPEND_PNG, files_mapper::gui::actions::_SUSPEND_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_pauseButton {"test_pause_button", files_mapper::gui::actions::_PAUSE_PNG, files_mapper::gui::actions::_PAUSE_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_playButton {"test_play_button", files_mapper::gui::actions::_EXECUTE_PNG, files_mapper::gui::actions::_EXECUTE_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_nextButton {"test_next_button", files_mapper::gui::actions::_RERUN_PNG, files_mapper::gui::actions::_RERUN_PNG_SIZE, sf::Vector2i(30, 30)};
+
+            //Audio buttons
             ebox::Button m_ayButton {"test_btn_ay", "Test Amstrad CPC (AY)", {200, 30}};
             ebox::Button m_gbsButton {"test_btn_gbs", "Test Gameboy (GBS)", {200, 30}};
             ebox::Button m_gymButton {"test_btn_gym", "Sega Mega Drive (GYM)", {200, 30}};
@@ -35,6 +52,9 @@ namespace ebox
             ebox::Button m_sapButton {"test_btn_sap", "Atari (SAP)", {200, 30}};
             ebox::Button m_spcButton {"test_btn_spc", "Super NES (SPC)", {200, 30}};
             ebox::Button m_vgmButton {"test_btn_vgm", "Video Game Music (VGM)", {200, 30}};
+
+            ebox::Label m_loadFromFileLabel {"load_from_file", "From file:", "From file:", LabelType::OnlyLabel};
+            ebox::Textbox m_loadFromFileText {"load_from_file_text", "", 150};
     };
 }
 

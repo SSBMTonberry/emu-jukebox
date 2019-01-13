@@ -14,6 +14,7 @@
 #include <iostream>
 #include <cstring>
 #include "Voice.h"
+#include "EmuTrack.h"
 
 namespace ebox
 {

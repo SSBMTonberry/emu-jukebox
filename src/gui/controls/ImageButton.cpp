@@ -60,3 +60,8 @@ void ebox::ImageButton::create(const void *imageData, const size_t imageDataSize
     m_size = {(int)m_texture.getSize().x, (int)m_texture.getSize().y};
 }
 
+sf::Sprite *ebox::ImageButton::getImage()
+{
+    return &m_sprite;
+}
+

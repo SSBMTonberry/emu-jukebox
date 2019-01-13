@@ -112,12 +112,18 @@ void ebox::EmuStream::onSeek(sf::Time timeOffset)
     //sf::Uint64 sampleOffset = static_cast<sf::Uint64>(timeOffset.asSeconds() * getSampleRate() * getChannelCount());
     //sampleOffset -= sampleOffset % getChannelCount();
     //m_loopCurrent = sampleOffset;
-    if(m_emu != nullptr && timeOffset.asMilliseconds() > 0)
+    if(m_emu != nullptr)// && timeOffset.asMilliseconds() > 0)
         m_emu->seek(timeOffset.asMilliseconds());
 }
 
 bool ebox::EmuStream::initializeEmu()
 {
+    if(m_emu != nullptr)
+    {
+        delete m_emu;
+        m_emu = nullptr;
+    }
+
     int track = 0; // index of track to play (0 = first)
 
     // Determine file type

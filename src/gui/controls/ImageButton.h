@@ -22,6 +22,8 @@ namespace ebox
 
             bool process() override;
 
+            sf::Sprite *getImage();
+
         public:
             sf::Texture m_texture;
             sf::Sprite m_sprite;
