@@ -2,23 +2,22 @@
 // Created by robin on 13.01.19.
 //
 
-#include "EmuTrack.h"
+#include "EmuTrackInfo.h"
 
-ebox::EmuTrack::EmuTrack()
+ebox::EmuTrackInfo::EmuTrackInfo()
 {
 
 }
 
-ebox::EmuTrack::EmuTrack(Music_Emu *emu, int trackNumber, long sampleRate)
+ebox::EmuTrackInfo::EmuTrackInfo(Music_Emu *emu, int trackNumber)
 {
-    load(m_emu, m_trackNumber, sampleRate);
+    load(m_emu, m_trackNumber);
 }
 
-bool ebox::EmuTrack::load(Music_Emu *emu, int trackNumber, long sampleRate)
+bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber)
 {
     m_emu = emu;
     m_trackNumber = trackNumber;
-    m_sampleRate = sampleRate;
 
     gme_info_t* info;
     if(handleError(gme_track_info( m_emu, &info, m_trackNumber)))
@@ -35,114 +34,93 @@ bool ebox::EmuTrack::load(Music_Emu *emu, int trackNumber, long sampleRate)
     m_playLength = info->play_length;
     m_introLength = info->intro_length;
     m_loopLength = info->loop_length;
+    m_numberOfTracks = gme_track_count(m_emu);
 
     gme_free_info( info );
-
-    int song_length = 0;
-
-    m_samples.clear();
-
-    while ((song_length = m_emu->tell()) > -1 && song_length <= m_playLength)
-    {
-        bool ended = emu->track_ended();
-        const long size = 1024; // can be any multiple of 2
-        short buf [size];
-        // Fill buffer
-        if(handleError(emu->play(size, buf)))
-            return false;
-
-        for(int i = 0; i < size; ++i)
-        {
-            m_samples.push_back(buf[i]);
-        }
-    }
-
-    m_soundBuffer.loadFromSamples(&m_samples[0], m_samples.size(), 2, m_sampleRate);
-    m_sound.setBuffer(m_soundBuffer);
     return true;
 }
 
-const std::string &ebox::EmuTrack::getSystem() const
+const std::string &ebox::EmuTrackInfo::getSystem() const
 {
     return m_system;
 }
 
-void ebox::EmuTrack::setSystem(const std::string &system)
+void ebox::EmuTrackInfo::setSystem(const std::string &system)
 {
     m_system = system;
 }
 
-const std::string &ebox::EmuTrack::getGame() const
+const std::string &ebox::EmuTrackInfo::getGame() const
 {
     return m_game;
 }
 
-void ebox::EmuTrack::setGame(const std::string &game)
+void ebox::EmuTrackInfo::setGame(const std::string &game)
 {
     m_game = game;
 }
 
-const std::string &ebox::EmuTrack::getAuthor() const
+const std::string &ebox::EmuTrackInfo::getAuthor() const
 {
     return m_author;
 }
 
-void ebox::EmuTrack::setAuthor(const std::string &author)
+void ebox::EmuTrackInfo::setAuthor(const std::string &author)
 {
     m_author = author;
 }
 
-const std::string &ebox::EmuTrack::getCopyright() const
+const std::string &ebox::EmuTrackInfo::getCopyright() const
 {
     return m_copyright;
 }
 
-void ebox::EmuTrack::setCopyright(const std::string &copyright)
+void ebox::EmuTrackInfo::setCopyright(const std::string &copyright)
 {
     m_copyright = copyright;
 }
 
-const std::string &ebox::EmuTrack::getComment() const
+const std::string &ebox::EmuTrackInfo::getComment() const
 {
     return m_comment;
 }
 
-void ebox::EmuTrack::setComment(const std::string &comment)
+void ebox::EmuTrackInfo::setComment(const std::string &comment)
 {
     m_comment = comment;
 }
 
-const std::string &ebox::EmuTrack::getDumper() const
+const std::string &ebox::EmuTrackInfo::getDumper() const
 {
     return m_dumper;
 }
 
-void ebox::EmuTrack::setDumper(const std::string &dumper)
+void ebox::EmuTrackInfo::setDumper(const std::string &dumper)
 {
     m_dumper = dumper;
 }
 
-int ebox::EmuTrack::getLength() const
+int ebox::EmuTrackInfo::getLength() const
 {
     return m_length;
 }
 
-void ebox::EmuTrack::setLength(int length)
+void ebox::EmuTrackInfo::setLength(int length)
 {
     m_length = length;
 }
 
-int ebox::EmuTrack::getPlayLength() const
+int ebox::EmuTrackInfo::getPlayLength() const
 {
     return m_playLength;
 }
 
-void ebox::EmuTrack::setPlayLength(int playLength)
+void ebox::EmuTrackInfo::setPlayLength(int playLength)
 {
     m_playLength = playLength;
 }
 
-bool ebox::EmuTrack::handleError(const char *errorText)
+bool ebox::EmuTrackInfo::handleError(const char *errorText)
 {
     if(errorText)
     {
@@ -153,42 +131,47 @@ bool ebox::EmuTrack::handleError(const char *errorText)
     return false;
 }
 
-int ebox::EmuTrack::getTrackNumber() const
+int ebox::EmuTrackInfo::getTrackNumber() const
 {
     return m_trackNumber;
 }
 
-void ebox::EmuTrack::setTrackNumber(int trackNumber)
+void ebox::EmuTrackInfo::setTrackNumber(int trackNumber)
 {
     m_trackNumber = trackNumber;
 }
 
-const std::string &ebox::EmuTrack::getSong() const
+const std::string &ebox::EmuTrackInfo::getSong() const
 {
     return m_song;
 }
 
-void ebox::EmuTrack::setSong(const std::string &song)
+void ebox::EmuTrackInfo::setSong(const std::string &song)
 {
     m_song = song;
 }
 
-int ebox::EmuTrack::getIntroLength() const
+int ebox::EmuTrackInfo::getIntroLength() const
 {
     return m_introLength;
 }
 
-void ebox::EmuTrack::setIntroLength(int introLength)
+void ebox::EmuTrackInfo::setIntroLength(int introLength)
 {
     m_introLength = introLength;
 }
 
-int ebox::EmuTrack::getLoopLength() const
+int ebox::EmuTrackInfo::getLoopLength() const
 {
     return m_loopLength;
 }
 
-void ebox::EmuTrack::setLoopLength(int loopLength)
+void ebox::EmuTrackInfo::setLoopLength(int loopLength)
 {
     m_loopLength = loopLength;
+}
+
+int ebox::EmuTrackInfo::getNumberOfTracks() const
+{
+    return m_numberOfTracks;
 }

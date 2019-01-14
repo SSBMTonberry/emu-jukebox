@@ -56,7 +56,7 @@ void ebox::AudioTestForm::drawAudioPanel()
 
     ImGui::SameLine(0, spacingLength);
     if(m_previousButton.process())
-        ;
+        m_stream.previousTrack();
     if(m_stopButton.process())
         m_stream.stop();
     if(m_pauseButton.process())
@@ -64,14 +64,24 @@ void ebox::AudioTestForm::drawAudioPanel()
     if(m_playButton.process())
         m_stream.play();
     if(m_nextButton.process())
-        ;
+        m_stream.nextTrack();
     ImGui::EndChild();
 }
 
 void ebox::AudioTestForm::drawAudioInfo()
 {
     ImGui::BeginChild("test_audio_2", {-1, -1}, true, 0);
-
+    ImGui::BeginChild("test_audio_2_sub1", {(getCurrentWindowSize().x / 2), -1}, true, 0);
+    ImGui::Text(fmt::format("Track: {0} of {1}", m_stream.getInfo().getTrackNumber() + 1, m_stream.getInfo().getNumberOfTracks()).c_str());
+    ImGui::Text(fmt::format("Song: {0}", m_stream.getInfo().getSong()).c_str());
+    ImGui::Text(fmt::format("Intro length: {0}", m_stream.getInfo().getIntroLength()).c_str());
+    ImGui::Text(fmt::format("Loop length: {0}", m_stream.getInfo().getLoopLength()).c_str());
+    ImGui::Text(fmt::format("Play length: {0}", m_stream.getInfo().getPlayLength()).c_str());
+    ImGui::Text(fmt::format("Game: {0}", m_stream.getInfo().getGame()).c_str());
+    ImGui::Text(fmt::format("Author: {0}", m_stream.getInfo().getAuthor()).c_str());
+    ImGui::Text(fmt::format("Comment: {0}", m_stream.getInfo().getComment()).c_str());
+    ImGui::Text(fmt::format("Dumper: {0}", m_stream.getInfo().getDumper()).c_str());
+    ImGui::EndChild();
     ImGui::EndChild();
 }
 
@@ -103,7 +113,13 @@ void ebox::AudioTestForm::drawAudioButtons()
     m_loadFromFileText.process();
     ImGui::SameLine();
     if(ImGui::SmallButton("LOAD"))
-        ;
+    {
+        fs::path path = m_loadFromFileText.getValue();
+        if(fs::exists(path) && fs::is_regular_file(path))
+        {
+            m_stream.initializeFile(path.string(), m_stream.getInfo().getTrackNumber());
+        }
+    }
     ImGui::EndChild();
 }
 

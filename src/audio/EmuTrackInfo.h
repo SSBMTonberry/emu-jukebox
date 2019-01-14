@@ -12,13 +12,13 @@
 
 namespace ebox
 {
-    class EmuTrack
+    class EmuTrackInfo
     {
         public:
-            EmuTrack();
-            EmuTrack(Music_Emu *emu, int trackNumber, long sampleRate);
+            EmuTrackInfo();
+            EmuTrackInfo(Music_Emu *emu, int trackNumber);
 
-            bool load(Music_Emu *emu, int trackNumber, long sampleRate);
+            bool load(Music_Emu *emu, int trackNumber);
 
             void setTrackNumber(int trackNumber);
             void setSystem(const std::string &system);
@@ -34,6 +34,7 @@ namespace ebox
             void setLoopLength(int loopLength);
 
             int getTrackNumber() const;
+            int getNumberOfTracks() const;
             const std::string &getSystem() const;
             const std::string &getGame() const;
             const std::string &getAuthor() const;
@@ -47,10 +48,8 @@ namespace ebox
             int getLoopLength() const;
 
 
-
         private:
             Music_Emu *m_emu;
-            long m_sampleRate = 44100;
             bool handleError(const char * errorText);
 
             int m_trackNumber = 0;
@@ -61,16 +60,12 @@ namespace ebox
             std::string m_comment;
             std::string m_dumper;
             std::string m_song;
+            std::string m_errorText;
             int m_length;
             int m_introLength;
             int m_loopLength;
             int m_playLength;
-
-            std::string m_errorText;
-
-            std::vector<sf::Int16> m_samples;
-            sf::SoundBuffer m_soundBuffer;
-            sf::Sound m_sound;
+            int m_numberOfTracks;
     };
 }
 

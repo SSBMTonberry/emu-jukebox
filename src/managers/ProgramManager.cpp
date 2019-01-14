@@ -62,6 +62,7 @@ void ebox::ProgramManager::run()
 
 void ebox::ProgramManager::update()
 {
+    m_clipboard.update();
     m_events.update();
     m_formManager.update();
 }

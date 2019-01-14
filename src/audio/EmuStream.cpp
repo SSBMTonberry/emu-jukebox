@@ -124,7 +124,6 @@ bool ebox::EmuStream::initializeEmu()
         m_emu = nullptr;
     }
 
-    int track = 0; // index of track to play (0 = first)
 
     // Determine file type
     gme_type_t file_type;
@@ -161,8 +160,9 @@ bool ebox::EmuStream::initializeEmu()
     }
 
     handleError( m_emu->start_track( m_track ) );
+    m_info.load(m_emu, m_track);
 
-    m_emu->ignore_silence(); //This makes sure the music doesn't stop when all channels are muted.1234155432123441111111111121234332321211223412345543212332342342312312312312312312313313131313131332213
+    m_emu->ignore_silence(); //This makes sure the music doesn't stop when all channels are muted.
 
     const char **voice_names = m_emu->voice_names();
     int i = 0;
@@ -222,6 +222,28 @@ void ebox::EmuStream::toggleMuteChannel(int channelNo)
     }
 }
 
+void ebox::EmuStream::setTrack(int track)
+{
+    m_track = track;
+    if(m_emu != nullptr)
+    {
+        handleError(m_emu->start_track(m_track));
+        m_info.load(m_emu, m_track);
+    }
+}
+
+void ebox::EmuStream::nextTrack()
+{
+    m_track = ((m_track + 1) > m_info.getNumberOfTracks() - 1) ? 0 : m_track + 1;
+    setTrack(m_track);
+}
+
+void ebox::EmuStream::previousTrack()
+{
+    m_track = ((m_track-1 < 0) && m_info.getNumberOfTracks() > 0) ? m_info.getNumberOfTracks() - 1 : m_track - 1;
+    setTrack(m_track);
+}
+
 std::vector<ebox::Voice> *ebox::EmuStream::getVoices()
 {
     return &m_voices;
@@ -239,4 +261,9 @@ void ebox::EmuStream::unmuteAllChannels()
     {
         muteChannel(channel.getChannelNo(), false);
     }
+}
+
+const ebox::EmuTrackInfo &ebox::EmuStream::getInfo() const
+{
+    return m_info;
 }

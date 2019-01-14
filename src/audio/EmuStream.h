@@ -14,46 +14,39 @@
 #include <iostream>
 #include <cstring>
 #include "Voice.h"
-#include "EmuTrack.h"
+#include "EmuTrackInfo.h"
 
 namespace ebox
 {
     class EmuStream : public sf::SoundStream
     {
         public:
-
-
             EmuStream();
-
             EmuStream(const std::string &filename, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
-
             EmuStream(void *data, size_t size, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
-
             ~EmuStream() override;
 
             void initializeFile(const std::string &filename, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
-
             void initializeMemory(void *data, size_t size, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
 
             void muteChannel(int channelNo, bool mute);
 
             void toggleMuteChannel(int channelNo);
-
             void toggleMuteChannelByHotkey(sf::Keyboard::Key key);
-
-            size_t getNumberOfChannels();
-
             void unmuteAllChannels();
 
+            void setTrack(int track);
+            void nextTrack();
+            void previousTrack();
+
+            size_t getNumberOfChannels();
             std::vector<Voice> *getVoices();
+            const EmuTrackInfo &getInfo() const;
 
         protected:
             bool onGetData(Chunk &data) override;
-
             virtual void onSeek(sf::Time timeOffset) override;
-
             bool initializeEmu();
-
             bool handleError(const char *errorText);
 
         private:
@@ -82,6 +75,7 @@ namespace ebox
             size_t m_dataSize; //If loaded by memory
 
             std::vector<Voice> m_voices;
+            EmuTrackInfo m_info;
     };
 }
 

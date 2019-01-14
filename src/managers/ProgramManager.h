@@ -10,6 +10,7 @@
 #include "SFML/Main.hpp"
 #include "../misc/Tools.hpp"
 #include "FormManager.h"
+#include "ClipboardManager.h"
 
 namespace ebox
 {
@@ -30,7 +31,7 @@ namespace ebox
             sf::RenderWindow m_window;
             EventManager m_events;
             FormManager m_formManager;
-
+            ClipboardManager m_clipboard;
             std::vector<std::string> m_args;
             std::vector<std::string> m_environmentList;
             std::unordered_map<std::string, std::string> m_environmentMap; //Map of environment variables. first: ID, second: value;
