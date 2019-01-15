@@ -36,6 +36,7 @@ void ebox::AudioTestForm::initialize()
     m_pauseButton.setOnSameLine(true);
     m_playButton.setOnSameLine(true);
     m_nextButton.setOnSameLine(true);
+
 }
 
 bool ebox::AudioTestForm::customDraw()

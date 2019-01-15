@@ -38,8 +38,8 @@ void ebox::EmuStream::initializeFile(const std::string &filename, int track, uin
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
     m_samples.resize((m_sampleRate * m_channelCount) / 7);
 
-    initializeEmu();
     SoundStream::initialize(m_channelCount, m_sampleRate);
+    initializeEmu();
 }
 
 void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint channelCount, uint sampleRate)
@@ -54,8 +54,8 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint 
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
     m_samples.resize((m_sampleRate * m_channelCount) / 7);
 
-    initializeEmu();
     SoundStream::initialize(m_channelCount, m_sampleRate);
+    initializeEmu();
 }
 
 ebox::EmuStream::~EmuStream()
@@ -67,7 +67,6 @@ ebox::EmuStream::~EmuStream()
     }
     // We must stop before destroying the file
     stop();
-
 }
 
 
