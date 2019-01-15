@@ -6,6 +6,8 @@
 #define EMU_JUKEBOX_VOICE_H
 
 #include <iostream>
+#include <libgme/Music_Emu.h>
+#include "../gui/controls/Checkbox.h"
 
 namespace ebox
 {
@@ -13,22 +15,29 @@ namespace ebox
     {
         public:
             Voice();
-            Voice(int channelNo, const std::string &channelName, bool isMuted);
+            Voice(Music_Emu *emu, int channelNo, const std::string &channelName, bool isMuted);
 
+            void showCheckbox();
             void toggleMute();
 
+            void setEmu(Music_Emu *emu);
             void setChannelNo(int channelNo);
             void setChannelName(const std::string &channelName);
             void setMuted(bool isMuted);
 
+            Music_Emu *getEmu() const;
             int getChannelNo() const;
             const std::string &getChannelName() const;
             bool isMuted() const;
+            bool *getMuted();
 
         private:
+            ebox::Checkbox m_checkbox;
             int m_channelNo = 0;
             std::string m_channelName = "";
-            bool m_isMuted = true;
+            bool m_isMuted = false;
+
+            Music_Emu *m_emu = nullptr;
     };
 }
 

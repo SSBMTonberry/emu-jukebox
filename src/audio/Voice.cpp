@@ -9,10 +9,10 @@ ebox::Voice::Voice()
 
 }
 
-ebox::Voice::Voice(int channelNo, const std::string &channelName, bool isMuted)
-                   : m_channelNo {channelNo}, m_channelName {channelName}, m_isMuted {isMuted}
+ebox::Voice::Voice(Music_Emu *emu, int channelNo, const std::string &channelName, bool isMuted)
+                   : m_emu {emu}, m_channelNo {channelNo}, m_channelName {channelName}, m_isMuted {isMuted}
 {
-
+    m_checkbox.initialize(channelName, channelName, !isMuted);
 }
 
 void ebox::Voice::toggleMute()
@@ -48,4 +48,28 @@ bool ebox::Voice::isMuted() const
 void ebox::Voice::setMuted(bool isMuted)
 {
     m_isMuted = isMuted;
+    m_emu->mute_voice(m_channelNo, isMuted);
+}
+
+bool *ebox::Voice::getMuted()
+{
+    return &m_isMuted;
+}
+
+Music_Emu *ebox::Voice::getEmu() const
+{
+    return m_emu;
+}
+
+void ebox::Voice::setEmu(Music_Emu *emu)
+{
+    m_emu = emu;
+}
+
+void ebox::Voice::showCheckbox()
+{
+    if(m_checkbox.process())
+    {
+        setMuted(!m_checkbox.isChecked());
+    }
 }

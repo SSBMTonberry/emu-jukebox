@@ -82,6 +82,14 @@ void ebox::AudioTestForm::drawAudioInfo()
     ImGui::Text(fmt::format("Comment: {0}", m_stream.getInfo().getComment()).c_str());
     ImGui::Text(fmt::format("Dumper: {0}", m_stream.getInfo().getDumper()).c_str());
     ImGui::EndChild();
+    ImGui::SameLine();
+    ImGui::BeginChild("test_audio_2_sub2", {-1, -1}, true, 0);
+    ImGui::Text("Voices:");
+    for(auto &voice : *m_stream.getVoices())
+    {
+        voice.showCheckbox();
+    }
+    ImGui::EndChild();
     ImGui::EndChild();
 }
 

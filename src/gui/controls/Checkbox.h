@@ -12,9 +12,13 @@ namespace ebox
     class Checkbox : public Control
     {
         public:
+            Checkbox();
             Checkbox(const std::string &id, const std::string &label, bool isChecked = false);
 
+            void initialize(const std::string &id, const std::string &label, bool isChecked = false);
+
             bool process() override;
+            bool toggle();
 
             bool * getChecked();
             bool isChecked() const;

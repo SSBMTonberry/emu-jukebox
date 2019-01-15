@@ -166,6 +166,7 @@ bool ebox::EmuStream::initializeEmu()
 
     const char **voice_names = m_emu->voice_names();
     int i = 0;
+    m_voices.clear();
     while (*voice_names)
     {
         int hotkeyPos = (i < 9) ? static_cast<int>(sf::Keyboard::Key::Num1) + i : -1;
@@ -174,7 +175,7 @@ bool ebox::EmuStream::initializeEmu()
         int voices = m_emu->voice_count();
         if (i < voices)
         {
-            m_voices.emplace_back(i, *voice_names++, false);
+            m_voices.emplace_back(m_emu, i, *voice_names++, false);
             ++i;
         }
         else

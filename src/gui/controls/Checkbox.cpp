@@ -4,10 +4,22 @@
 
 #include "Checkbox.h"
 
+ebox::Checkbox::Checkbox() : Control("", "")
+{
+    m_type = ControlType::Checkbox;
+}
+
 ebox::Checkbox::Checkbox(const std::string &id, const std::string &label, bool isChecked) : Control(id, label),
                                                                                            m_isChecked {isChecked}
 {
     m_type = ControlType::Checkbox;
+}
+
+void ebox::Checkbox::initialize(const std::string &id, const std::string &label, bool isChecked)
+{
+    m_id = id;
+    m_label = label;
+    m_isChecked = isChecked;
 }
 
 /*!
@@ -45,3 +57,8 @@ bool * ebox::Checkbox::getChecked()
     return &m_isChecked;
 }
 
+bool ebox::Checkbox::toggle()
+{
+    m_isChecked = !m_isChecked;
+    return m_isChecked;
+}
