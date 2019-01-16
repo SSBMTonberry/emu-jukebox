@@ -50,7 +50,7 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint 
     m_data = data;
     m_dataSize = size;
     m_track = track;
-
+    
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
     m_samples.resize((m_sampleRate * m_channelCount) / 7);
 
@@ -67,6 +67,7 @@ ebox::EmuStream::~EmuStream()
     }
     // We must stop before destroying the file
     stop();
+
 }
 
 
@@ -180,6 +181,8 @@ bool ebox::EmuStream::initializeEmu()
         else
             break;
     }
+
+    m_equalizer.initialize(m_emu);
 }
 
 bool ebox::EmuStream::handleError(const char *errorText)
@@ -266,4 +269,9 @@ void ebox::EmuStream::unmuteAllChannels()
 const ebox::EmuTrackInfo &ebox::EmuStream::getInfo() const
 {
     return m_info;
+}
+
+ebox::EmuEqualizer *ebox::EmuStream::getEqualizer()
+{
+    return &m_equalizer;
 }

@@ -56,6 +56,7 @@ namespace ebox
             void drawAudioPanel();
             void drawAudioButtons();
             void drawAudioInfo();
+            void drawEqualizer();
 
             EmuStream m_stream;
 

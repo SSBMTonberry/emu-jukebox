@@ -44,6 +44,7 @@ bool ebox::AudioTestForm::customDraw()
     drawAudioPanel();
     drawAudioButtons();
     drawAudioInfo();
+    drawEqualizer();
 
     return true;
 }
@@ -71,7 +72,7 @@ void ebox::AudioTestForm::drawAudioPanel()
 
 void ebox::AudioTestForm::drawAudioInfo()
 {
-    ImGui::BeginChild("test_audio_2", {-1, -1}, true, 0);
+    ImGui::BeginChild("test_audio_2", {-1, 250}, true, 0);
     ImGui::BeginChild("test_audio_2_sub1", {(getCurrentWindowSize().x / 2), -1}, true, 0);
     ImGui::Text(fmt::format("Track: {0} of {1}", m_stream.getInfo().getTrackNumber() + 1, m_stream.getInfo().getNumberOfTracks()).c_str());
     ImGui::Text(fmt::format("Song: {0}", m_stream.getInfo().getSong()).c_str());
@@ -91,6 +92,13 @@ void ebox::AudioTestForm::drawAudioInfo()
         voice.showCheckbox();
     }
     ImGui::EndChild();
+    ImGui::EndChild();
+}
+
+void ebox::AudioTestForm::drawEqualizer()
+{
+    ImGui::BeginChild("test_audio_eq", {-1, -1}, true, 0);
+    m_stream.getEqualizer()->draw();
     ImGui::EndChild();
 }
 
@@ -131,7 +139,3 @@ void ebox::AudioTestForm::drawAudioButtons()
     }
     ImGui::EndChild();
 }
-
-
-
-

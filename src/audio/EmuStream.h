@@ -15,6 +15,7 @@
 #include <cstring>
 #include "Voice.h"
 #include "EmuTrackInfo.h"
+#include "EmuEqualizer.h"
 
 namespace ebox
 {
@@ -42,6 +43,8 @@ namespace ebox
             size_t getNumberOfChannels();
             std::vector<Voice> *getVoices();
             const EmuTrackInfo &getInfo() const;
+
+            EmuEqualizer *getEqualizer();
 
         protected:
             bool onGetData(Chunk &data) override;
@@ -76,6 +79,7 @@ namespace ebox
 
             std::vector<Voice> m_voices;
             EmuTrackInfo m_info;
+            EmuEqualizer m_equalizer;
     };
 }
 

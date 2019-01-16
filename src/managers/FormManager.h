@@ -31,7 +31,7 @@ namespace ebox
 
             std::vector<ebox::Form *> m_forms;
 
-            AudioTestForm m_audioTestForm {{0,0}, {800, 600}, "audio_test_form", "Audio Tests"};
+            AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", "Audio Tests"};
 
             sf::RenderWindow *m_window;
             EventManager *m_events;
