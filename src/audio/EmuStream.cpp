@@ -50,7 +50,7 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint 
     m_data = data;
     m_dataSize = size;
     m_track = track;
-    
+
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
     m_samples.resize((m_sampleRate * m_channelCount) / 7);
 
@@ -175,7 +175,7 @@ bool ebox::EmuStream::initializeEmu()
         int voices = m_emu->voice_count();
         if (i < voices)
         {
-            m_voices.emplace_back(m_emu, i, *voice_names++, false);
+            m_voices.emplace_back(m_emu, i, *voice_names++, false, hotkey);
             ++i;
         }
         else

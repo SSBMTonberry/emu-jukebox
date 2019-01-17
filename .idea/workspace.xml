@@ -14,15 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/audio/EmuEqualizer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/audio/EmuEqualizer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/audio/EmuStream.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuStream.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/EmuStream.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuStream.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/FormManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/FormManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/audio/Voice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/Voice.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/audio/Voice.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/Voice.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -81,28 +75,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/imgui/imgui.h">
+        <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="458" column="28" selection-start-line="458" selection-start-column="28" selection-end-line="458" selection-end-column="28" />
+            <state relative-caret-position="-972">
+              <caret line="177" column="74" selection-start-line="177" selection-start-column="74" selection-end-line="177" selection-end-column="74" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/gme.h">
+        <entry file="file://$PROJECT_DIR$/src/audio/Voice.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="133" column="73" lean-forward="true" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="73" />
+            <state relative-caret-position="456">
+              <caret line="39" column="26" lean-forward="true" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+              <folding>
+                <element signature="e#97#116#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/Window/Keyboard.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1013">
+              <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
+        <entry file="file://$PROJECT_DIR$/src/audio/Voice.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
+            <state relative-caret-position="285">
+              <caret line="15" column="130" selection-start-line="15" selection-start-column="130" selection-end-line="15" selection-end-column="130" />
             </state>
           </provider>
         </entry>
@@ -112,15 +118,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="271">
               <caret line="209" column="9" selection-start-line="209" selection-start-column="9" selection-end-line="209" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/imgui/imgui_widgets.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1381">
-              <caret line="2306" selection-start-line="2306" selection-end-line="2306" />
             </state>
           </provider>
         </entry>
@@ -185,10 +182,8 @@
         <option value="$PROJECT_DIR$/src/managers/ProgramManager.cpp" />
         <option value="$PROJECT_DIR$/src/managers/ClipboardManager.cpp" />
         <option value="$PROJECT_DIR$/src/managers/ClipboardManager.h" />
-        <option value="$PROJECT_DIR$/src/audio/Voice.h" />
         <option value="$PROJECT_DIR$/src/gui/controls/Checkbox.h" />
         <option value="$PROJECT_DIR$/src/gui/controls/Checkbox.cpp" />
-        <option value="$PROJECT_DIR$/src/audio/Voice.cpp" />
         <option value="$PROJECT_DIR$/src/managers/FormManager.h" />
         <option value="$PROJECT_DIR$/src/forms/AudioTestForm.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuStream.h" />
@@ -196,6 +191,8 @@
         <option value="$PROJECT_DIR$/src/audio/EmuEqualizer.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuEqualizer.cpp" />
         <option value="$PROJECT_DIR$/src/audio/EmuStream.cpp" />
+        <option value="$PROJECT_DIR$/src/audio/Voice.h" />
+        <option value="$PROJECT_DIR$/src/audio/Voice.cpp" />
       </list>
     </option>
   </component>
@@ -336,7 +333,7 @@
       <option name="presentableId" value="Default" />
       <updated>1547065271320</updated>
       <workItem from="1547065273030" duration="18045000" />
-      <workItem from="1547324918582" duration="32132000" />
+      <workItem from="1547324918582" duration="34215000" />
     </task>
     <servers />
   </component>
@@ -352,11 +349,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50177000" />
+    <option name="totallyTimeSpent" value="52260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18615752" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -384,9 +380,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/Child.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/misc/EnumBitflags.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2023" />
@@ -578,13 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/audio/Voice.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1117">
-          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
@@ -632,16 +618,6 @@
           <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
           <folding>
             <element signature="e#103#127#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/audio/Voice.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-          <folding>
-            <element signature="e#97#116#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -767,8 +743,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
+        <state relative-caret-position="-972">
+          <caret line="177" column="74" selection-start-line="177" selection-start-column="74" selection-end-line="177" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/Window/Keyboard.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1013">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/audio/Voice.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="39" column="26" lean-forward="true" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="26" />
+          <folding>
+            <element signature="e#97#116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/audio/Voice.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="130" selection-start-line="15" selection-start-column="130" selection-end-line="15" selection-end-column="130" />
         </state>
       </provider>
     </entry>
