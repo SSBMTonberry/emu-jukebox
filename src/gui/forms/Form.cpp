@@ -53,10 +53,11 @@ bool ebox::Form::draw()
     {
         m_formIsHovered = true;
     }
-    if (ImGui::IsWindowFocused())
+    if (ImGui::IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows))
     {
         m_formIsActive = true;
     }
+
     if(m_currentWindowSize != m_previousWindowSize) onWindowResize();
     if(m_currentWindowPosition != m_previousWindowPosition) onMoved();
 

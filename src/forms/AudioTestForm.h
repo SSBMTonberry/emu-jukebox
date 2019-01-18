@@ -60,6 +60,8 @@ namespace ebox
 
             EmuStream m_stream;
 
+            bool m_hasItemsFocused = false;
+
             ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::actions::_RERUN_PNG, files_mapper::gui::actions::_RERUN_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_stopButton {"test_stop_button", files_mapper::gui::actions::_SUSPEND_PNG, files_mapper::gui::actions::_SUSPEND_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_pauseButton {"test_pause_button", files_mapper::gui::actions::_PAUSE_PNG, files_mapper::gui::actions::_PAUSE_PNG_SIZE, sf::Vector2i(30, 30)};

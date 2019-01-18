@@ -40,11 +40,14 @@ namespace ebox
             void nextTrack();
             void previousTrack();
 
+            int getTimePlayed() const;
+            int *getTimePlayedPtr();
+
             size_t getNumberOfChannels();
             std::vector<Voice> *getVoices();
             const EmuTrackInfo &getInfo() const;
-
             EmuEqualizer *getEqualizer();
+
 
         protected:
             bool onGetData(Chunk &data) override;
@@ -76,6 +79,8 @@ namespace ebox
             std::string m_filename; //if loaded by file
             void *m_data; //If loaded by memory
             size_t m_dataSize; //If loaded by memory
+
+            int m_timePlayed = 0;
 
             std::vector<Voice> m_voices;
             EmuTrackInfo m_info;

@@ -60,13 +60,13 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint 
 
 ebox::EmuStream::~EmuStream()
 {
+    // We must stop before destroying the file
+    stop();
     if(m_emu != nullptr)
     {
         delete m_emu;
         m_emu = nullptr;
     }
-    // We must stop before destroying the file
-    stop();
 
 }
 
@@ -86,7 +86,7 @@ bool ebox::EmuStream::onGetData(sf::SoundStream::Chunk &data)
     sf::Lock lock(m_mutex);
 
     m_emu->play(m_samples.size(), &m_samples[0]);
-
+    m_timePlayed = m_emu->tell();
     // Fill the chunk parameters
     data.samples     = &m_samples[0];
     data.sampleCount = m_samples.size(); //static_cast<std::size_t>(m_file.read(&m_samples[0], m_samples.size()));
@@ -274,4 +274,14 @@ const ebox::EmuTrackInfo &ebox::EmuStream::getInfo() const
 ebox::EmuEqualizer *ebox::EmuStream::getEqualizer()
 {
     return &m_equalizer;
+}
+
+int ebox::EmuStream::getTimePlayed() const
+{
+    return m_timePlayed;
+}
+
+int *ebox::EmuStream::getTimePlayedPtr()
+{
+    return &m_timePlayed;
 }

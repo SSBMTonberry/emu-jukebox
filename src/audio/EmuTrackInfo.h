@@ -61,10 +61,10 @@ namespace ebox
             std::string m_dumper;
             std::string m_song;
             std::string m_errorText;
-            int m_length;
-            int m_introLength;
-            int m_loopLength;
-            int m_playLength;
+            int m_length = -1;
+            int m_introLength = -1;
+            int m_loopLength = -1;
+            int m_playLength = -1;
             int m_numberOfTracks;
     };
 }

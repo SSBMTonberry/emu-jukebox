@@ -71,7 +71,6 @@ void ebox::Voice::setEmu(Music_Emu *emu)
 
 void ebox::Voice::showCheckbox()
 {
-    checkHotkeyPress();
     if(m_checkbox.process())
     {
         setMuted(!m_checkbox.isChecked());

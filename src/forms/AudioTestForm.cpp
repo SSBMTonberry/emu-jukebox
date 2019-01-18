@@ -41,6 +41,7 @@ void ebox::AudioTestForm::initialize()
 
 bool ebox::AudioTestForm::customDraw()
 {
+
     drawAudioPanel();
     drawAudioButtons();
     drawAudioInfo();
@@ -51,7 +52,7 @@ bool ebox::AudioTestForm::customDraw()
 
 void ebox::AudioTestForm::drawAudioPanel()
 {
-    ImGui::BeginChild("test_audio_panel", {-1, 40}, true, 0);
+    ImGui::BeginChild("test_audio_panel", {-1, 80}, true, 0);
 
     int numberOfButtons = 5;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
@@ -67,6 +68,11 @@ void ebox::AudioTestForm::drawAudioPanel()
         m_stream.play();
     if(m_nextButton.process())
         m_stream.nextTrack();
+
+    if(ImGui::SliderInt("Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength() , "%d"))
+    {
+        m_stream.setPlayingOffset(sf::milliseconds(m_stream.getTimePlayed()));
+    }
     ImGui::EndChild();
 }
 
@@ -89,6 +95,8 @@ void ebox::AudioTestForm::drawAudioInfo()
     ImGui::Text("Voices:");
     for(auto &voice : *m_stream.getVoices())
     {
+        if(m_formIsActive && !m_hasItemsFocused)
+            voice.checkHotkeyPress();
         voice.showCheckbox();
     }
     ImGui::EndChild();
@@ -98,6 +106,7 @@ void ebox::AudioTestForm::drawAudioInfo()
 void ebox::AudioTestForm::drawEqualizer()
 {
     ImGui::BeginChild("test_audio_eq", {-1, -1}, true, 0);
+    m_hasItemsFocused = ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows);
     m_stream.getEqualizer()->draw();
     ImGui::EndChild();
 }
