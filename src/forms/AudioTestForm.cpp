@@ -69,7 +69,8 @@ void ebox::AudioTestForm::drawAudioPanel()
     if(m_nextButton.process())
         m_stream.nextTrack();
 
-    if(ImGui::SliderInt("Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength() , "%d"))
+    ImGui::PushItemWidth(-1);
+    if(ImGui::SliderInt("###Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength(), "%d"))
     {
         m_stream.setPlayingOffset(sf::milliseconds(m_stream.getTimePlayed()));
     }
@@ -147,4 +148,21 @@ void ebox::AudioTestForm::drawAudioButtons()
         }
     }
     ImGui::EndChild();
+}
+
+std::string ebox::AudioTestForm::getAudioTimestamp()
+{
+    return fmt::format("{0}/{1}", getMillisecondsAsTimeString(m_stream.getTimePlayed()), getMillisecondsAsTimeString(m_stream.getInfo().getPlayLength()));
+}
+
+std::string ebox::AudioTestForm::getMillisecondsAsTimeString(int milliseconds)
+{
+    int hours = (milliseconds / 3600000);
+    milliseconds = (hours % 3600000);
+    int minutes = (milliseconds / 60000);
+    milliseconds = (minutes % 60000);
+    int seconds = (milliseconds / 1000);
+    milliseconds = (seconds % 1000);
+
+    return fmt::format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
 }

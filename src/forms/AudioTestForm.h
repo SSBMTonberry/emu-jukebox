@@ -82,6 +82,9 @@ namespace ebox
 
             ebox::Label m_loadFromFileLabel {"load_from_file", "From file:", "From file:", LabelType::OnlyLabel};
             ebox::Textbox m_loadFromFileText {"load_from_file_text", "", 150};
+
+            std::string getAudioTimestamp();
+            std::string getMillisecondsAsTimeString(int milliseconds);
     };
 }
 
