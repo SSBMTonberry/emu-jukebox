@@ -37,6 +37,7 @@ void ebox::AudioTestForm::initialize()
     m_playButton.setOnSameLine(true);
     m_nextButton.setOnSameLine(true);
 
+    m_fileDialog.registerOnFileChosenCallback(std::bind(&ebox::AudioTestForm::onFileChosen, this, std::placeholders::_1));
 }
 
 bool ebox::AudioTestForm::customDraw()
@@ -46,6 +47,8 @@ bool ebox::AudioTestForm::customDraw()
     drawAudioButtons();
     drawAudioInfo();
     drawEqualizer();
+
+    m_fileDialog.draw();
 
     return true;
 }
@@ -139,6 +142,11 @@ void ebox::AudioTestForm::drawAudioButtons()
     m_loadFromFileLabel.process();
     m_loadFromFileText.process();
     ImGui::SameLine();
+    if(ImGui::SmallButton("..."))
+    {
+        m_fileDialog.setOpen(true);
+    }
+    ImGui::SameLine(0, 5);
     if(ImGui::SmallButton("LOAD"))
     {
         fs::path path = m_loadFromFileText.getValue();
@@ -180,4 +188,14 @@ std::string ebox::AudioTestForm::getMillisecondsAsTimeString(int milliseconds)
         return (hours > 0) ? fmt::format("{0}:{1}:{2}.{3}", hourStr, minuteStr, secondStr, millisecondStr) :
                              fmt::format("{0}:{1}.{2}", minuteStr, secondStr, millisecondStr);
     }
+}
+
+void AudioTestForm::handleEvents()
+{
+    m_fileDialog.handleEvents();
+}
+
+void AudioTestForm::onFileChosen(const std::string &path)
+{
+    m_loadFromFileText.setValue(path);
 }

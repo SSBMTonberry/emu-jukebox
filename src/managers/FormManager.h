@@ -25,6 +25,7 @@ namespace ebox
 
             void update();
             void draw();
+            void handleEvents();
 
         private:
             void initializeForms();

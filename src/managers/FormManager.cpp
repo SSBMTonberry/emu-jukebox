@@ -65,5 +65,10 @@ bool ebox::FormManager::showImguiDemoWindow() const
     return m_showImguiDemoWindow;
 }
 
+void FormManager::handleEvents()
+{
+    m_audioTestForm.handleEvents();
+}
+
 
 

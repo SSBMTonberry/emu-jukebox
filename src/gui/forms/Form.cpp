@@ -80,8 +80,7 @@ bool ebox::Form::draw()
 
 void ebox::Form::handleEvents()
 {
-    //for(auto const & item : m_controls)
-    //    item->handleEvents();
+
 }
 
 /*!

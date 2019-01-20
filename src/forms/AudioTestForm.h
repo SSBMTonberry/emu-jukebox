@@ -12,6 +12,7 @@
 #include "../audio/EmuStream.h"
 #include "../gui/controls/Label.h"
 #include "../gui/controls/Textbox.h"
+#include "FileDialog.h"
 
 #if MSVC
     #include <filesystem>
@@ -47,6 +48,8 @@ namespace ebox
             AudioTestForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title,
                           const std::string &imguiId = "");
 
+            void handleEvents() override;
+
         protected:
             bool customDraw() override;
 
@@ -58,7 +61,10 @@ namespace ebox
             void drawAudioInfo();
             void drawEqualizer();
 
+            void onFileChosen(const std::string &path);
+
             EmuStream m_stream;
+            FileDialog m_fileDialog { DialogType::OpenFile, "audio_test_file_dialog", "Choose a file" };
 
             bool m_hasItemsFocused = false;
 

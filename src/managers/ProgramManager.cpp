@@ -69,7 +69,7 @@ void ebox::ProgramManager::update()
 
 void ebox::ProgramManager::handleActions()
 {
-
+    m_formManager.handleEvents();
 }
 
 void ebox::ProgramManager::processHotkeys()
