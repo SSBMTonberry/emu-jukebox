@@ -70,7 +70,7 @@ void ebox::AudioTestForm::drawAudioPanel()
         m_stream.nextTrack();
 
     ImGui::PushItemWidth(-1);
-    if(ImGui::SliderInt("###Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength(), "%d"))
+    if(ImGui::SliderInt("###Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength(), getAudioTimestamp().c_str()))//"%d"))
     {
         m_stream.setPlayingOffset(sf::milliseconds(m_stream.getTimePlayed()));
     }
@@ -157,12 +157,27 @@ std::string ebox::AudioTestForm::getAudioTimestamp()
 
 std::string ebox::AudioTestForm::getMillisecondsAsTimeString(int milliseconds)
 {
-    int hours = (milliseconds / 3600000);
-    milliseconds = (hours % 3600000);
-    int minutes = (milliseconds / 60000);
-    milliseconds = (minutes % 60000);
-    int seconds = (milliseconds / 1000);
-    milliseconds = (seconds % 1000);
+    if(milliseconds < 0)
+        return "00:00.000";
+    else
+    {
+        int hours = (milliseconds / 3600000);
+        std::string hourStr = (hours < 10) ? fmt::format("0{0}", hours) : fmt::format("{0}", hours);
+        milliseconds -= (hours * 3600000);
+        int minutes = (milliseconds / 60000);
+        std::string minuteStr = (minutes < 10) ? fmt::format("0{0}", minutes) : fmt::format("{0}", minutes);
+        milliseconds -= (minutes * 60000);
+        int seconds = (milliseconds / 1000);
+        std::string secondStr = (seconds < 10) ? fmt::format("0{0}", seconds) : fmt::format("{0}", seconds);
+        milliseconds -= (seconds * 1000);
+        std::string millisecondStr;
 
-    return fmt::format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
+        if (milliseconds < 100)
+            millisecondStr = (milliseconds < 10) ? fmt::format("00{0}", milliseconds) : fmt::format("0{0}", milliseconds);
+        else
+            millisecondStr = fmt::format("{0}", milliseconds);
+
+        return (hours > 0) ? fmt::format("{0}:{1}:{2}.{3}", hourStr, minuteStr, secondStr, millisecondStr) :
+                             fmt::format("{0}:{1}.{2}", minuteStr, secondStr, millisecondStr);
+    }
 }

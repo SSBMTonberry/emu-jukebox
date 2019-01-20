@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="emu-jukebox" targetName="tests" />
       <config projectName="emu-jukebox" targetName="emu-jukebox" />
+      <config projectName="emu-jukebox" targetName="tests" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -16,8 +16,6 @@
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/tests_main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -32,18 +30,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1430">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="817">
               <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
               <folding>
                 <element signature="e#105#134#0" expanded="true" />
@@ -55,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+            <state relative-caret-position="528">
+              <caret line="180" column="56" selection-start-line="180" selection-start-column="56" selection-end-line="180" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -64,11 +53,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/tests_main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="129">
+              <caret line="11" selection-start-line="11" selection-end-line="27" selection-end-column="89" />
               <folding>
-                <element signature="e#27#50#0" expanded="true" />
+                <element signature="e#27#48#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/core.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="870">
+              <caret line="1265" column="19" selection-start-line="1265" selection-start-column="19" selection-end-line="1265" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -76,7 +74,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/printf.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
+            <state relative-caret-position="11495">
               <caret line="605" column="19" selection-start-line="605" selection-start-column="19" selection-end-line="605" selection-end-column="19" />
             </state>
           </provider>
@@ -94,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
+            <state relative-caret-position="2261">
               <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="74" />
             </state>
           </provider>
@@ -103,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/System/Time.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
+            <state relative-caret-position="2565">
               <caret line="135" column="21" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
             </state>
           </provider>
@@ -112,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
+            <state relative-caret-position="1634">
               <caret line="86" column="52" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="68" />
               <folding>
                 <element signature="e#113#143#0" expanded="true" />
@@ -128,7 +126,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/Audio/SoundStream.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
+            <state relative-caret-position="2717">
               <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
             </state>
           </provider>
@@ -223,6 +221,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -260,7 +259,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -289,7 +287,13 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test timestring" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="tests" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="tests" TEST_CLASS="[time][string]" TEST_METHOD="Test timestring" TEST_MODE="SUITE_TEST">
+    <configuration name="Test timestring (1)" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="tests" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="tests" TEST_CLASS="[time][string]" TEST_METHOD="Test timestring" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test timestring" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="tests" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="tests" TEST_CLASS="[time][string]" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -317,9 +321,11 @@
       <item itemvalue="Catch.Fuckers gonna fuck!" />
       <item itemvalue="Catch.Test-test!" />
       <item itemvalue="Catch.Test timestring" />
+      <item itemvalue="Catch.Test timestring (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Catch.Test timestring (1)" />
         <item itemvalue="Catch.Test timestring" />
         <item itemvalue="Catch.Test-test!" />
         <item itemvalue="Catch.Fuckers gonna fuck!" />
@@ -339,23 +345,12 @@
       <workItem from="1547065273030" duration="18045000" />
       <workItem from="1547324918582" duration="34215000" />
       <workItem from="1547840163963" duration="3316000" />
-      <workItem from="1547843490834" duration="10694000" />
+      <workItem from="1547843490834" duration="10865000" />
+      <workItem from="1547994082541" duration="3221000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_timestring - 2019.01.19 at 23h 18m 17s.xml">
-      <configuration name="Test timestring" configurationId="CMakeCatchTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_timestring - 2019.01.19 at 23h 18m 53s.xml">
-      <configuration name="Test timestring" configurationId="CMakeCatchTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_timestring - 2019.01.19 at 23h 21m 58s.xml">
-      <configuration name="Test timestring" configurationId="CMakeCatchTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Test_timestring - 2019.01.19 at 23h 23m 22s.xml">
-      <configuration name="Test timestring" configurationId="CMakeCatchTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="Test_timestring - 2019.01.19 at 23h 25m 32s.xml">
       <configuration name="Test timestring" configurationId="CMakeCatchTestRunConfigurationType" />
     </history-entry>
@@ -374,15 +369,27 @@
     <history-entry file="Test_timestring - 2019.01.19 at 23h 38m 45s.xml">
       <configuration name="Test timestring" configurationId="CMakeCatchTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="Test_timestring_(1) - 2019.01.20 at 15h 49m 37s.xml">
+      <configuration name="Test timestring (1)" configurationId="CMakeCatchTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Test_timestring_(1) - 2019.01.20 at 16h 07m 10s.xml">
+      <configuration name="Test timestring (1)" configurationId="CMakeCatchTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Test_timestring_(1) - 2019.01.20 at 16h 07m 36s.xml">
+      <configuration name="Test timestring (1)" configurationId="CMakeCatchTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Test_timestring_(1) - 2019.01.20 at 16h 08m 08s.xml">
+      <configuration name="Test timestring (1)" configurationId="CMakeCatchTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66270000" />
+    <option name="totallyTimeSpent" value="69662000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1893397" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16428003" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -407,14 +414,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/tests/tests_main.cpp</url>
+          <line>37</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gui/GuiManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="75" column="61" selection-start-line="75" selection-start-column="61" selection-end-line="75" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/GuiManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1330">
@@ -711,9 +722,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="817">
           <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
           <folding>
             <element signature="e#105#134#0" expanded="true" />
@@ -721,30 +739,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/Audio/SoundStream.hpp">
+    <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/printf.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
+        <state relative-caret-position="11495">
+          <caret line="605" column="19" selection-start-line="605" selection-start-column="19" selection-end-line="605" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2261">
+          <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="74" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/System/Time.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
+        <state relative-caret-position="2565">
           <caret line="135" column="21" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1430">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
+        <state relative-caret-position="1634">
           <caret line="86" column="52" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="68" />
           <folding>
             <element signature="e#113#143#0" expanded="true" />
@@ -756,41 +781,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/Audio/SoundStream.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="74" />
+        <state relative-caret-position="2717">
+          <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/core.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/printf.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="605" column="19" selection-start-line="605" selection-start-column="19" selection-end-line="605" selection-end-column="19" />
+        <state relative-caret-position="870">
+          <caret line="1265" column="19" selection-start-line="1265" selection-start-column="19" selection-end-line="1265" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/tests_main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="129">
+          <caret line="11" selection-start-line="11" selection-end-line="27" selection-end-column="89" />
           <folding>
-            <element signature="e#27#50#0" expanded="true" />
+            <element signature="e#27#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+        <state relative-caret-position="528">
+          <caret line="180" column="56" selection-start-line="180" selection-start-column="56" selection-end-line="180" selection-end-column="56" />
         </state>
       </provider>
     </entry>
