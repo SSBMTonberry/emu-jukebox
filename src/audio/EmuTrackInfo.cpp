@@ -35,6 +35,7 @@ bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber)
     m_introLength = info->intro_length;
     m_loopLength = info->loop_length;
     m_numberOfTracks = gme_track_count(m_emu);
+    m_tempo = 1.f;
 
     gme_free_info( info );
     return true;
@@ -112,7 +113,7 @@ void ebox::EmuTrackInfo::setLength(int length)
 
 int ebox::EmuTrackInfo::getPlayLength() const
 {
-    return m_playLength;
+    return m_playLength; //(m_tempo != 0) ? m_playLength / m_tempo : m_playLength;
 }
 
 void ebox::EmuTrackInfo::setPlayLength(int playLength)
@@ -174,4 +175,14 @@ void ebox::EmuTrackInfo::setLoopLength(int loopLength)
 int ebox::EmuTrackInfo::getNumberOfTracks() const
 {
     return m_numberOfTracks;
+}
+
+float ebox::EmuTrackInfo::getTempo() const
+{
+    return m_tempo;
+}
+
+void ebox::EmuTrackInfo::setTempo(float tempo)
+{
+    m_tempo = tempo;
 }

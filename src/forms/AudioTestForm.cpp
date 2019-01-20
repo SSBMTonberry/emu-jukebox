@@ -37,12 +37,13 @@ void ebox::AudioTestForm::initialize()
     m_playButton.setOnSameLine(true);
     m_nextButton.setOnSameLine(true);
 
+    m_tempo.setValue(1);
+
     m_fileDialog.registerOnFileChosenCallback(std::bind(&ebox::AudioTestForm::onFileChosen, this, std::placeholders::_1));
 }
 
 bool ebox::AudioTestForm::customDraw()
 {
-
     drawAudioPanel();
     drawAudioButtons();
     drawAudioInfo();
@@ -56,9 +57,9 @@ bool ebox::AudioTestForm::customDraw()
 void ebox::AudioTestForm::drawAudioPanel()
 {
     ImGui::BeginChild("test_audio_panel", {-1, 80}, true, 0);
-
     int numberOfButtons = 5;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
+    size_t spacingLength2 = (getCurrentWindowSize().x / 6);
 
     ImGui::SameLine(0, spacingLength);
     if(m_previousButton.process())
@@ -72,11 +73,22 @@ void ebox::AudioTestForm::drawAudioPanel()
     if(m_nextButton.process())
         m_stream.nextTrack();
 
+    ImGui::SameLine(0, spacingLength2);
+    ImGui::PushItemWidth(100);
+    if(m_tempo.process())
+    {
+        m_stream.setTempo(m_tempo.getValue());
+    }
+    if(!m_hasItemsFocused)
+        m_hasItemsFocused = ImGui::IsItemActive();
+
     ImGui::PushItemWidth(-1);
     if(ImGui::SliderInt("###Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength(), getAudioTimestamp().c_str()))//"%d"))
     {
         m_stream.setPlayingOffset(sf::milliseconds(m_stream.getTimePlayed()));
     }
+    if(!m_hasItemsFocused)
+        m_hasItemsFocused = ImGui::IsItemActive();
     ImGui::EndChild();
 }
 
@@ -141,6 +153,7 @@ void ebox::AudioTestForm::drawAudioButtons()
     ImGui::Spacing();
     m_loadFromFileLabel.process();
     m_loadFromFileText.process();
+    m_loadFromFileText.setTextboxFlags(TextboxFlags::ReadOnly);
     ImGui::SameLine();
     if(ImGui::SmallButton("..."))
     {

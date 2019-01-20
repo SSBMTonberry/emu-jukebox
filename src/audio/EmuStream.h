@@ -36,6 +36,7 @@ namespace ebox
             void toggleMuteChannelByHotkey(sf::Keyboard::Key key);
             void unmuteAllChannels();
 
+            void setTempo(float tempo);
             void setTrack(int track);
             void nextTrack();
             void previousTrack();

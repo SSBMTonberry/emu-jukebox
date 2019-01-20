@@ -86,7 +86,7 @@ bool ebox::EmuStream::onGetData(sf::SoundStream::Chunk &data)
     sf::Lock lock(m_mutex);
 
     m_emu->play(m_samples.size(), &m_samples[0]);
-    m_timePlayed = m_emu->tell();
+    m_timePlayed = m_emu->tell();// * m_info.getTempo();
     // Fill the chunk parameters
     data.samples     = &m_samples[0];
     data.sampleCount = m_samples.size(); //static_cast<std::size_t>(m_file.read(&m_samples[0], m_samples.size()));
@@ -112,8 +112,10 @@ void ebox::EmuStream::onSeek(sf::Time timeOffset)
     //sf::Uint64 sampleOffset = static_cast<sf::Uint64>(timeOffset.asSeconds() * getSampleRate() * getChannelCount());
     //sampleOffset -= sampleOffset % getChannelCount();
     //m_loopCurrent = sampleOffset;
-    if(m_emu != nullptr)// && timeOffset.asMilliseconds() > 0)
+    if(m_emu != nullptr)
+    {
         m_emu->seek(timeOffset.asMilliseconds());
+    }
 }
 
 bool ebox::EmuStream::initializeEmu()
@@ -160,8 +162,10 @@ bool ebox::EmuStream::initializeEmu()
     }
 
     handleError( m_emu->start_track( m_track ) );
-    m_info.load(m_emu, m_track);
 
+    float tempo = m_info.getTempo();
+    m_info.load(m_emu, m_track);
+    setTempo(tempo);
     m_emu->ignore_silence(); //This makes sure the music doesn't stop when all channels are muted.
 
     const char **voice_names = m_emu->voice_names();
@@ -225,6 +229,15 @@ void ebox::EmuStream::toggleMuteChannel(int channelNo)
     }
 }
 
+void ebox::EmuStream::setTempo(float tempo)
+{
+    if(m_emu != nullptr)
+    {
+        m_info.setTempo(tempo);
+        m_emu->set_tempo(tempo);
+    }
+}
+
 void ebox::EmuStream::setTrack(int track)
 {
     m_track = track;
@@ -278,10 +291,13 @@ ebox::EmuEqualizer *ebox::EmuStream::getEqualizer()
 
 int ebox::EmuStream::getTimePlayed() const
 {
-    return m_timePlayed;
+
+    return m_timePlayed; //(m_info.getTempo() == 0) ? m_timePlayed : m_timePlayed * m_info.getTempo();
 }
 
 int *ebox::EmuStream::getTimePlayedPtr()
 {
     return &m_timePlayed;
 }
+
+

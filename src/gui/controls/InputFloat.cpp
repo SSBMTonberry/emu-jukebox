@@ -41,6 +41,7 @@ bool ebox::InputFloat::process()
             performValueValidation();
             isChanged = true;
         }
+
     }
 
     return isChanged;

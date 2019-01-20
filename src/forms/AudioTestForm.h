@@ -13,6 +13,7 @@
 #include "../gui/controls/Label.h"
 #include "../gui/controls/Textbox.h"
 #include "FileDialog.h"
+#include "../gui/controls/InputFloat.h"
 
 #if MSVC
     #include <filesystem>
@@ -73,6 +74,7 @@ namespace ebox
             ebox::ImageButton m_pauseButton {"test_pause_button", files_mapper::gui::actions::_PAUSE_PNG, files_mapper::gui::actions::_PAUSE_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_playButton {"test_play_button", files_mapper::gui::actions::_EXECUTE_PNG, files_mapper::gui::actions::_EXECUTE_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_nextButton {"test_next_button", files_mapper::gui::actions::_RERUN_PNG, files_mapper::gui::actions::_RERUN_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::InputFloat m_tempo {"tempo_float", "tempo", 0.1, 5, 0.1, 0.3};
 
             //Audio buttons
             ebox::Button m_ayButton {"test_btn_ay", "Test Amstrad CPC (AY)", {200, 30}};

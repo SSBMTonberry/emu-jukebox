@@ -20,6 +20,7 @@ namespace ebox
 
             bool load(Music_Emu *emu, int trackNumber);
 
+            void setTempo(float tempo);
             void setTrackNumber(int trackNumber);
             void setSystem(const std::string &system);
             void setGame(const std::string &game);
@@ -33,6 +34,7 @@ namespace ebox
             void setIntroLength(int introLength);
             void setLoopLength(int loopLength);
 
+            float getTempo() const;
             int getTrackNumber() const;
             int getNumberOfTracks() const;
             const std::string &getSystem() const;
@@ -61,6 +63,7 @@ namespace ebox
             std::string m_dumper;
             std::string m_song;
             std::string m_errorText;
+            float m_tempo = 1.f;
             int m_length = -1;
             int m_introLength = -1;
             int m_loopLength = -1;
