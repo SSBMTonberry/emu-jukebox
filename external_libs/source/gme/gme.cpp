@@ -1,4 +1,4 @@
-// Game_Music_Emu 0.5.5. http://www.slack.net/~ant/
+// Game_Music_Emu https://bitbucket.org/mpyne/game-music-emu/
 
 #include "Music_Emu.h"
 
@@ -83,6 +83,8 @@ BLARGG_EXPORT const char* gme_identify_header( void const* header )
 		case BLARGG_4CHAR('S','N','E','S'):  return "SPC";
 		case BLARGG_4CHAR('V','g','m',' '):  return "VGM";
 	}
+	if (get_be16(header) == BLARGG_2CHAR(0x1F, 0x8B))
+		return "VGZ";
 	return "";
 }
 
@@ -109,6 +111,14 @@ BLARGG_EXPORT gme_type_t gme_identify_extension( const char* extension_ )
 		if ( !strcmp( extension, (*types)->extension_ ) )
 			return *types;
 	return 0;
+}
+
+BLARGG_EXPORT const char *gme_type_extension( gme_type_t music_type )
+{
+	const gme_type_t_ *const music_typeinfo = static_cast<const gme_type_t_ *>( music_type );
+	if ( music_type )
+		return music_typeinfo->extension_;
+	return "";
 }
 
 BLARGG_EXPORT gme_err_t gme_identify_file( const char* path, gme_type_t* type_out )
@@ -187,7 +197,8 @@ BLARGG_EXPORT gme_err_t gme_open_file( const char* path, Music_Emu** out, int sa
 	return err;
 }
 
-BLARGG_EXPORT Music_Emu* gme_new_emu( gme_type_t type, int rate )
+// Used to implement gme_new_emu and gme_new_emu_multi_channel
+Music_Emu* gme_internal_new_emu_( gme_type_t type, int rate, bool multi_channel )
 {
 	if ( type )
 	{
@@ -198,9 +209,18 @@ BLARGG_EXPORT Music_Emu* gme_new_emu( gme_type_t type, int rate )
 		if ( me )
 		{
 		#if !GME_DISABLE_STEREO_DEPTH
+			me->set_multi_channel( multi_channel );
+
 			if ( type->flags_ & 1 )
 			{
-				me->effects_buffer = BLARGG_NEW Effects_Buffer;
+				if ( me->multi_channel() )
+				{
+					me->effects_buffer = BLARGG_NEW Effects_Buffer(8);
+				}
+				else
+				{
+					me->effects_buffer = BLARGG_NEW Effects_Buffer(1);
+				}
 				if ( me->effects_buffer )
 					me->set_buffer( me->effects_buffer );
 			}
@@ -218,6 +238,17 @@ BLARGG_EXPORT Music_Emu* gme_new_emu( gme_type_t type, int rate )
 		}
 	}
 	return 0;
+}
+
+BLARGG_EXPORT Music_Emu* gme_new_emu( gme_type_t type, int rate )
+{
+    return gme_internal_new_emu_( type, rate, false /* no multichannel */);
+}
+
+BLARGG_EXPORT Music_Emu* gme_new_emu_multi_channel( gme_type_t type, int rate )
+{
+    // multi-channel emulator (if possible, not all emu types support multi-channel)
+    return gme_internal_new_emu_( type, rate, true /* multichannel */);
 }
 
 BLARGG_EXPORT gme_err_t gme_load_file( Music_Emu* me, const char* path ) { return me->load_file( path ); }
@@ -337,7 +368,9 @@ BLARGG_EXPORT gme_err_t gme_play           ( Music_Emu* me, int n, short* p )   
 BLARGG_EXPORT void      gme_set_fade       ( Music_Emu* me, int start_msec )      { me->set_fade( start_msec ); }
 BLARGG_EXPORT int       gme_track_ended    ( Music_Emu const* me )                { return me->track_ended(); }
 BLARGG_EXPORT int       gme_tell           ( Music_Emu const* me )                { return me->tell(); }
+BLARGG_EXPORT int       gme_tell_samples   ( Music_Emu const* me )                { return me->tell_samples(); }
 BLARGG_EXPORT gme_err_t gme_seek           ( Music_Emu* me, int msec )            { return me->seek( msec ); }
+BLARGG_EXPORT gme_err_t gme_seek_samples   ( Music_Emu* me, int n )               { return me->seek_samples( n ); }
 BLARGG_EXPORT int       gme_voice_count    ( Music_Emu const* me )                { return me->voice_count(); }
 BLARGG_EXPORT void      gme_ignore_silence ( Music_Emu* me, int disable )         { me->ignore_silence( disable != 0 ); }
 BLARGG_EXPORT void      gme_set_tempo      ( Music_Emu* me, double t )            { me->set_tempo( t ); }
@@ -346,6 +379,7 @@ BLARGG_EXPORT void      gme_mute_voices    ( Music_Emu* me, int mask )          
 BLARGG_EXPORT void      gme_enable_accuracy( Music_Emu* me, int enabled )         { me->enable_accuracy( enabled ); }
 BLARGG_EXPORT void      gme_clear_playlist ( Music_Emu* me )                      { me->clear_playlist(); }
 BLARGG_EXPORT int       gme_type_multitrack( gme_type_t t )                       { return t->track_count != 1; }
+BLARGG_EXPORT int       gme_multi_channel  ( Music_Emu const* me )                { return me->multi_channel(); }
 
 BLARGG_EXPORT void      gme_set_equalizer  ( Music_Emu* me, gme_equalizer_t const* eq )
 {
@@ -357,7 +391,7 @@ BLARGG_EXPORT void      gme_set_equalizer  ( Music_Emu* me, gme_equalizer_t cons
 
 BLARGG_EXPORT void gme_equalizer( Music_Emu const* me, gme_equalizer_t* out )
 {
-	gme_equalizer_t e = { };
+	gme_equalizer_t e = gme_equalizer_t(); // Default-init all fields to 0.0f
 	e.treble = me->equalizer().treble;
 	e.bass   = me->equalizer().bass;
 	*out = e;

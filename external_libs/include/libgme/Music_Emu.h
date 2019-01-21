@@ -1,6 +1,6 @@
 // Common interface to game music file emulators
 
-// Game_Music_Emu 0.5.5
+// Game_Music_Emu https://bitbucket.org/mpyne/game-music-emu/
 #ifndef MUSIC_EMU_H
 #define MUSIC_EMU_H
 
@@ -13,6 +13,11 @@ public:
 
 	// Set output sample rate. Must be called only once before loading file.
 	blargg_err_t set_sample_rate( long sample_rate );
+        
+	// specifies if all 8 voices get rendered to their own stereo channel
+	// default implementation of Music_Emu always returns not supported error (i.e. no multichannel support by default)
+	// derived emus must override this if they support multichannel rendering
+	virtual blargg_err_t set_multi_channel( bool is_enabled );
 	
 	// Start a track, where 0 is the first track. Also clears warning string.
 	blargg_err_t start_track( int );
@@ -35,14 +40,22 @@ public:
 	
 	// Names of voices
 	const char** voice_names() const;
+        
+        bool multi_channel() const;
 	
 // Track status/control
 
 	// Number of milliseconds (1000 msec = 1 second) played since beginning of track
 	long tell() const;
 	
+	// Number of samples generated since beginning of track
+	long tell_samples() const;
+
 	// Seek to new time in track. Seeking backwards or far forward can take a while.
 	blargg_err_t seek( long msec );
+	
+	// Equivalent to restarting track then skipping n samples
+	blargg_err_t seek_samples( long n );
 	
 	// Skip n samples
 	blargg_err_t skip( long n );
@@ -58,7 +71,7 @@ public:
 	void ignore_silence( bool disable = true );
 	
 	// Info for current track
-	Gme_File::track_info;
+	using Gme_File::track_info;
 	blargg_err_t track_info( track_info_t* out ) const;
 	
 // Sound customization
@@ -97,6 +110,14 @@ public:
 	
 	// Set frequency equalizer parameters
 	void set_equalizer( equalizer_t const& );
+
+	// Construct equalizer of given treble/bass settings
+	static const equalizer_t make_equalizer( double treble, double bass )
+	{
+	    const Music_Emu::equalizer_t e = { treble, bass,
+		0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+	    return e;
+	}
 	
 	// Equalizer settings for TV speaker
 	static equalizer_t const tv_eq;
@@ -113,10 +134,11 @@ protected:
 	double gain() const                         { return gain_; }
 	double tempo() const                        { return tempo_; }
 	void remute_voices();
+        blargg_err_t set_multi_channel_( bool is_enabled );
 	
 	virtual blargg_err_t set_sample_rate_( long sample_rate ) = 0;
 	virtual void set_equalizer_( equalizer_t const& ) { }
-	virtual void enable_accuracy_( bool enable ) { }
+	virtual void enable_accuracy_( bool /* enable */ ) { }
 	virtual void mute_voices_( int mask ) = 0;
 	virtual void set_tempo_( double ) = 0;
 	virtual blargg_err_t start_track_( int ) = 0; // tempo is set before this
@@ -135,7 +157,11 @@ private:
 	int mute_mask_;
 	double tempo_;
 	double gain_;
-	
+	bool multi_channel_;
+        
+	// returns the number of output channels, i.e. usually 2 for stereo, unlesss multi_channel_ == true
+	int out_channels() const { return this->multi_channel() ? 2*8 : 2; }
+        
 	long sample_rate_;
 	blargg_long msec_to_samples( blargg_long msec ) const;
 	
@@ -165,7 +191,7 @@ private:
 	void emu_play( long count, sample_t* out );
 	
 	Multi_Buffer* effects_buffer;
-	friend Music_Emu* gme_new_emu( gme_type_t, int );
+	friend Music_Emu* gme_internal_new_emu_( gme_type_t, int, bool );
 	friend void gme_set_stereo_depth( Music_Emu*, double );
 };
 

@@ -187,6 +187,8 @@ bool ebox::EmuStream::initializeEmu()
     }
 
     m_equalizer.initialize(m_emu);
+
+    return true;
 }
 
 bool ebox::EmuStream::handleError(const char *errorText)

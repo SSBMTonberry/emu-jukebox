@@ -15,14 +15,64 @@
   <component name="ChangeListManager">
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/core.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/core.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/format-inl.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/format-inl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/format.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/format.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/ostream.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/ostream.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/printf.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/printf.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/ranges.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/ranges.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/fmt/time.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/fmt/time.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Ay_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Ay_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Ay_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Ay_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Ay_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Ay_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Blip_Buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Blip_Buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Classic_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Classic_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Data_Reader.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Data_Reader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Dual_Resampler.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Dual_Resampler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Effects_Buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Effects_Buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Fir_Resampler.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Fir_Resampler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Gb_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Gb_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Gb_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Gb_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Gb_Oscs.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Gb_Oscs.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Gbs_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Gbs_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Gme_File.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Gme_File.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Gym_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Gym_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Hes_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Hes_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Hes_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Hes_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Hes_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Hes_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Kss_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Kss_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Kss_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Kss_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Kss_Scc_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Kss_Scc_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/M3u_Playlist.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/M3u_Playlist.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Music_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Music_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Fme7_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Fme7_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Namco_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Namco_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Vrc6_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Nes_Vrc6_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Nsf_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Nsf_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Nsfe_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Nsfe_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Sap_Apu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Sap_Apu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Sap_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Sap_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Sap_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Sap_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Snes_Spc.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Snes_Spc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Cpu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Cpu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Dsp.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Dsp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Filter.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Spc_Filter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Vgm_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Vgm_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Vgm_Emu_Impl.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Vgm_Emu_Impl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Ym2413_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Ym2413_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/blargg_common.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/blargg_common.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/blargg_endian.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/blargg_endian.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/blargg_source.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/blargg_source.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/gme.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/gme.h" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/gme.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/include/libgme/libgme.pc.in" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/include/libgme/libgme.pc.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/audio/EmuStream.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuStream.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/EmuStream.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuStream.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/EmuTrackInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuTrackInfo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/FileDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/FileDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controls/InputFloat.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controls/InputFloat.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -32,35 +82,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1011">
-              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../libgme-git/libgme/gme/blargg_common.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-              <folding>
-                <element signature="e#105#134#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="594">
+              <caret line="57" column="11" lean-forward="true" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -75,15 +104,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Music_Emu.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-565">
-              <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
@@ -93,33 +113,68 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/controls/InputFloat.cpp">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="553">
+              <caret line="83" column="126" lean-forward="true" selection-start-line="83" selection-start-column="126" selection-end-line="83" selection-end-column="126" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/Audio/SoundStream.hpp">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Gym_Emu.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-337">
-              <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
+            <state relative-caret-position="152">
+              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+            <state relative-caret-position="380">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
-                <element signature="e#113#143#0" expanded="true" />
+                <element signature="e#271#333#0" expanded="true" />
+                <element signature="e#384#444#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/gme.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2527">
+              <caret line="133" column="73" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Ym2612_MAME.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="665">
+              <caret line="35" column="2" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#1#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/gme_types.h">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -139,6 +194,7 @@
       <find>pms</find>
       <find>pme</find>
       <find>fm::filetypes</find>
+      <find>gme.cpp</find>
     </findStrings>
     <replaceStrings>
       <replace>ebox::</replace>
@@ -168,8 +224,6 @@
         <option value="$PROJECT_DIR$/src/misc/Tools.hpp" />
         <option value="$PROJECT_DIR$/src/managers/EventManager.cpp" />
         <option value="$PROJECT_DIR$/src/managers/EventManager.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/gui/controls/ImageButton.h" />
         <option value="$PROJECT_DIR$/src/gui/controls/ImageButton.cpp" />
         <option value="$PROJECT_DIR$/src/audio/AudioCommon.h" />
@@ -200,8 +254,11 @@
         <option value="$PROJECT_DIR$/src/audio/EmuTrackInfo.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" />
         <option value="$PROJECT_DIR$/src/gui/controls/InputFloat.cpp" />
-        <option value="$PROJECT_DIR$/src/audio/EmuStream.cpp" />
         <option value="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h" />
+        <option value="$PROJECT_DIR$/src/audio/EmuStream.cpp" />
       </list>
     </option>
   </component>
@@ -363,7 +420,7 @@
       <workItem from="1547324918582" duration="34215000" />
       <workItem from="1547840163963" duration="3316000" />
       <workItem from="1547843490834" duration="10865000" />
-      <workItem from="1547994082541" duration="18203000" />
+      <workItem from="1547994082541" duration="22524000" />
     </task>
     <servers />
   </component>
@@ -400,7 +457,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84644000" />
+    <option name="totallyTimeSpent" value="88965000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="0" />
@@ -412,12 +469,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969603" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32969603" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3998441" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3998441" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32969603" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32969603" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -475,34 +532,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/managers/ClipboardManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/audio/AudioCommon.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.1.1/bits/stl_vector.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="804" column="6" selection-start-line="804" selection-start-column="6" selection-end-line="804" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/Checkbox.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/controls/Checkbox.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -546,13 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="458" column="28" selection-start-line="458" selection-start-column="28" selection-end-line="458" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/gme.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="133" column="73" lean-forward="true" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -639,13 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2261">
-          <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/SFML/System/Time.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2565">
@@ -728,16 +743,6 @@
           <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
           <folding>
             <element signature="e#109#133#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -836,8 +841,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Music_Emu.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-565">
-          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+        <state relative-caret-position="-375">
+          <caret line="54" column="17" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -848,17 +853,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1011">
-          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
           <caret line="58" column="61" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="83" column="126" lean-forward="true" selection-start-line="83" selection-start-column="126" selection-end-line="83" selection-end-column="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/gme_types.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#1#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Gym_Emu.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/gme.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2527">
+          <caret line="133" column="73" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#271#333#0" expanded="true" />
+            <element signature="e#384#444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Ym2612_MAME.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="2" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="57" column="11" lean-forward="true" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
         </state>
       </provider>
     </entry>
