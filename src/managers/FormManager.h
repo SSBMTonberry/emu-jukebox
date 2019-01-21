@@ -10,6 +10,7 @@
 #include "EventManager.h"
 #include "../gui/forms/Form.h"
 #include "../forms/AudioTestForm.h"
+#include "../forms/SystemLog.h"
 
 namespace ebox
 {

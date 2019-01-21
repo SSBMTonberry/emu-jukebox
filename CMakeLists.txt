@@ -7,6 +7,8 @@ set(PROJECT_VERSION_MINOR 1)
 set(PROJECT_VERSION_PATCH 0)
 set(CMAKE_CXX_FLAGS -DSFML_STATIC)
 
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DEBOX_DEBUG")
+
 if(UNIX AND NOT APPLE)
     set(LINUX 1)
     set(WINDOWS 0)
@@ -121,7 +123,7 @@ set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramMa
                           src/managers/FormManager.cpp src/managers/FormManager.h src/managers/EventManager.cpp src/managers/EventManager.h
                           src/forms/AudioTestForm.cpp src/forms/AudioTestForm.h src/audio/EmuStream.cpp src/audio/EmuStream.h src/audio/EmuTrackInfo.cpp
                           src/audio/EmuTrackInfo.h src/audio/AudioCommon.h src/managers/ClipboardManager.cpp src/managers/ClipboardManager.h src/audio/EmuEqualizer.cpp
-                          src/audio/EmuEqualizer.h src/forms/FileDialog.cpp src/forms/FileDialog.h src/forms/FileTable.cpp src/forms/FileTable.h)
+                          src/audio/EmuEqualizer.h src/forms/FileDialog.cpp src/forms/FileDialog.h src/forms/FileTable.cpp src/forms/FileTable.h src/forms/SystemLog.cpp src/forms/SystemLog.h)
 
 add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
 

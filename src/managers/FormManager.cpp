@@ -52,6 +52,8 @@ void ebox::FormManager::draw()
     for(auto const &item : m_forms)
         item->draw();
 
+    SystemLog::get()->process();
+
     ImGui::SFML::Render(*m_window);
 }
 
