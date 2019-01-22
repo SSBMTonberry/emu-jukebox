@@ -5,10 +5,10 @@
 #ifndef EMU_JUKEBOX_PROGRAMMANAGER_H
 #define EMU_JUKEBOX_PROGRAMMANAGER_H
 
+#include "../misc/Tools.hpp"
 #include <unordered_map>
 #include "SFML/Graphics.hpp"
 #include "SFML/Main.hpp"
-#include "../misc/Tools.hpp"
 #include "FormManager.h"
 #include "ClipboardManager.h"
 

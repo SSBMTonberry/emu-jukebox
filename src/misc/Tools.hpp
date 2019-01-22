@@ -5,7 +5,7 @@
 #ifndef PIXELMOUND_TOOLS_H
 #define PIXELMOUND_TOOLS_H
 
-#include "../../PixelmoundConfig.h"
+#include "../../EmuJukeboxConfig.h"
 
 #include <sstream>
 #include <cstdlib>
@@ -14,7 +14,6 @@
 #include <cstdarg>
 #include <cctype>
 #include <initializer_list>
-
 
 #include <fmt/core.h>
 #include <fmt/printf.h>
