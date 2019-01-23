@@ -16,8 +16,6 @@
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ProgramManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ProgramManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/misc/Tools.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/Tools.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -33,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="238" column="87" selection-start-line="238" selection-start-column="87" selection-end-line="238" selection-end-column="87" />
+            <state relative-caret-position="562">
+              <caret line="258" column="157" selection-start-line="258" selection-start-column="157" selection-end-line="258" selection-end-column="157" />
             </state>
           </provider>
         </entry>
@@ -54,8 +52,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-285">
+              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
               <folding>
+                <element signature="e#1239#1284#0" expanded="true" />
                 <element signature="e#1910#1993#0" expanded="true" />
               </folding>
             </state>
@@ -63,9 +63,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/GlContext.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="700">
+              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/GlxContext.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="263">
+              <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
               <folding>
                 <element signature="e#1296#1332#0" expanded="true" />
               </folding>
@@ -120,15 +130,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Graphics/Font.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -150,6 +151,8 @@
       <find>Verte</find>
       <find>Clock</find>
       <find>WindowImplX11</find>
+      <find>Unix/Window</find>
+      <find>GL</find>
     </findStrings>
     <replaceStrings>
       <replace>ebox::</replace>
@@ -363,7 +366,7 @@
       <workItem from="1547324918582" duration="34215000" />
       <workItem from="1547840163963" duration="3316000" />
       <workItem from="1547843490834" duration="10865000" />
-      <workItem from="1547994082541" duration="35892000" />
+      <workItem from="1547994082541" duration="42712000" />
     </task>
     <servers />
   </component>
@@ -400,7 +403,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102333000" />
+    <option name="totallyTimeSpent" value="109153000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="0" />
@@ -417,11 +420,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32969603" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32969603" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.32969603" />
+      <window_info active="true" anchor="bottom" id="CMake" order="12" visible="true" weight="0.32969603" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -475,13 +478,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/printf.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11495">
-          <caret line="605" column="19" selection-start-line="605" selection-start-column="19" selection-end-line="605" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -830,24 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/GlxContext.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#1296#1332#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#1910#1993#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -858,10 +836,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+          <folding>
+            <element signature="e#1239#1284#0" expanded="true" />
+            <element signature="e#1910#1993#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/GlContext.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/GlxContext.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+          <folding>
+            <element signature="e#1296#1332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="238" column="87" selection-start-line="238" selection-start-column="87" selection-end-line="238" selection-end-column="87" />
+        <state relative-caret-position="562">
+          <caret line="258" column="157" selection-start-line="258" selection-start-column="157" selection-end-line="258" selection-end-column="157" />
         </state>
       </provider>
     </entry>

@@ -132,7 +132,8 @@ set(SFML_SOURCE_FILES_UNIX ${SFML_SOURCE_BASE}/System/Unix/ClockImpl.cpp ${SFML_
         ${SFML_SOURCE_BASE}/Window/Unix/InputImpl.hpp ${SFML_SOURCE_BASE}/Window/Unix/SensorImpl.cpp ${SFML_SOURCE_BASE}/Window/Unix/SensorImpl.hpp
         ${SFML_SOURCE_BASE}/Window/Unix/VideoModeImpl.cpp ${SFML_SOURCE_BASE}/Window/Unix/WindowImplX11.cpp
         ${SFML_SOURCE_BASE}/Window/Unix/WindowImplX11.hpp ${SFML_SOURCE_BASE}/Window/Unix/JoystickImpl.cpp ${SFML_SOURCE_BASE}/Window/Unix/JoystickImpl.hpp
-        ${SFML_SOURCE_BASE}/Network/Unix/SocketImpl.cpp ${SFML_SOURCE_BASE}/Network/Unix/SocketImpl.hpp)
+        ${SFML_SOURCE_BASE}/Window/Unix/GlxContext.cpp ${SFML_SOURCE_BASE}/Window/Unix/GlxContext.hpp ${SFML_SOURCE_BASE}/Window/Unix/GlxExtensions.cpp
+        ${SFML_SOURCE_BASE}/Window/Unix/GlxExtensions.hpp ${SFML_SOURCE_BASE}/Network/Unix/SocketImpl.cpp ${SFML_SOURCE_BASE}/Network/Unix/SocketImpl.hpp )
 
 # ImageLoader.cpp must be compiled with the -fno-strict-aliasing
 # when gcc is used; otherwise saving PNGs may crash in stb_image_write
@@ -228,15 +229,16 @@ set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramMa
                           src/audio/EmuTrackInfo.h src/audio/AudioCommon.h src/managers/ClipboardManager.cpp src/managers/ClipboardManager.h src/audio/EmuEqualizer.cpp
                           src/audio/EmuEqualizer.h src/forms/FileDialog.cpp src/forms/FileDialog.h src/forms/FileTable.cpp src/forms/FileTable.h src/forms/SystemLog.cpp src/forms/SystemLog.h)
 
-add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} ${GME_SOURCE_FILES} ${SFML_SOURCE_FILES_UNIX} ${SFML_SOURCE_FILES_COMMON})
+
 
 if(LINUX)
+    add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} ${SFML_SOURCE_FILES_UNIX} ${SFML_SOURCE_FILES_COMMON})
     set(PATH_LIBS ${PROJECT_SOURCE_DIR}/external_libs/libs/linux)
     set(PATH_SFML_LIB ${PROJECT_SOURCE_DIR}/external_libs/libs/linux/sfml)
     #set(MY_STATIC_LIBS ${PATH_LIBS}/libclip.a ${PATH_LIBS}/libfmt.a ${PATH_LIBS}/libgme.a ${PATH_SFML_LIB}/libsfml-network-s.a ${PATH_SFML_LIB}/libsfml-audio-s.a ${PATH_SFML_LIB}/libsfml-graphics-s.a ${PATH_SFML_LIB}/libsfml-window-s.a ${PATH_SFML_LIB}/libsfml-system-s.a)
     #set(MY_STATIC_LIBS ${PATH_LIBS}/libclip.a ${PATH_SFML_LIB}/libsfml-network-s.a ${PATH_SFML_LIB}/libsfml-audio-s.a ${PATH_SFML_LIB}/libsfml-graphics-s.a ${PATH_SFML_LIB}/libsfml-window-s.a ${PATH_SFML_LIB}/libsfml-system-s.a)
     #target_link_libraries(emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
-    target_link_libraries(emu-jukebox stdc++fs png ${PATH_SFML_LIB}/libsfml-window-s.a ${SFML_DEPENDENCIES} ${SFML_REST})
+    target_link_libraries(emu-jukebox stdc++fs png ${SFML_DEPENDENCIES} ${SFML_REST})
 elseif(WIN32)
     if(MSVC)
         set(PATH_LIBS ${PROJECT_SOURCE_DIR}/external_libs/libs/win)
@@ -246,14 +248,16 @@ elseif(WIN32)
         elseif(RELEASE)
             set(MY_STATIC_LIBS ${PATH_LIBS}/fmt-s.lib ${PATH_SFML_LIB}/sfml-network-s.lib ${PATH_SFML_LIB}/sfml-audio-s.lib ${PATH_SFML_LIB}/sfml-main.lib ${PATH_SFML_LIB}/sfml-graphics-s.lib ${PATH_SFML_LIB}/sfml-window-s.lib ${PATH_SFML_LIB}/sfml-system-s.lib)
         endif()
-
-        target_link_libraries(emu-jukebox ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
+        add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} ${SFML_SOURCE_FILES_WIN} ${SFML_SOURCE_FILES_COMMON})
+        #target_link_libraries(emu-jukebox ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
+        target_link_libraries(emu-jukebox ${SFML_DEPENDENCIES})
     else()
         set(PATH_LIBS ${PROJECT_SOURCE_DIR}/external_libs/libs/win/mingw/fmt)
         set(PATH_SFML_LIB ${PROJECT_SOURCE_DIR}/external_libs/libs/win/mingw/sfml/dynamic)
         set(MY_STATIC_LIBS ${PATH_LIBS}/libfmt.a ${PATH_SFML_LIB}/libsfml-network.a ${PATH_SFML_LIB}/libsfml-audio.a ${PATH_SFML_LIB}/libsfml-graphics.a ${PATH_SFML_LIB}/libsfml-window.a ${PATH_SFML_LIB}/libsfml-system.a)
 
-        target_link_libraries(PixelmoundStudio stdc++fs ${MY_STATIC_LIBS})
+        add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} ${SFML_SOURCE_FILES_UNIX} ${SFML_SOURCE_FILES_COMMON})
+        target_link_libraries(emu-jukebox stdc++fs ${MY_STATIC_LIBS})
     endif()
 endif()
 
