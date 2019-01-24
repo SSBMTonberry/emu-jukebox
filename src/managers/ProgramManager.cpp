@@ -9,7 +9,7 @@ ebox::ProgramManager::ProgramManager(int argc, char **argv, char** envp)
     initializeArgs(argc, argv, envp);
 }
 
-void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector2<uint> &resolution, sf::Uint32 style,
+void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector2<uint32_t> &resolution, sf::Uint32 style,
                                       const sf::ContextSettings &settings)
 {
     m_window.create(sf::VideoMode(resolution.x, resolution.y), title, style, settings);

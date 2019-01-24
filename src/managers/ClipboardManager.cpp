@@ -6,12 +6,12 @@
 
 ClipboardManager::ClipboardManager()
 {
-    m_lastImGuiClipboardChange = system_clock::now();
+    m_lastImGuiClipboardChange = high_resolution_clock::now();
 
     //sf::String osStr = sf::Clipboard::getString();
     //m_lastOsClipboardValue = osStr;
 
-    m_lastOsClipboardChange = system_clock::now();
+    m_lastOsClipboardChange = high_resolution_clock::now();
 }
 
 void ClipboardManager::update()
@@ -30,14 +30,14 @@ void ClipboardManager::update()
     if(m_lastOsClipboardValue != osStr)
     {
         m_lastOsClipboardValue = osStr;
-        m_lastOsClipboardChange = system_clock::now();
+        m_lastOsClipboardChange = high_resolution_clock::now();
         valuesHasBeenChanged = true;
     }
 
     if(imguiStr != m_lastImguiClipboardValue)
     {
         m_lastImguiClipboardValue = imguiStr;
-        m_lastImGuiClipboardChange = system_clock::now();
+        m_lastImGuiClipboardChange = high_resolution_clock::now();
         valuesHasBeenChanged = true;
     }
 

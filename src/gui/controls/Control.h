@@ -18,7 +18,7 @@
 
 namespace ebox
 {
-    enum class ControlType : uint
+    enum class ControlType : uint32_t
     {
         Unassigned = 0,
         Textbox = 1,

@@ -63,7 +63,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
 
                 std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 
-                row->setValue("filename", filename);
+                row->setValue("filename", filename.string());
                 row->setImage("filename", imgData.first, imgData.second);
                 row->setValue("type", "directory");
                 row->setValue("modified", timefmt); //std::asctime(std::localtime(&cftime)));
@@ -78,15 +78,15 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                     auto timeEntry = fs::last_write_time(entry);
                     time_t cftime = chrono::system_clock::to_time_t(timeEntry);
 
-                    auto imgData = getFileIcon(extension);
+                    auto imgData = getFileIcon(extension.string());
 
 
                     std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 
                     DataRow *row = newRow();
-                    row->setValue("filename", filename);
+                    row->setValue("filename", filename.string());
                     row->setImage("filename", imgData.first, imgData.second);
-                    row->setValue("type", extension);
+                    row->setValue("type", extension.string());
                     row->setValue("size", fmt::format("{0}", filesize));
                     row->setValue("modified", timefmt); //std::asctime(std::localtime(&cftime)));
 
@@ -97,16 +97,16 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
             {
                 if(m_fileFilter == "*.*" || m_fileFilter == extension)
                 {
-                    auto imgData = getFileIcon(extension);
+                    auto imgData = getFileIcon(extension.string());
 
                     DataRow *row = newRow();
-                    row->setValue("filename", filename);
+                    row->setValue("filename", filename.string());
                     row->setImage("filename", imgData.first, imgData.second);
-                    row->setValue("type", extension);
+                    row->setValue("type", extension.string());
                     row->setValue("size", "0");
                     row->setValue("modified", "???");
 
-                    m_pathMap[generatePathId(*row)] = entry.path();
+                    m_pathMap[generatePathId(*row)] = entry.path().string();
                 }
             }
         }
@@ -245,7 +245,7 @@ void ebox::FileTable::sort()
 void ebox::FileTable::onRowDoubleClicked(DataRow *row)
 {
     size_t size = m_pathMap.size();
-    std::string path = m_pathMap[generatePathId(*row)];
+    std::string path = m_pathMap[generatePathId(*row)].string();
     if(m_pathMap.count(generatePathId(*row)) > 0)
     {
         m_pathToOpen = m_pathMap[generatePathId(*row)];

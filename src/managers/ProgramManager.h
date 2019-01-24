@@ -18,7 +18,7 @@ namespace ebox
     {
         public:
             ProgramManager(int argc, char **argv, char** envp);
-            void initialize(const std::string &title, const sf::Vector2<uint> &resolution, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings &settings = sf::ContextSettings());
+            void initialize(const std::string &title, const sf::Vector2<uint32_t> &resolution, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings &settings = sf::ContextSettings());
             void run();
 
         private:

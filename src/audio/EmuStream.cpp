@@ -16,18 +16,18 @@ ebox::EmuStream::EmuStream()
  * @param sampleRate Sample rate. 44100 is default and is the best quality. Anything below will take less space, but will
    also get worse quality on the sound.
  */
-ebox::EmuStream::EmuStream(const std::string &filename, int track, uint channelCount, uint sampleRate)
+ebox::EmuStream::EmuStream(const std::string &filename, int track, uint32_t channelCount, uint32_t sampleRate)
 {
     initializeFile(filename, track, channelCount, sampleRate);
 }
 
 
-ebox::EmuStream::EmuStream(void *data, size_t size, int track, uint channelCount, uint sampleRate)
+ebox::EmuStream::EmuStream(void *data, size_t size, int track, uint32_t channelCount, uint32_t sampleRate)
 {
     initializeMemory(data, size, track, channelCount, sampleRate);
 }
 
-void ebox::EmuStream::initializeFile(const std::string &filename, int track, uint channelCount, uint sampleRate)
+void ebox::EmuStream::initializeFile(const std::string &filename, int track, uint32_t channelCount, uint32_t sampleRate)
 {
     m_loadMode = Mode::File;
     m_channelCount = channelCount;
@@ -42,7 +42,7 @@ void ebox::EmuStream::initializeFile(const std::string &filename, int track, uin
     initializeEmu();
 }
 
-void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint channelCount, uint sampleRate)
+void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint32_t channelCount, uint32_t sampleRate)
 {
     m_loadMode = Mode::Memory;
     m_channelCount = channelCount;

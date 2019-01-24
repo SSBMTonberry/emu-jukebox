@@ -12,7 +12,7 @@
 
 namespace ebox
 {
-    enum class TooltipType : uint
+    enum class TooltipType : uint32_t
     {
         None = 0,
         Basic = 1

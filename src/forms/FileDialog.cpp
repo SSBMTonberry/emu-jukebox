@@ -44,7 +44,7 @@ void ebox::FileDialog::createLayout()
     m_upperMiddleChild.setSize({(int)(m_size.x * 0.8f), (int)(m_size.y * 0.07f)});
     m_upperMiddleChild.setOnSameLine(true);
     m_filepathtext.setHasLabel(false);
-    m_filepathtext.setValue(getPath());
+    m_filepathtext.setValue(getPath().string());
     m_upperMiddleChild.addReference(&m_filepathtext);
 
     m_upperRightChild.setSize({(int)(m_size.x * 0.15f), (int)(m_size.y * 0.07f)});
@@ -102,7 +102,7 @@ void ebox::FileDialog::handleEvents()
             m_path = (m_filepathtext.isChanged()) ? fs::path(m_filepathtext.getValue())
                                                   : m_fileTable.getLastOpenedPath();
             if (m_refreshbtn.isPressed())
-                m_filepathtext.setValue(m_path);
+                m_filepathtext.setValue(m_path.string());
 
             if (fs::exists(m_path))
             {
@@ -117,7 +117,7 @@ void ebox::FileDialog::handleEvents()
 
             if (fs::exists(pathToOpen) && fs::is_directory(pathToOpen))
             {
-                m_filepathtext.setValue(pathToOpen);
+                m_filepathtext.setValue(pathToOpen.string());
                 m_path = pathToOpen;
                 m_fileTable.listFilesByDirectory(pathToOpen,
                                                  (pathToOpen.has_parent_path()) ? pathToOpen.parent_path()
@@ -244,7 +244,7 @@ void ebox::FileDialog::onMessageResponse(const ebox::Button *btn, const MessageP
         m_open = false;
         for (auto &callback : m_callbackOnFileChosen)
         {
-            callback(m_chosenFile);
+            callback(m_chosenFile.string());
         }
     }
 }
@@ -306,7 +306,7 @@ void ebox::FileDialog::handleFileChosen()
                 {
                     m_open = false;
                     for (auto &callback : m_callbackOnFileChosen)
-                        callback(m_chosenFile);
+                        callback(m_chosenFile.string());
                 }
                 else
                     m_msgPopup.setOpen(true);
@@ -335,7 +335,7 @@ void ebox::FileDialog::handleFileChosen()
                 {
                     m_open = false;
                     for (auto &callback : m_callbackOnFileChosen)
-                        callback(m_chosenFile);
+                        callback(m_chosenFile.string());
                 }
                 else
                     m_msgPopupFileDoesNotExist.setOpen(true);

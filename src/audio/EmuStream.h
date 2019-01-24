@@ -23,12 +23,12 @@ namespace ebox
     {
         public:
             EmuStream();
-            EmuStream(const std::string &filename, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
-            EmuStream(void *data, size_t size, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
+            EmuStream(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
+            EmuStream(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             ~EmuStream() override;
 
-            void initializeFile(const std::string &filename, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
-            void initializeMemory(void *data, size_t size, int track = 0, uint channelCount = 2, uint sampleRate = 44100);
+            void initializeFile(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
+            void initializeMemory(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
 
             void muteChannel(int channelNo, bool mute);
 
@@ -68,9 +68,9 @@ namespace ebox
             Mode m_loadMode = Mode::File;
             /*! Sample rate. 44100 is default and is the best quality. Anything below will take less space, but will
              *  also get worse quality on the sound. */
-            uint m_sampleRate;
+            uint32_t m_sampleRate;
             /*! 1 = mono, 2 = stereo */
-            uint m_channelCount;
+            uint32_t m_channelCount;
             /*! The emulator for the sound*/
             Music_Emu *m_emu = nullptr;
             /*! The track loaded. 0 is the first track */
