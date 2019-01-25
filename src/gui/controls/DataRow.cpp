@@ -208,20 +208,23 @@ void ebox::DataRow::create(const ebox::DataColumn *col)
     {
         case DataColumnType::Selectable:
         {
-            auto selectable = make_unique<ebox::Selectable>(col->getName(), "");
+            auto selectable = make_shared<ebox::Selectable>(col->getName(), "");
             selectable->setIsToggleable(false);
             m_values[col->getName()] = move(selectable);
+            //m_values.insert(std::unordered_map<std::string, std::unique_ptr<ebox::Control>>::value_type(col->getName(), std::move(selectable)));
         }
         break;
 
         case DataColumnType::Image:
-            m_values[col->getName()] = make_unique<ebox::Image>(col->getName());
+            //m_values.insert(std::unordered_map<std::string, std::unique_ptr<ebox::Control>>::value_type(col->getName(), make_unique<ebox::Image>(col->getName())));
+            m_values[col->getName()] = make_shared<ebox::Image>(col->getName());
             break;
 
         case DataColumnType::Textbox:
         {
-            auto textbox = make_unique<ebox::Textbox>(col->getName(), "", col->getDataSize(), m_imguiId);
+            auto textbox = make_shared<ebox::Textbox>(col->getName(), "", col->getDataSize(), m_imguiId);
             textbox->setHasLabel(false);
+            //m_values.insert(std::unordered_map<std::string, std::unique_ptr<ebox::Control>>::value_type(col->getName(), std::move(textbox)));
             m_values[col->getName()] = move(textbox);
         }
         break;

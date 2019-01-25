@@ -449,7 +449,7 @@ void JoystickImpl::updateConnectionsDInput()
         joystickList[i].plugged = false;
 
     // Enumerate devices
-    HRESULT result = directInput->EnumDevices(DI8DEVCLASS_GAMECTRL, &JoystickImpl::deviceEnumerationCallback, NULL, DIEDFL_ATTACHEDONLY);
+    HRESULT result = directInput->EnumDevices(DI8DEVCLASS_GAMECTRL, (LPDIENUMDEVICESCALLBACKW)&JoystickImpl::deviceEnumerationCallback, NULL, DIEDFL_ATTACHEDONLY);
 
     // Remove devices that were not connected during the enumeration
     for (std::vector<JoystickRecord>::iterator i = joystickList.begin(); i != joystickList.end();)
@@ -629,7 +629,7 @@ bool JoystickImpl::openDInput(unsigned int index)
             }
 
             // Enumerate device objects (axes/povs/buttons)
-            result = m_device->EnumObjects(&JoystickImpl::deviceObjectEnumerationCallback, this, DIDFT_AXIS | DIDFT_BUTTON | DIDFT_POV);
+            result = m_device->EnumObjects((LPDIENUMDEVICEOBJECTSCALLBACKW)&JoystickImpl::deviceObjectEnumerationCallback, this, DIDFT_AXIS | DIDFT_BUTTON | DIDFT_POV);
 
             if (result)
             {

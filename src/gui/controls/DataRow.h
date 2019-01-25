@@ -65,7 +65,7 @@ namespace ebox
 
 
             DataColumnDefinition *m_columnDefinition;
-            std::unordered_map<std::string, std::unique_ptr<ebox::Control>> m_values;
+            std::unordered_map<std::string, std::shared_ptr<ebox::Control>> m_values;
     };
 
     template<typename T>

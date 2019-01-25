@@ -54,10 +54,12 @@ bool ebox::Textbox::process()
     if(Control::process())
     {
 
-        char buf[m_size];
+        //char buf[m_size];
+        //char* buf = new char[m_size];
+        auto buf = std::make_unique<char[]>(m_size);
 
         if(m_size > 0)
-            strncpy(buf, m_text.c_str(), sizeof(buf));
+            strncpy(buf.get(), m_text.c_str(), sizeof(buf));
 
         m_isChanged = false;
 
@@ -83,12 +85,12 @@ bool ebox::Textbox::process()
         {
             if (m_isMultiline)
             {
-                if (ImGui::InputTextMultiline(id.c_str(), buf, m_size, m_multilineTextboxSize, getFlagsAsImGuiFlags()))
+                if (ImGui::InputTextMultiline(id.c_str(), buf.get(), m_size, m_multilineTextboxSize, getFlagsAsImGuiFlags()))
                     m_isChanged = true;
             }
             else
             {
-                if (ImGui::InputText(id.c_str(), buf, m_size, getFlagsAsImGuiFlags()))
+                if (ImGui::InputText(id.c_str(), buf.get(), m_size, getFlagsAsImGuiFlags()))
                     m_isChanged = true;
             }
         }
@@ -111,7 +113,7 @@ bool ebox::Textbox::process()
             ImGui::PopItemWidth();
 
         if(m_size > 0)
-            m_text = buf;
+            m_text = buf.get();
 
         if (popColors && !m_useDefaultColor)
         {
