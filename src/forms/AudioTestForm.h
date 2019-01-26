@@ -19,7 +19,7 @@
     #include <filesystem>
     namespace fs = std::filesystem;
 #elif MINGW
-    #if __MINGW64_VERSION_MAJOR > 5
+    #if __MINGW64_VERSION_MAJOR > 6
         #include <filesystem>
         namespace fs = std::filesystem;
     #else

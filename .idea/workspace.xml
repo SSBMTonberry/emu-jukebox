@@ -24,8 +24,8 @@
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="emu-jukebox" targetName="emu-jukebox" />
       <config projectName="emu-jukebox" targetName="tests" />
+      <config projectName="emu-jukebox" targetName="emu-jukebox" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -36,13 +36,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/JoystickImpl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/JoystickImpl.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmuJukeboxConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/EmuJukeboxConfig.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/FileDialog.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/FileDialog.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forms/FileTable.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/FileTable.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controls/DataRow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controls/DataRow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controls/DataRow.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controls/DataRow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/controls/Textbox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/controls/Textbox.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/misc/Tools.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/misc/Tools.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -56,78 +58,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/controls/DataRow.h">
+        <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="67" column="59" lean-forward="true" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
+            <state relative-caret-position="814">
+              <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
               <folding>
-                <element signature="e#101#134#0" expanded="true" />
-                <element signature="e#1457#1469#0" expanded="true" />
-                <element signature="e#2127#2139#0" expanded="true" />
+                <element signature="e#1265#1286#0" expanded="true" />
+                <element signature="e#1318#1337#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/controls/DataRow.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="227" column="53" lean-forward="true" selection-start-line="227" selection-start-column="53" selection-end-line="227" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1512">
-              <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/JoystickImpl.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="631" column="74" selection-start-line="631" selection-start-column="74" selection-end-line="631" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/sfml_extlibs/mingw/dinput.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="1996" column="63" selection-start-line="1996" selection-start-column="33" selection-end-line="1996" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="60" column="82" selection-start-line="60" selection-start-column="82" selection-end-line="60" selection-end-column="82" />
+            <state relative-caret-position="346">
+              <caret line="252" column="44" selection-start-line="252" selection-start-column="44" selection-end-line="252" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -142,13 +89,86 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/misc/Tools.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="-1819">
+              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
               <folding>
                 <element signature="e#95#130#0" expanded="true" />
-                <element signature="e#500#521#0" expanded="true" />
+                <element signature="e#347#404#0" expanded="true" />
+                <element signature="e#449#502#0" expanded="true" />
+                <element signature="e#617#948#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/CursorImpl.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="222">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/forms/FileDialog.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <folding>
+                <element signature="e#116#173#0" expanded="true" />
+                <element signature="e#255#308#0" expanded="true" />
+                <element signature="e#423#718#0" expanded="true" />
+                <element signature="e#108#139#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/forms/FileTable.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+              <folding>
+                <element signature="e#105#140#0" expanded="true" />
+                <element signature="e#303#360#0" expanded="true" />
+                <element signature="e#449#510#0" expanded="true" />
+                <element signature="e#641#948#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+              <folding>
+                <element signature="e#443#500#0" expanded="true" />
+                <element signature="e#557#618#0" expanded="true" />
+                <element signature="e#753#1084#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -193,7 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/gui/controls/Button.h" />
         <option value="$PROJECT_DIR$/src/misc/Enums.hpp" />
         <option value="$PROJECT_DIR$/src/managers/EventManager.cpp" />
         <option value="$PROJECT_DIR$/src/managers/EventManager.h" />
@@ -212,9 +231,7 @@
         <option value="$PROJECT_DIR$/src/audio/EmuEqualizer.cpp" />
         <option value="$PROJECT_DIR$/tests/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/tests/tests_main.cpp" />
-        <option value="$PROJECT_DIR$/src/forms/FileDialog.h" />
         <option value="$PROJECT_DIR$/src/gui/forms/Form.cpp" />
-        <option value="$PROJECT_DIR$/src/forms/AudioTestForm.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuTrackInfo.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" />
         <option value="$PROJECT_DIR$/src/gui/controls/InputFloat.cpp" />
@@ -225,7 +242,6 @@
         <option value="$PROJECT_DIR$/src/managers/FormManager.cpp" />
         <option value="$PROJECT_DIR$/EmuJukeboxConfig.h.in" />
         <option value="$PROJECT_DIR$/src/forms/SystemLog.cpp" />
-        <option value="$PROJECT_DIR$/src/misc/Tools.hpp" />
         <option value="$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.hpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/src/gui/properties/Tooltip.h" />
@@ -238,12 +254,16 @@
         <option value="$PROJECT_DIR$/src/managers/ClipboardManager.cpp" />
         <option value="$PROJECT_DIR$/src/forms/FileDialog.cpp" />
         <option value="$PROJECT_DIR$/src/forms/FileTable.cpp" />
-        <option value="$PROJECT_DIR$/src/forms/FileTable.h" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/gui/controls/DataRow.h" />
         <option value="$PROJECT_DIR$/src/gui/controls/DataRow.cpp" />
         <option value="$PROJECT_DIR$/src/gui/controls/Textbox.cpp" />
         <option value="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/JoystickImpl.cpp" />
+        <option value="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp" />
+        <option value="$PROJECT_DIR$/src/forms/FileDialog.h" />
+        <option value="$PROJECT_DIR$/src/forms/FileTable.h" />
+        <option value="$PROJECT_DIR$/src/forms/AudioTestForm.h" />
+        <option value="$PROJECT_DIR$/src/misc/Tools.hpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -269,6 +289,57 @@
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
               <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="win" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="win" type="462c0819:PsiDirectoryNode" />
+              <item name="msvc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="win" type="462c0819:PsiDirectoryNode" />
+              <item name="msvc" type="462c0819:PsiDirectoryNode" />
+              <item name="sfml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+              <item name="win" type="462c0819:PsiDirectoryNode" />
+              <item name="msvc" type="462c0819:PsiDirectoryNode" />
+              <item name="sfml" type="462c0819:PsiDirectoryNode" />
+              <item name="x64" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
+              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
@@ -391,6 +462,8 @@
       <workItem from="1548443832898" duration="95000" />
       <workItem from="1548444077216" duration="5293000" />
       <workItem from="1548450233846" duration="1510000" />
+      <workItem from="1548505616598" duration="275000" />
+      <workItem from="1548505929868" duration="2119000" />
     </task>
     <servers />
   </component>
@@ -427,13 +500,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118519000" />
+    <option name="totallyTimeSpent" value="120913000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2574" height="1414" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1185362" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16414945" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -444,12 +517,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.43869427" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.43834525" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.4225195" />
       <window_info anchor="bottom" id="TeamCity" order="13" />
+      <window_info anchor="right" id="Cargo" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -504,31 +578,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#271#333#0" expanded="true" />
-            <element signature="e#384#444#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/Ym2612_MAME.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="35" column="2" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/source/gme/Music_Emu.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="214" selection-start-line="214" selection-end-line="214" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/libgme/blargg_common.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -743,23 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <element signature="e#115#143#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/xmemory0">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
@@ -781,56 +813,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/FileTable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
-          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
-          <folding>
-            <element signature="e#105#143#0" expanded="true" />
-            <element signature="e#852#905#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/FileDialog.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2134">
-          <caret line="97" column="29" selection-start-line="97" selection-start-column="29" selection-end-line="97" selection-end-column="29" />
-          <folding>
-            <element signature="e#108#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="60" column="82" selection-start-line="60" selection-start-column="82" selection-end-line="60" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EmuJukeboxConfig.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/misc/Tools.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#95#130#0" expanded="true" />
-            <element signature="e#500#521#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/controls/DataRow.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="67" column="59" lean-forward="true" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
+        <state>
+          <caret line="67" column="59" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
           <folding>
             <element signature="e#101#134#0" expanded="true" />
             <element signature="e#1457#1469#0" expanded="true" />
@@ -841,43 +827,140 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/controls/DataRow.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="227" column="53" lean-forward="true" selection-start-line="227" selection-start-column="53" selection-end-line="227" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        <state>
+          <caret line="227" column="53" selection-start-line="227" selection-start-column="53" selection-end-line="227" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
+        <state>
           <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/external_libs/include/sfml_extlibs/mingw/dinput.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="1996" column="63" selection-start-line="1996" selection-start-column="33" selection-end-line="1996" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/JoystickImpl.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state>
           <caret line="631" column="74" selection-start-line="631" selection-start-column="74" selection-end-line="631" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/include/sfml_extlibs/mingw/dinput.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="1996" column="63" selection-start-line="1996" selection-start-column="33" selection-end-line="1996" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="814">
+          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+          <folding>
+            <element signature="e#1265#1286#0" expanded="true" />
+            <element signature="e#1318#1337#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/MinGW/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/bits/fs_path.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="234" column="14" lean-forward="true" selection-start-line="234" selection-start-column="14" selection-end-line="234" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EmuJukeboxConfig.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/FileDialog.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <folding>
+            <element signature="e#116#173#0" expanded="true" />
+            <element signature="e#255#308#0" expanded="true" />
+            <element signature="e#423#718#0" expanded="true" />
+            <element signature="e#108#139#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/FileTable.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <element signature="e#105#140#0" expanded="true" />
+            <element signature="e#303#360#0" expanded="true" />
+            <element signature="e#449#510#0" expanded="true" />
+            <element signature="e#641#948#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding>
+            <element signature="e#443#500#0" expanded="true" />
+            <element signature="e#557#618#0" expanded="true" />
+            <element signature="e#753#1084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/misc/Tools.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1819">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding>
+            <element signature="e#95#130#0" expanded="true" />
+            <element signature="e#347#404#0" expanded="true" />
+            <element signature="e#449#502#0" expanded="true" />
+            <element signature="e#617#948#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/CursorImpl.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="252" column="44" selection-start-line="252" selection-start-column="44" selection-end-line="252" selection-end-column="44" />
         </state>
       </provider>
     </entry>

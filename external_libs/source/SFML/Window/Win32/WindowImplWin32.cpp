@@ -81,23 +81,23 @@ namespace
                 ProcessDpiUnaware         = 0,
                 ProcessSystemDpiAware     = 1,
                 ProcessPerMonitorDpiAware = 2
-            };
+                };
 
-            typedef HRESULT (WINAPI* SetProcessDpiAwarenessFuncType)(ProcessDpiAwareness);
-            SetProcessDpiAwarenessFuncType SetProcessDpiAwarenessFunc = reinterpret_cast<SetProcessDpiAwarenessFuncType>(GetProcAddress(shCoreDll, "SetProcessDpiAwareness"));
+                typedef HRESULT (WINAPI* SetProcessDpiAwarenessFuncType)(ProcessDpiAwareness);
+                SetProcessDpiAwarenessFuncType SetProcessDpiAwarenessFunc = reinterpret_cast<SetProcessDpiAwarenessFuncType>(GetProcAddress(shCoreDll, "SetProcessDpiAwareness"));
 
-            if (SetProcessDpiAwarenessFunc)
-            {
-                // We only check for E_INVALIDARG because we would get
-                // E_ACCESSDENIED if the DPI was already set previously
-                // and S_OK means the call was successful
-                if (SetProcessDpiAwarenessFunc(ProcessSystemDpiAware) == E_INVALIDARG)
+                if (SetProcessDpiAwarenessFunc)
                 {
-                    sf::err() << "Failed to set process DPI awareness" << std::endl;
-                }
-                else
-                {
-                    FreeLibrary(shCoreDll);
+                    // We only check for E_INVALIDARG because we would get
+                    // E_ACCESSDENIED if the DPI was already set previously
+                    // and S_OK means the call was successful
+                    if (SetProcessDpiAwarenessFunc(ProcessSystemDpiAware) == E_INVALIDARG)
+                    {
+                        sf::err() << "Failed to set process DPI awareness" << std::endl;
+                    }
+                    else
+                    {
+                        FreeLibrary(shCoreDll);
                     return;
                 }
             }

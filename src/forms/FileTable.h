@@ -5,6 +5,7 @@
 #ifndef EMU_JUKEBOX_FILETABLE_H
 #define EMU_JUKEBOX_FILETABLE_H
 
+#include "../../EmuJukeboxConfig.h"
 #include "../gui/controls/DataTable.h"
 #include "../../content/files_mapper.h"
 
@@ -17,7 +18,7 @@
 #include <filesystem>
     namespace fs = std::filesystem;
 #elif MINGW
-#if __MINGW64_VERSION_MAJOR > 5
+#if __MINGW64_VERSION_MAJOR > 6
         #include <filesystem>
         namespace fs = std::filesystem;
     #else

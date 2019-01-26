@@ -19,15 +19,30 @@
 #include <fmt/printf.h>
 #include <regex>
 
+#include <SFML/System.hpp>
+
 #if MSVC
-    #include <filesystem>
-    #include <SFML/Graphics.hpp>
-#elif APPLE
-    #include <experimental/filesystem>
-    #include <SFML/Graphics.hpp>
+#include <filesystem>
+    namespace fs = std::filesystem;
+#elif MINGW
+#if __MINGW64_VERSION_MAJOR > 6
+#include <filesystem>
+namespace fs = std::filesystem;
 #else
-    #include <filesystem>
-    #include <SFML/Graphics.hpp>
+    #include <experimental/filesystem>
+    namespace fs = std::experimental::filesystem;
+#endif
+#elif APPLE
+#include <experimental/filesystem>
+    namespace fs = std::experimental::filesystem;
+#else
+    #if __GNUC__ < 8 //GCC major version less than 8
+        #include <experimental/filesystem>
+        namespace fs = std::experimental::filesystem;
+    #else
+        #include <filesystem>
+        namespace fs = std::filesystem;
+    #endif
 #endif
 
 namespace ebox::tools
@@ -71,14 +86,15 @@ namespace ebox::tools
         }
     }
 
-    namespace fs
+    namespace filesystem
     {
-        static bool IsDirectory(const std::filesystem::directory_entry &entry)
+        static bool IsDirectory(const fs::directory_entry &entry)
         {
-            return std::filesystem::is_directory(entry);
+
+            return fs::is_directory(entry);
         }
 
-        static std::string GetPath(const std::filesystem::directory_entry &entry)
+        static std::string GetPath(const fs::directory_entry &entry)
         {
             return entry.path().string();
         }
