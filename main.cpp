@@ -1,5 +1,5 @@
-#include "EmuJukeboxConfig.h"
 
+#include "EmuJukeboxConfig.h"
 #include <iostream>
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"

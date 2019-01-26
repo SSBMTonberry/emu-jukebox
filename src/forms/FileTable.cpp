@@ -58,10 +58,16 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                 DataRow *row = newRow();
                 auto imgData = getFileIcon("directory");
 
-                auto timeEntry = fs::last_write_time(entry);
-                time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                #if MSVC
+                    fs::file_time_type timeEntry = fs::last_write_time(entry);
+                    //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                    std::string timefmt = "<not supported by MSVC>"; //fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+                #else
+                    auto timeEntry = fs::last_write_time(entry);
+                    time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                    std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+                #endif
 
-                std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 
                 row->setValue("filename", filename.string());
                 row->setImage("filename", imgData.first, imgData.second);
@@ -75,13 +81,18 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                 {
                     auto err = std::error_code{};
                     auto filesize = fs::file_size(entry, err);
+
+#if MSVC
+                    fs::file_time_type timeEntry = fs::last_write_time(entry);
+                    //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                    std::string timefmt = "<not supported by MSVC>"; //fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+#else
                     auto timeEntry = fs::last_write_time(entry);
                     time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                    std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+#endif
 
                     auto imgData = getFileIcon(extension.string());
-
-
-                    std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 
                     DataRow *row = newRow();
                     row->setValue("filename", filename.string());
