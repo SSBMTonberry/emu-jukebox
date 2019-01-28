@@ -38,94 +38,7 @@
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmuJukeboxConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/EmuJukeboxConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-audio-s-d.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-audio-s-d.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-graphics-s-d.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-graphics-s-d.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-main-d.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-main-d.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-network-s-d.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-network-s-d.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-system-s-d.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-system-s-d.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-window-s-d.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/libsfml-window-s-d.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libFLAC.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libfreetype.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libogg.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libopenal32.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libvorbis.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libvorbisenc.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x64/libvorbisfile.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libFLAC.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libfreetype.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libogg.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libopenal32.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libvorbis.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libvorbisenc.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/mingw/sfml/x86/libvorbisfile.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-audio-s-d.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-audio-s-d.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-audio-s.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-audio-s.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-graphics-s-d.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-graphics-s-d.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-graphics-s.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-graphics-s.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-main-d.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-main-d.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-main-s.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-main-s.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-network-s-d.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-network-s-d.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-network-s.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-network-s.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-system-s-d.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-system-s-d.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-system-s.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-system-s.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-window-s-d.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-window-s-d.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-window-s.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/sfml-window-s.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/flac.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/freetype.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/ogg.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/openal32.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/vorbis.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/vorbisenc.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x64/vorbisfile.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/flac.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/freetype.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/ogg.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/openal32.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/vorbis.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/vorbisenc.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/debug/msvc/sfml/x86/vorbisfile.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-audio-s.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-audio-s.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-graphics-s.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-graphics-s.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-main.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-main.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-network-s.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-network-s.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-system-s.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-system-s.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-window-s.a" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/libsfml-window-s.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libFLAC.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libfreetype.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libogg.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libopenal32.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libvorbis.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libvorbisenc.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x64/libvorbisfile.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libFLAC.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libfreetype.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libogg.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libopenal32.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libvorbis.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libvorbisenc.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/mingw/sfml/x86/libvorbisfile.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-audio-s.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-audio-s.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-graphics-s.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-graphics-s.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-main.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-main.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-network-s.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-network-s.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-system-s.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-system-s.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-window-s.lib" beforeDir="false" afterPath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/sfml-window-s.lib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/flac.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/freetype.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/ogg.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/openal32.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/vorbis.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/vorbisenc.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x64/vorbisfile.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/flac.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/freetype.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/ogg.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/openal32.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/vorbis.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/vorbisenc.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external_libs/libs/win/release/msvc/sfml/x86/vorbisfile.lib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/FileTable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/FileTable.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -135,31 +48,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2530">
-              <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/external_libs/include/sfml_extlibs/mingw/dinput.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43912">
-              <caret line="1996" column="63" selection-start-line="1996" selection-start-column="33" selection-end-line="1996" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="380">
               <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
             </state>
           </provider>
@@ -168,7 +63,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EmuJukeboxConfig.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="247">
               <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
@@ -177,8 +72,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+            <state relative-caret-position="304">
+              <caret line="197" column="141" selection-start-line="197" selection-start-column="141" selection-end-line="197" selection-end-column="141" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/SFML-2.5.1/src/SFML/Window/OSX/SFOpenGLView.mm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="97" selection-start-line="97" selection-end-line="97" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/forms/FileTable.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="100" column="6" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="6" />
+              <folding>
+                <element signature="e#1942#2217#0" expanded="true" />
+                <element signature="e#2288#2518#0" expanded="true" />
+                <element signature="e#3180#3455#0" expanded="true" />
+                <element signature="e#4096#4326#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="247">
               <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
             </state>
           </provider>
@@ -195,7 +114,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeSFMLSources.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
+            <state relative-caret-position="114">
               <caret line="6" column="151" selection-start-line="6" selection-start-column="151" selection-end-line="6" selection-end-column="151" />
             </state>
           </provider>
@@ -204,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="247">
               <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="e#1#30#0" expanded="true" />
@@ -221,7 +140,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/misc/Tools.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-830">
+            <state relative-caret-position="19">
               <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="e#95#130#0" expanded="true" />
@@ -320,9 +239,9 @@
         <option value="$PROJECT_DIR$/src/forms/FileTable.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp" />
-        <option value="$PROJECT_DIR$/src/forms/FileTable.cpp" />
         <option value="$PROJECT_DIR$/CMakeSFMLSources.txt" />
         <option value="$PROJECT_DIR$/tests/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/forms/FileTable.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
@@ -403,7 +322,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.tests">
+  <component name="RunManager" selected="Application.emu-jukebox">
     <configuration name="Fuckers gonna fuck!" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="tests" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="tests" TEST_CLASS="[42][theAnswer]" TEST_METHOD="Fuckers gonna fuck!" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -428,12 +347,18 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="emu-jukebox" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="emu-jukebox" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="emu-jukebox">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="tests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="tests" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="tests">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.emu-jukebox" />
       <item itemvalue="Application.tests" />
       <item itemvalue="Catch.Fuckers gonna fuck!" />
       <item itemvalue="Catch.Test-test!" />
@@ -473,6 +398,7 @@
       <workItem from="1548505929868" duration="2119000" />
       <workItem from="1548508410845" duration="8392000" />
       <workItem from="1548538730724" duration="7786000" />
+      <workItem from="1548601674591" duration="7414000" />
     </task>
     <servers />
   </component>
@@ -509,28 +435,28 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144367000" />
+    <option name="totallyTimeSpent" value="151781000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="2574" height="1414" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="979" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11933174" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12026862" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32961783" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32961783" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3998441" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32919955" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3990981" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.43869427" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.43855694" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.4219745" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.421646" />
       <window_info anchor="bottom" id="TeamCity" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -587,16 +513,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
-          <folding>
-            <element signature="e#1302#1334#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
@@ -711,13 +627,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/xmemory0">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="880" selection-start-line="880" selection-end-line="880" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/xmemory0" />
     <entry file="file://$PROJECT_DIR$/src/forms/FileDialog.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2376">
@@ -779,13 +689,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/ucrt/corecrt.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="548" column="22" selection-start-line="548" selection-start-column="22" selection-end-line="548" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/ucrt/corecrt.h" />
     <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/time.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -800,13 +704,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/filesystem">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="2396" column="6" selection-start-line="2396" selection-start-column="6" selection-end-line="2396" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/filesystem" />
     <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -814,16 +712,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/libloaderapi.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="671" column="17" selection-start-line="671" selection-start-column="17" selection-end-line="671" selection-end-column="17" />
-          <folding>
-            <element signature="e#15404#15437#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files (x86)/Windows Kits/10/Include/10.0.17763.0/um/libloaderapi.h" />
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Audio/AudioDevice.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -848,24 +737,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/xlocale">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="318" selection-start-line="318" selection-end-line="318" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/FileTable.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
-          <folding>
-            <element signature="e#1942#2217#0" expanded="true" />
-            <element signature="e#3180#3455#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Tools/MSVC/14.16.27023/include/xlocale" />
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Audio/SoundFileWriterOgg.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1056">
@@ -892,49 +764,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2530">
+        <state relative-caret-position="2185">
           <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/sfml_extlibs/mingw/dinput.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43912">
+        <state relative-caret-position="37924">
           <caret line="1996" column="63" selection-start-line="1996" selection-start-column="33" selection-end-line="1996" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="380">
           <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EmuJukeboxConfig.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="247">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="247">
           <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeSFMLSources.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="114">
           <caret line="6" column="151" selection-start-line="6" selection-start-column="151" selection-end-line="6" selection-end-column="151" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="247">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="e#1#30#0" expanded="true" />
@@ -947,7 +819,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/misc/Tools.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-830">
+        <state relative-caret-position="19">
           <caret line="38" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#95#130#0" expanded="true" />
@@ -955,10 +827,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/FileTable.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="100" column="6" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="6" />
+          <folding>
+            <element signature="e#1942#2217#0" expanded="true" />
+            <element signature="e#2288#2518#0" expanded="true" />
+            <element signature="e#3180#3455#0" expanded="true" />
+            <element signature="e#4096#4326#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/SFML-2.5.1/src/SFML/Window/OSX/SFOpenGLView.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
+        <state relative-caret-position="304">
+          <caret line="197" column="141" selection-start-line="197" selection-start-column="141" selection-end-line="197" selection-end-column="141" />
         </state>
       </provider>
     </entry>
