@@ -25,7 +25,7 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="emu-jukebox" targetName="tests" />
-      <config projectName="emu-jukebox" targetName="emu-jukebox" />
+      <config projectName="emu-jukebox" targetName="EmuJukebox" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -38,6 +38,7 @@
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -62,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="216" column="4" selection-start-line="216" selection-start-column="4" selection-end-line="216" selection-end-column="4" />
+            <state relative-caret-position="235">
+              <caret line="186" column="40" selection-start-line="186" selection-start-column="40" selection-end-line="186" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -95,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+            <state relative-caret-position="95">
+              <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -230,8 +231,8 @@
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/external_libs/source/SFML/Window/Win32/WindowImplWin32.cpp" />
         <option value="$PROJECT_DIR$/CMakeSFMLSources.txt" />
-        <option value="$PROJECT_DIR$/tests/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/forms/FileTable.cpp" />
+        <option value="$PROJECT_DIR$/tests/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
@@ -299,7 +300,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -313,7 +314,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.emu-jukebox">
+  <component name="RunManager" selected="Application.EmuJukebox">
     <configuration name="Fuckers gonna fuck!" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="tests" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="tests" TEST_CLASS="[42][theAnswer]" TEST_METHOD="Fuckers gonna fuck!" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -338,7 +339,7 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="emu-jukebox" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="emu-jukebox" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="emu-jukebox">
+    <configuration name="EmuJukebox" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="emu-jukebox" TARGET_NAME="EmuJukebox" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="emu-jukebox" RUN_TARGET_NAME="EmuJukebox">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -349,7 +350,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.emu-jukebox" />
+      <item itemvalue="Application.EmuJukebox" />
       <item itemvalue="Application.tests" />
       <item itemvalue="Catch.Fuckers gonna fuck!" />
       <item itemvalue="Catch.Test-test!" />
@@ -389,7 +390,7 @@
       <workItem from="1548505929868" duration="2119000" />
       <workItem from="1548508410845" duration="8392000" />
       <workItem from="1548538730724" duration="7786000" />
-      <workItem from="1548601674591" duration="15980000" />
+      <workItem from="1548601674591" duration="16912000" />
     </task>
     <servers />
   </component>
@@ -426,7 +427,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160347000" />
+    <option name="totallyTimeSpent" value="161279000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2048" height="1280" extended-state="0" />
@@ -770,13 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeSFMLSources.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -834,10 +828,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="216" column="4" selection-start-line="216" selection-start-column="4" selection-end-line="216" selection-end-column="4" />
+        <state relative-caret-position="235">
+          <caret line="186" column="40" selection-start-line="186" selection-start-column="40" selection-end-line="186" selection-end-column="40" />
         </state>
       </provider>
     </entry>
