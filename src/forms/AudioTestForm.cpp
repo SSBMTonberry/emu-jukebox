@@ -4,6 +4,8 @@
 
 #include "AudioTestForm.h"
 
+const std::string ebox::AudioTestForm::ID = "AudioTest";
+
 ebox::AudioTestForm::AudioTestForm(const std::string &id, const std::string &title, const std::string &imguiId) : Form(id, title, imguiId)
 {
     initialize();

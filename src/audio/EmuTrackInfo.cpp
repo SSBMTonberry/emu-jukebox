@@ -37,6 +37,9 @@ bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber)
     m_numberOfTracks = gme_track_count(m_emu);
     m_tempo = 1.f;
 
+    if(m_song.empty())
+        m_song = fmt::format("Track {0}", m_trackNumber + 1);
+
     gme_free_info( info );
     return true;
 }

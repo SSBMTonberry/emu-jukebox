@@ -12,7 +12,7 @@
 #include "../audio/EmuStream.h"
 #include "../gui/controls/Label.h"
 #include "../gui/controls/Textbox.h"
-#include "FileDialog.h"
+#include "../widgets/FileDialog.h"
 #include "../gui/controls/InputFloat.h"
 
 #if MSVC
@@ -50,6 +50,8 @@ namespace ebox
                           const std::string &imguiId = "");
 
             void handleEvents() override;
+
+            static const std::string ID;
 
         protected:
             bool customDraw() override;

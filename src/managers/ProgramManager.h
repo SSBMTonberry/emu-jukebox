@@ -11,6 +11,8 @@
 #include "SFML/Main.hpp"
 #include "FormManager.h"
 #include "ClipboardManager.h"
+#include <imgui/imgui_internal.h>
+
 
 namespace ebox
 {
@@ -27,6 +29,13 @@ namespace ebox
             void handleActions();
             void processHotkeys();
             void draw();
+
+            void drawDock();
+            void createDock();
+            void resetDock();
+
+            static const std::string DOCK_ROOT_ID;
+            static const std::string DOCKSPACE_ID;
 
             sf::RenderWindow m_window;
             EventManager m_events;

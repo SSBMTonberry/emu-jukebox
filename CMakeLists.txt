@@ -149,7 +149,7 @@ set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramMa
                           src/managers/FormManager.cpp src/managers/FormManager.h src/managers/EventManager.cpp src/managers/EventManager.h
                           src/forms/AudioTestForm.cpp src/forms/AudioTestForm.h src/audio/EmuStream.cpp src/audio/EmuStream.h src/audio/EmuTrackInfo.cpp
                           src/audio/EmuTrackInfo.h src/audio/AudioCommon.h src/managers/ClipboardManager.cpp src/managers/ClipboardManager.h src/audio/EmuEqualizer.cpp
-                          src/audio/EmuEqualizer.h src/forms/FileDialog.cpp src/forms/FileDialog.h src/forms/FileTable.cpp src/forms/FileTable.h src/forms/SystemLog.cpp src/forms/SystemLog.h)
+                          src/audio/EmuEqualizer.h src/widgets/FileDialog.cpp src/widgets/FileDialog.h src/widgets/FileTable.cpp src/widgets/FileTable.h src/forms/SystemLog.cpp src/forms/SystemLog.h)
 
 
 
@@ -166,7 +166,7 @@ if(LINUX)
     #set(MY_STATIC_LIBS ${PATH_LIBS}/libclip.a ${PATH_LIBS}/libfmt.a ${PATH_LIBS}/libgme.a ${PATH_SFML_LIB}/libsfml-network-s.a ${PATH_SFML_LIB}/libsfml-audio-s.a ${PATH_SFML_LIB}/libsfml-graphics-s.a ${PATH_SFML_LIB}/libsfml-window-s.a ${PATH_SFML_LIB}/libsfml-system-s.a)
     #target_link_libraries(emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 
-    add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
+    add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} src/forms/FilelistForm.cpp src/forms/FilelistForm.h src/forms/PlaylistForm.cpp src/forms/PlaylistForm.h)
     target_link_libraries(emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 elseif(WIN32)
     if(MSVC)

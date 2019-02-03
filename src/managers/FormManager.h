@@ -10,6 +10,8 @@
 #include "EventManager.h"
 #include "../gui/forms/Form.h"
 #include "../forms/AudioTestForm.h"
+#include "../forms/FilelistForm.h"
+#include "../forms/PlaylistForm.h"
 #include "../forms/SystemLog.h"
 
 namespace ebox
@@ -33,7 +35,10 @@ namespace ebox
 
             std::vector<ebox::Form *> m_forms;
 
-            AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", "Audio Tests"};
+            FilelistForm m_filelistForm {"filelist_form", "Files", FilelistForm::ID};
+            PlaylistForm m_playlistForm {"playlist_form", "Playlist", PlaylistForm::ID};
+            AudioTestForm m_audioTestForm {"audio_test_form", "Audio Test", AudioTestForm::ID};
+            //AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", AudioTestForm::ID};
 
             sf::RenderWindow *m_window;
             EventManager *m_events;

@@ -28,6 +28,8 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
 
 void ebox::FormManager::initializeForms()
 {
+    m_forms.push_back(&m_filelistForm);
+    m_forms.push_back(&m_playlistForm);
     m_forms.push_back(&m_audioTestForm);
 }
 
