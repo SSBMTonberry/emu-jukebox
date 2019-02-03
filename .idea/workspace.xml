@@ -36,23 +36,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1314c05d-4005-46c2-8d85-9c46e7a385e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/forms/FilelistForm.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forms/FilelistForm.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forms/PlaylistForm.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forms/PlaylistForm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forms/AudioTestForm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/AudioTestForm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/FileDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/FileDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/FileDialog.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/FileDialog.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/FileTable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/FileTable.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forms/FileTable.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/FileTable.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/FormManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/FormManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/FormManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/FormManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ProgramManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ProgramManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/ProgramManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/ProgramManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/FilelistForm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/FilelistForm.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/PlaylistForm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/PlaylistForm.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forms/SystemLog.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/forms/SystemLog.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/FileDialog.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/FileDialog.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -66,97 +54,96 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
+        <entry file="file://$PROJECT_DIR$/src/forms/PlaylistForm.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="138" column="73" selection-start-line="138" selection-start-column="73" selection-end-line="138" selection-end-column="73" />
+            <state relative-caret-position="102">
+              <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/managers/FormManager.cpp">
+        <entry file="file://$PROJECT_DIR$/src/forms/SystemLog.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+            <state relative-caret-position="-1101">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/forms/FilelistForm.cpp">
+        <entry file="file://$PROJECT_DIR$/src/forms/SystemLog.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="51" />
+            <state relative-caret-position="381">
+              <caret line="70" column="68" selection-start-line="70" selection-start-column="68" selection-end-line="70" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.h">
+        <entry file="file://$PROJECT_DIR$/external_libs/source/gme/Blip_Buffer.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="243">
+              <caret line="151" selection-start-line="151" selection-end-line="151" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/widgets/FileTable.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-949">
+              <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding>
-                <element signature="e#115#143#0" expanded="true" />
+                <element signature="e#105#140#0" expanded="true" />
+                <element signature="e#436#493#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/managers/FormManager.h">
+        <entry file="file://$PROJECT_DIR$/src/widgets/FileDialog.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="39" column="71" selection-start-line="39" selection-start-column="71" selection-end-line="39" selection-end-column="71" />
+            <state relative-caret-position="547">
+              <caret line="124" column="81" selection-start-line="124" selection-start-column="81" selection-end-line="124" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="93" column="78" selection-start-line="93" selection-start-column="78" selection-end-line="93" selection-end-column="78" />
               <folding>
-                <element signature="e#109#133#0" expanded="true" />
+                <element signature="e#113#143#0" expanded="true" />
+                <element signature="e#454#511#0" expanded="true" />
+                <element signature="e#528#747#0" expanded="true" />
+                <element signature="e#764#848#0" expanded="true" />
+                <element signature="e#916#1004#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/audio/EmuTrackInfo.h">
+        <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="34" column="47" lean-forward="true" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="167" column="33" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
+            <state relative-caret-position="380">
+              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+              <folding>
+                <element signature="e#101#121#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.cpp">
+        <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/forms/PlaylistForm.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/forms/PlaylistForm.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            <state relative-caret-position="-3007">
+              <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -204,7 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/audio/AudioCommon.h" />
         <option value="$PROJECT_DIR$/src/audio/NsfTrack.cpp" />
         <option value="$PROJECT_DIR$/src/audio/NsfTrack.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuTrack.h" />
@@ -221,7 +207,6 @@
         <option value="$PROJECT_DIR$/src/gui/controls/InputFloat.cpp" />
         <option value="$PROJECT_DIR$/external_libs/include/libgme/Ym2612_Emu.h" />
         <option value="$PROJECT_DIR$/external_libs/include/libgme/blargg_common.h" />
-        <option value="$PROJECT_DIR$/src/forms/SystemLog.h" />
         <option value="$PROJECT_DIR$/EmuJukeboxConfig.h.in" />
         <option value="$PROJECT_DIR$/src/forms/SystemLog.cpp" />
         <option value="$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/WindowImplX11.hpp" />
@@ -244,17 +229,19 @@
         <option value="$PROJECT_DIR$/src/forms/FileTable.cpp" />
         <option value="$PROJECT_DIR$/tests/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/forms/FilelistForm.cpp" />
-        <option value="$PROJECT_DIR$/src/forms/AudioTestForm.h" />
         <option value="$PROJECT_DIR$/src/forms/AudioTestForm.cpp" />
         <option value="$PROJECT_DIR$/src/managers/ProgramManager.h" />
         <option value="$PROJECT_DIR$/src/forms/FilelistForm.h" />
         <option value="$PROJECT_DIR$/src/forms/PlaylistForm.h" />
         <option value="$PROJECT_DIR$/src/managers/FormManager.cpp" />
-        <option value="$PROJECT_DIR$/src/forms/PlaylistForm.cpp" />
         <option value="$PROJECT_DIR$/src/managers/ProgramManager.cpp" />
         <option value="$PROJECT_DIR$/src/managers/FormManager.h" />
         <option value="$PROJECT_DIR$/src/audio/EmuTrackInfo.cpp" />
+        <option value="$PROJECT_DIR$/src/forms/FilelistForm.cpp" />
+        <option value="$PROJECT_DIR$/src/forms/PlaylistForm.cpp" />
+        <option value="$PROJECT_DIR$/src/widgets/FileDialog.h" />
+        <option value="$PROJECT_DIR$/src/forms/AudioTestForm.h" />
+        <option value="$PROJECT_DIR$/src/forms/SystemLog.h" />
       </list>
     </option>
   </component>
@@ -469,7 +456,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171327000" />
+    <option name="totallyTimeSpent" value="174390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="6" />
@@ -479,8 +466,8 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32889584" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32889584" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32889584" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32811275" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39780736" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -547,43 +534,11 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/DataRow.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="67" column="59" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
-          <folding>
-            <element signature="e#101#134#0" expanded="true" />
-            <element signature="e#1457#1469#0" expanded="true" />
-            <element signature="e#2127#2139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/DataRow.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="227" column="53" selection-start-line="227" selection-start-column="53" selection-end-line="227" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/MinGW/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/lib/gcc/i686-w64-mingw32/8.1.0/include/c++/bits/fs_path.h" />
     <entry file="file://$PROJECT_DIR$/external_libs/source/SFML/Window/Unix/CursorImpl.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/widgets/FileDialog.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-          <folding>
-            <element signature="e#116#173#0" expanded="true" />
-            <element signature="e#255#308#0" expanded="true" />
-            <element signature="e#423#718#0" expanded="true" />
-            <element signature="e#108#139#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,24 +597,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2185">
-          <caret line="115" column="30" selection-start-line="115" selection-start-column="30" selection-end-line="115" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/sfml_extlibs/mingw/dinput.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37924">
           <caret line="1996" column="63" selection-start-line="1996" selection-start-column="33" selection-end-line="1996" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -778,16 +719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/widgets/FileTable.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding>
-            <element signature="e#105#140#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/external_libs/include/fmt/core.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3211">
@@ -795,55 +726,6 @@
           <folding>
             <element signature="e#217#235#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/SystemLog.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/SystemLog.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" selection-start-line="7" selection-end-line="7" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
-          <folding>
-            <element signature="e#113#143#0" expanded="true" />
-            <element signature="e#454#511#0" expanded="true" />
-            <element signature="e#528#747#0" expanded="true" />
-            <element signature="e#764#848#0" expanded="true" />
-            <element signature="e#916#1004#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/FilelistForm.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="56" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/FilelistForm.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/forms/PlaylistForm.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -898,7 +780,7 @@
     <entry file="file://$PROJECT_DIR$/src/audio/EmuTrackInfo.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
-          <caret line="34" column="47" lean-forward="true" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
+          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -911,8 +793,102 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="103" column="48" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+        <state relative-caret-position="291">
+          <caret line="104" column="93" selection-start-line="104" selection-start-column="93" selection-end-line="104" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/audio/EmuStream.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/FilelistForm.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/FilelistForm.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/PlaylistForm.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="56" selection-start-line="6" selection-start-column="56" selection-end-line="6" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/widgets/FileTable.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-949">
+          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <folding>
+            <element signature="e#105#140#0" expanded="true" />
+            <element signature="e#436#493#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/widgets/FileDialog.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="124" column="81" selection-start-line="124" selection-start-column="81" selection-end-line="124" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/AudioTestForm.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="93" column="78" selection-start-line="93" selection-start-column="78" selection-end-line="93" selection-end-column="78" />
+          <folding>
+            <element signature="e#113#143#0" expanded="true" />
+            <element signature="e#454#511#0" expanded="true" />
+            <element signature="e#528#747#0" expanded="true" />
+            <element signature="e#764#848#0" expanded="true" />
+            <element signature="e#916#1004#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/SystemLog.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1101">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/forms/SystemLog.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="70" column="68" selection-start-line="70" selection-start-column="68" selection-end-line="70" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/external_libs/source/gme/Blip_Buffer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#101#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/controls/Textbox.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3007">
+          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
         </state>
       </provider>
     </entry>

@@ -4,7 +4,7 @@
 
 #include "PlaylistForm.h"
 
-const std::string ebox::PlaylistForm::ID = "Playlist";
+const std::string ebox::PlaylistForm::ID = "PlaylistForm";
 
 ebox::PlaylistForm::PlaylistForm(const std::string &id, const std::string &title, const std::string &imguiId) : Form(id, title, imguiId)
 {

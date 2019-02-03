@@ -4,7 +4,7 @@
 
 #include "FilelistForm.h"
 
-const std::string ebox::FilelistForm::ID = "Files";
+const std::string ebox::FilelistForm::ID = "FilelistForm";
 
 ebox::FilelistForm::FilelistForm(const std::string &id, const std::string &title, const std::string &imguiId) : Form(id, title, imguiId)
 {

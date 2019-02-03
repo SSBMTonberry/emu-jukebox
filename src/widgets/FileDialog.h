@@ -117,12 +117,12 @@ namespace ebox
             ebox::Child m_bottomchildright {"bottom_child_right", "bottom_child_right"};
 
             ebox::Label m_upperLabel {"upper_label", "", "Path: "};
-            ebox::Textbox m_filepathtext {"filepathtext", "filepath", MAX_FILE_PATH_LENGTH};
+            ebox::Textbox m_filepathtext {"filepathtext", "filepath", 0};//MAX_FILE_PATH_LENGTH};
             ebox::ImageButton m_refreshbtn {"refresh_img", files_mapper::gui::actions::_REFRESH_PNG, files_mapper::gui::actions::_REFRESH_PNG_SIZE};
             FileTable m_fileTable {"filetable", "Filetable!"};
             ebox::Label m_filenameLabel {"file_name_lbl", "", "File name: "};
             ebox::Label m_filetypeLabel {"file_type_lbl", "", "File type: "};
-            ebox::Textbox m_filenametext {"file_name_text", "File name text", 50};
+            ebox::Textbox m_filenametext {"file_name_text", "File name text", 0};//50};
             ebox::Combobox m_fileTypeCombo {"file_type_combo", "File type combo"}; //dropdown
             ebox::Button m_okBtn {"ok_btn", "Unset", {10, 10}};
             ebox::Button m_cancelBtn {"cancel_btn", "Cancel", {10, 10}};

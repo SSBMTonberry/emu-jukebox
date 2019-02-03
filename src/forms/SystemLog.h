@@ -68,7 +68,7 @@ namespace ebox
             sf::Vector2<int> m_position;
             sf::Vector2<int> m_size;
 
-            ebox::Textbox m_filter{"filter_textbox", "Filter", 255};
+            ebox::Textbox m_filter{"filter_textbox", "Filter", 0};//255};
             std::vector<ebox::ColoredText> m_filteredTexts;
             std::vector<ebox::ColoredText> m_texts;
             sf::Image m_image;

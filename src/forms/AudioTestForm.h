@@ -91,7 +91,7 @@ namespace ebox
             ebox::Button m_vgmButton {"test_btn_vgm", "Video Game Music (VGM)", {200, 30}};
 
             ebox::Label m_loadFromFileLabel {"load_from_file", "From file:", "From file:", LabelType::OnlyLabel};
-            ebox::Textbox m_loadFromFileText {"load_from_file_text", "", 150};
+            ebox::Textbox m_loadFromFileText {"load_from_file_text", "", 0};//150};
 
             std::string getAudioTimestamp();
             std::string getMillisecondsAsTimeString(int milliseconds);
