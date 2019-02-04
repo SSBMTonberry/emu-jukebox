@@ -12,7 +12,9 @@
 #include "FormManager.h"
 #include "ClipboardManager.h"
 #include <imgui/imgui_internal.h>
-
+#include "../gui/controls/MenuBar.h"
+#include "../gui/controls/MenuItemCollection.h"
+#include "../../content/files_mapper.h"
 
 namespace ebox
 {
@@ -34,8 +36,24 @@ namespace ebox
             void createDock();
             void resetDock();
 
+            void createMenu();
+
+            void registerCallbacks();
+
+            void onChosenMenuItem(MenuItem *sender);
+
             static const std::string DOCK_ROOT_ID;
             static const std::string DOCKSPACE_ID;
+
+            MenuBar m_menu {"main_menubar", true};
+
+            MenuItemCollection m_menuFile {"main_file", "File"};
+            MenuItem m_menuOpenFolder {"main_file_open_folder", "Open Folder"};
+            MenuItem m_menuOpenFile {"main_file_open_file", "Open File"};
+
+            //Images
+            Image m_openFolderImage {"img_open_folder", files_mapper::gui::general::_OPENPROJECT_PNG, files_mapper::gui::general::_OPENPROJECT_PNG_SIZE};
+            Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
 
             sf::RenderWindow m_window;
             EventManager m_events;

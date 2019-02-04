@@ -23,6 +23,8 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_events.initialize(&m_window);
     m_formManager.initialize(&m_window, &m_events);
+    createMenu();
+    registerCallbacks();
 }
 
 void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
@@ -83,6 +85,7 @@ void ebox::ProgramManager::processHotkeys()
 void ebox::ProgramManager::draw()
 {
     drawDock();
+    m_menu.process();
     m_formManager.draw();
 }
 
@@ -174,3 +177,24 @@ void ProgramManager::resetDock()
     SystemLog::get()->addInfo("Layout has been reset.");
 }
 
+void ProgramManager::createMenu()
+{
+    m_menuOpenFolder.setImageRef(&m_openFolderImage);
+    m_menuOpenFile.setImageRef(&m_openFileImage);
+
+    m_menuFile.addRef(&m_menuOpenFolder);
+    m_menuFile.addRef(&m_menuOpenFile);
+
+    m_menu.addRef(&m_menuFile);
+}
+
+void ProgramManager::onChosenMenuItem(MenuItem *sender)
+{
+
+}
+
+void ProgramManager::registerCallbacks()
+{
+    m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuOpenFile.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+}
