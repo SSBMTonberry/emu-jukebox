@@ -174,27 +174,42 @@ void ProgramManager::resetDock()
     ImGui::PopStyleColor();
     ImGui::End();
 
-    SystemLog::get()->addInfo("Layout has been reset.");
+    SystemLog::get()->addDebug("Layout has been reset.");
 }
 
 void ProgramManager::createMenu()
 {
     m_menuOpenFolder.setImageRef(&m_openFolderImage);
     m_menuOpenFile.setImageRef(&m_openFileImage);
+    m_menuLayoutReset.setImageRef(&m_resetLayoutImage);
 
     m_menuFile.addRef(&m_menuOpenFolder);
     m_menuFile.addRef(&m_menuOpenFile);
 
+    m_menuLayout.addRef(&m_menuLayoutReset);
+
+    m_menuView.addRef(&m_menuViewAudioPlayer);
+    m_menuView.addRef(&m_menuViewFiles);
+    m_menuView.addRef(&m_menuViewPlaylist);
+    m_menuView.addRef(&m_menuViewSystemlog);
+
     m_menu.addRef(&m_menuFile);
+    m_menu.addRef(&m_menuLayout);
+    m_menu.addRef(&m_menuView);
 }
 
 void ProgramManager::onChosenMenuItem(MenuItem *sender)
 {
-
+    if(sender->getId() == m_menuLayoutReset.getId()) resetDock();
 }
 
 void ProgramManager::registerCallbacks()
 {
     m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuOpenFile.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuLayoutReset.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuViewAudioPlayer.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuViewFiles.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuViewPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuViewSystemlog.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
 }

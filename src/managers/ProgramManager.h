@@ -51,9 +51,20 @@ namespace ebox
             MenuItem m_menuOpenFolder {"main_file_open_folder", "Open Folder"};
             MenuItem m_menuOpenFile {"main_file_open_file", "Open File"};
 
+            MenuItemCollection m_menuLayout {"main_layout", "Layout"};
+            MenuItem m_menuLayoutReset {"main_layout_reset", "Reset Layout"};
+
+            MenuItemCollection m_menuView {"main_view", "View"};
+            MenuItem m_menuViewFiles {"main_view_files", "Files"};
+            MenuItem m_menuViewPlaylist {"main_view_playlist", "Playlist"};
+            MenuItem m_menuViewSystemlog {"main_view_systemlog", "System log"};
+            MenuItem m_menuViewAudioPlayer {"main_view_audioplayer", "Audio Player"};
+
             //Images
             Image m_openFolderImage {"img_open_folder", files_mapper::gui::general::_OPENPROJECT_PNG, files_mapper::gui::general::_OPENPROJECT_PNG_SIZE};
             Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
+            Image m_resetLayoutImage {"img_reset_layout", files_mapper::gui::actions::_ROLLBACK_PNG, files_mapper::gui::actions::_ROLLBACK_PNG_SIZE};
+
 
             sf::RenderWindow m_window;
             EventManager m_events;

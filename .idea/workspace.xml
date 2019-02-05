@@ -112,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="40" column="36" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="36" />
+            <state relative-caret-position="633">
+              <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
               <folding>
                 <element signature="e#115#143#0" expanded="true" />
               </folding>
@@ -124,8 +124,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="191" selection-start-line="191" selection-end-line="192" />
+            <state relative-caret-position="571">
+              <caret line="213" column="124" selection-start-line="213" selection-start-column="124" selection-end-line="213" selection-end-column="124" />
             </state>
           </provider>
         </entry>
@@ -431,7 +431,7 @@
       <workItem from="1548508410845" duration="8392000" />
       <workItem from="1548538730724" duration="7786000" />
       <workItem from="1548601674591" duration="16912000" />
-      <workItem from="1549313323373" duration="2053000" />
+      <workItem from="1549313323373" duration="8878000" />
     </task>
     <servers />
   </component>
@@ -468,7 +468,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176443000" />
+    <option name="totallyTimeSpent" value="183268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="0" />
@@ -509,11 +509,6 @@
           <url>file://$PROJECT_DIR$/tests/tests_main.cpp</url>
           <line>37</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/managers/ProgramManager.cpp</url>
-          <line>193</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -900,8 +895,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" column="36" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="36" />
+        <state relative-caret-position="633">
+          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
           <folding>
             <element signature="e#115#143#0" expanded="true" />
           </folding>
@@ -910,8 +905,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/managers/ProgramManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="191" selection-start-line="191" selection-end-line="192" />
+        <state relative-caret-position="571">
+          <caret line="213" column="124" selection-start-line="213" selection-start-column="124" selection-end-line="213" selection-end-column="124" />
         </state>
       </provider>
     </entry>
