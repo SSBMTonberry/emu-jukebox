@@ -70,6 +70,7 @@ void ebox::ProgramManager::update()
     m_clipboard.update();
     m_events.update();
     m_formManager.update();
+    updateViewMenu();
 }
 
 void ebox::ProgramManager::handleActions()
@@ -201,6 +202,10 @@ void ProgramManager::createMenu()
 void ProgramManager::onChosenMenuItem(MenuItem *sender)
 {
     if(sender->getId() == m_menuLayoutReset.getId()) resetDock();
+    else if(sender->getId() == m_menuViewPlaylist.getId()) m_formManager.toggleOpened(FormType::Playlist);
+    else if(sender->getId() == m_menuViewAudioPlayer.getId()) m_formManager.toggleOpened(FormType::AudioPlayer);
+    else if(sender->getId() == m_menuViewFiles.getId()) m_formManager.toggleOpened(FormType::Files);
+    else if(sender->getId() == m_menuViewSystemlog.getId()) m_formManager.toggleOpened(FormType::SystemLog);
 }
 
 void ProgramManager::registerCallbacks()
@@ -212,4 +217,12 @@ void ProgramManager::registerCallbacks()
     m_menuViewFiles.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewSystemlog.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+}
+
+void ProgramManager::updateViewMenu()
+{
+    m_menuViewSystemlog.setIsSelected(m_formManager.isOpened(FormType::SystemLog));
+    m_menuViewAudioPlayer.setIsSelected(m_formManager.isOpened(FormType::AudioPlayer));
+    m_menuViewPlaylist.setIsSelected(m_formManager.isOpened(FormType::Playlist));
+    m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
 }

@@ -41,6 +41,7 @@ namespace ebox
             void registerCallbacks();
 
             void onChosenMenuItem(MenuItem *sender);
+            void updateViewMenu();
 
             static const std::string DOCK_ROOT_ID;
             static const std::string DOCKSPACE_ID;

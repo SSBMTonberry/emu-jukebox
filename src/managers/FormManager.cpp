@@ -74,5 +74,51 @@ void FormManager::handleEvents()
     m_audioTestForm.handleEvents();
 }
 
+void FormManager::setOpened(FormType formType, bool open)
+{
+    switch(formType)
+    {
+        case FormType::AudioPlayer:
+            m_audioTestForm.setOpen(open);
+            break;
+
+        case FormType::Files:
+            m_filelistForm.setOpen(open);
+            break;
+
+        case FormType::Playlist:
+            m_playlistForm.setOpen(open);
+            break;
+
+        case FormType::SystemLog:
+            SystemLog::get()->setOpen(open);
+            break;
+    }
+}
+
+void FormManager::toggleOpened(FormType formType)
+{
+    setOpened(formType, !isOpened(formType));
+}
+
+bool FormManager::isOpened(FormType formType)
+{
+    switch(formType)
+    {
+        case FormType::AudioPlayer:
+            return m_audioTestForm.isOpen();
+
+        case FormType::Files:
+            return m_filelistForm.isOpen();
+
+        case FormType::Playlist:
+            return m_playlistForm.isOpen();
+
+        case FormType::SystemLog:
+            return SystemLog::get()->isOpen();
+    }
+
+    return false;
+}
 
 

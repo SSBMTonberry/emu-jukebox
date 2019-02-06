@@ -16,6 +16,14 @@
 
 namespace ebox
 {
+    enum class FormType : unsigned
+    {
+        Playlist = 0,
+        Files = 1,
+        SystemLog = 2,
+        AudioPlayer = 3
+    };
+
     class FormManager
     {
         public:
@@ -29,6 +37,10 @@ namespace ebox
             void update();
             void draw();
             void handleEvents();
+
+            void setOpened(FormType formType, bool open);
+            void toggleOpened(FormType formType);
+            bool isOpened(FormType formType);
 
         private:
             void initializeForms();
