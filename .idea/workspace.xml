@@ -279,50 +279,34 @@
           <expand>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
-              <item name="content" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
-              <item name="external_libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="audio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="forms" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="managers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="widgets" type="462c0819:PsiDirectoryNode" />
+              <item name="misc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emu-jukebox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emu-jukebox-git" type="462c0819:PsiDirectoryNode" />
+              <item name="emu-jukebox" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -470,7 +454,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186430000" />
+    <option name="totallyTimeSpent" value="186490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="2562" height="1415" extended-state="0" />
