@@ -61,7 +61,8 @@ namespace ebox
     {
             None = 0,
             EmuFiles = 1,
-            Sprites = 2
+            Sprites = 2,
+            Folder = 3
     };
 
     class FileDialog : public ebox::Popup

@@ -25,6 +25,9 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_formManager.initialize(&m_window, &m_events);
     createMenu();
     registerCallbacks();
+    m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
 }
 
 void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
@@ -76,6 +79,8 @@ void ebox::ProgramManager::update()
 void ebox::ProgramManager::handleActions()
 {
     m_formManager.handleEvents();
+    m_fileDialogFile.handleEvents();
+    m_fileDialogFolder.handleEvents();
 }
 
 void ebox::ProgramManager::processHotkeys()
@@ -88,6 +93,9 @@ void ebox::ProgramManager::draw()
     drawDock();
     m_menu.process();
     m_formManager.draw();
+    m_fileDialogFile.draw();
+    m_fileDialogFolder.draw();
+    ImGui::SFML::Render(m_window);
 }
 
 void ProgramManager::drawDock()
@@ -201,11 +209,23 @@ void ProgramManager::createMenu()
 
 void ProgramManager::onChosenMenuItem(MenuItem *sender)
 {
-    if(sender->getId() == m_menuLayoutReset.getId()) resetDock();
+    if(sender->getId() == m_menuOpenFile.getId()) m_fileDialogFile.setOpen(true);
+    else if(sender->getId() == m_menuOpenFolder.getId()) m_fileDialogFolder.setOpen(true);
+    else if(sender->getId() == m_menuLayoutReset.getId()) resetDock();
     else if(sender->getId() == m_menuViewPlaylist.getId()) m_formManager.toggleOpened(FormType::Playlist);
     else if(sender->getId() == m_menuViewAudioPlayer.getId()) m_formManager.toggleOpened(FormType::AudioPlayer);
     else if(sender->getId() == m_menuViewFiles.getId()) m_formManager.toggleOpened(FormType::Files);
     else if(sender->getId() == m_menuViewSystemlog.getId()) m_formManager.toggleOpened(FormType::SystemLog);
+}
+
+void ProgramManager::onFileChosen(const std::string &path)
+{
+    fs::path currentPath = fs::path(path);
+}
+
+void ProgramManager::onFolderChosen(const std::string &path)
+{
+    fs::path currentPath = fs::path(path);
 }
 
 void ProgramManager::registerCallbacks()
@@ -217,6 +237,9 @@ void ProgramManager::registerCallbacks()
     m_menuViewFiles.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewSystemlog.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+
+    m_fileDialogFile.registerOnFileChosenCallback(std::bind(&ProgramManager::onFileChosen, this, std::placeholders::_1));
+    m_fileDialogFolder.registerOnFileChosenCallback(std::bind(&ProgramManager::onFolderChosen, this, std::placeholders::_1));
 }
 
 void ProgramManager::updateViewMenu()

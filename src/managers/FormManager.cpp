@@ -55,8 +55,6 @@ void ebox::FormManager::draw()
         item->draw();
 
     SystemLog::get()->process();
-
-    ImGui::SFML::Render(*m_window);
 }
 
 void ebox::FormManager::showImguiDemoWindow(bool showImguiDemoWindow)
@@ -116,9 +114,10 @@ bool FormManager::isOpened(FormType formType)
 
         case FormType::SystemLog:
             return SystemLog::get()->isOpen();
-    }
 
-    return false;
+        default:
+            return false;
+    }
 }
 
 

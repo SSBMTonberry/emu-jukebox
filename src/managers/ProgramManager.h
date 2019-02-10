@@ -41,6 +41,9 @@ namespace ebox
             void registerCallbacks();
 
             void onChosenMenuItem(MenuItem *sender);
+            void onFileChosen(const std::string &path);
+            void onFolderChosen(const std::string &path);
+
             void updateViewMenu();
 
             static const std::string DOCK_ROOT_ID;
@@ -66,6 +69,9 @@ namespace ebox
             Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
             Image m_resetLayoutImage {"img_reset_layout", files_mapper::gui::actions::_ROLLBACK_PNG, files_mapper::gui::actions::_ROLLBACK_PNG_SIZE};
 
+            //File dialogs
+            FileDialog m_fileDialogFile { DialogType::OpenFile, "main_file_dialog_file", "Choose a file", "main_file_dialog_file"};
+            FileDialog m_fileDialogFolder { DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder", "main_file_dialog_folder" };
 
             sf::RenderWindow m_window;
             EventManager m_events;

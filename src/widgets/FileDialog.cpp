@@ -268,6 +268,10 @@ void ebox::FileDialog::update()
         case DialogType::OpenFile:
             m_filenametext.setTextboxFlags(TextboxFlags::ReadOnly);
             break;
+
+        case DialogType::OpenDirectory:
+            m_filenametext.setTextboxFlags(TextboxFlags::ReadOnly);
+            break;
     }
 }
 
@@ -341,7 +345,26 @@ void ebox::FileDialog::handleFileChosen()
                     m_msgPopupFileDoesNotExist.setOpen(true);
             }
         }
-            break;
+        break;
+
+        case DialogType::OpenDirectory:
+        {
+            m_path = m_fileTable.getLastOpenedPath();
+
+            if (fs::exists(m_path))
+            {
+                m_chosenFile = m_path;
+                if (fs::exists(m_path) && fs::is_directory(m_path))
+                {
+                    m_open = false;
+                    for (auto &callback : m_callbackOnFileChosen)
+                        callback(m_chosenFile.string());
+                }
+                else
+                    m_msgPopupFileDoesNotExist.setOpen(true);
+            }
+        }
+        break;
     }
 }
 
@@ -412,6 +435,17 @@ void ebox::FileDialog::setFileTypes(const ebox::FileTypeMode &mode)
             m_filetypeFilter["Joint Photographic Experts Group (*.jpg)"] = ".jpg";
             m_filetypeFilter["Bitmap (*.bmp)"] = ".bmp";
             m_filetypeFilter["All (*.*)"] = "*.*";
+            m_fileTypeCombo.setValue(0);
+            std::string filter = m_filetypeFilter[m_fileTypeCombo.getValue()];
+            m_fileTable.setFileFilter(filter);
+        }
+            break;
+
+        case FileTypeMode::Folder:
+        {
+            m_fileTypeCombo.clear();
+            m_fileTypeCombo.addValue("Folder");
+            m_filetypeFilter["Folder"] = "folder";
             m_fileTypeCombo.setValue(0);
             std::string filter = m_filetypeFilter[m_fileTypeCombo.getValue()];
             m_fileTable.setFileFilter(filter);
