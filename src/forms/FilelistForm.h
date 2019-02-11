@@ -6,6 +6,33 @@
 #define EMU_JUKEBOX_FILELISTFORM_H
 
 #include "../gui/forms/Form.h"
+#include "../audio/EmuStream.h"
+#include <map>
+#include <chrono>
+
+#if MSVC
+#include <filesystem>
+    namespace fs = std::filesystem;
+#elif MINGW
+#if __MINGW64_VERSION_MAJOR > 6
+        #include <filesystem>
+        namespace fs = std::filesystem;
+    #else
+        #include <experimental/filesystem>
+        namespace fs = std::experimental::filesystem;
+    #endif
+#elif APPLE
+#include <experimental/filesystem>
+        namespace fs = std::experimental::filesystem;
+#else
+#if __GNUC__ < 8 //GCC major version less than 8
+#include <experimental/filesystem>
+                namespace fs = std::experimental::filesystem;
+#else
+#include <filesystem>
+namespace fs = std::filesystem;
+#endif
+#endif
 
 namespace ebox
 {
@@ -19,6 +46,9 @@ namespace ebox
 
             void handleEvents() override;
 
+            void loadFile(const fs::path & path);
+            void loadAllFilesInFolder(const fs::path & folder);
+
             static const std::string ID;
 
         protected:
@@ -26,6 +56,8 @@ namespace ebox
 
         private:
             void initialize();
+
+            std::map<std::string, std::unique_ptr<EmuStream>> m_filemap;
     };
 }
 

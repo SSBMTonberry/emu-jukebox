@@ -221,11 +221,13 @@ void ProgramManager::onChosenMenuItem(MenuItem *sender)
 void ProgramManager::onFileChosen(const std::string &path)
 {
     fs::path currentPath = fs::path(path);
+    m_formManager.getFilelistForm()->loadFile(currentPath);
 }
 
 void ProgramManager::onFolderChosen(const std::string &path)
 {
     fs::path currentPath = fs::path(path);
+    m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
 }
 
 void ProgramManager::registerCallbacks()

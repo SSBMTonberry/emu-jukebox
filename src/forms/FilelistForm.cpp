@@ -31,3 +31,26 @@ void ebox::FilelistForm::handleEvents()
 {
 
 }
+
+void ebox::FilelistForm::loadFile(const fs::path &path)
+{
+    if(fs::is_regular_file(path))
+    {
+        m_filemap.insert(path.filename().string(), {path.string()});
+        //m_filemap.emplace({path.filename()}, std::make_unique<EmuStream>(path.string()));//m_filemap.insert(path.filename(), {path.string()});
+    }
+}
+
+void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
+{
+    if(fs::is_directory(folder))
+    {
+        for (const auto &entry : fs::directory_iterator(folder))
+        {
+            if (fs::is_regular_file(entry.status()))
+            {
+                m_filemap.insert(entry.path().filename().string(), {entry.path().string()});
+            }
+        }
+    }
+}

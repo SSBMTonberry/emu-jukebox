@@ -120,4 +120,9 @@ bool FormManager::isOpened(FormType formType)
     }
 }
 
+FilelistForm *FormManager::getFilelistForm()
+{
+    return &m_filelistForm;
+}
+
 

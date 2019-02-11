@@ -42,6 +42,8 @@ namespace ebox
             void toggleOpened(FormType formType);
             bool isOpened(FormType formType);
 
+            FilelistForm * getFilelistForm();
+
         private:
             void initializeForms();
 
