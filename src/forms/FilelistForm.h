@@ -57,7 +57,8 @@ namespace ebox
         private:
             void initialize();
 
-            std::map<std::string, std::unique_ptr<EmuStream>> m_filemap;
+            std::map<std::string, EmuStream> m_filemap;
+            std::vector<EmuStream> m_files;
     };
 }
 

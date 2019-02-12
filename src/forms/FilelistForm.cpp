@@ -36,8 +36,9 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
 {
     if(fs::is_regular_file(path))
     {
-        m_filemap.insert(path.filename().string(), {path.string()});
+        //m_filemap.insert(path.filename().string(), {path.string()});
         //m_filemap.emplace({path.filename()}, std::make_unique<EmuStream>(path.string()));//m_filemap.insert(path.filename(), {path.string()});
+        m_filemap[path.filename().string()] = {path.string()};
     }
 }
 
@@ -49,7 +50,12 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
         {
             if (fs::is_regular_file(entry.status()))
             {
-                m_filemap.insert(entry.path().filename().string(), {entry.path().string()});
+                //EmuStream emu {entry.path().string()};
+                //if(emu.isValid())
+                //    m_files.push_back(std::move(emu));
+
+                //m_filemap.insert(0, {entry.path().string()});//m_filemap.insert(entry.path().filename().string(), {entry.path().string()});
+                m_filemap[entry.path().filename().string()] = {entry.path().string()};
             }
         }
     }

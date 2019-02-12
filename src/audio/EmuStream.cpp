@@ -10,6 +10,30 @@ ebox::EmuStream::EmuStream()
 
 }
 
+ebox::EmuStream::EmuStream(const ebox::EmuStream &other)
+{
+    copy(other);
+}
+
+void ebox::EmuStream::copy(const EmuStream &other)
+{
+    if(other.getLoadMode() == Mode::File)
+    {
+        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+    }
+    else if(other.getLoadMode() == Mode::Memory)
+    {
+        initializeMemory(other.getData(), other.getDataSize(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+    }
+}
+
+ebox::EmuStream &ebox::EmuStream::operator=(const ebox::EmuStream &other)
+{
+    copy(other);
+    return *this;
+}
+
+
 /*!
  *
  * @param channelCount 1 = mono, 2 = stereo.
@@ -39,7 +63,7 @@ void ebox::EmuStream::initializeFile(const std::string &filename, int track, uin
     m_samples.resize((m_sampleRate * m_channelCount) / 7);
 
     SoundStream::initialize(m_channelCount, m_sampleRate);
-    initializeEmu();
+    m_isValid = initializeEmu();
 }
 
 void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint32_t channelCount, uint32_t sampleRate)
@@ -55,7 +79,7 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint3
     m_samples.resize((m_sampleRate * m_channelCount) / 7);
 
     SoundStream::initialize(m_channelCount, m_sampleRate);
-    initializeEmu();
+    m_isValid = initializeEmu();
 }
 
 ebox::EmuStream::~EmuStream()
@@ -112,7 +136,7 @@ void ebox::EmuStream::onSeek(sf::Time timeOffset)
     //sf::Uint64 sampleOffset = static_cast<sf::Uint64>(timeOffset.asSeconds() * getSampleRate() * getChannelCount());
     //sampleOffset -= sampleOffset % getChannelCount();
     //m_loopCurrent = sampleOffset;
-    if(m_emu != nullptr)
+    if(m_emu != nullptr && this->getStatus() == Status::Playing)
     {
         m_emu->seek(timeOffset.asMilliseconds());
     }
@@ -134,7 +158,7 @@ bool ebox::EmuStream::initializeEmu()
 
     if(m_loadMode == Mode::File)
     {
-        handleError( gme_identify_file( m_filename.c_str(), &file_type ) );
+        if(handleError( gme_identify_file( m_filename.c_str(), &file_type ) )) return false;
     }
     else if(m_loadMode == Mode::Memory)
     {
@@ -143,25 +167,26 @@ bool ebox::EmuStream::initializeEmu()
     }
 
     if ( !file_type )
-        handleError( "Unsupported music type" );
+        return !handleError( "Unsupported music type" );
 
     // Create emulator and set sample rate
     m_emu = file_type->new_emu();
 
     if ( !m_emu )
-        handleError( "Out of memory" );
-    handleError( m_emu->set_sample_rate( m_sampleRate ) );
+        return !handleError( "Out of memory" );
+
+    if(handleError( m_emu->set_sample_rate( m_sampleRate ))) return false;
 
     if(m_loadMode == Mode::File)
     {
-        handleError(m_emu->load_file(m_filename.c_str()));
+        if(handleError(m_emu->load_file(m_filename.c_str()))) return false;
     }
     else if(m_loadMode == Mode::Memory)
     {
-        handleError(m_emu->load_mem(m_data, m_dataSize));
+        if(handleError(m_emu->load_mem(m_data, m_dataSize))) return false;
     }
 
-    handleError( m_emu->start_track( m_track ) );
+    if(handleError(m_emu->start_track( m_track ))) return false;
 
     float tempo = m_info.getTempo();
     m_info.load(m_emu, m_track);
@@ -188,6 +213,7 @@ bool ebox::EmuStream::initializeEmu()
 
     m_equalizer.initialize(m_emu);
 
+
     return true;
 }
 
@@ -196,6 +222,7 @@ bool ebox::EmuStream::handleError(const char *errorText)
     if(errorText)
     {
         m_errorText = errorText;
+        SystemLog::get()->addError(fmt::format("EmuStream ({0}) - {1}", m_filename, m_errorText));
         return true;
     }
 
@@ -267,7 +294,7 @@ std::vector<ebox::Voice> *ebox::EmuStream::getVoices()
     return &m_voices;
 }
 
-size_t ebox::EmuStream::getNumberOfChannels()
+size_t ebox::EmuStream::getNumberOfVoices()
 {
     return m_voices.size();
 }
@@ -302,4 +329,42 @@ int *ebox::EmuStream::getTimePlayedPtr()
     return &m_timePlayed;
 }
 
+ebox::EmuStream::Mode ebox::EmuStream::getLoadMode() const
+{
+    return m_loadMode;
+}
 
+const std::string &ebox::EmuStream::getFilename() const
+{
+    return m_filename;
+}
+
+int ebox::EmuStream::getTrack() const
+{
+    return m_track;
+}
+
+uint32_t ebox::EmuStream::getChannelCount() const
+{
+    return m_channelCount;
+}
+
+uint32_t ebox::EmuStream::getEmuSampleRate() const
+{
+    return m_sampleRate;
+}
+
+void *ebox::EmuStream::getData() const
+{
+    return m_data;
+}
+
+size_t ebox::EmuStream::getDataSize() const
+{
+    return m_dataSize;
+}
+
+bool ebox::EmuStream::isValid() const
+{
+    return m_isValid;
+}

@@ -16,16 +16,26 @@
 #include "Voice.h"
 #include "EmuTrackInfo.h"
 #include "EmuEqualizer.h"
+#include "../forms/SystemLog.h"
 
 namespace ebox
 {
     class EmuStream : public sf::SoundStream
     {
         public:
+            enum class Mode
+            {
+                File = 0,
+                Memory = 1
+            };
+
             EmuStream();
             EmuStream(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             EmuStream(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
+            EmuStream(const EmuStream &other);
             ~EmuStream() override;
+
+            EmuStream& operator=(const EmuStream &other);
 
             void initializeFile(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             void initializeMemory(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
@@ -44,11 +54,20 @@ namespace ebox
             int getTimePlayed() const;
             int *getTimePlayedPtr();
 
-            size_t getNumberOfChannels();
+            size_t getNumberOfVoices();
             std::vector<Voice> *getVoices();
             const EmuTrackInfo &getInfo() const;
             EmuEqualizer *getEqualizer();
 
+            Mode getLoadMode() const;
+            const std::string &getFilename() const;
+            int getTrack() const;
+            uint32_t getChannelCount() const;
+            uint32_t getEmuSampleRate() const;
+            void *getData() const;
+            size_t getDataSize() const;
+
+            bool isValid() const;
 
         protected:
             bool onGetData(Chunk &data) override;
@@ -57,11 +76,8 @@ namespace ebox
             bool handleError(const char *errorText);
 
         private:
-            enum class Mode
-            {
-                File = 0,
-                Memory = 1
-            };
+            void copy(const EmuStream &other);
+
             std::vector<sf::Int16> m_samples;     ///< Temporary buffer of samples
             sf::Mutex m_mutex;       ///< Mutex protecting the data
 
@@ -82,6 +98,7 @@ namespace ebox
             size_t m_dataSize; //If loaded by memory
 
             int m_timePlayed = 0;
+            bool m_isValid = true;
 
             std::vector<Voice> m_voices;
             EmuTrackInfo m_info;
