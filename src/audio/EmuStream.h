@@ -33,6 +33,7 @@ namespace ebox
             EmuStream(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             EmuStream(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             EmuStream(const EmuStream &other);
+            EmuStream(EmuStream &&other); //Move contructor
             ~EmuStream() override;
 
             EmuStream& operator=(const EmuStream &other);
@@ -77,6 +78,7 @@ namespace ebox
 
         private:
             void copy(const EmuStream &other);
+            void move(EmuStream &&other);
 
             std::vector<sf::Int16> m_samples;     ///< Temporary buffer of samples
             sf::Mutex m_mutex;       ///< Mutex protecting the data

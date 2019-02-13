@@ -12,7 +12,26 @@ ebox::EmuStream::EmuStream()
 
 ebox::EmuStream::EmuStream(const ebox::EmuStream &other)
 {
+    SystemLog::get()->addDebug(fmt::format("EmuStream - Copy-constructor called"));
     copy(other);
+}
+
+ebox::EmuStream::EmuStream(ebox::EmuStream &&other)
+{
+    SystemLog::get()->addDebug(fmt::format("EmuStream - Move-constructor called"));
+    move(std::move(other));
+}
+
+void ebox::EmuStream::move(ebox::EmuStream &&other)
+{
+    if(other.getLoadMode() == Mode::File)
+    {
+        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+    }
+    else if(other.getLoadMode() == Mode::Memory)
+    {
+        initializeMemory(other.getData(), other.getDataSize(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+    }
 }
 
 void ebox::EmuStream::copy(const EmuStream &other)
@@ -29,6 +48,7 @@ void ebox::EmuStream::copy(const EmuStream &other)
 
 ebox::EmuStream &ebox::EmuStream::operator=(const ebox::EmuStream &other)
 {
+    SystemLog::get()->addDebug(fmt::format("EmuStream - operator= called"));
     copy(other);
     return *this;
 }
@@ -64,6 +84,8 @@ void ebox::EmuStream::initializeFile(const std::string &filename, int track, uin
 
     SoundStream::initialize(m_channelCount, m_sampleRate);
     m_isValid = initializeEmu();
+    if(m_isValid)
+        SystemLog::get()->addSuccess(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
 }
 
 void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint32_t channelCount, uint32_t sampleRate)
@@ -80,6 +102,8 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint3
 
     SoundStream::initialize(m_channelCount, m_sampleRate);
     m_isValid = initializeEmu();
+    if(m_isValid)
+        SystemLog::get()->addSuccess(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
 }
 
 ebox::EmuStream::~EmuStream()
