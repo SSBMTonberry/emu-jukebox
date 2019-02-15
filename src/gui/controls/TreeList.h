@@ -37,9 +37,11 @@ namespace ebox
             void registerOnDoubleClickCallback(const func_treelist_parent &cb);
             void registerOnChosenContextItemCallback(const func_treelist_parent_chosencontextitem &cb);
 
-            ebox::Selectable * getItem(const std::string &id);
+            void setHasParentNode(bool hasParentNode);
 
+            ebox::Selectable * getItem(const std::string &id);
             std::vector<ebox::Selectable *> getItems();
+            bool hasParentNode() const;
 
         protected:
             void processMouseEvents();
@@ -52,6 +54,8 @@ namespace ebox
             std::map<std::string, ebox::Selectable> m_items;
             std::vector<ebox::MenuItem> m_rightClickContextItems;
             bool m_rightClickContextActivated = false;
+
+            bool m_hasParentNode = true; //true = Has a tree-node. false = Makes it pretty much work like a list
     };
 }
 

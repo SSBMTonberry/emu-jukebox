@@ -38,8 +38,8 @@ namespace ebox
 
             EmuStream& operator=(const EmuStream &other);
 
-            void initializeFile(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
-            void initializeMemory(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
+            void initializeFile(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100, bool printAsDebug = false);
+            void initializeMemory(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100, bool printAsDebug = false);
 
             void muteChannel(int channelNo, bool mute);
 

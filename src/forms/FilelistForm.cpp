@@ -19,16 +19,13 @@ ebox::FilelistForm::FilelistForm(const sf::Vector2<int> &position, const sf::Vec
 
 bool ebox::FilelistForm::customDraw()
 {
-    for(auto const &[id, value] : m_filemap)
-    {
-        ImGui::Text(id.c_str());
-    }
+    m_filelist.process();
     return true;
 }
 
 void ebox::FilelistForm::initialize()
 {
-
+    m_filelist.setHasParentNode(false);
 }
 
 void ebox::FilelistForm::handleEvents()
@@ -50,6 +47,8 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
         auto item = m_filemap.emplace(path.filename().string(), EmuStream(path.string()));
         if(!item.first->second.isValid())
             m_filemap.erase(path.filename().string());
+        else
+            m_filelist.add(path.filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
     }
 }
 
@@ -74,7 +73,48 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                 auto item = m_filemap.emplace(entry.path().filename().string(), EmuStream(entry.path().string()));
                 if(!item.first->second.isValid())
                     m_filemap.erase(entry.path().filename().string());
+                else
+                {
+                    auto *item = m_filelist.add(entry.path().filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG,
+                                   files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                    item->getImage()->setHasZoomTooltip(false);
+
+                    item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
+                    item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
+                    item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
+                    item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
+                }
             }
         }
+    }
+}
+
+void ebox::FilelistForm::onChosenChildNode(Selectable *sender)
+{
+    setAsSelectedChildNode(sender);
+}
+
+bool ebox::FilelistForm::onRightClickedChildNode(Selectable *sender)
+{
+    setAsSelectedChildNode(sender);
+    sender->createRightClickContextItems({"Dummy1", "Dummy2"});
+    return true;
+}
+
+void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
+{
+    setAsSelectedChildNode(sender);
+}
+
+void ebox::FilelistForm::onChosenRightClickContextItems(Selectable* owner, MenuItem *sender)
+{
+
+}
+
+void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
+{
+    for(auto const &item : m_filelist.getItems())
+    {
+        item->setSelected(item == child);
     }
 }

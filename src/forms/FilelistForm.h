@@ -6,7 +6,10 @@
 #define EMU_JUKEBOX_FILELISTFORM_H
 
 #include "../gui/forms/Form.h"
+#include "../gui/controls/TreeList.h"
+#include "../gui/controls/Selectable.h"
 #include "../audio/EmuStream.h"
+#include "../../content/files_mapper.h"
 #include <map>
 #include <chrono>
 
@@ -57,7 +60,15 @@ namespace ebox
         private:
             void initialize();
 
+            void onChosenChildNode(Selectable *sender);
+            bool onRightClickedChildNode(Selectable *sender);
+            void onDoubleClickChildNode(Selectable *sender);
+            void onChosenRightClickContextItems(Selectable* owner, MenuItem *sender);
+
+            void setAsSelectedChildNode(Selectable *child);
+
             std::map<std::string, EmuStream> m_filemap;
+            TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };
 }

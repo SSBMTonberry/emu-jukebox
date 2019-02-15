@@ -26,11 +26,11 @@ void ebox::EmuStream::move(ebox::EmuStream &&other)
 {
     if(other.getLoadMode() == Mode::File)
     {
-        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
     }
     else if(other.getLoadMode() == Mode::Memory)
     {
-        initializeMemory(other.getData(), other.getDataSize(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+        initializeMemory(other.getData(), other.getDataSize(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
     }
 }
 
@@ -38,11 +38,11 @@ void ebox::EmuStream::copy(const EmuStream &other)
 {
     if(other.getLoadMode() == Mode::File)
     {
-        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
     }
     else if(other.getLoadMode() == Mode::Memory)
     {
-        initializeMemory(other.getData(), other.getDataSize(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate());
+        initializeMemory(other.getData(), other.getDataSize(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
     }
 }
 
@@ -71,7 +71,7 @@ ebox::EmuStream::EmuStream(void *data, size_t size, int track, uint32_t channelC
     initializeMemory(data, size, track, channelCount, sampleRate);
 }
 
-void ebox::EmuStream::initializeFile(const std::string &filename, int track, uint32_t channelCount, uint32_t sampleRate)
+void ebox::EmuStream::initializeFile(const std::string &filename, int track, uint32_t channelCount, uint32_t sampleRate, bool printAsDebug)
 {
     m_loadMode = Mode::File;
     m_channelCount = channelCount;
@@ -85,10 +85,15 @@ void ebox::EmuStream::initializeFile(const std::string &filename, int track, uin
     SoundStream::initialize(m_channelCount, m_sampleRate);
     m_isValid = initializeEmu();
     if(m_isValid)
-        SystemLog::get()->addSuccess(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
+    {
+        if(printAsDebug)
+            SystemLog::get()->addDebug(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
+        else
+            SystemLog::get()->addSuccess(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
+    }
 }
 
-void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint32_t channelCount, uint32_t sampleRate)
+void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint32_t channelCount, uint32_t sampleRate, bool printAsDebug)
 {
     m_loadMode = Mode::Memory;
     m_channelCount = channelCount;
@@ -103,7 +108,12 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint3
     SoundStream::initialize(m_channelCount, m_sampleRate);
     m_isValid = initializeEmu();
     if(m_isValid)
-        SystemLog::get()->addSuccess(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
+    {
+        if(printAsDebug)
+            SystemLog::get()->addDebug(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
+        else
+            SystemLog::get()->addSuccess(fmt::format("EmuStream ({0}) - Successfully loaded!", m_filename));
+    }
 }
 
 ebox::EmuStream::~EmuStream()

@@ -14,7 +14,7 @@ bool ebox::TreeList::process()
     bool isAnyItemActivated = false;
     if(Control::process())
     {
-        bool opened = ImGui::TreeNode(m_label.c_str());
+        bool opened = (m_hasParentNode) ? ImGui::TreeNode(m_label.c_str()) : true;
 
         if(opened)
         {
@@ -25,7 +25,8 @@ bool ebox::TreeList::process()
                 if(item.process())
                     isAnyItemActivated = true;
             }
-            ImGui::TreePop();
+            if(m_hasParentNode)
+                ImGui::TreePop();
         }
         else
         {
@@ -227,4 +228,14 @@ std::vector<ebox::Selectable *> ebox::TreeList::getItems()
         items.push_back(&item);
     }
     return items;
+}
+
+bool ebox::TreeList::hasParentNode() const
+{
+    return m_hasParentNode;
+}
+
+void ebox::TreeList::setHasParentNode(bool hasParentNode)
+{
+    m_hasParentNode = hasParentNode;
 }
