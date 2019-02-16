@@ -20,6 +20,7 @@ namespace ebox
             typedef std::function<void(TreeList*, MenuItem*)> func_treelist_parent_chosencontextitem;
 
         public:
+            TreeList();
             TreeList(const std::string &id, const std::string &label);
 
             bool process() override;

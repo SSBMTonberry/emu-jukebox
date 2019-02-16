@@ -19,13 +19,17 @@ ebox::FilelistForm::FilelistForm(const sf::Vector2<int> &position, const sf::Vec
 
 bool ebox::FilelistForm::customDraw()
 {
-    m_filelist.process();
+    //m_filelist.process();
+    for(auto &[id, value]: m_filelist)
+    {
+        value.process();
+    }
     return true;
 }
 
 void ebox::FilelistForm::initialize()
 {
-    m_filelist.setHasParentNode(false);
+    //m_filelist.setHasParentNode(false);
 }
 
 void ebox::FilelistForm::handleEvents()
@@ -37,18 +41,29 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
 {
     if(fs::is_regular_file(path))
     {
-        //m_filemap.insert(path.filename().string(), {path.string()});
-        //m_filemap.emplace({path.filename()}, std::make_unique<EmuStream>(path.string()));//m_filemap.insert(path.filename(), {path.string()});
-
-        //EmuStream emu {path.string()};
-        //if(emu.isValid())
-        //    m_filemap[path.filename().string()] = std::move(emu); //{path.string()};
 
         auto item = m_filemap.emplace(path.filename().string(), EmuStream(path.string()));
         if(!item.first->second.isValid())
             m_filemap.erase(path.filename().string());
         else
-            m_filelist.add(path.filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+        {
+            m_filelist[path.filename().string()] = {path.filename().string(), path.filename().string()};
+
+            //for(auto const &item : m_filemap[path.filename().string()].getTrack())
+            int numberOfTracks = m_filemap[path.filename().string()].getInfo().getNumberOfTracks();
+            for(int i = 0; i < numberOfTracks; ++i)
+            {
+                std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
+                auto *item = m_filelist[path.filename().string()].add(fmt::format("Track {0}", trackNumber), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                item->getImage()->setHasZoomTooltip(false);
+
+                item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
+                item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
+                item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
+                item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
+            }
+            //m_filelist.add(path.filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+        }
     }
 }
 
@@ -60,29 +75,35 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
         {
             if (fs::is_regular_file(entry.status()))
             {
-                //EmuStream emu {entry.path().string()};
-                //if(emu.isValid())
-                //    m_files.push_back(std::move(emu));
-
-                //m_filemap.insert(0, {entry.path().string()});//m_filemap.insert(entry.path().filename().string(), {entry.path().string()});
-
-                //EmuStream emu {entry.path().string()};
-                //if(emu.isValid())
-                //    m_filemap[entry.path().filename().string()] = std::move(emu); //{entry.path().string()};
 
                 auto item = m_filemap.emplace(entry.path().filename().string(), EmuStream(entry.path().string()));
                 if(!item.first->second.isValid())
                     m_filemap.erase(entry.path().filename().string());
                 else
                 {
-                    auto *item = m_filelist.add(entry.path().filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG,
-                                   files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-                    item->getImage()->setHasZoomTooltip(false);
+                    m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
 
-                    item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
-                    item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
-                    item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
-                    item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
+                    //for(auto const &item : m_filemap[path.filename().string()].getTrack())
+                    int numberOfTracks = m_filemap[entry.path().filename().string()].getInfo().getNumberOfTracks();
+                    for(int i = 0; i < numberOfTracks; ++i)
+                    {
+                        std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
+                        auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("Track {0}", trackNumber), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                        item->getImage()->setHasZoomTooltip(false);
+
+                        item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
+                        item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
+                        item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
+                        item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
+                    }
+                    //auto *item = m_filelist.add(entry.path().filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG,
+                    //               files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                    //item->getImage()->setHasZoomTooltip(false);
+//
+                    //item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
+                    //item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
+                    //item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
+                    //item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
                 }
             }
         }
@@ -113,8 +134,15 @@ void ebox::FilelistForm::onChosenRightClickContextItems(Selectable* owner, MenuI
 
 void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
 {
-    for(auto const &item : m_filelist.getItems())
+    for(auto &[id, value]: m_filelist)
     {
-        item->setSelected(item == child);
+        for(auto const &item : value.getItems())
+        {
+            item->setSelected(item == child);
+        }
     }
+    //for(auto const &item : m_filelist.getItems())
+    //{
+    //    item->setSelected(item == child);
+    //}
 }

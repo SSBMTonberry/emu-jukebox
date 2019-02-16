@@ -68,7 +68,8 @@ namespace ebox
             void setAsSelectedChildNode(Selectable *child);
 
             std::map<std::string, EmuStream> m_filemap;
-            TreeList m_filelist {"filelist", "Files"};
+            std::map<std::string, TreeList> m_filelist;
+            //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };
 }

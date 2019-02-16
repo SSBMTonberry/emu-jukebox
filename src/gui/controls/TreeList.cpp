@@ -4,6 +4,11 @@
 
 #include "TreeList.h"
 
+ebox::TreeList::TreeList() : Control("undefined", "undefined")
+{
+
+}
+
 ebox::TreeList::TreeList(const std::string &id, const std::string &label) : Control(id, label)
 {
     m_type = ControlType::TreeList;
@@ -239,3 +244,5 @@ void ebox::TreeList::setHasParentNode(bool hasParentNode)
 {
     m_hasParentNode = hasParentNode;
 }
+
+
