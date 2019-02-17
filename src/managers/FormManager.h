@@ -9,7 +9,8 @@
 #include "imgui/imgui-SFML.h"
 #include "EventManager.h"
 #include "../gui/forms/Form.h"
-#include "../forms/AudioTestForm.h"
+//#include "../forms/AudioTestForm.h"
+#include "../forms/AudioPlayerForm.h"
 #include "../forms/FilelistForm.h"
 #include "../forms/PlaylistForm.h"
 #include "../forms/SystemLog.h"
@@ -51,7 +52,8 @@ namespace ebox
 
             FilelistForm m_filelistForm {"filelist_form", "Files", FilelistForm::ID};
             PlaylistForm m_playlistForm {"playlist_form", "Playlist", PlaylistForm::ID};
-            AudioTestForm m_audioTestForm {"audio_test_form", "Audio Test", AudioTestForm::ID};
+            AudioPlayerForm m_audioPlayerForm {"audio_player_form", "Audio Test", AudioPlayerForm::ID};
+            //AudioTestForm m_audioTestForm {"audio_test_form", "Audio Test", AudioTestForm::ID};
             //AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", AudioTestForm::ID};
 
             sf::RenderWindow *m_window;

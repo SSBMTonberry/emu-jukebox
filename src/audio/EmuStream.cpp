@@ -170,7 +170,7 @@ void ebox::EmuStream::onSeek(sf::Time timeOffset)
     //sf::Uint64 sampleOffset = static_cast<sf::Uint64>(timeOffset.asSeconds() * getSampleRate() * getChannelCount());
     //sampleOffset -= sampleOffset % getChannelCount();
     //m_loopCurrent = sampleOffset;
-    if(m_emu != nullptr && this->getStatus() == Status::Playing)
+    if(m_emu != nullptr)// && this->getStatus() == Status::Playing)
     {
         m_emu->seek(timeOffset.asMilliseconds());
     }

@@ -30,7 +30,7 @@ void ebox::FormManager::initializeForms()
 {
     m_forms.push_back(&m_filelistForm);
     m_forms.push_back(&m_playlistForm);
-    m_forms.push_back(&m_audioTestForm);
+    m_forms.push_back(&m_audioPlayerForm);
 }
 
 void ebox::FormManager::update()
@@ -69,7 +69,7 @@ bool ebox::FormManager::showImguiDemoWindow() const
 
 void FormManager::handleEvents()
 {
-    m_audioTestForm.handleEvents();
+    m_audioPlayerForm.handleEvents();
 }
 
 void FormManager::setOpened(FormType formType, bool open)
@@ -77,7 +77,7 @@ void FormManager::setOpened(FormType formType, bool open)
     switch(formType)
     {
         case FormType::AudioPlayer:
-            m_audioTestForm.setOpen(open);
+            m_audioPlayerForm.setOpen(open);
             break;
 
         case FormType::Files:
@@ -104,7 +104,7 @@ bool FormManager::isOpened(FormType formType)
     switch(formType)
     {
         case FormType::AudioPlayer:
-            return m_audioTestForm.isOpen();
+            return m_audioPlayerForm.isOpen();
 
         case FormType::Files:
             return m_filelistForm.isOpen();

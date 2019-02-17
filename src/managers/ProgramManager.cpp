@@ -149,7 +149,7 @@ void ProgramManager::createDock()
     //ImGui::DockBuilderDockWindow("Extra", dock_id_prop);
 
     ImGui::DockBuilderDockWindow(fmt::format("dummy###{0}", FilelistForm::ID).c_str(), dock_id_left);
-    ImGui::DockBuilderDockWindow(fmt::format("dummy###{0}", AudioTestForm::ID).c_str(), dock_main_id);
+    ImGui::DockBuilderDockWindow(fmt::format("dummy###{0}", AudioPlayerForm::ID).c_str(), dock_main_id);
     ImGui::DockBuilderDockWindow(fmt::format("dummy###{0}", PlaylistForm::ID).c_str(), dock_id_right);
     ImGui::DockBuilderDockWindow(SystemLog::ID.c_str(), dock_id_bottom);
     ImGui::DockBuilderFinish(dockspace_id);
