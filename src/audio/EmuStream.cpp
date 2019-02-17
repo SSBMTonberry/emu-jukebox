@@ -220,10 +220,20 @@ bool ebox::EmuStream::initializeEmu()
         if(handleError(m_emu->load_mem(m_data, m_dataSize))) return false;
     }
 
+    m_numberOfTracks = gme_track_count(m_emu);
+
     if(handleError(m_emu->start_track( m_track ))) return false;
 
-    float tempo = m_info.getTempo();
-    m_info.load(m_emu, m_track);
+    //Load tracks
+    for(int i = 0; i < m_numberOfTracks; ++i)
+    {
+        m_tracks.emplace_back();
+        bool success = m_tracks[i].load(m_emu, i);
+        if(!success)
+            SystemLog::get()->addError(fmt::format("Error loading track: {0}: {1}", i, m_tracks[i].getErrorText()));
+    }
+
+    float tempo = m_tracks[m_track].getTempo();
     setTempo(tempo);
     m_emu->ignore_silence(); //This makes sure the music doesn't stop when all channels are muted.
 
@@ -296,7 +306,7 @@ void ebox::EmuStream::setTempo(float tempo)
 {
     if(m_emu != nullptr)
     {
-        m_info.setTempo(tempo);
+        m_tracks[m_track].setTempo(tempo);
         m_emu->set_tempo(tempo);
     }
 }
@@ -307,19 +317,18 @@ void ebox::EmuStream::setTrack(int track)
     if(m_emu != nullptr)
     {
         handleError(m_emu->start_track(m_track));
-        m_info.load(m_emu, m_track);
     }
 }
 
 void ebox::EmuStream::nextTrack()
 {
-    m_track = ((m_track + 1) > m_info.getNumberOfTracks() - 1) ? 0 : m_track + 1;
+    m_track = ((m_track + 1) > m_numberOfTracks - 1) ? 0 : m_track + 1;
     setTrack(m_track);
 }
 
 void ebox::EmuStream::previousTrack()
 {
-    m_track = ((m_track-1 < 0) && m_info.getNumberOfTracks() > 0) ? m_info.getNumberOfTracks() - 1 : m_track - 1;
+    m_track = ((m_track-1 < 0) && m_numberOfTracks > 0) ? m_numberOfTracks - 1 : m_track - 1;
     setTrack(m_track);
 }
 
@@ -342,9 +351,9 @@ void ebox::EmuStream::unmuteAllChannels()
     }
 }
 
-const ebox::EmuTrackInfo &ebox::EmuStream::getInfo() const
+const ebox::EmuTrackInfo &ebox::EmuStream::getInfoFromCurrentTrack() const
 {
-    return m_info;
+    return (m_numberOfTracks > 0) ? m_tracks[m_track] : m_emptyTrack;
 }
 
 ebox::EmuEqualizer *ebox::EmuStream::getEqualizer()
@@ -401,4 +410,14 @@ size_t ebox::EmuStream::getDataSize() const
 bool ebox::EmuStream::isValid() const
 {
     return m_isValid;
+}
+
+int ebox::EmuStream::getNumberOfTracks() const
+{
+    return m_numberOfTracks;
+}
+
+const std::vector<ebox::EmuTrackInfo> &ebox::EmuStream::getTracks() const
+{
+    return m_tracks;
 }

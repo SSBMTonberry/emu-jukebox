@@ -36,7 +36,7 @@ namespace ebox
 
             float getTempo() const;
             int getTrackNumber() const;
-            int getNumberOfTracks() const;
+            //int getNumberOfTracks() const;
             const std::string &getSystem() const;
             const std::string &getGame() const;
             const std::string &getAuthor() const;
@@ -49,6 +49,7 @@ namespace ebox
             int getIntroLength() const;
             int getLoopLength() const;
 
+            const std::string &getErrorText() const;
 
         private:
             Music_Emu *m_emu;
@@ -68,7 +69,7 @@ namespace ebox
             int m_introLength = -1;
             int m_loopLength = -1;
             int m_playLength = -1;
-            int m_numberOfTracks;
+            //int m_numberOfTracks;
     };
 }
 

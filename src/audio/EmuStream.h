@@ -57,7 +57,8 @@ namespace ebox
 
             size_t getNumberOfVoices();
             std::vector<Voice> *getVoices();
-            const EmuTrackInfo &getInfo() const;
+            const EmuTrackInfo &getInfoFromCurrentTrack() const;
+            const std::vector<EmuTrackInfo> &getTracks() const;
             EmuEqualizer *getEqualizer();
 
             Mode getLoadMode() const;
@@ -67,6 +68,7 @@ namespace ebox
             uint32_t getEmuSampleRate() const;
             void *getData() const;
             size_t getDataSize() const;
+            int getNumberOfTracks() const;
 
             bool isValid() const;
 
@@ -102,8 +104,12 @@ namespace ebox
             int m_timePlayed = 0;
             bool m_isValid = true;
 
+            int m_numberOfTracks = 0;
+
             std::vector<Voice> m_voices;
-            EmuTrackInfo m_info;
+
+            EmuTrackInfo m_emptyTrack; //When no track info exists
+            std::vector<EmuTrackInfo> m_tracks;
             EmuEqualizer m_equalizer;
     };
 }

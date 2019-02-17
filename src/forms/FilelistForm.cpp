@@ -50,11 +50,13 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
             m_filelist[path.filename().string()] = {path.filename().string(), path.filename().string()};
 
             //for(auto const &item : m_filemap[path.filename().string()].getTrack())
-            int numberOfTracks = m_filemap[path.filename().string()].getInfo().getNumberOfTracks();
-            for(int i = 0; i < numberOfTracks; ++i)
+            //int numberOfTracks = m_filemap[path.filename().string()].getInfoFromCurrentTrack().getNumberOfTracks();
+            auto tracks = m_filemap[path.filename().string()].getTracks();
+            for(int i = 0; i < tracks.size(); ++i)
             {
+                auto track = tracks[i];
                 std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-                auto *item = m_filelist[path.filename().string()].add(fmt::format("Track {0}", trackNumber), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                auto *item = m_filelist[path.filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
                 item->getImage()->setHasZoomTooltip(false);
 
                 item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
@@ -88,11 +90,14 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                     m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
 
                     //for(auto const &item : m_filemap[path.filename().string()].getTrack())
-                    int numberOfTracks = m_filemap[entry.path().filename().string()].getInfo().getNumberOfTracks();
-                    for(int i = 0; i < numberOfTracks; ++i)
+                    //int numberOfTracks = m_filemap[entry.path().filename().string()].getNumberOfTracks();
+                    auto tracks = m_filemap[entry.path().filename().string()].getTracks();
+
+                    for(int i = 0; i < tracks.size(); ++i)
                     {
+                        auto track = tracks[i];
                         std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-                        auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("Track {0}", trackNumber), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                        auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
                         item->getImage()->setHasZoomTooltip(false);
 
                         item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));

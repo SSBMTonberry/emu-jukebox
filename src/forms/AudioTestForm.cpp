@@ -85,7 +85,7 @@ void ebox::AudioTestForm::drawAudioPanel()
         m_hasItemsFocused = ImGui::IsItemActive();
 
     ImGui::PushItemWidth(-1);
-    if(ImGui::SliderInt("###Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfo().getPlayLength(), getAudioTimestamp().c_str()))//"%d"))
+    if(ImGui::SliderInt("###Time: ", m_stream.getTimePlayedPtr(), 0, m_stream.getInfoFromCurrentTrack().getPlayLength(), getAudioTimestamp().c_str()))//"%d"))
     {
         m_stream.setPlayingOffset(sf::milliseconds(m_stream.getTimePlayed()));
     }
@@ -98,15 +98,15 @@ void ebox::AudioTestForm::drawAudioInfo()
 {
     ImGui::BeginChild("test_audio_2", {-1, 250}, true, 0);
     ImGui::BeginChild("test_audio_2_sub1", {(static_cast<float>(getCurrentWindowSize().x) / 2), -1}, true, 0);
-    ImGui::Text(fmt::format("Track: {0} of {1}", m_stream.getInfo().getTrackNumber() + 1, m_stream.getInfo().getNumberOfTracks()).c_str());
-    ImGui::Text(fmt::format("Song: {0}", m_stream.getInfo().getSong()).c_str());
-    ImGui::Text(fmt::format("Intro length: {0}", m_stream.getInfo().getIntroLength()).c_str());
-    ImGui::Text(fmt::format("Loop length: {0}", m_stream.getInfo().getLoopLength()).c_str());
-    ImGui::Text(fmt::format("Play length: {0}", m_stream.getInfo().getPlayLength()).c_str());
-    ImGui::Text(fmt::format("Game: {0}", m_stream.getInfo().getGame()).c_str());
-    ImGui::Text(fmt::format("Author: {0}", m_stream.getInfo().getAuthor()).c_str());
-    ImGui::Text(fmt::format("Comment: {0}", m_stream.getInfo().getComment()).c_str());
-    ImGui::Text(fmt::format("Dumper: {0}", m_stream.getInfo().getDumper()).c_str());
+    ImGui::Text(fmt::format("Track: {0} of {1}", m_stream.getInfoFromCurrentTrack().getTrackNumber() + 1, m_stream.getNumberOfTracks()).c_str());
+    ImGui::Text(fmt::format("Song: {0}", m_stream.getInfoFromCurrentTrack().getSong()).c_str());
+    ImGui::Text(fmt::format("Intro length: {0}", m_stream.getInfoFromCurrentTrack().getIntroLength()).c_str());
+    ImGui::Text(fmt::format("Loop length: {0}", m_stream.getInfoFromCurrentTrack().getLoopLength()).c_str());
+    ImGui::Text(fmt::format("Play length: {0}", m_stream.getInfoFromCurrentTrack().getPlayLength()).c_str());
+    ImGui::Text(fmt::format("Game: {0}", m_stream.getInfoFromCurrentTrack().getGame()).c_str());
+    ImGui::Text(fmt::format("Author: {0}", m_stream.getInfoFromCurrentTrack().getAuthor()).c_str());
+    ImGui::Text(fmt::format("Comment: {0}", m_stream.getInfoFromCurrentTrack().getComment()).c_str());
+    ImGui::Text(fmt::format("Dumper: {0}", m_stream.getInfoFromCurrentTrack().getDumper()).c_str());
     ImGui::EndChild();
     ImGui::SameLine();
     ImGui::BeginChild("test_audio_2_sub2", {-1, -1}, true, 0);
@@ -167,7 +167,7 @@ void ebox::AudioTestForm::drawAudioButtons()
         fs::path path = m_loadFromFileText.getValue();
         if(fs::exists(path) && fs::is_regular_file(path))
         {
-            m_stream.initializeFile(path.string(), m_stream.getInfo().getTrackNumber());
+            m_stream.initializeFile(path.string(), m_stream.getInfoFromCurrentTrack().getTrackNumber());
         }
     }
     ImGui::EndChild();
@@ -175,7 +175,8 @@ void ebox::AudioTestForm::drawAudioButtons()
 
 std::string ebox::AudioTestForm::getAudioTimestamp()
 {
-    return fmt::format("{0}/{1}", getMillisecondsAsTimeString(m_stream.getTimePlayed()), getMillisecondsAsTimeString(m_stream.getInfo().getPlayLength()));
+    return fmt::format("{0}/{1}", getMillisecondsAsTimeString(m_stream.getTimePlayed()), getMillisecondsAsTimeString(
+            m_stream.getInfoFromCurrentTrack().getPlayLength()));
 }
 
 std::string ebox::AudioTestForm::getMillisecondsAsTimeString(int milliseconds)

@@ -23,6 +23,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_events.initialize(&m_window);
     m_formManager.initialize(&m_window, &m_events);
+    m_formManager.showImguiDemoWindow(false);
     createMenu();
     registerCallbacks();
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
