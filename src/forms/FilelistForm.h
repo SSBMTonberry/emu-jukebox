@@ -11,7 +11,7 @@
 #include "../audio/EmuStream.h"
 #include "../../content/files_mapper.h"
 #include <map>
-#include <chrono>
+#include "../classes/Timer.h"
 
 #if MSVC
 #include <filesystem>

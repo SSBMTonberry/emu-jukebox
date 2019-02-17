@@ -149,8 +149,9 @@ set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramMa
                           src/managers/FormManager.cpp src/managers/FormManager.h src/managers/EventManager.cpp src/managers/EventManager.h
                           src/forms/AudioTestForm.cpp src/forms/AudioTestForm.h src/audio/EmuStream.cpp src/audio/EmuStream.h src/audio/EmuTrackInfo.cpp
                           src/audio/EmuTrackInfo.h src/audio/AudioCommon.h src/managers/ClipboardManager.cpp src/managers/ClipboardManager.h src/audio/EmuEqualizer.cpp
-                          src/audio/EmuEqualizer.h src/widgets/FileDialog.cpp src/widgets/FileDialog.h src/widgets/FileTable.cpp src/widgets/FileTable.h src/forms/SystemLog.cpp src/forms/SystemLog.h
-                          src/forms/FilelistForm.cpp src/forms/FilelistForm.h src/forms/PlaylistForm.cpp src/forms/PlaylistForm.h)
+                          src/audio/EmuEqualizer.h src/widgets/FileDialog.cpp src/widgets/FileDialog.h src/widgets/FileTable.cpp src/widgets/FileTable.h
+                          src/forms/SystemLog.cpp src/forms/SystemLog.h src/forms/FilelistForm.cpp src/forms/FilelistForm.h src/forms/PlaylistForm.cpp
+                          src/forms/PlaylistForm.h src/classes/Timer.cpp src/classes/Timer.h)
 
 
 

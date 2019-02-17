@@ -41,7 +41,7 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
 {
     if(fs::is_regular_file(path))
     {
-
+        Timer timer {true};
         auto item = m_filemap.emplace(path.filename().string(), EmuStream(path.string()));
         if(!item.first->second.isValid())
             m_filemap.erase(path.filename().string());
@@ -62,6 +62,8 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
                 item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
                 item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
             }
+            timer.end();
+            SystemLog::get()->addInfo(timer.getTimeElapsedMessage(fmt::format("Processed file '{0}' - ", path.string())));
             //m_filelist.add(path.filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
         }
     }
@@ -71,6 +73,8 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
 {
     if(fs::is_directory(folder))
     {
+        Timer timer {true};
+        int processedFiles = 0;
         for (const auto &entry : fs::directory_iterator(folder))
         {
             if (fs::is_regular_file(entry.status()))
@@ -105,8 +109,11 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                     //item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
                     //item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
                 }
+                ++processedFiles;
             }
         }
+        timer.end();
+        SystemLog::get()->addInfo(timer.getTimeElapsedMessage(fmt::format("Processed {0} files from {1} - ",processedFiles, folder.string())));
     }
 }
 
