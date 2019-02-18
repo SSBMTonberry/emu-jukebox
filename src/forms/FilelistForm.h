@@ -12,6 +12,7 @@
 #include "../../content/files_mapper.h"
 #include <map>
 #include "../classes/Timer.h"
+#include "AudioPlayerForm.h"
 
 #if MSVC
 #include <filesystem>
@@ -52,6 +53,8 @@ namespace ebox
             void loadFile(const fs::path & path);
             void loadAllFilesInFolder(const fs::path & folder);
 
+            void setAudioPlayer(AudioPlayerForm *audioPlayer);
+
             static const std::string ID;
 
         protected:
@@ -67,8 +70,10 @@ namespace ebox
 
             void setAsSelectedChildNode(Selectable *child);
 
-            std::map<std::string, EmuStream> m_filemap;
+            std::map<std::string, EmuStream> m_emuMap;
             std::map<std::string, TreeList> m_filelist;
+            AudioPlayerForm *m_audioPlayer;
+
             //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };

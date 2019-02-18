@@ -119,7 +119,7 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint3
 ebox::EmuStream::~EmuStream()
 {
     // We must stop before destroying the file
-    stop();
+    //stop();
     if(m_emu != nullptr)
     {
         delete m_emu;
@@ -256,7 +256,7 @@ bool ebox::EmuStream::initializeEmu()
     }
 
     m_equalizer.initialize(m_emu);
-
+    this->pause();
 
     return true;
 }
