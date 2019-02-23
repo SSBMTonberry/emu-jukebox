@@ -154,12 +154,17 @@ std::string AudioPlayerForm::getMillisecondsAsTimeString(int milliseconds)
     }
 }
 
-EmuStream *AudioPlayerForm::getStream() const
+void AudioPlayerForm::createStream(const EmuFileInfo &info)
 {
-    return m_stream;
+    m_stream = std::make_unique<EmuStream>(info.getPath());
 }
 
-void AudioPlayerForm::setStream(EmuStream *stream)
+void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 {
-    m_stream = stream;
+    m_stream = std::move(stream);
+}
+
+EmuStream *AudioPlayerForm::getStream() const
+{
+    return m_stream.get();
 }

@@ -19,14 +19,16 @@ ebox::EmuFileInfo::EmuFileInfo(const fs::path &path, bool runLoadEmu)
 
 bool ebox::EmuFileInfo::loadFile(const fs::path &path)
 {
+    bool isValid = false;
+    m_path = path;
     if(fs::is_regular_file(m_path))
     {
         m_path = path;
         m_filename = m_path.filename().string();
-        return true;
+        isValid = true;
     }
-
-    return false;
+    m_isValid = isValid;
+    return m_isValid;
 }
 
 bool ebox::EmuFileInfo::loadEmuData()
@@ -40,6 +42,7 @@ bool ebox::EmuFileInfo::loadEmuData()
     if ( !file_type ) return !handleError( "Unsupported music type" );
 
     emu = file_type->new_emu();
+    m_extension = file_type->extension_;
 
     if ( !emu ) return !handleError( "Out of memory" );
 
@@ -57,7 +60,7 @@ bool ebox::EmuFileInfo::loadEmuData()
 
         std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
         std::string song = info->song;
-
+        m_gameName = info->game;
 
         if(song.empty())
             m_tracks.emplace_back(fmt::format("Track {0}", i + 1));
@@ -70,6 +73,7 @@ bool ebox::EmuFileInfo::loadEmuData()
     if(emu != nullptr)
         delete emu;
 
+    m_displayName = fmt::format("{0} ({1})", m_gameName, m_extension);
     return true;
 }
 
@@ -82,5 +86,45 @@ bool ebox::EmuFileInfo::handleError(const char *errorText)
     }
 
     return false;
+}
+
+const std::filesystem::path &ebox::EmuFileInfo::getPath() const
+{
+    return m_path;
+}
+
+const std::string &ebox::EmuFileInfo::getFilename() const
+{
+    return m_filename;
+}
+
+const std::string &ebox::EmuFileInfo::getGameName() const
+{
+    return m_gameName;
+}
+
+const std::string &ebox::EmuFileInfo::getExtension() const
+{
+    return m_extension;
+}
+
+int ebox::EmuFileInfo::getNumberOfTracks() const
+{
+    return m_numberOfTracks;
+}
+
+const std::string &ebox::EmuFileInfo::getDisplayName() const
+{
+    return m_displayName;
+}
+
+const std::vector<std::string> &ebox::EmuFileInfo::getTracks() const
+{
+    return m_tracks;
+}
+
+bool ebox::EmuFileInfo::isValid() const
+{
+    return m_isValid;
 }
 

@@ -42,21 +42,20 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
     if(fs::is_regular_file(path))
     {
         Timer timer {true};
-        auto item = m_emuMap.emplace(path.filename().string(), EmuStream(path.string()));
+        auto item = m_fileMap.emplace(path.filename().string(), EmuFileInfo(path.string()));
         if(!item.first->second.isValid())
-            m_emuMap.erase(path.filename().string());
+            m_fileMap.erase(path.filename().string());
         else
         {
             m_filelist[path.filename().string()] = {path.filename().string(), path.filename().string()};
 
-            //for(auto const &item : m_filemap[path.filename().string()].getTrack())
-            //int numberOfTracks = m_filemap[path.filename().string()].getInfoFromCurrentTrack().getNumberOfTracks();
-            auto tracks = m_emuMap[path.filename().string()].getTracks();
+            auto tracks = m_fileMap[path.filename().string()].getTracks();
             for(int i = 0; i < tracks.size(); ++i)
             {
-                auto track = tracks[i];
-                std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-                auto *item = m_filelist[path.filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                std::string track = tracks[i];
+                //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
+                //auto *item = m_filelist[path.filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                auto *item = m_filelist[path.filename().string()].add(track, files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
                 item->getImage()->setHasZoomTooltip(false);
                 item->setId(path.filename().string());
 
@@ -83,22 +82,23 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
             if (fs::is_regular_file(entry.status()))
             {
 
-                m_emuMap.emplace(entry.path().filename().string(), EmuStream(entry.path().string()));
-                if(!m_emuMap[entry.path().filename().string()].isValid())
-                    m_emuMap.erase(entry.path().filename().string());
+                m_fileMap.emplace(entry.path().filename().string(), EmuFileInfo(entry.path().string()));
+                if(!m_fileMap[entry.path().filename().string()].isValid())
+                    m_fileMap.erase(entry.path().filename().string());
                 else
                 {
                     m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
 
                     //for(auto const &item : m_filemap[path.filename().string()].getTrack())
                     //int numberOfTracks = m_filemap[entry.path().filename().string()].getNumberOfTracks();
-                    auto tracks = m_emuMap[entry.path().filename().string()].getTracks();
+                    auto tracks = m_fileMap[entry.path().filename().string()].getTracks();
 
                     for(int i = 0; i < tracks.size(); ++i)
                     {
-                        auto track = tracks[i];
-                        std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-                        auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                        std::string track = tracks[i];
+                        //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
+                        //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+                        auto *item = m_filelist[entry.path().filename().string()].add(track, files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
                         item->getImage()->setHasZoomTooltip(false);
                         item->setId(entry.path().filename().string());
 
@@ -120,7 +120,7 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
             }
         }
         timer.end();
-        SystemLog::get()->addInfo(timer.getTimeElapsedMessage(fmt::format("Processed {0} files from {1} - ",processedFiles, folder.string())));
+        SystemLog::get()->addInfo(timer.getTimeElapsedMessage(fmt::format("Processed {0} files from {1}. File list size is now: {2} ",processedFiles, folder.string(), m_filelist.size())));
     }
 }
 
@@ -139,9 +139,9 @@ bool ebox::FilelistForm::onRightClickedChildNode(Selectable *sender)
 void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
 {
     setAsSelectedChildNode(sender);
-    if(m_emuMap.count(sender->getId()) > 0)
+    if(m_fileMap.count(sender->getId()) > 0)
     {
-        auto *emuFile = &m_emuMap[sender->getId()];
+        auto *emuFile = &m_fileMap[sender->getId()];
         auto *filelistItem = &m_filelist[sender->getId()];
         std::vector<Selectable*> songs = filelistItem->getItems();
         int trackNo = 0;
@@ -158,10 +158,10 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
         if(songFound)
         {
             SystemLog::get()->addSuccess(fmt::format("{0} loaded! Track number: {1}", sender->getLabel(), trackNo));
-            emuFile->setTrack(trackNo);
-            if(m_audioPlayer->getStream() != nullptr) m_audioPlayer->getStream()->stop();
-            m_audioPlayer->setStream(emuFile);
-            if(m_audioPlayer->getStream() != nullptr) m_audioPlayer->getStream()->play();
+            //emuFile->setTrack(trackNo);
+            //if(m_audioPlayer->getStream() != nullptr) m_audioPlayer->getStream()->stop();
+            //m_audioPlayer->setStream(emuFile);
+            //if(m_audioPlayer->getStream() != nullptr) m_audioPlayer->getStream()->play();
         }
         else
             SystemLog::get()->addError(fmt::format("Could not identify track {0} related to {1}!", sender->getLabel(), sender->getId()));

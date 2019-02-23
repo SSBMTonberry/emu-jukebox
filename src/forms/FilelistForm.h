@@ -9,6 +9,7 @@
 #include "../gui/controls/TreeList.h"
 #include "../gui/controls/Selectable.h"
 #include "../audio/EmuStream.h"
+#include "../audio/EmuFileInfo.h"
 #include "../../content/files_mapper.h"
 #include <map>
 #include "../classes/Timer.h"
@@ -70,7 +71,8 @@ namespace ebox
 
             void setAsSelectedChildNode(Selectable *child);
 
-            std::map<std::string, EmuStream> m_emuMap;
+            //std::map<std::string, EmuStream> m_emuMap;
+            std::map<std::string, EmuFileInfo> m_fileMap;
             std::map<std::string, TreeList> m_filelist;
             AudioPlayerForm *m_audioPlayer;
 

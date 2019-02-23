@@ -14,6 +14,7 @@
 #include "../gui/controls/Textbox.h"
 #include "../widgets/FileDialog.h"
 #include "../gui/controls/InputFloat.h"
+#include "../audio/EmuFileInfo.h"
 
 namespace ebox
 {
@@ -27,7 +28,8 @@ namespace ebox
 
             void handleEvents() override;
 
-            void setStream(EmuStream *stream);
+            void createStream(const EmuFileInfo &info);
+            void setStream(std::unique_ptr<EmuStream> stream);
 
             EmuStream *getStream() const;
 
@@ -49,7 +51,8 @@ namespace ebox
 
             bool m_hasItemsFocused = false;
 
-            EmuStream *m_stream = nullptr;
+            //EmuStream *m_stream = nullptr;
+            std::unique_ptr<EmuStream> m_stream;
 
             ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::actions::_RERUN_PNG, files_mapper::gui::actions::_RERUN_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_stopButton {"test_stop_button", files_mapper::gui::actions::_SUSPEND_PNG, files_mapper::gui::actions::_SUSPEND_PNG_SIZE, sf::Vector2i(30, 30)};
