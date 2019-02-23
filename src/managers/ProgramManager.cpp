@@ -136,7 +136,7 @@ void ProgramManager::createDock()
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGuiViewport* viewport = ImGui::GetMainViewport();
     ImGui::DockBuilderRemoveNode(dockspace_id); // Clear out existing layout
-    ImGui::DockBuilderAddNode(dockspace_id, viewport->Size); // Add empty node
+    ImGui::DockBuilderAddNode(dockspace_id); //viewport->Size); // Add empty node
 
     ImGuiID dock_main_id = dockspace_id; // This variable will track the document node, however we are not using it here as we aren't docking anything into it.
     ImGuiID dock_id_left = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.20f, nullptr, &dock_main_id);
