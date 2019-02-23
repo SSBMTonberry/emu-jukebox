@@ -64,6 +64,8 @@ namespace ebox
         private:
             void initialize();
 
+            void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
+
             void onChosenChildNode(Selectable *sender);
             bool onRightClickedChildNode(Selectable *sender);
             void onDoubleClickChildNode(Selectable *sender);

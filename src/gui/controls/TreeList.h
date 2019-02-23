@@ -42,6 +42,9 @@ namespace ebox
 
             ebox::Selectable * getItem(const std::string &id);
             std::vector<ebox::Selectable *> getItems();
+
+            bool isOpen() const;
+
             bool hasParentNode() const;
 
         protected:
@@ -55,7 +58,7 @@ namespace ebox
             std::map<std::string, ebox::Selectable> m_items;
             std::vector<ebox::MenuItem> m_rightClickContextItems;
             bool m_rightClickContextActivated = false;
-
+            bool m_isOpen = false;
             bool m_hasParentNode = true; //true = Has a tree-node. false = Makes it pretty much work like a list
     };
 }

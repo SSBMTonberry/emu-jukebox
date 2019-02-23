@@ -25,10 +25,44 @@ bool ebox::EmuFileInfo::loadFile(const fs::path &path)
     {
         m_path = path;
         m_filename = m_path.filename().string();
-        isValid = true;
+        isValid = isValidFileType();
     }
     m_isValid = isValid;
     return m_isValid;
+}
+
+/*!
+ * Checks if the path contains a valid file type
+ * @return if the file is a valid emu file
+ */
+bool ebox::EmuFileInfo::isValidFileType()
+{
+    gme_type_t file_type;
+
+    if(handleError( gme_identify_file( m_filename.c_str(), &file_type ) )) return false;
+    if ( !file_type ) return !handleError( "Unsupported music type" );
+
+    Music_Emu *emu = file_type->new_emu();
+
+    if(handleError( emu->set_sample_rate( 44100 ))) return false;
+    if(handleError( emu->load_file(m_path.string().c_str()))) return false;
+
+    if(emu != nullptr)
+        delete emu;
+
+    return true;
+}
+
+/*!
+ *
+ * @return true if emu data is loaded. false if it already has been loaded.
+ */
+bool ebox::EmuFileInfo::loadEmuDataIfNotLoaded()
+{
+    if(!m_emuDataLoaded)
+        return loadEmuData();
+
+    return false;
 }
 
 bool ebox::EmuFileInfo::loadEmuData()
@@ -74,6 +108,9 @@ bool ebox::EmuFileInfo::loadEmuData()
         delete emu;
 
     m_displayName = fmt::format("{0} ({1})", m_gameName, m_extension);
+
+    m_emuDataLoaded = true;
+
     return true;
 }
 
@@ -127,4 +164,3 @@ bool ebox::EmuFileInfo::isValid() const
 {
     return m_isValid;
 }
-

@@ -44,6 +44,7 @@ namespace ebox
 
             bool loadFile(const fs::path &path);
             bool loadEmuData();
+            bool loadEmuDataIfNotLoaded();
 
             const std::filesystem::path &getPath() const;
             const std::string &getFilename() const;
@@ -55,6 +56,7 @@ namespace ebox
             bool isValid() const;
 
         private:
+            bool isValidFileType();
             bool handleError(const char *errorText);
 
             fs::path m_path;
@@ -63,6 +65,8 @@ namespace ebox
             std::string m_extension; //.nsf/.nsfe/.spc etc...
             int m_numberOfTracks;
             bool m_isValid = false;
+            bool m_emuDataLoaded = false;
+
 
             std::string m_displayName; //Name displayed in list
             std::vector<std::string> m_tracks;

@@ -19,9 +19,9 @@ bool ebox::TreeList::process()
     bool isAnyItemActivated = false;
     if(Control::process())
     {
-        bool opened = (m_hasParentNode) ? ImGui::TreeNode(m_label.c_str()) : true;
+        m_isOpen = (m_hasParentNode) ? ImGui::TreeNode(m_label.c_str()) : true;
 
-        if(opened)
+        if(m_isOpen)
         {
             processMouseEvents();
             //Child nodes
@@ -243,6 +243,11 @@ bool ebox::TreeList::hasParentNode() const
 void ebox::TreeList::setHasParentNode(bool hasParentNode)
 {
     m_hasParentNode = hasParentNode;
+}
+
+bool ebox::TreeList::isOpen() const
+{
+    return m_isOpen;
 }
 
 
