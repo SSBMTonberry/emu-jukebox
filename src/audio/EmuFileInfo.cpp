@@ -42,14 +42,6 @@ bool ebox::EmuFileInfo::isValidFileType()
     if(handleError( gme_identify_file( m_filename.c_str(), &file_type ) )) return false;
     if ( !file_type ) return !handleError( "Unsupported music type" );
 
-    Music_Emu *emu = file_type->new_emu();
-
-    if(handleError( emu->set_sample_rate( 44100 ))) return false;
-    if(handleError( emu->load_file(m_path.string().c_str()))) return false;
-
-    if(emu != nullptr)
-        delete emu;
-
     return true;
 }
 
@@ -78,10 +70,23 @@ bool ebox::EmuFileInfo::loadEmuData()
     emu = file_type->new_emu();
     m_extension = file_type->extension_;
 
-    if ( !emu ) return !handleError( "Out of memory" );
+    if ( !emu )
+    {
+        freeEmu(emu);
+        return !handleError( "Out of memory" );
+    }
 
-    if(handleError( emu->set_sample_rate( 44100 ))) return false;
-    if(handleError( emu->load_file(m_path.string().c_str()))) return false;
+    if(handleError( emu->set_sample_rate( 44100 )))
+    {
+        freeEmu(emu);
+        return false;
+    }
+
+    if(handleError( emu->load_file(m_path.string().c_str())))
+    {
+        freeEmu(emu);
+        return false;
+    }
 
     m_numberOfTracks = gme_track_count(emu);
 
@@ -90,7 +95,11 @@ bool ebox::EmuFileInfo::loadEmuData()
     {
         gme_info_t* info;
         if(handleError(gme_track_info( emu, &info, i)))
+        {
+            freeEmu(emu);
+            gme_free_info( info );
             return false;
+        }
 
         std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
         std::string song = info->song;
@@ -103,10 +112,6 @@ bool ebox::EmuFileInfo::loadEmuData()
 
         gme_free_info( info );
     }
-
-    if(emu != nullptr)
-        delete emu;
-
     m_displayName = fmt::format("{0} ({1})", m_gameName, m_extension);
 
     m_emuDataLoaded = true;
@@ -163,4 +168,15 @@ const std::vector<std::string> &ebox::EmuFileInfo::getTracks() const
 bool ebox::EmuFileInfo::isValid() const
 {
     return m_isValid;
+}
+
+void ebox::EmuFileInfo::freeEmu(Music_Emu *emu)
+{
+    if(emu != nullptr)
+        delete emu;
+}
+
+bool ebox::EmuFileInfo::exists()
+{
+    return fs::exists(m_path);
 }

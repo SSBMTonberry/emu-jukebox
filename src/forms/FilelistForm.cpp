@@ -46,8 +46,9 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
     if(fs::is_regular_file(path))
     {
         Timer timer {true};
-        auto item = m_fileMap.emplace(path.filename().string(), EmuFileInfo(path.string()));
-        if(!item.first->second.isValid())
+        //auto item = m_fileMap.emplace(path.filename().string(), EmuFileInfo(path.string()));
+        m_fileMap[path.filename().string()] = EmuFileInfo(path.string());
+        if(!m_fileMap[path.filename().string()].isValid())
             m_fileMap.erase(path.filename().string());
         else
         {
@@ -86,7 +87,8 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
             if (fs::is_regular_file(entry.status()))
             {
 
-                m_fileMap.emplace(entry.path().filename().string(), EmuFileInfo(entry.path().string()));
+                //m_fileMap.emplace(entry.path().filename().string(), EmuFileInfo(entry.path().string()));
+                m_fileMap[entry.path().filename().string()] = EmuFileInfo(entry.path().string());
                 if(!m_fileMap[entry.path().filename().string()].isValid())
                     m_fileMap.erase(entry.path().filename().string());
                 else
@@ -151,14 +153,20 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
 
         if(songFound)
         {
-            SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
-            m_audioPlayer->createStream(*emuFile);
-            if(m_audioPlayer->getStream() != nullptr)
+            if(emuFile->exists())
             {
-                m_audioPlayer->getStream()->setTrack(trackNo);
-                m_audioPlayer->getStream()->stop();
-                m_audioPlayer->getStream()->play();
+                SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
+                m_audioPlayer->createStream(*emuFile);
+                if (m_audioPlayer->getStream() != nullptr)
+                {
+                    m_audioPlayer->getStream()->stop();
+                    m_audioPlayer->getStream()->setTrack(trackNo);
+                    m_audioPlayer->getStream()->play();
+                }
             }
+            else
+                SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFile->getPath().string()));
+
             //emuFile->setTrack(trackNo);
             //if(m_audioPlayer->getStream() != nullptr) m_audioPlayer->getStream()->stop();
             //m_audioPlayer->setStream(emuFile);

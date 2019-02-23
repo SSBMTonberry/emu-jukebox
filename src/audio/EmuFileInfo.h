@@ -54,8 +54,10 @@ namespace ebox
             const std::string &getDisplayName() const;
             const std::vector<std::string> &getTracks() const;
             bool isValid() const;
+            bool exists();
 
         private:
+            void freeEmu(Music_Emu *emu);
             bool isValidFileType();
             bool handleError(const char *errorText);
 
