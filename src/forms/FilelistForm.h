@@ -14,6 +14,7 @@
 #include <map>
 #include "../classes/Timer.h"
 #include "AudioPlayerForm.h"
+#include "PlaylistForm.h"
 
 #if MSVC
 #include <filesystem>
@@ -55,6 +56,7 @@ namespace ebox
             void loadAllFilesInFolder(const fs::path & folder);
 
             void setAudioPlayer(AudioPlayerForm *audioPlayer);
+            void setPlaylist(PlaylistForm *playlist);
 
             static const std::string ID;
 
@@ -65,6 +67,7 @@ namespace ebox
             void initialize();
 
             void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
+            void addToPlaylist(Selectable* item);
 
             void onChosenChildNode(Selectable *sender);
             bool onRightClickedChildNode(Selectable *sender);
@@ -76,7 +79,9 @@ namespace ebox
             //std::map<std::string, EmuStream> m_emuMap;
             std::map<std::string, EmuFileInfo> m_fileMap;
             std::map<std::string, TreeList> m_filelist;
+
             AudioPlayerForm *m_audioPlayer;
+            PlaylistForm *m_playlist;
 
             ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
 

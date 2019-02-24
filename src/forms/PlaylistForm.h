@@ -7,6 +7,7 @@
 
 #include "../gui/forms/Form.h"
 #include "../audio/EmuFileInfo.h"
+#include "../gui/controls/TreeList.h"
 
 namespace ebox
 {
@@ -27,11 +28,17 @@ namespace ebox
         protected:
             bool customDraw() override;
             std::string getId(const std::pair<EmuFileInfo, int> &item);
-
+            std::string getId(size_t number, int digits = 6);
         private:
             void initialize();
 
+            void onChosenChildNode(Selectable *sender);
+            bool onRightClickedChildNode(Selectable *sender);
+            void onDoubleClickChildNode(Selectable *sender);
+            void onChosenRightClickContextItems(Selectable* owner, MenuItem *sender);
+
             std::vector<std::pair<EmuFileInfo, int>> m_playlist;
+            TreeList m_filemapping {"playlist_filemapper", "Playlist"};
     };
 }
 

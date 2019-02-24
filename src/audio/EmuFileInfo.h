@@ -46,6 +46,9 @@ namespace ebox
             bool loadEmuData();
             bool loadEmuDataIfNotLoaded();
 
+            void setId(const std::string &id);
+
+            const std::string &getId() const;
             const std::filesystem::path &getPath() const;
             const std::string &getFilename() const;
             const std::string &getGameName() const;
@@ -62,6 +65,7 @@ namespace ebox
             bool handleError(const char *errorText);
 
             fs::path m_path;
+            std::string m_id;
             std::string m_filename;
             std::string m_gameName;
             std::string m_extension; //.nsf/.nsfe/.spc etc...

@@ -28,7 +28,7 @@ namespace ebox
 
             void handleEvents() override;
 
-            void createStream(const EmuFileInfo &info);
+            bool createStream(const EmuFileInfo &info);
             void setStream(std::unique_ptr<EmuStream> stream);
 
             EmuStream *getStream() const;

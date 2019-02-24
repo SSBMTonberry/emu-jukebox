@@ -128,7 +128,7 @@ void ebox::FilelistForm::onChosenChildNode(Selectable *sender)
 bool ebox::FilelistForm::onRightClickedChildNode(Selectable *sender)
 {
     setAsSelectedChildNode(sender);
-    sender->createRightClickContextItems({fmt::format("This is: {0}", sender->getLabel()),"Dummy1", "Dummy2"});
+    sender->createRightClickContextItems({"Add to playlist"});
     return true;
 }
 
@@ -156,8 +156,8 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
             if(emuFile->exists())
             {
                 SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
-                m_audioPlayer->createStream(*emuFile);
-                if (m_audioPlayer->getStream() != nullptr)
+                bool isValid = m_audioPlayer->createStream(*emuFile);
+                if (isValid && m_audioPlayer->getStream() != nullptr)
                 {
                     m_audioPlayer->getStream()->stop();
                     m_audioPlayer->getStream()->setTrack(trackNo);
@@ -181,7 +181,33 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
 
 void ebox::FilelistForm::onChosenRightClickContextItems(Selectable* owner, MenuItem *sender)
 {
+    if(sender->getLabel() == "Add to playlist" && m_playlist != nullptr)
+        addToPlaylist(owner);
+}
 
+void FilelistForm::addToPlaylist(Selectable *item)
+{
+    if(m_fileMap.count(item->getId()) > 0)
+    {
+        auto *emuFile = &m_fileMap[item->getId()];
+        auto *filelistItem = &m_filelist[item->getId()];
+        std::vector<Selectable *> songs = filelistItem->getItems();
+        int trackNo = 0;
+        bool songFound = false;
+        for (int i = 0; i < songs.size(); ++i)
+        {
+            if (item == songs[i])
+            {
+                songFound = true;
+                trackNo = i;
+            }
+        }
+
+        if (songFound)
+        {
+            m_playlist->add(*emuFile, trackNo);
+        }
+    }
 }
 
 void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
@@ -204,6 +230,11 @@ void FilelistForm::setAudioPlayer(AudioPlayerForm *audioPlayer)
     m_audioPlayer = audioPlayer;
 }
 
+void FilelistForm::setPlaylist(PlaylistForm *playlist)
+{
+    m_playlist = playlist;
+}
+
 void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
 {
     auto tracks = info.getTracks();
@@ -222,3 +253,5 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
         item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
     }
 }
+
+

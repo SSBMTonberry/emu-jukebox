@@ -4,6 +4,7 @@
 #include <fmt/format.h>
 #include <fmt/printf.h>
 #include "catch.hpp"
+#include "../src/forms/FilelistForm.h"
 
 int theAnswer() { return 6*9; }
 
@@ -29,6 +30,17 @@ std::string getMillisecondsAsTimeString(int milliseconds)
     //return fmt::sprintf("%2d:.%2d:.%2d..%3d", hours, minutes, seconds, milliseconds);
 }
 
+std::string getId(int number, int digits)
+{
+    std::string num = fmt::format("{0}", number);
+    int remainingDigits = digits - num.length();
+    std::string zeroes = "";
+    for(int i = 0; i < remainingDigits; ++i)
+        zeroes += "0";
+
+    return fmt::format("{0}{1}", zeroes, num);
+}
+
 TEST_CASE( "Test-test!", "[42][theAnswer]" ) {
     REQUIRE( theAnswer() == 54 );
 }
@@ -36,4 +48,10 @@ TEST_CASE( "Test-test!", "[42][theAnswer]" ) {
 TEST_CASE( "Test timestring", "[time][string]" ) {
     std::string timeStr = getMillisecondsAsTimeString(150256);
     REQUIRE( timeStr == "00:02:30.256");
+}
+
+TEST_CASE( "Test digit string", "[string][digit]" ) {
+    int number = 45;
+    std::string result = getId(number, 6);
+    REQUIRE( result == "000045" );
 }

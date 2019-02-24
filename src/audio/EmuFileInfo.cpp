@@ -52,7 +52,10 @@ bool ebox::EmuFileInfo::isValidFileType()
 bool ebox::EmuFileInfo::loadEmuDataIfNotLoaded()
 {
     if(!m_emuDataLoaded)
+    {
+        m_emuDataLoaded = true;
         return loadEmuData();
+    }
 
     return false;
 }
@@ -113,8 +116,6 @@ bool ebox::EmuFileInfo::loadEmuData()
         gme_free_info( info );
     }
     m_displayName = fmt::format("{0} ({1})", m_gameName, m_extension);
-
-    m_emuDataLoaded = true;
 
     return true;
 }
@@ -179,4 +180,14 @@ void ebox::EmuFileInfo::freeEmu(Music_Emu *emu)
 bool ebox::EmuFileInfo::exists()
 {
     return fs::exists(m_path);
+}
+
+const std::string &ebox::EmuFileInfo::getId() const
+{
+    return m_id;
+}
+
+void ebox::EmuFileInfo::setId(const std::string &id)
+{
+    m_id = id;
 }

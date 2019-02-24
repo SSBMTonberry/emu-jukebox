@@ -25,6 +25,7 @@ namespace ebox
 
             bool process() override;
             ebox::Selectable* add(const std::string &label);
+            ebox::Selectable* add(const std::string &id, const std::string &label);
             ebox::Selectable* add(const std::string &id, const std::string &label, const ebox::Image &image);
             ebox::Selectable* add(const std::string &label, const void *imageData, size_t imageDataSize);
             ebox::Selectable* add(const std::string &label, ebox::Image *imageRef);

@@ -24,6 +24,7 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
     m_io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     m_filelistForm.setAudioPlayer(&m_audioPlayerForm);
+    m_filelistForm.setPlaylist(&m_playlistForm);
     initializeForms();
 }
 
