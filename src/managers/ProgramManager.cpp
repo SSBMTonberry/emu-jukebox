@@ -57,7 +57,7 @@ void ebox::ProgramManager::run()
     sf::Clock deltaClock;
     while (m_window.isOpen())
     {
-        m_window.clear(sf::Color(35, 65, 90, 255));
+        m_window.clear(m_backgroundColor);
         update();
         draw();
         handleActions();

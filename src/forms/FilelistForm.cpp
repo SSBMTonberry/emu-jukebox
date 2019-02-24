@@ -128,7 +128,7 @@ void ebox::FilelistForm::onChosenChildNode(Selectable *sender)
 bool ebox::FilelistForm::onRightClickedChildNode(Selectable *sender)
 {
     setAsSelectedChildNode(sender);
-    sender->createRightClickContextItems({"Dummy1", "Dummy2"});
+    sender->createRightClickContextItems({fmt::format("This is: {0}", sender->getLabel()),"Dummy1", "Dummy2"});
     return true;
 }
 

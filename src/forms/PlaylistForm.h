@@ -6,6 +6,7 @@
 #define EMU_JUKEBOX_PLAYLISTFORM_H
 
 #include "../gui/forms/Form.h"
+#include "../audio/EmuFileInfo.h"
 
 namespace ebox
 {
@@ -19,13 +20,18 @@ namespace ebox
 
             void handleEvents() override;
 
+            void add(const EmuFileInfo &fileInfo, int trackNumber);
+
             static const std::string ID;
 
         protected:
             bool customDraw() override;
+            std::string getId(const std::pair<EmuFileInfo, int> &item);
 
         private:
             void initialize();
+
+            std::vector<std::pair<EmuFileInfo, int>> m_playlist;
     };
 }
 

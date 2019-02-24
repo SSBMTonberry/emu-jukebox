@@ -52,7 +52,7 @@ namespace ebox
 
             FilelistForm m_filelistForm {"filelist_form", "Files", FilelistForm::ID};
             PlaylistForm m_playlistForm {"playlist_form", "Playlist", PlaylistForm::ID};
-            AudioPlayerForm m_audioPlayerForm {"audio_player_form", "Audio Test", AudioPlayerForm::ID};
+            AudioPlayerForm m_audioPlayerForm {"audio_player_form", "Audio Player", AudioPlayerForm::ID};
             //AudioTestForm m_audioTestForm {"audio_test_form", "Audio Test", AudioTestForm::ID};
             //AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", AudioTestForm::ID};
 

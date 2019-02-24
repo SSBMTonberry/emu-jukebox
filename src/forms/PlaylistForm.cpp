@@ -31,3 +31,13 @@ void ebox::PlaylistForm::handleEvents()
 {
 
 }
+
+void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
+{
+    m_playlist.emplace_back(fileInfo, trackNumber);
+}
+
+std::string ebox::PlaylistForm::getId(const std::pair<EmuFileInfo, int> &item)
+{
+    return fmt::format("{0}_{1}", item.first.getGameName(), item.first.getTracks()[item.second]);
+}
