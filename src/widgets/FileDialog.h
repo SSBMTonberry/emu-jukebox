@@ -82,13 +82,14 @@ namespace ebox
             void handleEvents() override;
 
             void setFileTypes(const ebox::FileTypeMode &mode);
+            void setUseFileIcons(bool useFileIcons);
 
             void registerOnFileChosenCallback(const func_str &cb);
             void registerOnCancelCallback(const func_void &cb);
 
             const fs::path &getPath() const;
-
             const fs::path &getChosenFile() const;
+            bool useFileIcons();
 
             void setPath(const fs::path &path);
 
@@ -105,6 +106,8 @@ namespace ebox
 
             unordered_map<string, string> *m_environmentMap = nullptr;
 
+            FileTable m_fileTable {"filetable", "Filetable!"};
+
             ebox::Group m_upperGroup {"upper_group", "upper_group"};
             ebox::Group m_midGroup {"middle_group", "middle_group"};
             ebox::Group m_bottomGroup {"bottom_group", "bottom_group"};
@@ -120,7 +123,6 @@ namespace ebox
             ebox::Label m_upperLabel {"upper_label", "", "Path: "};
             ebox::Textbox m_filepathtext {"filepathtext", "filepath", 0};//MAX_FILE_PATH_LENGTH};
             ebox::ImageButton m_refreshbtn {"refresh_img", files_mapper::gui::actions::_REFRESH_PNG, files_mapper::gui::actions::_REFRESH_PNG_SIZE};
-            FileTable m_fileTable {"filetable", "Filetable!"};
             ebox::Label m_filenameLabel {"file_name_lbl", "", "File name: "};
             ebox::Label m_filetypeLabel {"file_type_lbl", "", "File type: "};
             ebox::Textbox m_filenametext {"file_name_text", "File name text", 0};//50};

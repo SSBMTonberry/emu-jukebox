@@ -213,8 +213,7 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
         std::string track = tracks[i];
         //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
         //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-        auto *item = m_filelist[id].add(track, files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-        item->getImage()->setHasZoomTooltip(false);
+        auto *item = m_filelist[id].add(track, &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
         item->setId(id);
 
         item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));

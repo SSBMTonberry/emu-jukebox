@@ -27,7 +27,11 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     createMenu();
     registerCallbacks();
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogFile.assignDefaults();
+    m_fileDialogFile.setUseFileIcons(true);
+    
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogFolder.assignDefaults();
     m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
 }
 

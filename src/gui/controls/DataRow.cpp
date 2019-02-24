@@ -153,6 +153,29 @@ void ebox::DataRow::setImage(const std::string &key, const void *imageData, size
 }
 
 /*!
+ * A quicker way to load image into a row, by using an existing one.
+ * @param key
+ * @param img
+ */
+void ebox::DataRow::setImageRef(const std::string &key, ebox::Image *img)
+{
+    if(m_values.count(key) && img != nullptr)
+    {
+        switch(m_columnDefinition->getColumn(key)->getDataColumnType())
+        {
+            case DataColumnType::Image:
+                getAs<ebox::Image>(key)->create(img->getSprite());
+                break;
+
+            case DataColumnType::Selectable:
+                getAs<ebox::Selectable>(key)->setImageRef(img);
+                break;
+        }
+    }
+}
+
+
+/*!
  * Refreshes the columns, and adds missing columns if they are new to the column definition
  */
 void ebox::DataRow::refreshColumns()
@@ -276,6 +299,3 @@ void ebox::DataRow::resetIsDoubleClicked()
 {
     m_isDoubleClicked = false;
 }
-
-
-

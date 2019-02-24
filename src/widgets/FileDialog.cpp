@@ -461,3 +461,13 @@ bool ebox::FileDialog::customDraw()
     m_msgPopupFileDoesNotExist.draw();
     return true;
 }
+
+void FileDialog::setUseFileIcons(bool useFileIcons)
+{
+    m_fileTable.setUseFileIcons(useFileIcons);
+}
+
+bool FileDialog::useFileIcons()
+{
+    return m_fileTable.useFileIcons();
+}

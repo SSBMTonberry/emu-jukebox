@@ -27,6 +27,7 @@ namespace ebox
             void setValues(const std::initializer_list<std::string> &values);
             void setValuesWithKey(const std::initializer_list<std::pair<std::string, std::string>> &values);
             void setImage(const std::string &key, const void *imageData, size_t imageDataSize);
+            void setImageRef(const std::string &key, ebox::Image *img);
             void setHasVerticalBorders(bool hasVerticalBorders);
             void setHasHorizontalBorders(bool hasHorizontalBorders);
 

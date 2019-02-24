@@ -78,6 +78,8 @@ namespace ebox
             std::map<std::string, TreeList> m_filelist;
             AudioPlayerForm *m_audioPlayer;
 
+            ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
+
             //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };
