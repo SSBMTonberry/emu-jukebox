@@ -69,6 +69,9 @@ namespace ebox
             void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
             void addToPlaylist(Selectable* item);
 
+            bool onRightClickedParentNode(TreeList *sender);
+            void onChosenParentRightClickContextItems(TreeList * owner, MenuItem *sender);
+
             void onChosenChildNode(Selectable *sender);
             bool onRightClickedChildNode(Selectable *sender);
             void onDoubleClickChildNode(Selectable *sender);

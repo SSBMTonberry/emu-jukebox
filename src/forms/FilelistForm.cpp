@@ -54,24 +54,11 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
         {
             m_filelist[path.filename().string()] = {path.filename().string(), path.filename().string()};
 
-            /*auto tracks = m_fileMap[path.filename().string()].getTracks();
-            for(int i = 0; i < tracks.size(); ++i)
-            {
-                std::string track = tracks[i];
-                //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-                //auto *item = m_filelist[path.filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-                auto *item = m_filelist[path.filename().string()].add(track, files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-                item->getImage()->setHasZoomTooltip(false);
-                item->setId(path.filename().string());
+            m_filelist[path.filename().string()].registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedParentNode, this, std::placeholders::_1));
+            m_filelist[path.filename().string()].registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenParentRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
 
-                item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
-                item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
-                item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
-                item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
-            }*/
             timer.end();
             SystemLog::get()->addInfo(timer.getTimeElapsedMessage(fmt::format("Processed file '{0}' - ", path.string())));
-            //m_filelist.add(path.filename().string(), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
         }
     }
 }
@@ -86,7 +73,6 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
         {
             if (fs::is_regular_file(entry.status()))
             {
-
                 //m_fileMap.emplace(entry.path().filename().string(), EmuFileInfo(entry.path().string()));
                 m_fileMap[entry.path().filename().string()] = EmuFileInfo(entry.path().string());
                 if(!m_fileMap[entry.path().filename().string()].isValid())
@@ -95,22 +81,8 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                 {
                     m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
 
-                    /*auto tracks = m_fileMap[entry.path().filename().string()].getTracks();
-
-                    for(int i = 0; i < tracks.size(); ++i)
-                    {
-                        std::string track = tracks[i];
-                        //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-                        //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-                        auto *item = m_filelist[entry.path().filename().string()].add(track, files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-                        item->getImage()->setHasZoomTooltip(false);
-                        item->setId(entry.path().filename().string());
-
-                        item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
-                        item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
-                        item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
-                        item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
-                    }*/
+                    m_filelist[entry.path().filename().string()].registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedParentNode, this, std::placeholders::_1));
+                    m_filelist[entry.path().filename().string()].registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenParentRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
                 }
                 ++processedFiles;
             }
@@ -129,6 +101,24 @@ bool ebox::FilelistForm::onRightClickedChildNode(Selectable *sender)
 {
     setAsSelectedChildNode(sender);
     sender->createRightClickContextItems({"Add to playlist"});
+    return true;
+}
+
+void FilelistForm::onChosenParentRightClickContextItems(TreeList *owner, MenuItem *sender)
+{
+    if(sender->getId() == "add all songs to playlist")
+    {
+        if(m_fileMap[owner->getId()].loadEmuDataIfNotLoaded())
+            addTracksToFileList(owner->getId(), m_fileMap[owner->getId()]);
+
+        for(auto item : owner->getItems())
+            addToPlaylist(item);
+    }
+}
+
+bool FilelistForm::onRightClickedParentNode(TreeList *sender)
+{
+    sender->createRightClickContextItems({"Add all songs to playlist"});
     return true;
 }
 
@@ -225,9 +215,14 @@ void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
     //}
 }
 
+/*!
+ * Remember to call setPlaylist() first, as this sets the playlist of both.
+ * @param audioPlayer
+ */
 void FilelistForm::setAudioPlayer(AudioPlayerForm *audioPlayer)
 {
     m_audioPlayer = audioPlayer;
+    m_playlist->setPlayer(m_audioPlayer);
 }
 
 void FilelistForm::setPlaylist(PlaylistForm *playlist)
@@ -253,5 +248,3 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
         item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
     }
 }
-
-

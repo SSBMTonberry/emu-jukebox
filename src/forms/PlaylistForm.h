@@ -8,6 +8,7 @@
 #include "../gui/forms/Form.h"
 #include "../audio/EmuFileInfo.h"
 #include "../gui/controls/TreeList.h"
+#include "../forms/AudioPlayerForm.h"
 
 namespace ebox
 {
@@ -20,6 +21,8 @@ namespace ebox
                          const std::string &imguiId = "");
 
             void handleEvents() override;
+
+            void setPlayer(AudioPlayerForm *player);
 
             void add(const EmuFileInfo &fileInfo, int trackNumber);
 
@@ -36,6 +39,9 @@ namespace ebox
             bool onRightClickedChildNode(Selectable *sender);
             void onDoubleClickChildNode(Selectable *sender);
             void onChosenRightClickContextItems(Selectable* owner, MenuItem *sender);
+            void setAsSelectedChildNode(Selectable *child);
+
+            AudioPlayerForm *m_player;
 
             std::vector<std::pair<EmuFileInfo, int>> m_playlist;
             TreeList m_filemapping {"playlist_filemapper", "Playlist"};

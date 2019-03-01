@@ -33,6 +33,11 @@ void ebox::PlaylistForm::handleEvents()
 
 }
 
+void PlaylistForm::setPlayer(AudioPlayerForm *player)
+{
+    m_player = player;
+}
+
 void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
 {
     m_playlist.emplace_back(fileInfo, trackNumber);
@@ -59,23 +64,77 @@ std::string ebox::PlaylistForm::getId(size_t number, int digits)
     return fmt::format("{0}{1}", zeroes, num);
 }
 
+std::string PlaylistForm::getId(const std::pair<EmuFileInfo, int> &item)
+{
+    return fmt::format("{0} - {1}", item.first.getGameName(), item.first.getTracks()[item.second]);
+}
+
+
 void ebox::PlaylistForm::onChosenChildNode(ebox::Selectable *sender)
 {
-
+    setAsSelectedChildNode(sender);
 }
 
 bool ebox::PlaylistForm::onRightClickedChildNode(ebox::Selectable *sender)
 {
-    return false;
+    setAsSelectedChildNode(sender);
+    sender->createRightClickContextItems({"Play"});
+    return true;
 }
 
 void ebox::PlaylistForm::onDoubleClickChildNode(ebox::Selectable *sender)
 {
-
+    for(auto &[emuFile, trackNo] : m_playlist)
+    {
+        if (sender->getId() == emuFile.getId())
+        {
+            if(emuFile.exists())
+            {
+                SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
+                bool isValid = m_player->createStream(emuFile);
+                if (isValid && m_player->getStream() != nullptr)
+                {
+                    m_player->getStream()->stop();
+                    m_player->getStream()->setTrack(trackNo);
+                    m_player->getStream()->play();
+                }
+            }
+            else
+                SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFile.getPath().string()));
+        }
+    }
 }
 
 void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner, ebox::MenuItem *sender)
 {
-
+    if(sender->getId() == "play")
+    {
+        for(auto &[emuFile, trackNo] : m_playlist)
+        {
+            if (owner->getId() == emuFile.getId())
+            {
+                if(emuFile.exists())
+                {
+                    SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
+                    bool isValid = m_player->createStream(emuFile);
+                    if (isValid && m_player->getStream() != nullptr)
+                    {
+                        m_player->getStream()->stop();
+                        m_player->getStream()->setTrack(trackNo);
+                        m_player->getStream()->play();
+                    }
+                }
+                else
+                    SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFile.getPath().string()));
+            }
+        }
+    }
 }
 
+void ebox::PlaylistForm::setAsSelectedChildNode(ebox::Selectable *child)
+{
+    for (auto const &item : m_filemapping.getItems())
+    {
+        item->setSelected(item == child);
+    }
+}

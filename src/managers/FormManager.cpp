@@ -23,8 +23,8 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
     //Enable docking (New in ImGui 1.66 WIP) - Downloaded 14.10.2018
     m_io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-    m_filelistForm.setAudioPlayer(&m_audioPlayerForm);
     m_filelistForm.setPlaylist(&m_playlistForm);
+    m_filelistForm.setAudioPlayer(&m_audioPlayerForm);
     initializeForms();
 }
 
