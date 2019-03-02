@@ -113,6 +113,8 @@ bool ebox::EmuFileInfo::loadEmuData()
         else
             m_tracks.emplace_back(fmt::format("{0} - {1}", trackNumber, info->song));
 
+        m_trackPlayLengths.push_back(info->play_length);
+
         gme_free_info( info );
     }
     m_displayName = fmt::format("{0} ({1})", m_gameName, m_extension);
@@ -190,4 +192,9 @@ const std::string &ebox::EmuFileInfo::getId() const
 void ebox::EmuFileInfo::setId(const std::string &id)
 {
     m_id = id;
+}
+
+const std::vector<int> &ebox::EmuFileInfo::getTrackPlayLengths() const
+{
+    return m_trackPlayLengths;
 }

@@ -49,6 +49,8 @@ namespace ebox
 
             void setTempo(float tempo);
             void setTrack(int track);
+            void setId(const std::string &id);
+
             void nextTrack();
             void previousTrack();
 
@@ -69,6 +71,7 @@ namespace ebox
             void *getData() const;
             size_t getDataSize() const;
             int getNumberOfTracks() const;
+            const std::string &getId() const;
 
             bool isValid() const;
 
@@ -97,6 +100,7 @@ namespace ebox
             int m_track = 0;
             std::string m_errorText;
 
+            std::string m_id;
             std::string m_filename; //if loaded by file
             void *m_data; //If loaded by memory
             size_t m_dataSize; //If loaded by memory

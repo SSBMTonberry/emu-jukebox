@@ -237,11 +237,11 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
     for(int i = 0; i < tracks.size(); ++i)
     {
         std::string track = tracks[i];
+        int playLength = info.getTrackPlayLengths()[i];
         //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
         //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-        auto *item = m_filelist[id].add(track, &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+        auto *item = m_filelist[id].add(fmt::format("{0} ({1})", track, tools::string::GetMillisecondsAsTimeString(playLength, false)), &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
         item->setId(id);
-
         item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
         item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
         item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));

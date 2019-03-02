@@ -54,15 +54,45 @@ void AudioPlayerForm::drawAudioPanel()
 
     ImGui::SameLine(0, spacingLength);
     if(m_previousButton.process() && m_stream != nullptr)
-        m_stream->previousTrack();
+    {
+        bool abort = false;
+        for(auto const &callback : m_callbackOnPrevious)
+            abort = callback(this) ? true : abort;
+
+        if(!abort) m_stream->previousTrack();
+    }
     if(m_stopButton.process() && m_stream != nullptr)
-        m_stream->stop();
+    {
+        bool abort = false;
+        for(auto const &callback : m_callbackOnStop)
+            abort = callback(this) ? true : abort;
+
+        if(!abort) m_stream->stop();
+    }
     if(m_pauseButton.process() && m_stream != nullptr)
-        m_stream->pause();
+    {
+        bool abort = false;
+        for(auto const &callback : m_callbackOnPause)
+            abort = callback(this) ? true : abort;
+
+        if(!abort) m_stream->pause();
+    }
     if(m_playButton.process() && m_stream != nullptr)
-        m_stream->play();
+    {
+        bool abort = false;
+        for(auto const &callback : m_callbackOnPlay)
+            abort = callback(this) ? true : abort;
+
+        if(!abort) m_stream->play();
+    }
     if(m_nextButton.process() && m_stream != nullptr)
-        m_stream->nextTrack();
+    {
+        bool abort = false;
+        for(auto const &callback : m_callbackOnPrevious)
+            abort = callback(this) ? true : abort;
+
+        if(!abort) m_stream->nextTrack();
+    }
 
     ImGui::SameLine(0, spacingLength2);
     ImGui::PushItemWidth(100);
@@ -81,6 +111,16 @@ void AudioPlayerForm::drawAudioPanel()
         if(m_stream != nullptr)
             m_stream->setPlayingOffset(sf::milliseconds(m_stream->getTimePlayed()));
     }
+
+    if(m_stream != nullptr && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength())
+    {
+        bool abort = false;
+        for(auto const &callback : m_callbackOnTrackEnded)
+            abort = callback(this, m_stream.get()) ? true : abort;
+
+        if(!abort) m_stream->stop();
+    }
+
     if(!m_hasItemsFocused)
         m_hasItemsFocused = ImGui::IsItemActive();
     ImGui::EndChild();
@@ -157,6 +197,7 @@ std::string AudioPlayerForm::getMillisecondsAsTimeString(int milliseconds)
 bool AudioPlayerForm::createStream(const EmuFileInfo &info)
 {
     m_stream = std::make_unique<EmuStream>(info.getPath());
+    m_stream->setId(info.getId());
     return m_stream->isValid();
 }
 
@@ -168,4 +209,69 @@ void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 EmuStream *AudioPlayerForm::getStream() const
 {
     return m_stream.get();
+}
+
+/*!
+ * Register a callback that will be called right BEFORE the play-action, when clicking the Play-button.
+ * The callback itself can return a bool, which will abort the default action (play) if returning true.
+ *
+ * @param cb The callback function. Example: bool onPlay(AudioPlayerForm *player)
+ */
+void AudioPlayerForm::registerOnPlayCallback(const AudioPlayerForm::func_audioplayer &cb)
+{
+    m_callbackOnPlay.emplace_back(cb);
+}
+
+/*!
+ * Register a callback that will be called right BEFORE the stop-action, when clicking the Stop-button.
+ * The callback itself can return a bool, which will abort the default action (stop) if returning true.
+ *
+ * @param cb The callback function. Example: bool onStop(AudioPlayerForm *player)
+ */
+void AudioPlayerForm::registerOnStopCallback(const AudioPlayerForm::func_audioplayer &cb)
+{
+    m_callbackOnStop.emplace_back(cb);
+}
+
+/*!
+ * Register a callback that will be called right BEFORE the pause-action, when clicking the Pause-button.
+ * The callback itself can return a bool, which will abort the default action (pause) if returning true.
+ *
+ * @param cb The callback function. Example: bool onPause(AudioPlayerForm *player)
+ */
+void AudioPlayerForm::registerOnPauseCallback(const AudioPlayerForm::func_audioplayer &cb)
+{
+    m_callbackOnPause.emplace_back(cb);
+}
+
+/*!
+ * Register a callback that will be called right BEFORE the "next track"-action, when clicking the "Next track"-button.
+ * The callback itself can return a bool, which will abort the default action (next track) if returning true.
+ *
+ * @param cb The callback function. Example: bool onNextTrack(AudioPlayerForm *player)
+ */
+void AudioPlayerForm::registerOnNextTrackCallback(const AudioPlayerForm::func_audioplayer &cb)
+{
+    m_callbackOnNext.emplace_back(cb);
+}
+
+/*!
+ * Register a callback that will be called right BEFORE the "previous track"-action, when clicking the "Previous track"-button.
+ * The callback itself can return a bool, which will abort the default action (previous track) if returning true.
+ *
+ * @param cb The callback function. Example: bool onPreviousTrack(AudioPlayerForm *player)
+ */
+void AudioPlayerForm::registerOnPreviousTrackCallback(const AudioPlayerForm::func_audioplayer &cb)
+{
+    m_callbackOnPrevious.emplace_back(cb);
+}
+
+/*!
+ * Register a callback that will be called when a track has ended (when time played is more than equal to the play length).
+ *
+ * @param cb The callback function. Example: bool onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
+ */
+void AudioPlayerForm::registerOnTrackEndedCallback(const AudioPlayerForm::func_audioplayertrack &cb)
+{
+    m_callbackOnTrackEnded.emplace_back(cb);
 }

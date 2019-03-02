@@ -69,7 +69,8 @@ namespace ebox
             int m_introLength = -1;
             int m_loopLength = -1;
             int m_playLength = -1;
-            //int m_numberOfTracks;
+
+
     };
 }
 

@@ -5,6 +5,7 @@
 #ifndef EMU_JUKEBOX_FILELISTFORM_H
 #define EMU_JUKEBOX_FILELISTFORM_H
 
+#include "../misc/Tools.hpp"
 #include "../gui/forms/Form.h"
 #include "../gui/controls/TreeList.h"
 #include "../gui/controls/Selectable.h"

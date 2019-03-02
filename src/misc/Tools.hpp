@@ -2,8 +2,8 @@
 // Created by robin on 11.08.17.
 //
 
-#ifndef PIXELMOUND_TOOLS_H
-#define PIXELMOUND_TOOLS_H
+#ifndef EBOX_TOOLS_H
+#define EBOX_TOOLS_H
 
 #include "../../EmuJukeboxConfig.h"
 
@@ -49,6 +49,8 @@ namespace ebox::tools
 {
     namespace string
     {
+        inline std::string GetMillisecondsAsTimeString(int milliseconds, bool includeMilliseconds);
+
         namespace helper
         {
             //HELPER FUNCTION FOR SplitString
@@ -83,6 +85,41 @@ namespace ebox::tools
             std::vector<std::string> elems;
             helper::split(s, delim, std::back_inserter(elems));
             return elems;
+        }
+
+        std::string GetMillisecondsAsTimeString(int milliseconds, bool includeMilliseconds)
+        {
+            if(milliseconds < 0)
+                return (includeMilliseconds) ? "00:00.000" : "00:00";
+            else
+            {
+                int hours = (milliseconds / 3600000);
+                std::string hourStr = (hours < 10) ? fmt::format("0{0}", hours) : fmt::format("{0}", hours);
+                milliseconds -= (hours * 3600000);
+                int minutes = (milliseconds / 60000);
+                std::string minuteStr = (minutes < 10) ? fmt::format("0{0}", minutes) : fmt::format("{0}", minutes);
+                milliseconds -= (minutes * 60000);
+                int seconds = (milliseconds / 1000);
+                std::string secondStr = (seconds < 10) ? fmt::format("0{0}", seconds) : fmt::format("{0}", seconds);
+                milliseconds -= (seconds * 1000);
+                std::string millisecondStr;
+
+                if (milliseconds < 100)
+                    millisecondStr = (milliseconds < 10) ? fmt::format("00{0}", milliseconds) : fmt::format("0{0}", milliseconds);
+                else
+                    millisecondStr = fmt::format("{0}", milliseconds);
+
+                if (hours > 0)
+                {
+                    return (includeMilliseconds) ? fmt::format("{0}:{1}:{2}.{3}", hourStr, minuteStr, secondStr, millisecondStr) :
+                                                   fmt::format("{0}:{1}:{2}", hourStr, minuteStr, secondStr);
+                }
+                else
+                {
+                    return (includeMilliseconds) ? fmt::format("{0}:{1}.{2}", minuteStr, secondStr, millisecondStr) :
+                                                   fmt::format("{0}:{1}", minuteStr, secondStr);
+                }
+            }
         }
     }
 
@@ -124,4 +161,4 @@ namespace ebox::tools
 
 }
 
-#endif //PIXELMOUND_TOOLS_H
+#endif //EBOX_TOOLS_H

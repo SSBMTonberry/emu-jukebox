@@ -56,6 +56,8 @@ namespace ebox
             int getNumberOfTracks() const;
             const std::string &getDisplayName() const;
             const std::vector<std::string> &getTracks() const;
+            const std::vector<int> &getTrackPlayLengths() const;
+
             bool isValid() const;
             bool exists();
 
@@ -76,6 +78,7 @@ namespace ebox
 
             std::string m_displayName; //Name displayed in list
             std::vector<std::string> m_tracks;
+            std::vector<int> m_trackPlayLengths;
     };
 }
 

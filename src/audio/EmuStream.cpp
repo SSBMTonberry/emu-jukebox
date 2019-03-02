@@ -421,3 +421,13 @@ const std::vector<ebox::EmuTrackInfo> &ebox::EmuStream::getTracks() const
 {
     return m_tracks;
 }
+
+void ebox::EmuStream::setId(const std::string &id)
+{
+    m_id = id;
+}
+
+const std::string &ebox::EmuStream::getId() const
+{
+    return m_id;
+}
