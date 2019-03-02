@@ -88,7 +88,7 @@ void AudioPlayerForm::drawAudioPanel()
     if(m_nextButton.process() && m_stream != nullptr)
     {
         bool abort = false;
-        for(auto const &callback : m_callbackOnPrevious)
+        for(auto const &callback : m_callbackOnNext)
             abort = callback(this) ? true : abort;
 
         if(!abort) m_stream->nextTrack();

@@ -9,6 +9,7 @@
 #include "../audio/EmuFileInfo.h"
 #include "../gui/controls/TreeList.h"
 #include "../forms/AudioPlayerForm.h"
+#include "../misc/Tools.hpp"
 
 namespace ebox
 {
@@ -25,6 +26,7 @@ namespace ebox
             void setPlayer(AudioPlayerForm *player);
 
             void add(const EmuFileInfo &fileInfo, int trackNumber);
+            bool containsId(const std::string &id);
 
             static const std::string ID;
 
@@ -35,11 +37,23 @@ namespace ebox
         private:
             void initialize();
 
+            int getIndex(const std::string &id);
+
             void onChosenChildNode(Selectable *sender);
             bool onRightClickedChildNode(Selectable *sender);
             void onDoubleClickChildNode(Selectable *sender);
             void onChosenRightClickContextItems(Selectable* owner, MenuItem *sender);
             void setAsSelectedChildNode(Selectable *child);
+
+            bool loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo);
+
+            bool onNextTrack(AudioPlayerForm *player);
+            bool onPreviousTrack(AudioPlayerForm *player);
+            bool onTrackEnded(AudioPlayerForm *player, EmuStream *stream);
+
+            void startNextTrack(const std::string &currentId);
+            void startPreviousTrack(const std::string &currentId);
+            void startRandomTrack(const std::string &currentId);
 
             AudioPlayerForm *m_player;
 

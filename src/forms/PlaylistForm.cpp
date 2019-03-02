@@ -36,6 +36,9 @@ void ebox::PlaylistForm::handleEvents()
 void PlaylistForm::setPlayer(AudioPlayerForm *player)
 {
     m_player = player;
+    m_player->registerOnNextTrackCallback(std::bind(&PlaylistForm::onNextTrack, this, std::placeholders::_1));
+    m_player->registerOnPreviousTrackCallback(std::bind(&PlaylistForm::onPreviousTrack, this, std::placeholders::_1));
+    m_player->registerOnTrackEndedCallback(std::bind(&PlaylistForm::onTrackEnded, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
@@ -43,7 +46,9 @@ void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
     m_playlist.emplace_back(fileInfo, trackNumber);
     std::string id = getId(m_playlist.size()-1);
     m_playlist[m_playlist.size()-1].first.setId(id);
-    auto *item = m_filemapping.add(id, fmt::format("{0} - {1}", fileInfo.getGameName(), fileInfo.getTracks()[trackNumber]));
+
+    auto *item = m_filemapping.add(id, fmt::format("{0} - {1}", fileInfo.getGameName(), fmt::format("{0} ({1})", fileInfo.getTracks()[trackNumber],
+                                       tools::string::GetMillisecondsAsTimeString(fileInfo.getTrackPlayLengths()[trackNumber], false))));
 
     item->registerOnChosenCallback(std::bind(&PlaylistForm::onChosenChildNode, this, std::placeholders::_1));
     item->registerOnRightClickCallback(std::bind(&PlaylistForm::onRightClickedChildNode, this, std::placeholders::_1));
@@ -113,7 +118,8 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
         {
             if (owner->getId() == emuFile.getId())
             {
-                if(emuFile.exists())
+                loadEmuFile(&emuFile, trackNo);
+                /*if(emuFile.exists())
                 {
                     SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
                     bool isValid = m_player->createStream(emuFile);
@@ -125,7 +131,7 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
                     }
                 }
                 else
-                    SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFile.getPath().string()));
+                    SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFile.getPath().string()));*/
             }
         }
     }
@@ -137,4 +143,107 @@ void ebox::PlaylistForm::setAsSelectedChildNode(ebox::Selectable *child)
     {
         item->setSelected(item == child);
     }
+}
+
+bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
+{
+    if(m_player != nullptr && containsId(m_player->getStream()->getId()))
+    {
+        startNextTrack(m_player->getStream()->getId());
+        return true;
+    }
+
+    return false;
+}
+
+bool PlaylistForm::onPreviousTrack(AudioPlayerForm *player)
+{
+    if(m_player != nullptr && containsId(m_player->getStream()->getId()))
+    {
+        startPreviousTrack(m_player->getStream()->getId());
+        return true;
+    }
+
+    return false;
+}
+
+bool PlaylistForm::containsId(const std::string &id)
+{
+    for(auto const &[emu, trackNo] : m_playlist)
+        if(emu.getId() == id) return true;
+
+    return false;
+}
+
+bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
+{
+    if(m_player != nullptr && containsId(stream->getId()))
+    {
+
+    }
+    return false;
+}
+
+void PlaylistForm::startNextTrack(const std::string &currentId)
+{
+    if(m_playlist.size() > 0)
+    {
+        int index = getIndex(currentId);
+        ++index;
+        if (index > m_playlist.size() - 1)
+            loadEmuFile(&m_playlist[0].first, m_playlist[0].second);
+        else
+            loadEmuFile(&m_playlist[index].first, m_playlist[index].second);
+    }
+}
+
+void PlaylistForm::startPreviousTrack(const std::string &currentId)
+{
+    if(m_playlist.size() > 0)
+    {
+        int maxIndex = m_playlist.size() - 1;
+        int index = getIndex(currentId);
+        --index;
+
+        if (index < 0)
+            loadEmuFile(&m_playlist[maxIndex].first, m_playlist[maxIndex].second);
+        else
+            loadEmuFile(&m_playlist[index].first, m_playlist[index].second);
+    }
+}
+
+void PlaylistForm::startRandomTrack(const std::string &currentId)
+{
+
+}
+
+int PlaylistForm::getIndex(const std::string &id)
+{
+    for(int i = 0; i < m_playlist.size(); ++i)
+    {
+        if (m_playlist[i].first.getId() == id)
+            return i;
+    }
+
+    return -1;
+}
+
+bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
+{
+    if(emuFileInfo->exists())
+    {
+        SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", emuFileInfo->getFilename(), trackNo));
+        bool isValid = m_player->createStream(*emuFileInfo);
+        if (isValid && m_player->getStream() != nullptr)
+        {
+            m_player->getStream()->stop();
+            m_player->getStream()->setTrack(trackNo);
+            m_player->getStream()->play();
+            return true;
+        }
+    }
+    else
+        SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFileInfo->getPath().string()));
+
+    return false;
 }
