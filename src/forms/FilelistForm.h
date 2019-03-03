@@ -78,11 +78,20 @@ namespace ebox
             void onDoubleClickChildNode(Selectable *sender);
             void onChosenRightClickContextItems(Selectable* owner, MenuItem *sender);
 
+            bool onNextTrack(AudioPlayerForm *player);
+            bool onPreviousTrack(AudioPlayerForm *player);
+            bool onTrackEnded(AudioPlayerForm *player, EmuStream *stream);
+
             void setAsSelectedChildNode(Selectable *child);
 
             //std::map<std::string, EmuStream> m_emuMap;
             std::map<std::string, EmuFileInfo> m_fileMap;
             std::map<std::string, TreeList> m_filelist;
+
+            //Stored when choosing an item to play
+            TreeList *m_lastChosenTreeList = nullptr;
+            EmuFileInfo *m_lastChosenEmuFile = nullptr;
+            int m_lastTrackNo = 0;
 
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;

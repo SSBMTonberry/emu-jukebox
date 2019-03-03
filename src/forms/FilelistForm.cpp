@@ -52,6 +52,7 @@ void ebox::FilelistForm::loadFile(const fs::path &path)
             m_fileMap.erase(path.filename().string());
         else
         {
+            m_fileMap[path.filename().string()].setId(path.filename().string());
             m_filelist[path.filename().string()] = {path.filename().string(), path.filename().string()};
 
             m_filelist[path.filename().string()].registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedParentNode, this, std::placeholders::_1));
@@ -79,6 +80,7 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                     m_fileMap.erase(entry.path().filename().string());
                 else
                 {
+                    m_fileMap[entry.path().filename().string()].setId(entry.path().filename().string());
                     m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
 
                     m_filelist[entry.path().filename().string()].registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedParentNode, this, std::placeholders::_1));
@@ -149,6 +151,10 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
                 bool isValid = m_audioPlayer->createStream(*emuFile);
                 if (isValid && m_audioPlayer->getStream() != nullptr)
                 {
+                    m_lastChosenEmuFile = emuFile;
+                    m_lastChosenTreeList = filelistItem;
+                    m_lastTrackNo = trackNo;
+
                     m_audioPlayer->getStream()->stop();
                     m_audioPlayer->getStream()->setTrack(trackNo);
                     m_audioPlayer->getStream()->play();
@@ -222,6 +228,9 @@ void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
 void FilelistForm::setAudioPlayer(AudioPlayerForm *audioPlayer)
 {
     m_audioPlayer = audioPlayer;
+    m_audioPlayer->registerOnNextTrackCallback(std::bind(&FilelistForm::onNextTrack, this, std::placeholders::_1));
+    m_audioPlayer->registerOnPreviousTrackCallback(std::bind(&FilelistForm::onPreviousTrack, this, std::placeholders::_1));
+    m_audioPlayer->registerOnTrackEndedCallback(std::bind(&FilelistForm::onTrackEnded, this, std::placeholders::_1, std::placeholders::_2));
     m_playlist->setPlayer(m_audioPlayer);
 }
 
@@ -248,3 +257,38 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
         item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
     }
 }
+
+bool FilelistForm::onNextTrack(AudioPlayerForm *player)
+{
+    if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStream()->getId())
+    {
+        auto items = m_lastChosenTreeList->getItems();
+        ++m_lastTrackNo;
+        if (m_lastTrackNo > items.size() - 1)
+            m_lastTrackNo = 0;
+
+        setAsSelectedChildNode(items[m_lastTrackNo]);
+    }
+    return false;
+}
+
+bool FilelistForm::onPreviousTrack(AudioPlayerForm *player)
+{
+    if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStream()->getId())
+    {
+        auto items = m_lastChosenTreeList->getItems();
+        --m_lastTrackNo;
+        if (m_lastTrackNo < 0)
+            m_lastTrackNo = items.size() - 1;
+
+        setAsSelectedChildNode(items[m_lastTrackNo]);
+    }
+    return false;
+}
+
+bool FilelistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
+{
+    return true;
+}
+
+

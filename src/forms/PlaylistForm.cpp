@@ -201,7 +201,8 @@ bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
     if(m_player != nullptr && containsId(stream->getId()))
     {
-
+        startNextTrack(stream->getId());
+        return true;
     }
     return false;
 }
