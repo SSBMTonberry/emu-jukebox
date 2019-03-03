@@ -36,6 +36,7 @@ namespace ebox
             std::string getId(size_t number, int digits = 6);
         private:
             void initialize();
+            void processPlaylistButtonPanel();
 
             int getIndex(const std::string &id);
 
@@ -43,7 +44,9 @@ namespace ebox
             bool onRightClickedChildNode(Selectable *sender);
             void onDoubleClickChildNode(Selectable *sender);
             void onChosenRightClickContextItems(Selectable* owner, MenuItem *sender);
+
             void setAsSelectedChildNode(Selectable *child);
+            void setAsSelectedChildNode(const std::string &id);
 
             bool loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo);
 
@@ -59,6 +62,12 @@ namespace ebox
 
             std::vector<std::pair<EmuFileInfo, int>> m_playlist;
             TreeList m_filemapping {"playlist_filemapper", "Playlist"};
+
+            ebox::ImageButton m_shuffleOnButton {"shuffle_on_button", files_mapper::gui::actions::_SHARE_PNG, files_mapper::gui::actions::_SHARE_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_shuffleOffButton {"shuffle_off_button", files_mapper::gui::actions::_UNSHARE_PNG, files_mapper::gui::actions::_UNSHARE_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_moveUpButton {"move_up_button", files_mapper::gui::actions::_MOVEUP_PNG, files_mapper::gui::actions::_MOVEUP_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_moveDownButton {"move_down_button", files_mapper::gui::actions::_MOVEDOWN_PNG, files_mapper::gui::actions::_MOVEDOWN_PNG_SIZE, sf::Vector2i(30, 30)};
+
     };
 }
 

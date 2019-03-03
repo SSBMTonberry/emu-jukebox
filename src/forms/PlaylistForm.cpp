@@ -19,13 +19,27 @@ ebox::PlaylistForm::PlaylistForm(const sf::Vector2<int> &position, const sf::Vec
 
 bool ebox::PlaylistForm::customDraw()
 {
+    processPlaylistButtonPanel();
     m_filemapping.process();
     return true;
+}
+
+void PlaylistForm::processPlaylistButtonPanel()
+{
+    ImGui::BeginChild("playlist_btn_panel", {-1, 40}, true, 0);
+    m_shuffleOffButton.process();
+    m_shuffleOnButton.process();
+    m_moveUpButton.process();
+    m_moveDownButton.process();
+    ImGui::EndChild();
 }
 
 void ebox::PlaylistForm::initialize()
 {
     m_filemapping.setHasParentNode(false);
+    m_shuffleOnButton.setOnSameLine(true);
+    m_moveUpButton.setOnSameLine(true);
+    m_moveDownButton.setOnSameLine(true);
 }
 
 void ebox::PlaylistForm::handleEvents()
@@ -145,6 +159,14 @@ void ebox::PlaylistForm::setAsSelectedChildNode(ebox::Selectable *child)
     }
 }
 
+void PlaylistForm::setAsSelectedChildNode(const std::string &id)
+{
+    for (auto const &item : m_filemapping.getItems())
+    {
+        item->setSelected(item->getId() == id);
+    }
+}
+
 bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
 {
     if(m_player != nullptr && containsId(m_player->getStream()->getId()))
@@ -232,6 +254,8 @@ bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
 {
     if(emuFileInfo->exists())
     {
+        setAsSelectedChildNode(emuFileInfo->getId());
+
         SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", emuFileInfo->getFilename(), trackNo));
         bool isValid = m_player->createStream(*emuFileInfo);
         if (isValid && m_player->getStream() != nullptr)
