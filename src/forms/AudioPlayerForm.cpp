@@ -20,7 +20,7 @@ AudioPlayerForm::AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vec
 void AudioPlayerForm::initialize()
 {
     const sf::Rect rect = m_previousButton.getImage()->getTextureRect();
-    m_previousButton.getImage()->setTextureRect(sf::IntRect(rect.width, 0, -rect.width, rect.height)); //Flip sprite
+    //m_previousButton.getImage()->setTextureRect(sf::IntRect(rect.width, 0, -rect.width, rect.height)); //Flip sprite
     m_stopButton.setOnSameLine(true);
     m_pauseButton.setOnSameLine(true);
     m_playButton.setOnSameLine(true);

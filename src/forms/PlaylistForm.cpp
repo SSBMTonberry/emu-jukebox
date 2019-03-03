@@ -27,8 +27,11 @@ bool ebox::PlaylistForm::customDraw()
 void PlaylistForm::processPlaylistButtonPanel()
 {
     ImGui::BeginChild("playlist_btn_panel", {-1, 40}, true, 0);
-    m_shuffleOffButton.process();
-    m_shuffleOnButton.process();
+    if(m_shuffleButton.process())
+        setShuffle(!m_hasShuffle);
+    if(m_repeatButton.process())
+        setRepeat(!m_hasRepeat);
+
     m_moveUpButton.process();
     m_moveDownButton.process();
     ImGui::EndChild();
@@ -37,9 +40,13 @@ void PlaylistForm::processPlaylistButtonPanel()
 void ebox::PlaylistForm::initialize()
 {
     m_filemapping.setHasParentNode(false);
-    m_shuffleOnButton.setOnSameLine(true);
+    m_shuffleButton.setOnSameLine(true);
+    m_repeatButton.setOnSameLine(true);
     m_moveUpButton.setOnSameLine(true);
     m_moveDownButton.setOnSameLine(true);
+
+    setShuffle(m_hasShuffle);
+    setRepeat(m_hasRepeat);
 }
 
 void ebox::PlaylistForm::handleEvents()
@@ -171,7 +178,10 @@ bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
 {
     if(m_player != nullptr && containsId(m_player->getStream()->getId()))
     {
-        startNextTrack(m_player->getStream()->getId());
+        if(m_hasShuffle)
+            startRandomTrack(m_player->getStream()->getId());
+        else
+            startNextTrack(m_player->getStream()->getId());
         return true;
     }
 
@@ -182,7 +192,10 @@ bool PlaylistForm::onPreviousTrack(AudioPlayerForm *player)
 {
     if(m_player != nullptr && containsId(m_player->getStream()->getId()))
     {
-        startPreviousTrack(m_player->getStream()->getId());
+        if(m_hasShuffle)
+            startRandomTrack(m_player->getStream()->getId());
+        else
+            startPreviousTrack(m_player->getStream()->getId());
         return true;
     }
 
@@ -201,7 +214,12 @@ bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
     if(m_player != nullptr && containsId(stream->getId()))
     {
-        startNextTrack(stream->getId());
+        if(m_hasRepeat)
+            startTrack(m_player->getStream()->getId());
+        else if(m_hasShuffle)
+            startRandomTrack(m_player->getStream()->getId());
+        else
+            startNextTrack(stream->getId());
         return true;
     }
     return false;
@@ -235,9 +253,29 @@ void PlaylistForm::startPreviousTrack(const std::string &currentId)
     }
 }
 
+void PlaylistForm::startTrack(const std::string &currentId)
+{
+    if(m_playlist.size() > 0)
+    {
+        int index = getIndex(currentId);
+        loadEmuFile(&m_playlist[index].first, m_playlist[index].second);
+    }
+}
+
 void PlaylistForm::startRandomTrack(const std::string &currentId)
 {
-
+    if(m_playlist.size() > 1)
+    {
+        std::random_device device;
+        std::mt19937 gen(device()); //std::default_random_engine generator;
+        std::uniform_int_distribution<int> distribution(0, m_playlist.size() - 1);
+        int number = distribution(gen);
+        startTrack(m_playlist[number].first.getId());
+    }
+    else if(m_playlist.size() == 1)
+    {
+        startTrack(currentId);
+    }
 }
 
 int PlaylistForm::getIndex(const std::string &id)
@@ -271,4 +309,16 @@ bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
         SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFileInfo->getPath().string()));
 
     return false;
+}
+
+void PlaylistForm::setShuffle(bool shuffle)
+{
+    m_hasShuffle = shuffle;
+    m_shuffleButton.getImage()->setColor(shuffle ? sf::Color(242, 242, 242, 255) : sf::Color(173, 22, 22, 255));
+}
+
+void PlaylistForm::setRepeat(bool repeat)
+{
+    m_hasRepeat = repeat;
+    m_repeatButton.getImage()->setColor(repeat ? sf::Color(242, 242, 242, 255) : sf::Color(173, 22, 22, 255));
 }

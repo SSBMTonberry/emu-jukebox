@@ -32,7 +32,7 @@ bool ebox::ImageButton::process()
             popColors = true;
         }
 
-        if (ImGui::ImageButton(m_sprite))
+        if (ImGui::ImageButton(m_sprite, -1, sf::Color::Transparent, m_sprite.getColor()))
         {
             m_isPressed = true;
             toReturn = true;

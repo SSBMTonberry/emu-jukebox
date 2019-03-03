@@ -10,6 +10,7 @@
 #include "../gui/controls/TreeList.h"
 #include "../forms/AudioPlayerForm.h"
 #include "../misc/Tools.hpp"
+#include <random>
 
 namespace ebox
 {
@@ -56,15 +57,21 @@ namespace ebox
 
             void startNextTrack(const std::string &currentId);
             void startPreviousTrack(const std::string &currentId);
+            void startTrack(const std::string &id);
             void startRandomTrack(const std::string &currentId);
 
+            void setShuffle(bool shuffle);
+            void setRepeat(bool repeat);
+
             AudioPlayerForm *m_player;
+            bool m_hasShuffle = false;
+            bool m_hasRepeat = false;
 
             std::vector<std::pair<EmuFileInfo, int>> m_playlist;
             TreeList m_filemapping {"playlist_filemapper", "Playlist"};
 
-            ebox::ImageButton m_shuffleOnButton {"shuffle_on_button", files_mapper::gui::actions::_SHARE_PNG, files_mapper::gui::actions::_SHARE_PNG_SIZE, sf::Vector2i(30, 30)};
-            ebox::ImageButton m_shuffleOffButton {"shuffle_off_button", files_mapper::gui::actions::_UNSHARE_PNG, files_mapper::gui::actions::_UNSHARE_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_shuffleButton {"shuffle_button", files_mapper::gui::ebox::_SHUFFLE_16_PNG, files_mapper::gui::ebox::_SHUFFLE_16_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_repeatButton {"repeat_button", files_mapper::gui::ebox::_REPEAT_16_PNG, files_mapper::gui::ebox::_REPEAT_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_moveUpButton {"move_up_button", files_mapper::gui::actions::_MOVEUP_PNG, files_mapper::gui::actions::_MOVEUP_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_moveDownButton {"move_down_button", files_mapper::gui::actions::_MOVEDOWN_PNG, files_mapper::gui::actions::_MOVEDOWN_PNG_SIZE, sf::Vector2i(30, 30)};
 
