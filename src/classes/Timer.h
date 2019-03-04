@@ -8,6 +8,7 @@
 #include <chrono>
 #include <string>
 #include <fmt/format.h>
+#include "../../EmuJukeboxConfig.h"
 using namespace std::chrono_literals;
 
 namespace ebox

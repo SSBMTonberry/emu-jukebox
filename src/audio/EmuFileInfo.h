@@ -4,6 +4,7 @@
 
 #ifndef EMU_JUKEBOX_EMUFILEINFO_H
 #define EMU_JUKEBOX_EMUFILEINFO_H
+#include "../../EmuJukeboxConfig.h"
 
 #if MSVC
 #include <filesystem>

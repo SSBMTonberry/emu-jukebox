@@ -40,7 +40,11 @@ std::string ebox::Timer::getTimeElapsedMessage(std::string preMsg)
     if(m_state == TimerState::Stopped)
     {
         std::chrono::duration<double> elapsedSeconds = m_endPoint - m_startPoint;
+#if MSVC
+        time_t endTime = std::chrono::system_clock::to_time_t(m_endPoint);
+#elif
         std::time_t endTime = std::chrono::system_clock::to_time_t(m_endPoint);
+#endif
         std::string msg = fmt::format("{0} Elapsed time: {1} seconds.", preMsg, elapsedSeconds.count());
 
         return msg;
