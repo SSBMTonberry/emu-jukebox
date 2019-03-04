@@ -104,7 +104,7 @@ void ebox::PlaylistForm::onChosenChildNode(ebox::Selectable *sender)
 bool ebox::PlaylistForm::onRightClickedChildNode(ebox::Selectable *sender)
 {
     setAsSelectedChildNode(sender);
-    sender->createRightClickContextItems({"Play"});
+    sender->createRightClickContextItems({"Play", "Remove"});
     return true;
 }
 
@@ -140,21 +140,16 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
             if (owner->getId() == emuFile.getId())
             {
                 loadEmuFile(&emuFile, trackNo);
-                /*if(emuFile.exists())
-                {
-                    SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
-                    bool isValid = m_player->createStream(emuFile);
-                    if (isValid && m_player->getStream() != nullptr)
-                    {
-                        m_player->getStream()->stop();
-                        m_player->getStream()->setTrack(trackNo);
-                        m_player->getStream()->play();
-                    }
-                }
-                else
-                    SystemLog::get()->addError(fmt::format("File '{0}' no longer exists!", emuFile.getPath().string()));*/
             }
         }
+    }
+    else if(sender->getId() == "remove")
+    {
+        for(int i = 0; i < m_playlist.size(); ++i)
+            if(m_playlist[i].first.getId() == owner->getId()) m_playlist.erase(m_playlist.begin()+i);
+
+        m_filemapping.remove(owner->getId());
+
     }
 }
 

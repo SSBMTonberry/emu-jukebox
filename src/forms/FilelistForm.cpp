@@ -116,11 +116,22 @@ void FilelistForm::onChosenParentRightClickContextItems(TreeList *owner, MenuIte
         for(auto item : owner->getItems())
             addToPlaylist(item);
     }
+    else if(sender->getId() == "remove")
+    {
+        std::string id = owner->getId();
+        m_fileMap.erase(owner->getId());
+        m_filelist[owner->getId()].clear();
+        m_filelist.erase(owner->getId());
+        m_lastChosenEmuFile = nullptr;
+        m_lastChosenTreeList = nullptr;
+        m_lastTrackNo = 0;
+        SystemLog::get()->addInfo(fmt::format("'{0}' removed!", id));
+    }
 }
 
 bool FilelistForm::onRightClickedParentNode(TreeList *sender)
 {
-    sender->createRightClickContextItems({"Add all songs to playlist"});
+    sender->createRightClickContextItems({"Add all songs to playlist", "Remove"});
     return true;
 }
 

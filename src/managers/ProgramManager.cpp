@@ -139,6 +139,7 @@ void ProgramManager::createDock()
 {
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGuiViewport* viewport = ImGui::GetMainViewport();
+
     ImGui::DockBuilderRemoveNode(dockspace_id); // Clear out existing layout
     ImGui::DockBuilderAddNode(dockspace_id); //viewport->Size); // Add empty node
 
