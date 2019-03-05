@@ -20,7 +20,9 @@ ebox::PlaylistForm::PlaylistForm(const sf::Vector2<int> &position, const sf::Vec
 bool ebox::PlaylistForm::customDraw()
 {
     processPlaylistButtonPanel();
+    ImGui::BeginChild("playlist_panel", {-1, -1}, false, 0);
     m_filemapping.process();
+    ImGui::EndChild();
     return true;
 }
 

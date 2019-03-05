@@ -197,9 +197,11 @@ void ProgramManager::createMenu()
     m_menuOpenFolder.setImageRef(&m_openFolderImage);
     m_menuOpenFile.setImageRef(&m_openFileImage);
     m_menuLayoutReset.setImageRef(&m_resetLayoutImage);
+    m_menuQuit.setImageRef(&m_imgQuit);
 
     m_menuFile.addRef(&m_menuOpenFolder);
     m_menuFile.addRef(&m_menuOpenFile);
+    m_menuFile.addRef(&m_menuQuit);
 
     m_menuLayout.addRef(&m_menuLayoutReset);
 
@@ -217,6 +219,7 @@ void ProgramManager::onChosenMenuItem(MenuItem *sender)
 {
     if(sender->getId() == m_menuOpenFile.getId()) m_fileDialogFile.setOpen(true);
     else if(sender->getId() == m_menuOpenFolder.getId()) m_fileDialogFolder.setOpen(true);
+    else if(sender->getId() == m_menuQuit.getId()) m_window.close();
     else if(sender->getId() == m_menuLayoutReset.getId()) resetDock();
     else if(sender->getId() == m_menuViewPlaylist.getId()) m_formManager.toggleOpened(FormType::Playlist);
     else if(sender->getId() == m_menuViewAudioPlayer.getId()) m_formManager.toggleOpened(FormType::AudioPlayer);
@@ -240,6 +243,7 @@ void ProgramManager::registerCallbacks()
 {
     m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuOpenFile.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuQuit.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuLayoutReset.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewAudioPlayer.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewFiles.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
