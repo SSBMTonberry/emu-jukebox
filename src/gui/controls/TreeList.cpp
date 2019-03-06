@@ -127,6 +127,14 @@ ebox::Selectable *ebox::TreeList::getItem(const std::string &id)
     return &m_items.find(id)->second;
 }
 
+ebox::Selectable *ebox::TreeList::getItem(int index)
+{
+    if(index > -1 && index < (m_items.size() - 1))
+        return getItems()[index];
+
+    return nullptr;
+}
+
 /*!
  * Removes an item by its ID
  * @param id The items of the id to remove
@@ -277,4 +285,22 @@ void ebox::TreeList::setHasParentNode(bool hasParentNode)
 bool ebox::TreeList::isOpen() const
 {
     return m_isOpen;
+}
+
+void ebox::TreeList::swap(const std::string &id1, const std::string &id2)
+{
+    std::swap(m_items.find(id1)->second, m_items.find(id2)->second);
+}
+
+std::string_view ebox::TreeList::getItemId(int index)
+{
+    int i = 0;
+    for(std::map<std::string,Selectable>::iterator it = m_items.begin(); it != m_items.end(); ++it)
+    {
+        if(i == index)
+            return it->first;
+        ++i;
+    }
+
+    return nullptr;
 }

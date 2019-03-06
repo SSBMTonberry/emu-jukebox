@@ -34,8 +34,12 @@ void PlaylistForm::processPlaylistButtonPanel()
     if(m_repeatButton.process())
         setRepeat(!m_hasRepeat);
 
-    m_moveUpButton.process();
-    m_moveDownButton.process();
+    if(m_moveUpButton.process())
+        moveItemUp();
+
+    if(m_moveDownButton.process())
+        moveItemDown();
+
     ImGui::EndChild();
 }
 
@@ -318,4 +322,66 @@ void PlaylistForm::setRepeat(bool repeat)
 {
     m_hasRepeat = repeat;
     m_repeatButton.getImage()->setColor(repeat ? sf::Color(242, 242, 242, 255) : sf::Color(173, 22, 22, 255));
+}
+
+void PlaylistForm::moveItemUp()
+{
+    int index = getSelectedIndex();
+    if(index > -1 && index > 0)
+    {
+        int swapIndex = index - 1;
+        auto selected = m_filemapping.getItemId(index);
+        auto toSwap = m_filemapping.getItemId(swapIndex);
+
+        //Swap the actual items
+        m_filemapping.swap(selected.data(), toSwap.data());
+    }
+}
+
+void PlaylistForm::moveItemDown()
+{
+    int index = getSelectedIndex();
+    if(index > -1 && index < (m_filemapping.getItems().size() - 1))
+    {
+        int swapIndex = index + 1;
+        auto selected = m_filemapping.getItemId(index);
+        auto toSwap = m_filemapping.getItemId(swapIndex);
+
+        //Swap the actual items
+        m_filemapping.swap(selected.data(), toSwap.data());
+    }
+}
+
+Selectable *PlaylistForm::getSelected()
+{
+    for (int i = 0; i < m_filemapping.getItems().size(); ++i)
+    {
+        auto item = m_filemapping.getItems()[i];
+        if(item->isSelected())
+            return item;
+    }
+
+    return nullptr;
+}
+
+int PlaylistForm::getSelectedIndex()
+{
+    for (int i = 0; i < m_filemapping.getItems().size(); ++i)
+    {
+        auto item = m_filemapping.getItems()[i];
+        if(item->isSelected())
+            return i;
+    }
+    return -1;
+}
+
+EmuFileInfo *PlaylistForm::getEmuFileInfo(const std::string &id)
+{
+    for(int i = 0; i < m_playlist.size(); ++i)
+    {
+        if(m_playlist[i].first.getId() == id)
+            return &m_playlist[i].first;
+    }
+
+    return nullptr;
 }

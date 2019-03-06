@@ -48,6 +48,11 @@ namespace ebox
 
             void setAsSelectedChildNode(Selectable *child);
             void setAsSelectedChildNode(const std::string &id);
+            Selectable *getSelected();
+            EmuFileInfo * getEmuFileInfo(const std::string &id);
+            int getSelectedIndex();
+            void moveItemUp();
+            void moveItemDown();
 
             bool loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo);
 

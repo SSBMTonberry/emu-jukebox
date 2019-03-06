@@ -42,7 +42,11 @@ namespace ebox
 
             void setHasParentNode(bool hasParentNode);
 
+            void swap(const std::string &id1, const std::string &id2);
+
             ebox::Selectable * getItem(const std::string &id);
+            ebox::Selectable * getItem(int index);
+            std::string_view getItemId(int index);
             std::vector<ebox::Selectable *> getItems();
 
             bool isOpen() const;

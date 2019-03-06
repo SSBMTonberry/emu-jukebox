@@ -240,6 +240,7 @@ void ProgramManager::onFolderChosen(const std::string &path)
 }
 
 void ProgramManager::registerCallbacks()
+
 {
     m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuOpenFile.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
