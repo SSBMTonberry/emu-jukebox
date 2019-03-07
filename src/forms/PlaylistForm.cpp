@@ -124,11 +124,11 @@ void ebox::PlaylistForm::onDoubleClickChildNode(ebox::Selectable *sender)
             {
                 SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
                 bool isValid = m_player->createStream(emuFile);
-                if (isValid && m_player->getStream() != nullptr)
+                if (isValid)
                 {
-                    m_player->getStream()->stop();
-                    m_player->getStream()->setTrack(trackNo);
-                    m_player->getStream()->play();
+                    m_player->stop();
+                    m_player->setTrack(trackNo);
+                    m_player->play();
                 }
             }
             else
@@ -177,12 +177,12 @@ void PlaylistForm::setAsSelectedChildNode(const std::string &id)
 
 bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
 {
-    if(m_player != nullptr && containsId(m_player->getStream()->getId()))
+    if(m_player != nullptr && containsId(m_player->getStreamId()))
     {
         if(m_hasShuffle)
-            startRandomTrack(m_player->getStream()->getId());
+            startRandomTrack(m_player->getStreamId());
         else
-            startNextTrack(m_player->getStream()->getId());
+            startNextTrack(m_player->getStreamId());
         return true;
     }
 
@@ -191,12 +191,12 @@ bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
 
 bool PlaylistForm::onPreviousTrack(AudioPlayerForm *player)
 {
-    if(m_player != nullptr && containsId(m_player->getStream()->getId()))
+    if(m_player != nullptr && containsId(m_player->getStreamId()))
     {
         if(m_hasShuffle)
-            startRandomTrack(m_player->getStream()->getId());
+            startRandomTrack(m_player->getStreamId());
         else
-            startPreviousTrack(m_player->getStream()->getId());
+            startPreviousTrack(m_player->getStreamId());
         return true;
     }
 
@@ -216,9 +216,9 @@ bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
     if(m_player != nullptr && containsId(stream->getId()))
     {
         if(m_hasRepeat)
-            startTrack(m_player->getStream()->getId());
+            startTrack(m_player->getStreamId());
         else if(m_hasShuffle)
-            startRandomTrack(m_player->getStream()->getId());
+            startRandomTrack(m_player->getStreamId());
         else
             startNextTrack(stream->getId());
         return true;
@@ -298,11 +298,11 @@ bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
 
         SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", emuFileInfo->getFilename(), trackNo));
         bool isValid = m_player->createStream(*emuFileInfo);
-        if (isValid && m_player->getStream() != nullptr)
+        if (isValid)
         {
-            m_player->getStream()->stop();
-            m_player->getStream()->setTrack(trackNo);
-            m_player->getStream()->play();
+            m_player->stop();
+            m_player->setTrack(trackNo);
+            m_player->play();
             return true;
         }
     }

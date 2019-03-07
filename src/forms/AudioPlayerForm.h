@@ -21,6 +21,12 @@ namespace ebox
     class AudioPlayerForm : public Form
     {
         public:
+            enum class AudioPlayerState
+            {
+                Stopped = 0,
+                Play = 1,
+                Pause = 2
+            };
             typedef std::function<bool(AudioPlayerForm* )> func_audioplayer; //OnCancel(), for instance
             typedef std::function<bool(AudioPlayerForm*, EmuStream *)> func_audioplayertrack;
 
@@ -33,6 +39,9 @@ namespace ebox
 
             bool createStream(const EmuFileInfo &info);
             void setStream(std::unique_ptr<EmuStream> stream);
+            void setTrack(int trackNo);
+
+            std::string getStreamId();
 
             void registerOnPlayCallback(const func_audioplayer &cb);
             void registerOnStopCallback(const func_audioplayer &cb);
@@ -41,7 +50,12 @@ namespace ebox
             void registerOnPreviousTrackCallback(const func_audioplayer &cb);
             void registerOnTrackEndedCallback(const func_audioplayertrack &cb);
 
-            EmuStream *getStream() const;
+            //EmuStream connected functions
+            void play();
+            void stop();
+            void pause();
+
+            //EmuStream *getStream() const;
 
             static const std::string ID;
 
@@ -60,6 +74,7 @@ namespace ebox
             std::string getMillisecondsAsTimeString(int milliseconds);
 
             bool m_hasItemsFocused = false;
+            AudioPlayerState m_state = AudioPlayerState::Stopped;
 
             //Callbacks
             std::vector<func_audioplayer> m_callbackOnPlay;

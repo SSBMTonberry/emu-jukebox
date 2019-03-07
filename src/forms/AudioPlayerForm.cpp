@@ -26,7 +26,12 @@ void AudioPlayerForm::initialize()
     m_playButton.setOnSameLine(true);
     m_nextButton.setOnSameLine(true);
 
+    m_playButton.getImage()->setColor(sf::Color::Green);
+    m_pauseButton.getImage()->setColor(sf::Color::Yellow);
+    m_stopButton.getImage()->setColor(sf::Color::Red);
+
     m_tempo.setValue(1);
+    m_state = AudioPlayerState::Stopped;
 }
 
 void AudioPlayerForm::handleEvents()
@@ -67,23 +72,23 @@ void AudioPlayerForm::drawAudioPanel()
         for(auto const &callback : m_callbackOnStop)
             abort = callback(this) ? true : abort;
 
-        if(!abort) m_stream->stop();
+        if(!abort) stop();
     }
-    if(m_pauseButton.process() && m_stream != nullptr)
+    if(m_state == AudioPlayerState::Play && m_pauseButton.process() && m_stream != nullptr)
     {
         bool abort = false;
         for(auto const &callback : m_callbackOnPause)
             abort = callback(this) ? true : abort;
 
-        if(!abort) m_stream->pause();
+        if(!abort) pause();
     }
-    if(m_playButton.process() && m_stream != nullptr)
+    if(m_state != AudioPlayerState::Play && m_playButton.process() && m_stream != nullptr)
     {
         bool abort = false;
         for(auto const &callback : m_callbackOnPlay)
             abort = callback(this) ? true : abort;
 
-        if(!abort) m_stream->play();
+        if(!abort) play();
     }
     if(m_nextButton.process() && m_stream != nullptr)
     {
@@ -198,18 +203,20 @@ bool AudioPlayerForm::createStream(const EmuFileInfo &info)
 {
     m_stream = std::make_unique<EmuStream>(info.getPath().string());
     m_stream->setId(info.getId());
+    m_state = AudioPlayerState::Stopped;
     return m_stream->isValid();
 }
 
 void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 {
     m_stream = std::move(stream);
+    m_state = AudioPlayerState::Stopped;
 }
 
-EmuStream *AudioPlayerForm::getStream() const
-{
-    return m_stream.get();
-}
+//EmuStream *AudioPlayerForm::getStream() const
+//{
+//    return m_stream.get();
+//}
 
 /*!
  * Register a callback that will be called right BEFORE the play-action, when clicking the Play-button.
@@ -274,4 +281,39 @@ void AudioPlayerForm::registerOnPreviousTrackCallback(const AudioPlayerForm::fun
 void AudioPlayerForm::registerOnTrackEndedCallback(const AudioPlayerForm::func_audioplayertrack &cb)
 {
     m_callbackOnTrackEnded.emplace_back(cb);
+}
+
+void AudioPlayerForm::setTrack(int trackNo)
+{
+    if(m_stream != nullptr)
+        m_stream->setTrack(trackNo);
+}
+
+void AudioPlayerForm::play()
+{
+    m_state = AudioPlayerState::Play;
+    if(m_stream != nullptr)
+        m_stream->play();
+}
+
+void AudioPlayerForm::stop()
+{
+    m_state = AudioPlayerState::Stopped;
+    if(m_stream != nullptr)
+        m_stream->stop();
+}
+
+void AudioPlayerForm::pause()
+{
+    m_state = AudioPlayerState::Pause;
+    if(m_stream != nullptr)
+        m_stream->pause();
+}
+
+std::string AudioPlayerForm::getStreamId()
+{
+    if(m_stream != nullptr)
+        return m_stream->getId();
+
+    return nullptr;
 }

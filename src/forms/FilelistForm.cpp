@@ -160,15 +160,15 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
             {
                 SystemLog::get()->addInfo(fmt::format("'{0}' loaded! Track number: {1}", sender->getLabel(), trackNo));
                 bool isValid = m_audioPlayer->createStream(*emuFile);
-                if (isValid && m_audioPlayer->getStream() != nullptr)
+                if (isValid)
                 {
                     m_lastChosenEmuFile = emuFile;
                     m_lastChosenTreeList = filelistItem;
                     m_lastTrackNo = trackNo;
 
-                    m_audioPlayer->getStream()->stop();
-                    m_audioPlayer->getStream()->setTrack(trackNo);
-                    m_audioPlayer->getStream()->play();
+                    m_audioPlayer->stop();
+                    m_audioPlayer->setTrack(trackNo);
+                    m_audioPlayer->play();
                 }
             }
             else
@@ -271,7 +271,7 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
 
 bool FilelistForm::onNextTrack(AudioPlayerForm *player)
 {
-    if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStream()->getId())
+    if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStreamId())
     {
         auto items = m_lastChosenTreeList->getItems();
         ++m_lastTrackNo;
@@ -285,7 +285,7 @@ bool FilelistForm::onNextTrack(AudioPlayerForm *player)
 
 bool FilelistForm::onPreviousTrack(AudioPlayerForm *player)
 {
-    if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStream()->getId())
+    if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStreamId())
     {
         auto items = m_lastChosenTreeList->getItems();
         --m_lastTrackNo;
