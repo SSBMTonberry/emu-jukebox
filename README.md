@@ -32,7 +32,10 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - In a few cases, when you call a lot of "next song" commands, you will end up with a crash ([#24](https://github.com/SSBMTonberry/emu-jukebox/issues/24)).
 - If you remove a lot of random elements from a big playlist, the program might crash ([#7](https://github.com/SSBMTonberry/emu-jukebox/issues/7))
 
-## screenshot:
+## Screenshot:
 ![alt text](https://raw.githubusercontent.com/SSBMTonberry/emu-jukebox/master/logo/emu-jukebox_screen.png?token=AY_g1U1rkkxq0Ol-rTrvSQXLo_rKv8Jzks5cjBMZwA%3D%3D "Emu Jukebox Screenshot") 
 
-## Libraries 
+## Libraries used by Emu-Jukebox
+- [Game_Music_Emu](http://blargg.8bitalley.com/libs/audio.html#Game_Music_Emu) - Used for emulating the sound chip of each retro console.
+- [SFML](https://github.com/SFML/SFML) - For sound streaming, window, clipboard and displaying graphics.
+- [Dear ImGui](https://github.com/ocornut/imgui) - For anything GUI related.
