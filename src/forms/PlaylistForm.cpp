@@ -164,7 +164,13 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
     else if(sender->getId() == "remove")
     {
         for(int i = 0; i < m_playlist.size(); ++i)
-            if(m_playlist[i].first.getId() == owner->getId()) m_playlist.erase(m_playlist.begin()+i);
+        {
+            if (m_playlist[i].first.getId() == owner->getId())
+            {
+                m_playlist.erase(m_playlist.begin() + i);
+                break;
+            }
+        }
 
         m_filemapping.remove(owner->getId());
 

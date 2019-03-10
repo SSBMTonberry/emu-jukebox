@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include "Selectable.h"
+#include "../../forms/SystemLog.h"
 
 namespace ebox
 {

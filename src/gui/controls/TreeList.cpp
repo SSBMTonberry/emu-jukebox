@@ -24,11 +24,13 @@ bool ebox::TreeList::process()
         if(m_isOpen)
         {
             processMouseEvents();
+            int i = 0;
             //Child nodes
             for(auto & [pos, item] : m_items)
             {
                 if(item.process())
                     isAnyItemActivated = true;
+                ++i;
             }
             if(m_hasParentNode)
                 ImGui::TreePop();
@@ -142,13 +144,19 @@ ebox::Selectable *ebox::TreeList::getItem(int index)
 bool ebox::TreeList::remove(const std::string &id)
 {
     //int i = 0;
-    for(std::map<std::string, ebox::Selectable>::iterator it = m_items.begin(); it != m_items.end();it++)
+    SystemLog::get()->addDebug(fmt::format("Attempting to delete {0} from {1} ({2} items)", id, getId(), m_items.size()));
+    //auto it = m_items.find(id);
+    //if(it != m_items.end())
+    for(std::map<std::string, ebox::Selectable>::iterator it = m_items.begin(); it != m_items.end();)//;it++)
     {
         if(it->first == id)
         {
-            m_items.erase(it);
+            it = m_items.erase(it);
+            SystemLog::get()->addInfo(fmt::format("{0} removed from {1}! New size: {2}", id, getId(), m_items.size()));
             return true;
         }
+        else
+            ++it;
     }
 
     return false;
