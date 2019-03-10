@@ -74,6 +74,7 @@ namespace ebox
             void setOnSameLine(bool putOnSameLine);
             void setTooltip(const std::optional<Tooltip> &tooltip);
             void setIsVisible(bool isVisible);
+            void setSpacing(float spacing);
 
             void createBasicTooltip(const std::string &text);
 
@@ -85,6 +86,7 @@ namespace ebox
             const std::string &getId() const;
             const std::string &getLabel() const;
             ControlType getType() const;
+            float getSpacing() const;
 
         protected:
             virtual void assignColors();
@@ -95,6 +97,7 @@ namespace ebox
             std::string m_label;
             std::optional<ebox::Tooltip> m_tooltip = std::nullopt;
             ControlType m_type = ControlType::Unassigned;
+            float m_spacing = -1.f;
 
             bool m_colorIsChanged = false;
             bool m_useDefaultColor = false; //Forces default color set by the theme

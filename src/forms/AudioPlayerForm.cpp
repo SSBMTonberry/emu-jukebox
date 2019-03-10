@@ -53,9 +53,9 @@ bool AudioPlayerForm::customDraw()
 void AudioPlayerForm::drawAudioPanel()
 {
     ImGui::BeginChild("audio_player_panel", {-1, 80}, true, 0);
-    int numberOfButtons = 5;
+    int numberOfButtons = 4;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
-    size_t spacingLength2 = (getCurrentWindowSize().x / 6);
+    size_t spacingLength2 = (spacingLength - 160);
 
     ImGui::SameLine(0, spacingLength);
     if(m_previousButton.process() && m_stream != nullptr)

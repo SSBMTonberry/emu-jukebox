@@ -20,6 +20,14 @@ ebox::FilelistForm::FilelistForm(const sf::Vector2<int> &position, const sf::Vec
 bool ebox::FilelistForm::customDraw()
 {
     //m_filelist.process();
+    ImGui::BeginChild("filelist_btn_panel", {-1, 30}, false, 0);
+    m_removeAllButton.setSpacing(getCurrentWindowSize().x - 40);
+    if(m_removeAllButton.process())
+        removeAllTracks();
+    ImGui::EndChild();
+    ImGui::Separator();
+
+    ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
     for(auto &[id, value]: m_filelist)
     {
         value.process();
@@ -28,11 +36,14 @@ bool ebox::FilelistForm::customDraw()
             addTracksToFileList(id, m_fileMap[id]);
         }
     }
+    ImGui::EndChild();
     return true;
 }
 
 void ebox::FilelistForm::initialize()
 {
+    m_removeAllButton.setOnSameLine(true);
+    m_removeAllButton.setTooltip(std::make_optional<Tooltip>("Remove all"));
     //m_filelist.setHasParentNode(false);
 }
 
@@ -300,6 +311,16 @@ bool FilelistForm::onPreviousTrack(AudioPlayerForm *player)
 bool FilelistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
     return true;
+}
+
+void FilelistForm::removeAllTracks()
+{
+    m_lastChosenTreeList = nullptr;
+    m_lastChosenEmuFile = nullptr;
+    m_lastTrackNo = 0;
+    m_fileMap.clear();
+    m_filelist.clear();
+    SystemLog::get()->addInfo("Removed all tracks!");
 }
 
 

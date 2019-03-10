@@ -51,8 +51,10 @@ namespace ebox
             Selectable *getSelected();
             EmuFileInfo * getEmuFileInfo(const std::string &id);
             int getSelectedIndex();
+
             void moveItemUp();
             void moveItemDown();
+            void removeAllItems();
 
             bool loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo);
 
@@ -79,6 +81,7 @@ namespace ebox
             ebox::ImageButton m_repeatButton {"repeat_button", files_mapper::gui::ebox::_REPEAT_16_PNG, files_mapper::gui::ebox::_REPEAT_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_moveUpButton {"move_up_button", files_mapper::gui::actions::_MOVEUP_PNG, files_mapper::gui::actions::_MOVEUP_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_moveDownButton {"move_down_button", files_mapper::gui::actions::_MOVEDOWN_PNG, files_mapper::gui::actions::_MOVEDOWN_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::ImageButton m_removeAllButton {"remove_all_button", files_mapper::gui::debugger::_KILLPROCESS_PNG, files_mapper::gui::debugger::_KILLPROCESS_PNG_SIZE, sf::Vector2i(30, 30)};
 
     };
 }

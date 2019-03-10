@@ -69,6 +69,7 @@ namespace ebox
 
             void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
             void addToPlaylist(Selectable* item);
+            void removeAllTracks();
 
             bool onRightClickedParentNode(TreeList *sender);
             void onChosenParentRightClickContextItems(TreeList * owner, MenuItem *sender);
@@ -98,6 +99,7 @@ namespace ebox
 
             ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
 
+            ebox::ImageButton m_removeAllButton {"remove_all_button", files_mapper::gui::debugger::_KILLPROCESS_PNG, files_mapper::gui::debugger::_KILLPROCESS_PNG_SIZE, sf::Vector2i(30, 30)};
             //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };

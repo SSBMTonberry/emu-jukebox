@@ -22,7 +22,6 @@ bool ebox::ImageButton::process()
 {
     if(Control::process())
     {
-
         m_isPressed = false;
         bool popColors = false;
         bool toReturn = false;
@@ -32,11 +31,17 @@ bool ebox::ImageButton::process()
             popColors = true;
         }
 
+        if (m_spacing > -1.f)
+            ImGui::SameLine(0, m_spacing);
+
         if (ImGui::ImageButton(m_sprite, -1, sf::Color::Transparent, m_sprite.getColor()))
         {
             m_isPressed = true;
             toReturn = true;
         }
+
+        if(ImGui::IsItemHovered() && m_tooltip.has_value())
+            m_tooltip->show();
 
         if (popColors && !m_useDefaultColor)
         {

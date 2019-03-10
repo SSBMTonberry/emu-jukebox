@@ -19,7 +19,6 @@ void ClipboardManager::update()
     bool valuesHasBeenChanged = false;
     //string osStr = "";
     string osStr;
-
     sf::String osSfStr = sf::Clipboard::getString();
     osStr = ws2s(osSfStr.toWideString());
 

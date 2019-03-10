@@ -109,3 +109,13 @@ void ebox::Control::setId(const std::string &id)
     m_id = id;
 }
 
+float ebox::Control::getSpacing() const
+{
+    return m_spacing;
+}
+
+void ebox::Control::setSpacing(float spacing)
+{
+    m_spacing = spacing;
+}
+

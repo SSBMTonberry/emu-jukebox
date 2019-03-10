@@ -28,7 +28,7 @@ bool ebox::PlaylistForm::customDraw()
 
 void PlaylistForm::processPlaylistButtonPanel()
 {
-    ImGui::BeginChild("playlist_btn_panel", {-1, 40}, true, 0);
+    ImGui::BeginChild("playlist_btn_panel", {-1, 30}, false, 0);
     if(m_shuffleButton.process())
         setShuffle(!m_hasShuffle);
     if(m_repeatButton.process())
@@ -40,17 +40,29 @@ void PlaylistForm::processPlaylistButtonPanel()
     if(m_moveDownButton.process())
         moveItemDown();
 
+    int numberOfButtons = 5;
+    size_t spacingLength = getCurrentWindowSize().x - (numberOfButtons * 35);
+    m_removeAllButton.setSpacing(spacingLength);
+    if(m_removeAllButton.process())
+        removeAllItems();
     ImGui::EndChild();
+    ImGui::Separator();
 }
 
 void ebox::PlaylistForm::initialize()
 {
     m_filemapping.setHasParentNode(false);
     m_shuffleButton.setOnSameLine(true);
+    m_shuffleButton.setTooltip(std::make_optional<Tooltip>("Shuffle"));
     m_repeatButton.setOnSameLine(true);
+    m_repeatButton.setTooltip(std::make_optional<Tooltip>("Repeat"));
+    m_moveUpButton.setOnSameLine(true);
+    m_moveUpButton.setTooltip(std::make_optional<Tooltip>("Move item up"));
     m_moveUpButton.setOnSameLine(true);
     m_moveDownButton.setOnSameLine(true);
-
+    m_moveDownButton.setTooltip(std::make_optional<Tooltip>("Move item down"));
+    m_removeAllButton.setOnSameLine(true);
+    m_removeAllButton.setTooltip(std::make_optional<Tooltip>("Remove all"));
     setShuffle(m_hasShuffle);
     setRepeat(m_hasRepeat);
 }
@@ -315,13 +327,13 @@ bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
 void PlaylistForm::setShuffle(bool shuffle)
 {
     m_hasShuffle = shuffle;
-    m_shuffleButton.getImage()->setColor(shuffle ? sf::Color(242, 242, 242, 255) : sf::Color(173, 22, 22, 255));
+    m_shuffleButton.getImage()->setColor(shuffle ? sf::Color(20, 240, 20, 255) : sf::Color(173, 22, 22, 255));
 }
 
 void PlaylistForm::setRepeat(bool repeat)
 {
     m_hasRepeat = repeat;
-    m_repeatButton.getImage()->setColor(repeat ? sf::Color(242, 242, 242, 255) : sf::Color(173, 22, 22, 255));
+    m_repeatButton.getImage()->setColor(repeat ? sf::Color(20, 240, 20, 255) : sf::Color(173, 22, 22, 255));
 }
 
 void PlaylistForm::moveItemUp()
@@ -384,4 +396,11 @@ EmuFileInfo *PlaylistForm::getEmuFileInfo(const std::string &id)
     }
 
     return nullptr;
+}
+
+void PlaylistForm::removeAllItems()
+{
+    m_filemapping.clear();
+    m_playlist.clear();
+    SystemLog::get()->addInfo("Removed all items from playlist!");
 }
