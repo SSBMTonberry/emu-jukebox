@@ -15,6 +15,7 @@
 #include "../widgets/FileDialog.h"
 #include "../gui/controls/InputFloat.h"
 #include "../audio/EmuFileInfo.h"
+#include "../gui/controls/Visualizer.h"
 
 namespace ebox
 {
@@ -93,6 +94,7 @@ namespace ebox
             ebox::ImageButton m_playButton {"test_play_button", files_mapper::gui::ebox::_PLAY_16_PNG, files_mapper::gui::ebox::_PLAY_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_nextButton {"test_next_button", files_mapper::gui::ebox::_NEXT_TRACK_16_PNG, files_mapper::gui::ebox::_NEXT_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::InputFloat m_tempo {"tempo_float", "tempo", 0.1, 5, 0.1, 0.3};
+            ebox::Visualizer m_visualizer{"visualizer", "viz"};
     };
 }
 

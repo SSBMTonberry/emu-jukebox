@@ -52,7 +52,14 @@ bool AudioPlayerForm::customDraw()
 
 void AudioPlayerForm::drawAudioPanel()
 {
+    ImGui::BeginChild("visualizer_panel", { -1, 100 }, true, 0);
+    if (m_visualizer.process() && m_stream != nullptr) {
+        //???
+    }
+    ImGui::EndChild();
     ImGui::BeginChild("audio_player_panel", {-1, 80}, true, 0);
+
+
     int numberOfButtons = 4;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
     size_t spacingLength2 = (spacingLength - 160);
@@ -204,12 +211,14 @@ bool AudioPlayerForm::createStream(const EmuFileInfo &info)
     m_stream = std::make_unique<EmuStream>(info.getPath().string());
     m_stream->setId(info.getId());
     m_state = AudioPlayerState::Stopped;
+    m_visualizer.attachToStream(m_stream);
     return m_stream->isValid();
 }
 
 void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 {
     m_stream = std::move(stream);
+    m_visualizer.attachToStream(m_stream);
     m_state = AudioPlayerState::Stopped;
 }
 
