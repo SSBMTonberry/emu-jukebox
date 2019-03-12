@@ -67,7 +67,7 @@ namespace ebox
         private:
             void initialize();
 
-            void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
+            bool addTracksToFileList(const std::string &id, const EmuFileInfo &info);
             void addToPlaylist(Selectable* item);
             void removeAllTracks();
 
@@ -96,6 +96,7 @@ namespace ebox
 
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;
+            std::string m_filter;
 
             ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
 

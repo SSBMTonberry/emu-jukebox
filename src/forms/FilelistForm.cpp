@@ -21,6 +21,7 @@ bool ebox::FilelistForm::customDraw()
 {
     //m_filelist.process();
     ImGui::BeginChild("filelist_btn_panel", {-1, 30}, false, 0);
+    ImGui::InputText("Filter search", &m_filter);
     m_removeAllButton.setSpacing(getCurrentWindowSize().x - 40);
     if(m_removeAllButton.process())
         removeAllTracks();
@@ -30,10 +31,13 @@ bool ebox::FilelistForm::customDraw()
     ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
     for(auto &[id, value]: m_filelist)
     {
-        value.process();
-        if(value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded())
-        {
-            addTracksToFileList(id, m_fileMap[id]);
+        bool didAddTrack = false;
+        if (((m_filter.length() == 0 && value.isOpen()) || m_filter.length() > 0)) {
+            m_fileMap[id].loadEmuDataIfNotLoaded();
+            didAddTrack = addTracksToFileList(id, m_fileMap[id]);
+        }
+        if (m_filter.length() == 0 || (didAddTrack || value.getLabel().find(m_filter) != std::string::npos)) {
+            value.process();
         }
     }
     ImGui::EndChild();
@@ -261,23 +265,28 @@ void FilelistForm::setPlaylist(PlaylistForm *playlist)
     m_playlist = playlist;
 }
 
-void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
+bool FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
 {
+    bool addedTrack = false;
     auto tracks = info.getTracks();
 
     for(int i = 0; i < tracks.size(); ++i)
     {
         std::string track = tracks[i];
-        int playLength = info.getTrackPlayLengths()[i];
-        //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-        //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-        auto *item = m_filelist[id].add(fmt::format("{0} ({1})", track, tools::string::GetMillisecondsAsTimeString(playLength, false)), &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-        item->setId(id);
-        item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
-        item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
-        item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
-        item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
+        if (m_filter.length() == 0 || (m_filter.length() > 0 && track.find(m_filter) != std::string::npos)) {
+            int playLength = info.getTrackPlayLengths()[i];
+            //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
+            //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+            auto *item = m_filelist[id].add(fmt::format("{0} ({1})", track, tools::string::GetMillisecondsAsTimeString(playLength, false)), &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+            item->setId(id);
+            item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
+            item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
+            item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
+            item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
+            addedTrack = true;
+        }
     }
+    return addedTrack;
 }
 
 bool FilelistForm::onNextTrack(AudioPlayerForm *player)
