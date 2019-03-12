@@ -145,9 +145,15 @@ bool ebox::EmuStream::onGetData(sf::SoundStream::Chunk &data)
 
     m_emu->play(m_samples.size(), &m_samples[0]);
     m_timePlayed = m_emu->tell();// * m_info.getTempo();
+
+    for (auto const& observer : m_sampleObservers) {
+        observer(&m_samples[0], m_samples.size());
+    }
+
     // Fill the chunk parameters
     data.samples     = &m_samples[0];
     data.sampleCount = m_samples.size(); //static_cast<std::size_t>(m_file.read(&m_samples[0], m_samples.size()));
+
 
     if (!data.sampleCount)
     {
@@ -405,6 +411,11 @@ void *ebox::EmuStream::getData() const
 size_t ebox::EmuStream::getDataSize() const
 {
     return m_dataSize;
+}
+
+
+void ebox::EmuStream::registerSampleObserver(func_sampleObserver callback) {
+    m_sampleObservers.emplace_back(std::move(callback));
 }
 
 bool ebox::EmuStream::isValid() const

@@ -10,9 +10,11 @@
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Config.hpp>
 #include <iomanip>
 #include <iostream>
 #include <cstring>
+#include <functional>
 #include "Voice.h"
 #include "EmuTrackInfo.h"
 #include "EmuEqualizer.h"
@@ -22,6 +24,7 @@ namespace ebox
 {
     class EmuStream : public sf::SoundStream
     {
+        typedef std::function<void(const sf::Int16*, size_t)> func_sampleObserver;
         public:
             enum class Mode
             {
@@ -73,6 +76,8 @@ namespace ebox
             int getNumberOfTracks() const;
             const std::string &getId() const;
 
+            void registerSampleObserver(func_sampleObserver callback);
+
             bool isValid() const;
 
         protected:
@@ -85,6 +90,7 @@ namespace ebox
             void copy(const EmuStream &other);
             void move(EmuStream &&other);
 
+            std::vector<func_sampleObserver> m_sampleObservers;
             std::vector<sf::Int16> m_samples;     ///< Temporary buffer of samples
             sf::Mutex m_mutex;       ///< Mutex protecting the data
 

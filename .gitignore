@@ -35,3 +35,11 @@ cmake-build-release/
 \.vscode/
 
 build/
+
+# Visual Studio
+CMakeFiles/
+.vs/*
+*.vcxproj*
+*.sln
+cmake_install.cmake
+CMakeSettings.json
