@@ -24,7 +24,7 @@ bool ebox::Visualizer::process() {
         std::vector<float> samples;
 
         /// Convert Int16 samples to float samples
-        auto convertAndAddInt16ToFloat = [&samples](const sf::Int16 n) {samples.push_back((float) n / std::numeric_limits<signed short>::max()); };
+        auto convertAndAddInt16ToFloat = [&samples](const sf::Int16 n) {samples.push_back((float) n / std::numeric_limits<sf::Int16>::max()); };
         std::for_each(m_samples, m_samples + m_samplesSize/2, convertAndAddInt16ToFloat);
 
         /// Plot samples as waveform
@@ -59,7 +59,8 @@ bool ebox::Visualizer::process() {
             index++;
         }
         /// Draw frequency spectrum
-        ImGui::PlotHistogram("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0, 1, ImVec2(size.x, 40));
+        //ImGui::PlotHistogram("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0, 1, ImVec2(size.x, 40)); //RBP - 12.03.2019 - Changed to PlotLines
+        ImGui::PlotLines("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0.f, 1.0f, ImVec2(size.x, 40)); //RBP - 12.03.2019 - Was Histogram originally.
         return true;
     }
     return false;
