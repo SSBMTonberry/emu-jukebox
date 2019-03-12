@@ -29,15 +29,16 @@ bool ebox::FilelistForm::customDraw()
     ImGui::Separator();
 
     ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
-    for(auto &[id, value]: m_filelist)
-    {
-        bool didAddTrack = false;
-        if (((m_filter.length() == 0 && value.isOpen()) || m_filter.length() > 0)) {
-            m_fileMap[id].loadEmuDataIfNotLoaded();
-            didAddTrack = addTracksToFileList(id, m_fileMap[id]);
-        }
-        if (m_filter.length() == 0 || (didAddTrack || value.getLabel().find(m_filter) != std::string::npos)) {
+    for(auto &[id, value]: m_filelist) {        
+        if (m_filter.length() == 0 
+            ||  value.getLabel().end() 
+                != std::search(value.getLabel().begin(), value.getLabel().end(),
+                           m_filter.begin(), m_filter.end(),
+                           [](char ch1, char ch2) -> int { return std::toupper(ch1) == std::toupper(ch2); })) {
             value.process();
+            if (value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded()) {
+                addTracksToFileList(id, m_fileMap[id]);
+            }
         }
     }
     ImGui::EndChild();
@@ -97,7 +98,6 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                 {
                     m_fileMap[entry.path().filename().string()].setId(entry.path().filename().string());
                     m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
-
                     m_filelist[entry.path().filename().string()].registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedParentNode, this, std::placeholders::_1));
                     m_filelist[entry.path().filename().string()].registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenParentRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
                 }
@@ -265,28 +265,23 @@ void FilelistForm::setPlaylist(PlaylistForm *playlist)
     m_playlist = playlist;
 }
 
-bool FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
+void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
 {
-    bool addedTrack = false;
     auto tracks = info.getTracks();
 
     for(int i = 0; i < tracks.size(); ++i)
     {
         std::string track = tracks[i];
-        if (m_filter.length() == 0 || (m_filter.length() > 0 && track.find(m_filter) != std::string::npos)) {
-            int playLength = info.getTrackPlayLengths()[i];
-            //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
-            //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-            auto *item = m_filelist[id].add(fmt::format("{0} ({1})", track, tools::string::GetMillisecondsAsTimeString(playLength, false)), &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
-            item->setId(id);
-            item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
-            item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
-            item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
-            item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
-            addedTrack = true;
-        }
+        int playLength = info.getTrackPlayLengths()[i];
+        //std::string trackNumber = (i < 9) ? fmt::format("0{0}", i+1) : fmt::format("{0}", i+1);
+        //auto *item = m_filelist[entry.path().filename().string()].add(fmt::format("{0} - {1}", trackNumber, track.getSong()), files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+        auto *item = m_filelist[id].add(fmt::format("{0} ({1})", track, tools::string::GetMillisecondsAsTimeString(playLength, false)), &audioImg); //files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE);
+        item->setId(id);
+        item->registerOnChosenCallback(std::bind(&FilelistForm::onChosenChildNode, this, std::placeholders::_1));
+        item->registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedChildNode, this, std::placeholders::_1));
+        item->registerOnDoubleClickCallback(std::bind(&FilelistForm::onDoubleClickChildNode, this, std::placeholders::_1));
+        item->registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
     }
-    return addedTrack;
 }
 
 bool FilelistForm::onNextTrack(AudioPlayerForm *player)

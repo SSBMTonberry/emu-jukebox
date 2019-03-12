@@ -67,7 +67,7 @@ namespace ebox
         private:
             void initialize();
 
-            bool addTracksToFileList(const std::string &id, const EmuFileInfo &info);
+            void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
             void addToPlaylist(Selectable* item);
             void removeAllTracks();
 
