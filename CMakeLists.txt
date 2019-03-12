@@ -143,7 +143,7 @@ set(GUI_SOURCE_FILES src/gui/controls/Button.cpp src/gui/controls/Button.h src/g
                      src/gui/forms/MessagePopup.cpp src/gui/forms/MessagePopup.h src/gui/forms/Popup.cpp src/gui/forms/Popup.h
                      src/gui/forms/TextEditorForm.cpp src/gui/forms/TextEditorForm.h src/gui/properties/RadioData.cpp src/gui/properties/RadioData.h
                      src/gui/properties/Tooltip.cpp src/gui/properties/Tooltip.h src/gui/themes/Theme.cpp src/gui/themes/Theme.h
-                     src/gui/TextEditor.cpp src/gui/TextEditor.h)
+                     src/gui/TextEditor.cpp src/gui/TextEditor.h src/gui/controls/Visualizer.cpp src/gui/controls/Visualizer.h)
 
 set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramManager.h src/audio/Voice.cpp src/audio/Voice.h
                           src/managers/FormManager.cpp src/managers/FormManager.h src/managers/EventManager.cpp src/managers/EventManager.h

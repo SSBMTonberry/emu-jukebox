@@ -42,6 +42,7 @@ void AudioPlayerForm::handleEvents()
 bool AudioPlayerForm::customDraw()
 {
     drawAudioPanel();
+    drawAudioVisualizer();
     if(m_stream != nullptr)
     {
         drawAudioInfo();
@@ -52,18 +53,11 @@ bool AudioPlayerForm::customDraw()
 
 void AudioPlayerForm::drawAudioPanel()
 {
-    ImGui::BeginChild("visualizer_panel", { -1, 100 }, true, 0);
-    if (m_visualizer.process() && m_stream != nullptr) {
-        //???
-    }
-    ImGui::EndChild();
-    ImGui::BeginChild("audio_player_panel", {-1, 80}, true, 0);
-
-
     int numberOfButtons = 4;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
     size_t spacingLength2 = (spacingLength - 160);
 
+    ImGui::BeginChild("audio_player_panel", {-1, 80}, true, 0);
     ImGui::SameLine(0, spacingLength);
     if(m_previousButton.process() && m_stream != nullptr)
     {
@@ -135,6 +129,16 @@ void AudioPlayerForm::drawAudioPanel()
 
     if(!m_hasItemsFocused)
         m_hasItemsFocused = ImGui::IsItemActive();
+    ImGui::EndChild();
+
+}
+
+void AudioPlayerForm::drawAudioVisualizer()
+{
+    ImGui::BeginChild("visualizer_panel", { -1, 100 }, true, 0);
+    if (m_visualizer.process() && m_stream != nullptr) {
+        //???
+    }
     ImGui::EndChild();
 }
 
@@ -326,3 +330,5 @@ std::string AudioPlayerForm::getStreamId()
 
     return nullptr;
 }
+
+

@@ -67,7 +67,7 @@ namespace ebox
             void initialize();
 
             void drawAudioPanel();
-
+            void drawAudioVisualizer();
             void drawAudioInfo();
             void drawEqualizer();
 
