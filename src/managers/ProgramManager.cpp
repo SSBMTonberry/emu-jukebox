@@ -33,6 +33,15 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFolder.assignDefaults();
     m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
+
+    if (m_args.size() > 1) {
+        fs::path currentPath = fs::path(m_args[1]);
+        if (fs::is_directory(currentPath)) {
+            onFolderChosen(m_args[1]);
+        } else {
+            onFileChosen(m_args[1]);
+        }
+    }
 }
 
 void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
