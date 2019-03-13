@@ -21,6 +21,7 @@ bool ebox::FilelistForm::customDraw()
 {
     //m_filelist.process();
     ImGui::BeginChild("filelist_btn_panel", {-1, 30}, false, 0);
+    ImGui::InputText("Filter search", &m_filter);
     m_removeAllButton.setSpacing(getCurrentWindowSize().x - 40);
     if(m_removeAllButton.process())
         removeAllTracks();
@@ -28,12 +29,16 @@ bool ebox::FilelistForm::customDraw()
     ImGui::Separator();
 
     ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
-    for(auto &[id, value]: m_filelist)
-    {
-        value.process();
-        if(value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded())
-        {
-            addTracksToFileList(id, m_fileMap[id]);
+    for(auto &[id, value]: m_filelist) {        
+        if (m_filter.length() == 0 
+            ||  value.getLabel().end() 
+                != std::search(value.getLabel().begin(), value.getLabel().end(),
+                           m_filter.begin(), m_filter.end(),
+                           [](char ch1, char ch2) -> int { return std::toupper(ch1) == std::toupper(ch2); })) {
+            value.process();
+            if (value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded()) {
+                addTracksToFileList(id, m_fileMap[id]);
+            }
         }
     }
     ImGui::EndChild();
@@ -93,7 +98,6 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
                 {
                     m_fileMap[entry.path().filename().string()].setId(entry.path().filename().string());
                     m_filelist[entry.path().filename().string()] = {entry.path().filename().string(), entry.path().filename().string()};
-
                     m_filelist[entry.path().filename().string()].registerOnRightClickCallback(std::bind(&FilelistForm::onRightClickedParentNode, this, std::placeholders::_1));
                     m_filelist[entry.path().filename().string()].registerOnChosenContextItemCallback(std::bind(&FilelistForm::onChosenParentRightClickContextItems, this, std::placeholders::_1, std::placeholders::_2));
                 }
