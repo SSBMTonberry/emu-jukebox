@@ -96,7 +96,7 @@ namespace ebox
 
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;
-            std::string m_filter;
+            ebox::Textbox m_filterTextbox {"filter_textbox", "Filter"};
 
             ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
 

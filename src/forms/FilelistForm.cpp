@@ -21,22 +21,31 @@ bool ebox::FilelistForm::customDraw()
 {
     //m_filelist.process();
     ImGui::BeginChild("filelist_btn_panel", {-1, 30}, false, 0);
-    ImGui::InputText("Filter search", &m_filter);
-    m_removeAllButton.setSpacing(getCurrentWindowSize().x - 40);
+    //ImGui::InputText("Filter", &m_filter);
+    if(m_filterTextbox.process())
+    {
+        //TODO: Only do filter calculations here. You get here every time the Textbox value is changed
+    }
+
+    m_removeAllButton.setSpacing(40); //getCurrentWindowSize().x);
     if(m_removeAllButton.process())
         removeAllTracks();
     ImGui::EndChild();
     ImGui::Separator();
 
     ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
-    for(auto &[id, value]: m_filelist) {        
-        if (m_filter.length() == 0 
+    //TODO: Move filter logic to not happen every frame, but rather when the filter value has changed
+    for(auto &[id, value]: m_filelist)
+    {
+        if (m_filterTextbox.getValue().empty()
             ||  value.getLabel().end() 
                 != std::search(value.getLabel().begin(), value.getLabel().end(),
-                           m_filter.begin(), m_filter.end(),
-                           [](char ch1, char ch2) -> int { return std::toupper(ch1) == std::toupper(ch2); })) {
+                           m_filterTextbox.getValue().begin(), m_filterTextbox.getValue().end(),
+                           [](char ch1, char ch2) -> int { return std::toupper(ch1) == std::toupper(ch2); }))
+        {
             value.process();
-            if (value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded()) {
+            if (value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded())
+            {
                 addTracksToFileList(id, m_fileMap[id]);
             }
         }

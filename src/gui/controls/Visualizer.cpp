@@ -59,8 +59,8 @@ bool ebox::Visualizer::process() {
             index++;
         }
         /// Draw frequency spectrum
-        //ImGui::PlotHistogram("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0, 1, ImVec2(size.x, 40)); //RBP - 12.03.2019 - Changed to PlotLines
-        ImGui::PlotLines("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0.f, 1.0f, ImVec2(size.x, 40)); //RBP - 12.03.2019 - Was Histogram originally.
+        ImGui::PlotHistogram("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0, 1, ImVec2(size.x, 40)); //RBP - 12.03.2019 - Changed to PlotLines
+        //ImGui::PlotLines("", &samples[0], m_samplesSize / prescaler, 0, NULL, 0.f, 1.0f, ImVec2(size.x, 40)); //RBP - 12.03.2019 - Was Histogram originally.
         return true;
     }
     return false;

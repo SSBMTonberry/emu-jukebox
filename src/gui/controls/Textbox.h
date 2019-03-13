@@ -28,7 +28,8 @@ namespace ebox
             void setIsMultiline(bool isMultiline);
             void setMultilineTextboxSize(const sf::Vector2i &multilineTextboxSize);
 
-            std::string getValue() const;
+            const std::string &getValue() const;
+
             const sf::Vector2i &getMultilineTextboxSize() const;
             bool hasLabel() const;
             bool isChanged() const;

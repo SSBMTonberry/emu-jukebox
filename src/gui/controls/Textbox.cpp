@@ -133,7 +133,7 @@ void ebox::Textbox::setValue(const std::string &text)
     m_text = text;
 }
 
-std::string ebox::Textbox::getValue() const
+const std::string & ebox::Textbox::getValue() const
 {
     return m_text;
 }
