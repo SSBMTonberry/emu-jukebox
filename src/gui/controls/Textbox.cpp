@@ -108,6 +108,7 @@ bool ebox::Textbox::process()
             }
         }
 
+        m_controlSize = ImGui::GetItemRectSize();
         
         if(!m_hasLabel && !m_disablePushItemWidth)
             ImGui::PopItemWidth();
@@ -239,6 +240,11 @@ const sf::Vector2i &ebox::Textbox::getMultilineTextboxSize() const
 void ebox::Textbox::setMultilineTextboxSize(const sf::Vector2i &multilineTextboxSize)
 {
     m_multilineTextboxSize = multilineTextboxSize;
+}
+
+const sf::Vector2i &ebox::Textbox::getControlSize() const
+{
+    return m_controlSize;
 }
 
 

@@ -27,7 +27,8 @@ bool ebox::FilelistForm::customDraw()
         //TODO: Only do filter calculations here. You get here every time the Textbox value is changed
     }
 
-    m_removeAllButton.setSpacing(40); //getCurrentWindowSize().x);
+    int spacing = getCurrentWindowSize().x - m_filterTextbox.getControlSize().x - 45;
+    m_removeAllButton.setSpacing(spacing); //(40); //getCurrentWindowSize().x);
     if(m_removeAllButton.process())
         removeAllTracks();
     ImGui::EndChild();
