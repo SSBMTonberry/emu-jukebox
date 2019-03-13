@@ -21,10 +21,16 @@ bool ebox::FilelistForm::customDraw()
 {
     //m_filelist.process();
     ImGui::BeginChild("filelist_btn_panel", {-1, 30}, false, 0);
-    //ImGui::InputText("Filter", &m_filter);
-    if(m_filterTextbox.process())
-    {
-        //TODO: Only do filter calculations here. You get here every time the Textbox value is changed
+    if (m_filterTextbox.process()) {
+        for (auto &[id, value] : m_filelist) {
+            auto haystack = value.getLabel().begin();
+            auto haystackEnd = value.getLabel().end();
+            auto needle = m_filterTextbox.getValue().begin();
+            auto needleEnd = m_filterTextbox.getValue().end();
+            auto predicate = [](char ch1, char ch2) -> int { return std::toupper(ch1) == std::toupper(ch2); };
+            bool isVisible = (m_filterTextbox.getValue().empty() || haystackEnd != std::search(haystack, haystackEnd, needle, needleEnd, predicate));
+            value.setIsVisible(isVisible);
+        }
     }
 
     int spacing = getCurrentWindowSize().x - m_filterTextbox.getControlSize().x - 45;
@@ -35,20 +41,10 @@ bool ebox::FilelistForm::customDraw()
     ImGui::Separator();
 
     ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
-    //TODO: Move filter logic to not happen every frame, but rather when the filter value has changed
-    for(auto &[id, value]: m_filelist)
-    {
-        if (m_filterTextbox.getValue().empty()
-            ||  value.getLabel().end() 
-                != std::search(value.getLabel().begin(), value.getLabel().end(),
-                           m_filterTextbox.getValue().begin(), m_filterTextbox.getValue().end(),
-                           [](char ch1, char ch2) -> int { return std::toupper(ch1) == std::toupper(ch2); }))
-        {
-            value.process();
-            if (value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded())
-            {
-                addTracksToFileList(id, m_fileMap[id]);
-            }
+    for (auto &[id, value] : m_filelist) {
+        value.process();
+        if (value.isOpen() && m_fileMap[id].loadEmuDataIfNotLoaded()) {
+            addTracksToFileList(id, m_fileMap[id]);
         }
     }
     ImGui::EndChild();
