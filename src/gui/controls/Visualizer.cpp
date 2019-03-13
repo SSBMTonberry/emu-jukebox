@@ -55,7 +55,7 @@ bool ebox::Visualizer::process() {
             if (index > m_samplesSize / prescaler) break;
             float scalefac = exp(octaves * (float) index / (m_samplesSize / prescaler));
             /// Normalize and scale logarithimcally - because that is how we work
-            val = (val / maxval) * scalefac;
+            val = (val / (maxval == 0 ? 1 : maxval)) * scalefac;
             index++;
         }
         /// Draw frequency spectrum
