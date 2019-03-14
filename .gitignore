@@ -43,3 +43,4 @@ CMakeFiles/
 *.sln
 cmake_install.cmake
 CMakeSettings.json
+EmuJukeboxConfig\.h
