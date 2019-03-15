@@ -137,7 +137,7 @@ void ProgramManager::drawDock()
         createDock();
     }
 
-    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {35, 65, 90, 255});
+    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, { 35.f / 255, 65.f / 255, 90.f / 255, 1 });
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), 0);
     ImGui::PopStyleColor();
@@ -195,7 +195,7 @@ void ProgramManager::resetDock()
 
     createDock();
 
-    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {35, 65, 90, 255});
+    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, { 35.f / 255, 65.f / 255, 90.f / 255, 1 });
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), 0);
     ImGui::PopStyleColor();
