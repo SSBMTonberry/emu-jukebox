@@ -63,6 +63,7 @@ namespace ebox
             std::vector<func_treelist_parent_chosencontextitem> m_callbackOnChosenParentContextItem; //When you have chosen a context item of the TreeList (after a right click)
 
             std::map<std::string, ebox::Selectable> m_items;
+            std::vector<std::string> m_eraseItems;
             std::vector<ebox::MenuItem> m_rightClickContextItems;
             bool m_rightClickContextActivated = false;
             bool m_isOpen = false;

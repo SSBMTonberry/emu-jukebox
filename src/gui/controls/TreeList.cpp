@@ -19,6 +19,14 @@ bool ebox::TreeList::process()
     bool isAnyItemActivated = false;
     if(Control::process())
     {
+        if (m_eraseItems.size() > 0) {
+            size_t erasedCount = 0;
+            for (auto del : m_eraseItems) {
+                erasedCount += m_items.erase(del);
+            }
+            m_eraseItems.clear();
+            SystemLog::get()->addDebug(fmt::format("Erased {0} from {1} ({2} items)", erasedCount, getId(), m_items.size()));
+        }
         m_isOpen = (m_hasParentNode) ? ImGui::TreeNode(m_label.c_str()) : true;
 
         if(m_isOpen)
@@ -143,16 +151,12 @@ ebox::Selectable *ebox::TreeList::getItem(int index)
  */
 bool ebox::TreeList::remove(const std::string &id)
 {
-    //int i = 0;
-    SystemLog::get()->addDebug(fmt::format("Attempting to delete {0} from {1} ({2} items)", id, getId(), m_items.size()));
-    //auto it = m_items.find(id);
-    //if(it != m_items.end())
     for(std::map<std::string, ebox::Selectable>::iterator it = m_items.begin(); it != m_items.end();)//;it++)
     {
         if(it->first == id)
         {
-            it = m_items.erase(it);
-            SystemLog::get()->addInfo(fmt::format("{0} removed from {1}! New size: {2}", id, getId(), m_items.size()));
+            m_eraseItems.push_back(it->first);
+            SystemLog::get()->addInfo(fmt::format("{0} scheduled remove from {1}!", id, getId()));
             return true;
         }
         else
@@ -303,7 +307,7 @@ void ebox::TreeList::swap(const std::string &id1, const std::string &id2)
 std::string_view ebox::TreeList::getItemId(int index)
 {
     int i = 0;
-    for(std::map<std::string,Selectable>::iterator it = m_items.begin(); it != m_items.end(); ++it)
+    for(std::map<std::string, ebox::Selectable>::iterator it = m_items.begin(); it != m_items.end(); ++it)
     {
         if(i == index)
             return it->first;
