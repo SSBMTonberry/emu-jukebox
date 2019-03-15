@@ -44,3 +44,5 @@ CMakeFiles/
 cmake_install.cmake
 CMakeSettings.json
 EmuJukeboxConfig\.h
+Debug/
+Win32/
