@@ -195,7 +195,7 @@ void ProgramManager::resetDock()
 
     createDock();
 
-    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, m_backgroundColor); 
+    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, m_backgroundColor);
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), 0);
     ImGui::PopStyleColor();
