@@ -74,9 +74,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                     time_t cftime = chrono::system_clock::to_time_t(timeEntry);
                     std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
                 #endif
-
-
-                row->setValue("filename", filename.string());
+                row->setValue("filename", filename.u8string());
                 //auto imgData = getFileIcon("directory");
                 //row->setImage("filename", imgData.first, imgData.second);
                 auto icon = getImgFileIcon("directory");
