@@ -13,6 +13,8 @@
 #include "../audio/EmuFileInfo.h"
 #include "../../content/files_mapper.h"
 #include <map>
+#include <vector>
+#include <string>
 #include "../classes/Timer.h"
 #include "AudioPlayerForm.h"
 #include "PlaylistForm.h"
@@ -93,6 +95,8 @@ namespace ebox
             TreeList *m_lastChosenTreeList = nullptr;
             EmuFileInfo *m_lastChosenEmuFile = nullptr;
             int m_lastTrackNo = 0;
+
+            std::vector<std::string> m_eraseItems;
 
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;
