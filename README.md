@@ -58,3 +58,4 @@ Requires the `llvm`/`clang` version shipped with (XCode 10) (OS X Mojave), or a 
 - [Catch2](https://github.com/catchorg/Catch2/) - For testing
 - [json](https://github.com/nlohmann/json) - For JSON read/write
 - [fmt](https://github.com/fmtlib/fmt) - For formatting
+- [cpplinq](https://github.com/mrange/cpplinq) - Higher order functions for range manipulations
