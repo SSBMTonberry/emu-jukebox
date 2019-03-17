@@ -55,3 +55,6 @@ Requires the `llvm`/`clang` version shipped with (XCode 10) (OS X Mojave), or a 
 - [Game_Music_Emu](http://blargg.8bitalley.com/libs/audio.html#Game_Music_Emu) - Used for emulating the sound chip of each retro console.
 - [SFML](https://github.com/SFML/SFML) - For sound streaming, window, clipboard and displaying graphics.
 - [Dear ImGui](https://github.com/ocornut/imgui) - For anything GUI related.
+- [Catch2](https://github.com/catchorg/Catch2/) - For testing
+- [json](https://github.com/nlohmann/json) - For JSON read/write
+- [fmt](https://github.com/fmtlib/fmt) - For formatting
