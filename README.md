@@ -30,9 +30,9 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 
 ## Known critical issues (as of version 0.6):
 - If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability.
-- "Reset layout" will crash the program. This will be fixed in version 0.7 for sure ([#2](https://github.com/SSBMTonberry/emu-jukebox/issues/2)).
+- ~~"Reset layout" will crash the program. This will be fixed in version 0.7 for sure~~ ([#2](https://github.com/SSBMTonberry/emu-jukebox/issues/2)).
 - In a few cases, when you call a lot of "next song" commands, you will end up with a crash ([#24](https://github.com/SSBMTonberry/emu-jukebox/issues/24)).
-- If you remove a lot of random elements from a big playlist, the program might crash ([#7](https://github.com/SSBMTonberry/emu-jukebox/issues/7))
+- ~~If you remove a lot of random elements from a big playlist, the program might crash~~ ([#7](https://github.com/SSBMTonberry/emu-jukebox/issues/7))
 
 ## Screenshot:
 ![alt text](https://raw.githubusercontent.com/SSBMTonberry/emu-jukebox/master/logo/emu-jukebox_screen.png?token=AY_g1U1rkkxq0Ol-rTrvSQXLo_rKv8Jzks5cjBMZwA%3D%3D "Emu Jukebox Screenshot") 
