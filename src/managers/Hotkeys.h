@@ -68,6 +68,10 @@ namespace ebox
             void setEventManager(ebox::EventManager *eventManager);
             sf::Vector2i getMousePosition();
 
+            bool isActive() const;
+
+            void setActive(bool isActive);
+
             bool isProgramHotkeyPressed(ProgramHotkey hotkey);
             bool isProgramHotkeyDown(ProgramHotkey hotkey);
             bool isPlayerHotkeyPressed(PlayerHotkey hotkey);
@@ -93,6 +97,8 @@ namespace ebox
             void generateDefaultHotkeys();
 
             ebox::EventManager *m_events;
+
+            bool m_isActive = true;
 
             std::map<sf::Mouse::Button, bool> m_mouseButtonPressed;
 

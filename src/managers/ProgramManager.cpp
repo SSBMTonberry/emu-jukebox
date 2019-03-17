@@ -68,30 +68,72 @@ void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
 void ebox::ProgramManager::run()
 {
     sf::Clock deltaClock;
+
     while (m_window.isOpen())
     {
         m_window.clear(m_backgroundColor);
         update();
+        handleEvents();
         draw();
         handleActions();
-
         //if(ImGui::IsKeyPressed(sf::Keyboard::Key::Escape))
         //    m_window.close();
+
+        if(m_firstRun)
+        {
+            //m_clipboard.update(); //Update clipboard once on first run!
+            m_firstRun = false;
+        }
 
         m_window.display();
     }
 }
 
+void ProgramManager::handleEvents()
+{
+    for(auto &event : m_events.getAllEvents())
+    {
+        switch(event.type)
+        {
+            case sf::Event::EventType::GainedFocus:
+                SystemLog::get()->addDebug("Window got focus!");
+                Hotkeys::get()->setActive(true);
+                break;
+
+            case sf::Event::EventType::LostFocus:
+                SystemLog::get()->addDebug("Window lost focus!");
+                Hotkeys::get()->setActive(false);
+                break;
+
+            default:
+                break;
+        }
+    }
+}
+
 void ebox::ProgramManager::update()
 {
-    m_clipboard.update();
     m_events.update();
+
+    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Paste))
+    {
+        SystemLog::get()->addDebug("'Paste' hotkey pressed!");
+        m_clipboard.update();
+    }
+
     m_formManager.update();
     updateViewMenu();
+
+    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Copy))
+    {
+        SystemLog::get()->addDebug("'Copy' hotkey pressed!");
+        m_clipboard.update();
+    }
 }
 
 void ebox::ProgramManager::handleActions()
 {
+
     m_formManager.handleEvents();
     m_fileDialogFile.handleEvents();
     m_fileDialogFolder.handleEvents();
@@ -274,3 +316,5 @@ void ProgramManager::updateViewMenu()
     m_menuViewPlaylist.setIsSelected(m_formManager.isOpened(FormType::Playlist));
     m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
 }
+
+

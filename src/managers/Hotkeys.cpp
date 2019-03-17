@@ -83,6 +83,9 @@ void ebox::Hotkeys::setEventManager(ebox::EventManager *eventManager)
 
 float ebox::Hotkeys::getMouseWheelScroll()
 {
+    if(!m_isActive)
+        return 0.f;
+
     for(auto const &event : m_events->getAllEvents())
     {
         if(event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
@@ -101,26 +104,41 @@ sf::Vector2i ebox::Hotkeys::getMousePosition()
 
 bool ebox::Hotkeys::isShiftKeyDown()
 {
+    if(!m_isActive)
+        return false;
+
     return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RShift);
 }
 
 bool ebox::Hotkeys::isControlKeyDown()
 {
+    if(!m_isActive)
+        return false;
+
     return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LControl) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RControl);
 }
 
 bool ebox::Hotkeys::isAltKeyDown()
 {
+    if(!m_isActive)
+        return false;
+
     return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LAlt) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RAlt);
 }
 
 bool ebox::Hotkeys::isMouseDown(sf::Mouse::Button button)
 {
+    if(!m_isActive)
+        return false;
+
     return sf::Mouse::isButtonPressed(button);
 }
 
 bool ebox::Hotkeys::isMousePressed(sf::Mouse::Button button)
 {
+    if(!m_isActive)
+        return false;
+
     if(m_mouseButtonPressed.count(button) == 0)
         m_mouseButtonPressed[button] = false;
 
@@ -139,7 +157,7 @@ bool ebox::Hotkeys::isMousePressed(sf::Mouse::Button button)
 
 bool ebox::Hotkeys::isProgramHotkeyPressed(ebox::Hotkeys::ProgramHotkey hotkey)
 {
-    if(m_programHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_programHotkeys.count(hotkey) > 0)
     {
         if(m_programHotkeys[hotkey].isPressed() && !m_programHotkeyPressed[hotkey])
         {
@@ -156,7 +174,7 @@ bool ebox::Hotkeys::isProgramHotkeyPressed(ebox::Hotkeys::ProgramHotkey hotkey)
 
 bool ebox::Hotkeys::isProgramHotkeyDown(ebox::Hotkeys::ProgramHotkey hotkey)
 {
-    if(m_programHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_programHotkeys.count(hotkey) > 0)
     {
         if(m_programHotkeys[hotkey].isPressed())
             return true;
@@ -166,7 +184,7 @@ bool ebox::Hotkeys::isProgramHotkeyDown(ebox::Hotkeys::ProgramHotkey hotkey)
 
 bool ebox::Hotkeys::isPlayerHotkeyPressed(ebox::Hotkeys::PlayerHotkey hotkey)
 {
-    if(m_playerHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_playerHotkeys.count(hotkey) > 0)
     {
         if(m_playerHotkeys[hotkey].isPressed() && !m_playerHotkeyPressed[hotkey])
         {
@@ -183,7 +201,7 @@ bool ebox::Hotkeys::isPlayerHotkeyPressed(ebox::Hotkeys::PlayerHotkey hotkey)
 
 bool ebox::Hotkeys::isPlayerHotkeyDown(ebox::Hotkeys::PlayerHotkey hotkey)
 {
-    if(m_playerHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_playerHotkeys.count(hotkey) > 0)
     {
         if(m_playerHotkeys[hotkey].isPressed())
             return true;
@@ -193,7 +211,7 @@ bool ebox::Hotkeys::isPlayerHotkeyDown(ebox::Hotkeys::PlayerHotkey hotkey)
 
 bool ebox::Hotkeys::isPlaylistHotkeyPressed(ebox::Hotkeys::PlaylistHotkey hotkey)
 {
-    if(m_playlistHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_playlistHotkeys.count(hotkey) > 0)
     {
         if(m_playlistHotkeys[hotkey].isPressed() && !m_playlistHotkeyPressed[hotkey])
         {
@@ -210,7 +228,7 @@ bool ebox::Hotkeys::isPlaylistHotkeyPressed(ebox::Hotkeys::PlaylistHotkey hotkey
 
 bool ebox::Hotkeys::isPlaylistHotkeyDown(ebox::Hotkeys::PlaylistHotkey hotkey)
 {
-    if(m_playlistHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_playlistHotkeys.count(hotkey) > 0)
     {
         if(m_playlistHotkeys[hotkey].isPressed())
             return true;
@@ -220,7 +238,7 @@ bool ebox::Hotkeys::isPlaylistHotkeyDown(ebox::Hotkeys::PlaylistHotkey hotkey)
 
 bool ebox::Hotkeys::isFilelistHotkeyPressed(ebox::Hotkeys::FilelistHotkey hotkey)
 {
-    if(m_filelistHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_filelistHotkeys.count(hotkey) > 0)
     {
         if(m_filelistHotkeys[hotkey].isPressed() && !m_filelistHotkeyPressed[hotkey])
         {
@@ -237,10 +255,20 @@ bool ebox::Hotkeys::isFilelistHotkeyPressed(ebox::Hotkeys::FilelistHotkey hotkey
 
 bool ebox::Hotkeys::isFilelistHotkeyDown(ebox::Hotkeys::FilelistHotkey hotkey)
 {
-    if(m_filelistHotkeys.count(hotkey) > 0)
+    if(m_isActive && m_filelistHotkeys.count(hotkey) > 0)
     {
         if(m_filelistHotkeys[hotkey].isPressed())
             return true;
     }
     return false;
+}
+
+bool ebox::Hotkeys::isActive() const
+{
+    return m_isActive;
+}
+
+void ebox::Hotkeys::setActive(bool isActive)
+{
+    m_isActive = isActive;
 }

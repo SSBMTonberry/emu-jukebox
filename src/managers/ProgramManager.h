@@ -15,6 +15,7 @@
 #include "../gui/controls/MenuBar.h"
 #include "../gui/controls/MenuItemCollection.h"
 #include "../../content/files_mapper.h"
+#include "Hotkeys.h"
 
 namespace ebox
 {
@@ -31,6 +32,8 @@ namespace ebox
             void handleActions();
             void processHotkeys();
             void draw();
+
+            void handleEvents();
 
             void drawDock();
             void createDock();
@@ -75,6 +78,7 @@ namespace ebox
             FileDialog m_fileDialogFile { DialogType::OpenFile, "main_file_dialog_file", "Choose a file", "main_file_dialog_file"};
             FileDialog m_fileDialogFolder { DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder", "main_file_dialog_folder" };
 
+            bool m_firstRun = true; //Used to make stuff happen on first run
             sf::RenderWindow m_window;
             EventManager m_events;
             FormManager m_formManager;
