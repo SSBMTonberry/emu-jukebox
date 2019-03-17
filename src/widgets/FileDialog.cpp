@@ -117,7 +117,7 @@ void ebox::FileDialog::handleEvents()
 
             if (fs::exists(pathToOpen) && fs::is_directory(pathToOpen))
             {
-                m_filepathtext.setValue(pathToOpen.string());
+                m_filepathtext.setValue(pathToOpen.u8string().c_str());
                 m_path = pathToOpen;
                 m_fileTable.listFilesByDirectory(pathToOpen,
                                                  (pathToOpen.has_parent_path()) ? pathToOpen.parent_path()
