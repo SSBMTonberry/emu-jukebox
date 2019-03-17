@@ -152,7 +152,7 @@ set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramMa
                           src/audio/EmuEqualizer.h src/widgets/FileDialog.cpp src/widgets/FileDialog.h src/widgets/FileTable.cpp src/widgets/FileTable.h
                           src/forms/SystemLog.cpp src/forms/SystemLog.h src/forms/FilelistForm.cpp src/forms/FilelistForm.h src/forms/PlaylistForm.cpp
                           src/forms/PlaylistForm.h src/classes/Timer.cpp src/classes/Timer.h src/forms/AudioPlayerForm.cpp src/forms/AudioPlayerForm.h
-                          src/audio/EmuFileInfo.cpp src/audio/EmuFileInfo.h)
+                          src/audio/EmuFileInfo.cpp src/audio/EmuFileInfo.h src/classes/Hotkey.cpp src/classes/Hotkey.h src/managers/Hotkeys.cpp src/managers/Hotkeys.h)
 
 
 
