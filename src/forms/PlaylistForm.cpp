@@ -259,7 +259,7 @@ void PlaylistForm::selectNextItem()
     if(m_playlist.size() > 0 && index > -1)
     {
         ++index;
-        SystemLog::get()->addDebug(fmt::format("selectNextItem next index: {0}", index));
+        //SystemLog::get()->addDebug(fmt::format("selectNextItem next index: {0}", index));
         if (index > m_playlist.size() - 1)
             setAsSelectedChildNode(0);
         else
@@ -274,7 +274,7 @@ void PlaylistForm::selectPreviousItem()
     {
         int maxIndex = m_playlist.size() - 1;
         --index;
-        SystemLog::get()->addDebug(fmt::format("selectPreviousItem next index: {0}", index));
+        //SystemLog::get()->addDebug(fmt::format("selectPreviousItem next index: {0}", index));
         if (index < 0)
             setAsSelectedChildNode(maxIndex);
         else

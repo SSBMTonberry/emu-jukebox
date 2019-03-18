@@ -36,7 +36,66 @@ void AudioPlayerForm::initialize()
 
 void AudioPlayerForm::handleEvents()
 {
+    processHotkeys();
+}
 
+void AudioPlayerForm::processHotkeys()
+{
+    if(m_stream != nullptr)
+    {
+        bool abort = false;
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::PreviousTrack))
+        {
+            for(auto const &callback : m_callbackOnPrevious)
+                abort = callback(this) ? true : abort;
+
+            if(!abort) m_stream->previousTrack();
+        }
+        else if(Hotkeys::get()->isPlayerHotkeyPressed(key::NextTrack))
+        {
+            for(auto const &callback : m_callbackOnNext)
+                abort = callback(this) ? true : abort;
+
+            if(!abort) m_stream->nextTrack();
+        }
+        else if(Hotkeys::get()->isPlayerHotkeyPressed(key::Stop))
+        {
+            for(auto const &callback : m_callbackOnStop)
+                abort = callback(this) ? true : abort;
+
+            if(!abort) stop();
+        }
+        else if(Hotkeys::get()->isPlayerHotkeyPressed(key::TogglePlayAndPause))
+        {
+            if(m_state == AudioPlayerState::Play)
+            {
+                for(auto const &callback : m_callbackOnPause)
+                    abort = callback(this) ? true : abort;
+
+                if(!abort) pause();
+            }
+            else
+            {
+                for(auto const &callback : m_callbackOnPlay)
+                    abort = callback(this) ? true : abort;
+
+                if(!abort) play();
+            }
+        }
+
+        //Voices
+        size_t voices = m_stream->getNumberOfVoices();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute1) && voices > 0) m_stream->getVoices()->at(0).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute2) && voices > 1) m_stream->getVoices()->at(1).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute3) && voices > 2) m_stream->getVoices()->at(2).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute4) && voices > 3) m_stream->getVoices()->at(3).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute5) && voices > 4) m_stream->getVoices()->at(4).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute6) && voices > 5) m_stream->getVoices()->at(5).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute7) && voices > 6) m_stream->getVoices()->at(6).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute8) && voices > 7) m_stream->getVoices()->at(7).toggleMute();
+        if(Hotkeys::get()->isPlayerHotkeyPressed(key::ToggleVoiceMute9) && voices > 8) m_stream->getVoices()->at(8).toggleMute();
+
+    }
 }
 
 bool AudioPlayerForm::customDraw()
@@ -108,8 +167,6 @@ void AudioPlayerForm::drawAudioPanel()
     {
         m_stream->setTempo(m_tempo.getValue());
     }
-    if(!m_hasItemsFocused)
-        m_hasItemsFocused = ImGui::IsItemActive();
 
     ImGui::PushItemWidth(-1);
     int dummy = 0;
@@ -129,8 +186,6 @@ void AudioPlayerForm::drawAudioPanel()
         if(!abort) m_stream->stop();
     }
 
-    if(!m_hasItemsFocused)
-        m_hasItemsFocused = ImGui::IsItemActive();
     ImGui::EndChild();
 
     ImGui::PopAllowKeyboardFocus();
@@ -164,8 +219,6 @@ void AudioPlayerForm::drawAudioInfo()
     ImGui::Text("Voices:");
     for(auto &voice : *m_stream->getVoices())
     {
-        if(m_formIsActive && !m_hasItemsFocused)
-            voice.checkHotkeyPress();
         voice.showCheckbox();
     }
     ImGui::EndChild();
@@ -175,7 +228,7 @@ void AudioPlayerForm::drawAudioInfo()
 void AudioPlayerForm::drawEqualizer()
 {
     ImGui::BeginChild("audio_eq", {-1, -1}, true, 0);
-    m_hasItemsFocused = ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows);
+    //m_hasItemsFocused = ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows);
     m_stream->getEqualizer()->draw();
     ImGui::EndChild();
 }
@@ -333,5 +386,3 @@ std::string AudioPlayerForm::getStreamId()
 
     return nullptr;
 }
-
-

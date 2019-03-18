@@ -114,7 +114,7 @@ void ebox::AudioTestForm::drawAudioInfo()
     for(auto &voice : *m_stream.getVoices())
     {
         if(m_formIsActive && !m_hasItemsFocused)
-            voice.checkHotkeyPress();
+            ;//voice.checkHotkeyPress();
         voice.showCheckbox();
     }
     ImGui::EndChild();

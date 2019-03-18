@@ -248,13 +248,12 @@ bool ebox::EmuStream::initializeEmu()
     m_voices.clear();
     while (*voice_names)
     {
-        int hotkeyPos = (i < 9) ? static_cast<int>(sf::Keyboard::Key::Num1) + i : -1;
-
-        sf::Keyboard::Key hotkey = (i == 9) ? sf::Keyboard::Key::Num0 : (sf::Keyboard::Key) hotkeyPos;
+        //int hotkeyPos = (i < 9) ? static_cast<int>(sf::Keyboard::Key::Num1) + i : -1;
+        //sf::Keyboard::Key hotkey = (i == 9) ? sf::Keyboard::Key::Num0 : (sf::Keyboard::Key) hotkeyPos;
         int voices = m_emu->voice_count();
         if (i < voices)
         {
-            m_voices.emplace_back(m_emu, i, *voice_names++, false, hotkey);
+            m_voices.emplace_back(m_emu, i, *voice_names++, false); //, hotkey);
             ++i;
         }
         else

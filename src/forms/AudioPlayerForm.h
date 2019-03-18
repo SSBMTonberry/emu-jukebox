@@ -16,11 +16,13 @@
 #include "../gui/controls/InputFloat.h"
 #include "../audio/EmuFileInfo.h"
 #include "../gui/controls/Visualizer.h"
+#include "../managers/Hotkeys.h"
 
 namespace ebox
 {
     class AudioPlayerForm : public Form
     {
+        typedef Hotkeys::PlayerHotkey key;
         public:
             enum class AudioPlayerState
             {
@@ -66,6 +68,8 @@ namespace ebox
         private:
             void initialize();
 
+            void processHotkeys();
+
             void drawAudioPanel();
             void drawAudioVisualizer();
             void drawAudioInfo();
@@ -74,7 +78,7 @@ namespace ebox
             std::string getAudioTimestamp();
             std::string getMillisecondsAsTimeString(int milliseconds);
 
-            bool m_hasItemsFocused = false;
+            //bool m_hasItemsFocused = false;
             AudioPlayerState m_state = AudioPlayerState::Stopped;
 
             //Callbacks
