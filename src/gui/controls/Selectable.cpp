@@ -71,6 +71,11 @@ void ebox::Selectable::setSelected(bool isSelected)
     m_isSelected = isSelected;
 }
 
+//void ebox::Selectable::setFocused()
+//{
+//    m_setFocused = true;
+//}
+
 /*!
  *
  * @return true if pressed, false otherwise
@@ -93,7 +98,6 @@ bool ebox::Selectable::process()
             ImGui::SameLine();
         }
 
-
         if (m_hasSize)
         {
             if (ImGui::Selectable(m_label.c_str(), m_isSelected, 0, m_size)) {};
@@ -102,6 +106,13 @@ bool ebox::Selectable::process()
         {
             if (ImGui::Selectable(m_label.c_str(), m_isSelected)) {};
         }
+
+        //if(m_setFocused)
+        //{
+        //    m_setFocused = false;
+        //    ImGui::SetKeyboardFocusHere(-1);
+        //}
+        //performFocusCheck();
 
         isPressed = processMouseEvents();
 
@@ -114,6 +125,19 @@ bool ebox::Selectable::process()
     }
     return false;
 }
+
+//void ebox::Selectable::performFocusCheck()
+//{
+//    bool previousFocusState = m_isFocused;
+//    m_isFocused = ImGui::IsItemFocused();
+//
+//    if(m_isFocused && previousFocusState != m_isFocused)
+//    {
+//        for (auto &callback : m_callbackOnFocused)
+//            callback(this);
+//    }
+//
+//}
 
 bool ebox::Selectable::processMouseEvents()
 {
@@ -226,6 +250,10 @@ void ebox::Selectable::createRightClickContextItems(const std::initializer_list<
     }
 }
 
+//void ebox::Selectable::registerOnFocusedCallback(const func_selectable &cb)
+//{
+//    m_callbackOnFocused.emplace_back(cb);
+//}
 
 void ebox::Selectable::registerOnChosenCallback(const func_selectable &cb)
 {
@@ -257,8 +285,7 @@ ebox::Image *ebox::Selectable::getImageRef() const
     return m_imageRef;
 }
 
-
-
-
-
-
+//bool ebox::Selectable::isFocused() const
+//{
+//    return m_isFocused;
+//}

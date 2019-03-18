@@ -11,11 +11,13 @@
 #include "../forms/AudioPlayerForm.h"
 #include "../misc/Tools.hpp"
 #include <random>
+#include "../managers/Hotkeys.h"
 
 namespace ebox
 {
     class PlaylistForm : public Form
     {
+        typedef Hotkeys::PlaylistHotkey key;
         public:
             PlaylistForm(const std::string &id, const std::string &title, const std::string &imguiId);
 
@@ -38,9 +40,11 @@ namespace ebox
         private:
             void initialize();
             void processPlaylistButtonPanel();
+            void processHotkeys();
 
             int getIndex(const std::string &id);
 
+            void onFocusedChildNode(Selectable *sender);
             void onChosenChildNode(Selectable *sender);
             bool onRightClickedChildNode(Selectable *sender);
             void onDoubleClickChildNode(Selectable *sender);
@@ -48,6 +52,10 @@ namespace ebox
 
             void setAsSelectedChildNode(Selectable *child);
             void setAsSelectedChildNode(const std::string &id);
+            void setAsSelectedChildNode(int index);
+            void selectNextItem();
+            void selectPreviousItem();
+
             Selectable *getSelected();
             EmuFileInfo * getEmuFileInfo(const std::string &id);
             int getSelectedIndex();
@@ -55,6 +63,7 @@ namespace ebox
             void moveItemUp();
             void moveItemDown();
             void removeAllItems();
+            void removeItem(const std::string &id);
 
             bool loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo);
 

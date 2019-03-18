@@ -53,6 +53,8 @@ bool AudioPlayerForm::customDraw()
 
 void AudioPlayerForm::drawAudioPanel()
 {
+    ImGui::PushAllowKeyboardFocus(false);
+
     int numberOfButtons = 4;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
     size_t spacingLength2 = (spacingLength - 160);
@@ -131,6 +133,7 @@ void AudioPlayerForm::drawAudioPanel()
         m_hasItemsFocused = ImGui::IsItemActive();
     ImGui::EndChild();
 
+    ImGui::PopAllowKeyboardFocus();
 }
 
 void AudioPlayerForm::drawAudioVisualizer()

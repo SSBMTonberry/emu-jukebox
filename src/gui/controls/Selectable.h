@@ -31,10 +31,12 @@ namespace ebox
             void setSelected(bool isSelected);
             void setIsToggleable(bool isToggleable);
             void setSize(const sf::Vector2<int> &size);
+            //void setFocused();
 
             void createRightClickContextItemsAdvanced(const std::initializer_list<std::pair<std::string, std::string>> &items);
             void createRightClickContextItems(const std::initializer_list<std::string> &items);
 
+            //void registerOnFocusedCallback(const func_selectable &cb);
             void registerOnChosenCallback(const func_selectable &cb);
             void registerOnRightClickCallback(const func_onrightclick &cb);
             void registerOnDoubleClickCallback(const func_selectable &cb);
@@ -44,6 +46,7 @@ namespace ebox
 
             bool isSelected() const;
             bool isToggleable() const;
+            //bool isFocused() const;
 
             const sf::Vector2<int> &getSize() const;
 
@@ -52,7 +55,9 @@ namespace ebox
 
         protected:
             bool processMouseEvents();
+            //void performFocusCheck();
 
+            //std::vector<func_selectable> m_callbackOnFocused; //Handling when item is focused by ImGui
             std::vector<func_selectable> m_callbackOnChosen;
             std::vector<func_selectable> m_callbackOnDoubleClick;
             std::vector<func_onrightclick> m_callbackOnRightClick; //true: open ContextItem, false: never open.
@@ -66,6 +71,9 @@ namespace ebox
             bool m_isSelected = false;
             bool m_isToggleable = true;
             bool m_hasSize = false;
+            bool m_isFocused = false;
+
+            //bool m_setFocused = false; //If true, a call to ImGui will be done to make this item focused
 
             bool m_rightClickContextActivated = false;
 

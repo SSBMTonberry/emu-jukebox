@@ -19,7 +19,9 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
 
     ImGui::SFML::Init(*m_window);
     //Enable Ctrl+TAB (New in ImGui 1.63)
-    m_io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    //m_io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; //Removed - 18.03.2019 - Disabled due to interrupting hotkeys...
+    m_io->ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleFonts;
+    m_io->ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports;
     //Enable docking (New in ImGui 1.66 WIP) - Downloaded 14.10.2018
     m_io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 

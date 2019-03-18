@@ -19,6 +19,7 @@ ebox::PlaylistForm::PlaylistForm(const sf::Vector2<int> &position, const sf::Vec
 
 bool ebox::PlaylistForm::customDraw()
 {
+    processHotkeys();
     processPlaylistButtonPanel();
     ImGui::BeginChild("playlist_panel", {-1, -1}, false, 0);
     m_filemapping.process();
@@ -47,6 +48,33 @@ void PlaylistForm::processPlaylistButtonPanel()
         removeAllItems();
     ImGui::EndChild();
     ImGui::Separator();
+}
+
+void PlaylistForm::processHotkeys()
+{
+    if(m_formIsActive)
+    {
+        if (Hotkeys::get()->isPlaylistHotkeyPressed(key::MoveItemUp))
+            moveItemUp();
+        else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::MoveItemDown))
+            moveItemDown();
+        else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::DeleteItem))
+        {
+            ebox::Selectable *item = getSelected();
+            if (item != nullptr)
+                removeItem(item->getId());
+        }
+        else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::PlaySelectedItem))
+        {
+            ebox::Selectable *item = getSelected();
+            if (item != nullptr)
+                onDoubleClickChildNode(item);
+        }
+        else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::SelectPreviousItem) && !Hotkeys::get()->isPlaylistHotkeyDown(key::MoveItemUp))
+            selectPreviousItem();
+        else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::SelectNextItem) && !Hotkeys::get()->isPlaylistHotkeyDown(key::MoveItemDown))
+            selectNextItem();
+    }
 }
 
 void ebox::PlaylistForm::initialize()
@@ -89,6 +117,7 @@ void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
     auto *item = m_filemapping.add(id, fmt::format("{0} - {1}", fileInfo.getGameName(), fmt::format("{0} ({1})", fileInfo.getTracks()[trackNumber],
                                        tools::string::GetMillisecondsAsTimeString(fileInfo.getTrackPlayLengths()[trackNumber], false))));
 
+    //item->registerOnFocusedCallback(std::bind(&PlaylistForm::onFocusedChildNode, this, std::placeholders::_1));
     item->registerOnChosenCallback(std::bind(&PlaylistForm::onChosenChildNode, this, std::placeholders::_1));
     item->registerOnRightClickCallback(std::bind(&PlaylistForm::onRightClickedChildNode, this, std::placeholders::_1));
     item->registerOnDoubleClickCallback(std::bind(&PlaylistForm::onDoubleClickChildNode, this, std::placeholders::_1));
@@ -113,6 +142,10 @@ std::string PlaylistForm::getId(const std::pair<EmuFileInfo, int> &item)
     return fmt::format("{0} - {1}", item.first.getGameName(), item.first.getTracks()[item.second]);
 }
 
+void PlaylistForm::onFocusedChildNode(Selectable *sender)
+{
+    setAsSelectedChildNode(sender);
+}
 
 void ebox::PlaylistForm::onChosenChildNode(ebox::Selectable *sender)
 {
@@ -163,16 +196,16 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
     }
     else if(sender->getId() == "remove")
     {
-        for(int i = 0; i < m_playlist.size(); ++i)
-        {
-            if (m_playlist[i].first.getId() == owner->getId())
-            {
-                m_playlist.erase(m_playlist.begin() + i);
-                break;
-            }
-        }
-
-        m_filemapping.remove(owner->getId());
+        removeItem(owner->getId());
+        //for(int i = 0; i < m_playlist.size(); ++i)
+        //{
+        //    if (m_playlist[i].first.getId() == owner->getId())
+        //    {
+        //        m_playlist.erase(m_playlist.begin() + i);
+        //        break;
+        //    }
+        //}
+        //m_filemapping.remove(owner->getId());
 
     }
 }
@@ -181,7 +214,13 @@ void ebox::PlaylistForm::setAsSelectedChildNode(ebox::Selectable *child)
 {
     for (auto const &item : m_filemapping.getItems())
     {
-        item->setSelected(item == child);
+        if(item == child)
+        {
+            item->setSelected(true);
+            //item->setFocused();
+        }
+        else
+            item->setSelected(false);
     }
 }
 
@@ -189,9 +228,65 @@ void PlaylistForm::setAsSelectedChildNode(const std::string &id)
 {
     for (auto const &item : m_filemapping.getItems())
     {
-        item->setSelected(item->getId() == id);
+        if(item->getId() == id)
+        {
+            item->setSelected(true);
+            //item->setFocused();
+        }
+        else
+            item->setSelected(false);
     }
 }
+
+void PlaylistForm::setAsSelectedChildNode(int index)
+{
+    auto items = m_filemapping.getItems();
+    for(int i = 0; i < items.size(); ++i)
+    {
+        if(i == index)
+        {
+            items[i]->setSelected(true);
+            //items[i]->setFocused();
+        }
+        else
+            items[i]->setSelected(false);
+    }
+}
+
+void PlaylistForm::selectNextItem()
+{
+    int index = getSelectedIndex();
+    if(m_playlist.size() > 0 && index > -1)
+    {
+        ++index;
+        SystemLog::get()->addDebug(fmt::format("selectNextItem next index: {0}", index));
+        if (index > m_playlist.size() - 1)
+            setAsSelectedChildNode(0);
+        else
+            setAsSelectedChildNode(index);
+    }
+}
+
+void PlaylistForm::selectPreviousItem()
+{
+    int index = getSelectedIndex();
+    if(m_playlist.size() > 0 && index > -1)
+    {
+        int maxIndex = m_playlist.size() - 1;
+        --index;
+        SystemLog::get()->addDebug(fmt::format("selectPreviousItem next index: {0}", index));
+        if (index < 0)
+            setAsSelectedChildNode(maxIndex);
+        else
+            setAsSelectedChildNode(index);
+    }
+}
+
+
+//void PlaylistForm::forceSelectionAtNextFrame(int index)
+//{
+//    m_forceSelectIndex = index;
+//}
 
 bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
 {
@@ -409,4 +504,18 @@ void PlaylistForm::removeAllItems()
     m_filemapping.clear();
     m_playlist.clear();
     SystemLog::get()->addInfo("Removed all items from playlist!");
+}
+
+void PlaylistForm::removeItem(const std::string &id)
+{
+    for(int i = 0; i < m_playlist.size(); ++i)
+    {
+        if (m_playlist[i].first.getId() == id)
+        {
+            m_playlist.erase(m_playlist.begin() + i);
+            break;
+        }
+    }
+
+    m_filemapping.remove(id);
 }

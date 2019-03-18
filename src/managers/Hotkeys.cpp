@@ -38,6 +38,9 @@ void ebox::Hotkeys::generateDefaultHotkeys()
     m_playlistHotkeys[PlaylistHotkey::MoveItemUp] = Hotkey({sf::Keyboard::LAlt, sf::Keyboard::Up});
     m_playlistHotkeys[PlaylistHotkey::MoveItemDown] = Hotkey({sf::Keyboard::LAlt, sf::Keyboard::Down});
     m_playlistHotkeys[PlaylistHotkey::DeleteItem] = Hotkey({sf::Keyboard::Delete});
+    m_playlistHotkeys[PlaylistHotkey::PlaySelectedItem] = Hotkey({sf::Keyboard::Return});
+    m_playlistHotkeys[PlaylistHotkey::SelectPreviousItem] = Hotkey({sf::Keyboard::Up});
+    m_playlistHotkeys[PlaylistHotkey::SelectNextItem] = Hotkey({sf::Keyboard::Down});
 
     m_filelistHotkeys[FilelistHotkey::None] = Hotkey();
     m_filelistHotkeys[FilelistHotkey::DeleteItem] = Hotkey({sf::Keyboard::Delete});

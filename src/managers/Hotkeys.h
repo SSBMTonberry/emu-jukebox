@@ -51,7 +51,10 @@ namespace ebox
                     None = 0,
                     MoveItemUp = 1,
                     MoveItemDown = 2,
-                    DeleteItem = 3
+                    DeleteItem = 3,
+                    PlaySelectedItem = 4,
+                    SelectPreviousItem = 5,
+                    SelectNextItem = 6
             };
 
             enum class FilelistHotkey
