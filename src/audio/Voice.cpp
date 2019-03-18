@@ -70,3 +70,8 @@ void ebox::Voice::showCheckbox()
         setMuted(!m_checkbox.isChecked());
     }
 }
+
+void ebox::Voice::setTooltip(const std::string &tooltip)
+{
+    m_checkbox.setTooltip(std::make_optional<Tooltip>(tooltip));
+}

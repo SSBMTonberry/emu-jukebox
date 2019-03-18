@@ -21,10 +21,15 @@ void AudioPlayerForm::initialize()
 {
     const sf::Rect rect = m_previousButton.getImage()->getTextureRect();
     //m_previousButton.getImage()->setTextureRect(sf::IntRect(rect.width, 0, -rect.width, rect.height)); //Flip sprite
+    m_previousButton.setTooltip(std::make_optional<Tooltip>("Previous track (<Alt>+<Left>)"));
     m_stopButton.setOnSameLine(true);
+    m_stopButton.setTooltip(std::make_optional<Tooltip>("Stop (<Ctrl>+<Space>)"));
     m_pauseButton.setOnSameLine(true);
+    m_pauseButton.setTooltip(std::make_optional<Tooltip>("Pause (<Alt>+<Space>)"));
     m_playButton.setOnSameLine(true);
+    m_playButton.setTooltip(std::make_optional<Tooltip>("Play (<Alt>+<Space>)"));
     m_nextButton.setOnSameLine(true);
+    m_nextButton.setTooltip(std::make_optional<Tooltip>("Next track (<Alt>+<Right>)"));
 
     m_playButton.getImage()->setColor(sf::Color::Green);
     m_pauseButton.getImage()->setColor(sf::Color::Yellow);

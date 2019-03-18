@@ -253,7 +253,8 @@ bool ebox::EmuStream::initializeEmu()
         int voices = m_emu->voice_count();
         if (i < voices)
         {
-            m_voices.emplace_back(m_emu, i, *voice_names++, false); //, hotkey);
+            auto item = m_voices.emplace_back(m_emu, i, *voice_names++, false); //, hotkey);
+            m_voices[m_voices.size()-1].setTooltip(fmt::format("Hotkey: <Alt>+{0}", i+1));
             ++i;
         }
         else

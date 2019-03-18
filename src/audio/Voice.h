@@ -20,6 +20,7 @@ namespace ebox
             Voice(Music_Emu *emu, int channelNo, const std::string &channelName, bool isMuted); //, sf::Keyboard::Key hotkey = sf::Keyboard::Unknown);
 
             void showCheckbox();
+            void setTooltip(const std::string &tooltip);
             void toggleMute();
 
             void setEmu(Music_Emu *emu);

@@ -54,7 +54,9 @@ namespace ebox
                     DeleteItem = 3,
                     PlaySelectedItem = 4,
                     SelectPreviousItem = 5,
-                    SelectNextItem = 6
+                    SelectNextItem = 6,
+                    Shuffle = 7,
+                    Repeat = 8
             };
 
             enum class FilelistHotkey

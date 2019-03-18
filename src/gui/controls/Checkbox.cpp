@@ -31,6 +31,10 @@ bool ebox::Checkbox::process()
     if(Control::process())
     {
         bool action = ImGui::Checkbox(m_label.c_str(), &m_isChecked);
+
+        if(ImGui::IsItemHovered() && m_tooltip.has_value())
+            m_tooltip->show();
+
         return action;
     }
 

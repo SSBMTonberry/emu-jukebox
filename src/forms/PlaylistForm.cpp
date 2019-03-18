@@ -75,20 +75,26 @@ void PlaylistForm::processHotkeys()
         else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::SelectNextItem) && !Hotkeys::get()->isPlaylistHotkeyDown(key::MoveItemDown))
             selectNextItem();
     }
+
+    //These are okay to handle globally:
+    if (Hotkeys::get()->isPlaylistHotkeyPressed(key::Shuffle))
+        setShuffle(!m_hasShuffle);
+    else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::Repeat))
+        setRepeat(!m_hasRepeat);
 }
 
 void ebox::PlaylistForm::initialize()
 {
     m_filemapping.setHasParentNode(false);
     m_shuffleButton.setOnSameLine(true);
-    m_shuffleButton.setTooltip(std::make_optional<Tooltip>("Shuffle"));
+    m_shuffleButton.setTooltip(std::make_optional<Tooltip>("Shuffle (<Alt>+S)"));
     m_repeatButton.setOnSameLine(true);
-    m_repeatButton.setTooltip(std::make_optional<Tooltip>("Repeat"));
+    m_repeatButton.setTooltip(std::make_optional<Tooltip>("Repeat (<Alt>+R)"));
     m_moveUpButton.setOnSameLine(true);
-    m_moveUpButton.setTooltip(std::make_optional<Tooltip>("Move item up"));
+    m_moveUpButton.setTooltip(std::make_optional<Tooltip>("Move item up (<Alt>+<Up>)"));
     m_moveUpButton.setOnSameLine(true);
     m_moveDownButton.setOnSameLine(true);
-    m_moveDownButton.setTooltip(std::make_optional<Tooltip>("Move item down"));
+    m_moveDownButton.setTooltip(std::make_optional<Tooltip>("Move item down (<Alt>+<Down>)"));
     m_removeAllButton.setOnSameLine(true);
     m_removeAllButton.setTooltip(std::make_optional<Tooltip>("Remove all"));
     setShuffle(m_hasShuffle);
