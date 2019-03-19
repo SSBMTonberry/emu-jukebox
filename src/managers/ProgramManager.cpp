@@ -114,19 +114,12 @@ void ProgramManager::handleEvents()
 void ebox::ProgramManager::update()
 {
     m_events.update();
-
-    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Paste))
-    {
-        SystemLog::get()->addDebug("'Paste' hotkey pressed!");
-        m_clipboard.update();
-    }
-
     m_formManager.update();
     updateViewMenu();
 
-    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Copy))
+    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Copy) || Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Paste))
     {
-        SystemLog::get()->addDebug("'Copy' hotkey pressed!");
+        SystemLog::get()->addDebug("Clipboard hotkey pressed!");
         m_clipboard.update();
     }
 }
