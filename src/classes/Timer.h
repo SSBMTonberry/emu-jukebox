@@ -30,6 +30,7 @@ namespace ebox
             Timer(bool startOnCreate);
 
             void start();
+            void reset();
             void end();
 
             std::chrono::duration<double> getElapsedTime();

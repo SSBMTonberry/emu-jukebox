@@ -24,7 +24,7 @@ void ClipboardManager::update()
 
     const char * imguiCharPtr = ImGui::GetClipboardText();
     string imguiStr = (imguiCharPtr == nullptr) ? "" : imguiCharPtr;
-
+    //ebox::SystemLog::get()->addDebug(fmt::format("ImGui Clipboard: {0}", imguiStr));
     //If changes in clipboard related to OS
     if(m_lastOsClipboardValue != osStr)
     {

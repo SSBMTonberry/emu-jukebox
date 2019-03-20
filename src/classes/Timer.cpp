@@ -18,7 +18,13 @@ ebox::Timer::Timer(bool startOnCreate)
 void ebox::Timer::start()
 {
     m_state = TimerState::Running;
+    reset();
+}
+
+void ebox::Timer::reset()
+{
     m_startPoint = std::chrono::system_clock::now();
+    m_endPoint = m_startPoint;
 }
 
 void ebox::Timer::end()
@@ -57,6 +63,8 @@ std::chrono::duration<double> ebox::Timer::getElapsedTime()
 {
     if(m_state == TimerState::Stopped)
         return m_endPoint - m_startPoint;
+    else if(m_state == TimerState::Running)
+        return std::chrono::system_clock::now() - m_startPoint; //std::chrono::duration<double>(0);
 
     return std::chrono::duration<double>(0);
 }

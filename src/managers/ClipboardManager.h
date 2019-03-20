@@ -13,6 +13,7 @@
 #include "SFML/Window.hpp"
 
 #include <codecvt>
+#include "../forms/SystemLog.h"
 
 using namespace std;
 using namespace std::chrono;

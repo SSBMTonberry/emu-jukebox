@@ -115,13 +115,23 @@ void ebox::ProgramManager::update()
 {
     m_events.update();
     m_formManager.update();
+    handleClipboard();
     updateViewMenu();
+}
 
-    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Copy) || Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Paste))
+void ProgramManager::handleClipboard()
+{
+    if(m_clipboardDelay.getElapsedTime() > std::chrono::milliseconds(100))
     {
-        SystemLog::get()->addDebug("Clipboard hotkey pressed!");
         m_clipboard.update();
+        m_clipboardDelay.end();
+        m_clipboardDelay.reset();
     }
+
+    if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Copy))
+        m_clipboardDelay.start();
+    else if(Hotkeys::get()->isProgramHotkeyPressed(Hotkeys::ProgramHotkey::Paste))
+        m_clipboard.update();
 }
 
 void ebox::ProgramManager::handleActions()
@@ -309,5 +319,3 @@ void ProgramManager::updateViewMenu()
     m_menuViewPlaylist.setIsSelected(m_formManager.isOpened(FormType::Playlist));
     m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
 }
-
-
