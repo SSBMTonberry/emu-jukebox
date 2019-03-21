@@ -1,6 +1,6 @@
 # Emu-Jukebox ![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/logo_64x64.png?raw=true "Emu Jukebox logo") 
 
-#### THIS IS A WORK IN PROGRESS! A LOT OF FUNCTIONALITY IS WORKING "OK" AS IS, BUT EXPECT BUGS AND/OR PARTIAL FUNCTIONALITY! IF YOU FIND ANY BUGS THAT ARE NOT LISTED UNDER ISSUES, PLEASE REPORT THEM, SO THEY CAN BE SOLVED :)
+#### THIS IS A WORK IN PROGRESS! IF YOU FIND ANY BUGS THAT ARE NOT LISTED UNDER ISSUES, PLEASE REPORT THEM, SO THEY CAN BE SOLVED :)
 
 Emu-Jukebox is a *cross-platform* music player that is intended to emulate the sound of old gaming consoles, using files that are read by a sound engine and converted into actual sound waves that you can play on your PC. The purpose of this project is to make a player that is able to play these retro file formats on a computer as if they were regular music files. 
 
@@ -18,7 +18,7 @@ The file formats that are supported:
 ## Cross-platform
 Emu-Jukebox is designed to be cross-platform. That means that whether you use Windows, Linux or Mac (OS X), you should be able to use this program! This project utilizes CMake to make it possible to easily compile the program on different systems without any problem!
 
-## Features that are implemented or partially implemented (as of version 0.6):
+## Features that are implemented (as of version 0.7):
 - The possibility to load either single files or entire folders of files.
 - The possibility to play all formats either from a file explorer or an own playlist.
 - The possibility to control the tempo of the files you play.
@@ -26,13 +26,14 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - The possibility to do simple equalization on files.
 - The possibility to shuffle and repeat songs that have been put on the playlist
 - Audio visualizer by [Alexander Brevig](https://github.com/AlexanderBrevig/) ([#28](https://github.com/SSBMTonberry/emu-jukebox/issues/28))
+- Hotkey support for common actions (see tooltips on buttons and controls).
+- Filter search on files (by [Alexander Brevig](https://github.com/AlexanderBrevig/))
+- You can now clear filelists and playlists. 
+- You can now move playlist items up and down.
 - Note: Files loaded from the file explorer ("Files") will run indefinitely. This is intentional, as it's only meant for previewing of songs, and some songs do loop indefinitely. When you however to play songs from a playlist, the next song will automatically be calle after end of track. 
 
 ## Known critical issues (as of version 0.6):
 - If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability.
-- ~~"Reset layout" will crash the program. This will be fixed in version 0.7 for sure~~ ([#2](https://github.com/SSBMTonberry/emu-jukebox/issues/2)).
-- In a few cases, when you call a lot of "next song" commands, you will end up with a crash ([#24](https://github.com/SSBMTonberry/emu-jukebox/issues/24)).
-- ~~If you remove a lot of random elements from a big playlist, the program might crash~~ ([#7](https://github.com/SSBMTonberry/emu-jukebox/issues/7))
 
 ## Screenshot:
 ![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.7.0.png "Emu Jukebox Screenshot") 
