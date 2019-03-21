@@ -47,7 +47,9 @@ Since Emu-Jukebox is using CMake, it should be pretty straightforward to compile
 Load the CMakeLists.txt into `CMake`, then generate a `Visual Studio 2017 project`. Then you should be all good. There are also libs for `MinGW`, but these are not compiling as of now. The application is almost fully statically linked, except for `openal32.dll` (OpenAL-Soft), which sadly is a standalone dependency due to its license. This can however be solved by either including the openal.dll in the same folder, or just put it inside `System32`-folder and make it a part of your system wide libraries. There are plans to make this a statically part of the application in the future, as it doesn't violate the license due to being a totally open-sourced application for anyone to build or modify, but it will require some extra work. 
 
 ### Linux
-Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `GCC 8.1.1`. Thus it's recommended using `GCC 8.X something` for compilation. Nevertheless, you will need a compiler that supports the features of `std::filesystem`.
+Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `GCC 8.1.1`. Thus it's recommended using `GCC 8.X something` for compilation. Nevertheless, you will need a compiler that supports the features of `std::filesystem`. You can easily compile the program by console by going into the directory of the project, where the `CMakeLists.txt`file is located and call these commands:
+- `cmake -DCMAKE_BUILD_TYPE=Release ./`
+- `make`
 
 ### Mac (OS X)
 Requires the `llvm`/`clang` version shipped with (XCode 10) (OS X Mojave), or a newer version obtained by `homebrew`. You will need to either put the third party libraries provided in this project in a common `Library` folder, or in the same folder as the .app file is built, to make the program run without problems. 
