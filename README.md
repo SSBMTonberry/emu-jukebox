@@ -32,7 +32,7 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - You can now move playlist items up and down.
 - Note: Files loaded from the file explorer ("Files") will run indefinitely. This is intentional, as it's only meant for previewing of songs, and some songs do loop indefinitely. When you however to play songs from a playlist, the next song will automatically be calle after end of track. 
 
-## Known critical issues (as of version 0.6):
+## Known critical issues (as of version 0.7):
 - If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability.
 
 ## Screenshot:
