@@ -9,6 +9,13 @@ set(CMAKE_CXX_FLAGS -DSFML_STATIC)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DSFML_STATIC -DEBOX_DEBUG")
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING
+            "Choose the type of build, options are: Debug Release
+RelWithDebInfo MinSizeRel."
+            FORCE)
+endif(NOT CMAKE_BUILD_TYPE)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(DEBUG 1)
     message(DEBUGGIN')
