@@ -33,7 +33,7 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - Note: Files loaded from the file explorer ("Files") will run indefinitely. This is intentional, as it's only meant for previewing of songs, and some songs do loop indefinitely. When you however to play songs from a playlist, the next song will automatically be calle after end of track. 
 
 ## Known critical issues (as of version 0.7):
-- If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability.
+- If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability. As of v0.7: If not otherwise specified, `Release` is used as the default build type.
 
 ## Screenshot:
 ![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.7.0.png "Emu Jukebox Screenshot") 
@@ -48,7 +48,7 @@ Load the CMakeLists.txt into `CMake`, then generate a `Visual Studio 2017 projec
 
 ### Linux
 Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `GCC 8.1.1`. Thus it's recommended using `GCC 8.X something` for compilation. Nevertheless, you will need a compiler that supports the features of `std::filesystem`. You can easily compile the program by console by going into the directory of the project, where the `CMakeLists.txt`file is located and call these commands:
-- `cmake -DCMAKE_BUILD_TYPE=Release ./`
+- `cmake ./`
 - `make`
 
 ### Mac (OS X)
