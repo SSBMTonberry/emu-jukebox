@@ -35,7 +35,7 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - ~~If you remove a lot of random elements from a big playlist, the program might crash~~ ([#7](https://github.com/SSBMTonberry/emu-jukebox/issues/7))
 
 ## Screenshot:
-![alt text](https://raw.githubusercontent.com/SSBMTonberry/emu-jukebox/master/logo/emu-jukebox_screen.png?token=AY_g1U1rkkxq0Ol-rTrvSQXLo_rKv8Jzks5cjBMZwA%3D%3D "Emu Jukebox Screenshot") 
+![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.7.0.png "Emu Jukebox Screenshot") 
 
 ## Compiling
 Since Emu-Jukebox is using CMake, it should be pretty straightforward to compile, as long as CMake is installed. Since Emu-Jukebox is using C++17 functionality, like `std::filesystem`, a compiler that is supporting this is required. By design Emu-Jukebox is copiled with static libraries, and is compiling all its resources statically, the program should (at least in version 1.0) be able to work as one single executable! Emu-Jukebox is using [f2src](https://github.com/SSBMTonberry/f2src) to generate header files with its file data. The required external dependencies are included in this project, and should make the compilation pretty traight forward. 
