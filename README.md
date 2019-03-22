@@ -2,7 +2,7 @@
 
 #### THIS IS A WORK IN PROGRESS! IF YOU FIND ANY BUGS THAT ARE NOT LISTED UNDER ISSUES, PLEASE REPORT THEM, SO THEY CAN BE SOLVED :)
 
-Emu-Jukebox is a *cross-platform* music player that is intended to emulate the sound of old gaming consoles, using files that are read by a sound engine and converted into actual sound waves that you can play on your PC. The purpose of this project is to make a player that is able to play these retro file formats on a computer as if they were regular music files. 
+Emu-Jukebox is a *cross-platform* music player that emulates the sound of old gaming consoles, using files that are read by a sound engine and converted into actual sound waves that you can play on your PC. The purpose of this project is to make a player that is able to play these retro file formats on a computer as if they were regular music files. 
 
 The file formats that are supported:
 - AY        - ZX Spectrum/Amstrad CPC
