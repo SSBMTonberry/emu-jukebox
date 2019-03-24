@@ -525,15 +525,12 @@ void PlaylistForm::removeItem(const std::string &id)
         }
     }
 
+    //Remove and select next/previous based on where the item was removed.
     if(m_filemapping.remove(id))
     {
         size_t size = m_filemapping.getItems().size();
         if(size > 0)
-        {
-            if(removedAt < size-1)
-                setAsSelectedChildNode(removedAt+1);
-            else
-                setAsSelectedChildNode(removedAt-1);
-        }
+            setAsSelectedChildNode((removedAt < size-1) ? removedAt+1 : removedAt-1);
     }
+
 }
