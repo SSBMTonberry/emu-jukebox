@@ -514,14 +514,26 @@ void PlaylistForm::removeAllItems()
 
 void PlaylistForm::removeItem(const std::string &id)
 {
+    int removedAt = -1;
     for(int i = 0; i < m_playlist.size(); ++i)
     {
         if (m_playlist[i].first.getId() == id)
         {
+            removedAt = i;
             m_playlist.erase(m_playlist.begin() + i);
             break;
         }
     }
 
-    m_filemapping.remove(id);
+    if(m_filemapping.remove(id))
+    {
+        size_t size = m_filemapping.getItems().size();
+        if(size > 0)
+        {
+            if(removedAt < size-1)
+                setAsSelectedChildNode(removedAt+1);
+            else
+                setAsSelectedChildNode(removedAt-1);
+        }
+    }
 }
