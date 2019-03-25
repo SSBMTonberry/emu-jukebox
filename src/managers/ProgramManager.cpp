@@ -21,6 +21,8 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_window.setVerticalSyncEnabled(true);
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
 
+    initializeFiles();
+
     m_events.initialize(&m_window);
     m_formManager.initialize(&m_window, &m_events);
     m_formManager.showImguiDemoWindow(false);
@@ -65,6 +67,17 @@ void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
     }
 }
 
+void ProgramManager::initializeFiles()
+{
+    m_iniFile.load();
+
+    if(!m_iniFile.getLastOpenedFolder().u8string().empty())
+    {
+        m_fileDialogFile.setPath(m_iniFile.getLastOpenedFolder());
+        m_fileDialogFolder.setPath(m_iniFile.getLastOpenedFolder());
+    }
+}
+
 void ebox::ProgramManager::run()
 {
     sf::Clock deltaClock;
@@ -87,6 +100,8 @@ void ebox::ProgramManager::run()
 
         m_window.display();
     }
+
+    m_iniFile.write();
 }
 
 void ProgramManager::handleEvents()
@@ -319,3 +334,5 @@ void ProgramManager::updateViewMenu()
     m_menuViewPlaylist.setIsSelected(m_formManager.isOpened(FormType::Playlist));
     m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
 }
+
+

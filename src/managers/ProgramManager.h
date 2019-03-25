@@ -16,6 +16,7 @@
 #include "../gui/controls/MenuItemCollection.h"
 #include "../../content/files_mapper.h"
 #include "Hotkeys.h"
+#include "../data/IniFile.h"
 
 namespace ebox
 {
@@ -28,6 +29,8 @@ namespace ebox
 
         private:
             void initializeArgs(int argc, char **argv, char** envp);
+            void initializeFiles();
+
             void update();
             void handleActions();
             void processHotkeys();
@@ -90,6 +93,8 @@ namespace ebox
             sf::Color m_backgroundColor = {35, 65, 90, 255};
 
             ebox::Timer m_clipboardDelay;
+
+            IniFile m_iniFile;
     };
 }
 
