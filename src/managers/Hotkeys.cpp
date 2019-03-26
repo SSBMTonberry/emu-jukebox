@@ -14,7 +14,7 @@ void ebox::Hotkeys::generateDefaultHotkeys()
 {
     m_programHotkeys[ProgramHotkey::None] = Hotkey();
     m_programHotkeys[ProgramHotkey::OpenFolder] = Hotkey({sf::Keyboard::Key::LControl, sf::Keyboard::Key::O});
-    m_programHotkeys[ProgramHotkey::OpenFile] = Hotkey({sf::Keyboard::Key::LControl, sf::Keyboard::LShift, sf::Keyboard::Key::O});
+    m_programHotkeys[ProgramHotkey::OpenFile] = Hotkey({sf::Keyboard::Key::LAlt, sf::Keyboard::Key::O});
     m_programHotkeys[ProgramHotkey::CloseApplication] = Hotkey({sf::Keyboard::Key::LControl, sf::Keyboard::Key::Q});
     m_programHotkeys[ProgramHotkey::Copy] = Hotkey({sf::Keyboard::Key::LControl, sf::Keyboard::Key::C});
     m_programHotkeys[ProgramHotkey::Paste] = Hotkey({sf::Keyboard::Key::LControl, sf::Keyboard::Key::V});

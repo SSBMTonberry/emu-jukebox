@@ -34,6 +34,9 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_fileDialogFolder.assignDefaults();
     m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
 
+    m_preferences.setIniFile(&m_iniFile);
+    m_preferences.initialize({resolution.x / 3, resolution.y / 2});
+
     initializeFiles();
 
     if (m_args.size() > 1) {
@@ -178,6 +181,7 @@ void ebox::ProgramManager::draw()
     m_formManager.draw();
     m_fileDialogFile.draw();
     m_fileDialogFolder.draw();
+    m_preferences.draw();
     ImGui::SFML::Render(m_window);
 }
 
@@ -276,18 +280,21 @@ void ProgramManager::resetDock()
 void ProgramManager::createMenu()
 {
     m_menuOpenFolder.setImageRef(&m_openFolderImage);
-    m_menuOpenFolder.setShortcut("<Ctrl>+O");
+    m_menuOpenFolder.setShortcut("(<Ctrl>+O)");
     m_menuOpenFile.setImageRef(&m_openFileImage);
-    m_menuOpenFile.setShortcut("<Ctrl>+<Shift>+O");
-    m_menuLayoutReset.setImageRef(&m_resetLayoutImage);
+    m_menuOpenFile.setShortcut("(<Alt>+O)");
     m_menuQuit.setImageRef(&m_imgQuit);
-    m_menuQuit.setShortcut("<Ctrl>+Q");
+    m_menuQuit.setShortcut("(<Ctrl>+Q)");
+
+    m_menuSettingsReset.setImageRef(&m_resetLayoutImage);
+    m_menuSettingsPreferences.setImageRef(&m_preferencesImage);
 
     m_menuFile.addRef(&m_menuOpenFolder);
     m_menuFile.addRef(&m_menuOpenFile);
     m_menuFile.addRef(&m_menuQuit);
 
-    m_menuLayout.addRef(&m_menuLayoutReset);
+    m_menuSettings.addRef(&m_menuSettingsReset);
+    m_menuSettings.addRef(&m_menuSettingsPreferences);
 
     m_menuView.addRef(&m_menuViewAudioPlayer);
     m_menuView.addRef(&m_menuViewFiles);
@@ -295,7 +302,7 @@ void ProgramManager::createMenu()
     m_menuView.addRef(&m_menuViewSystemlog);
 
     m_menu.addRef(&m_menuFile);
-    m_menu.addRef(&m_menuLayout);
+    m_menu.addRef(&m_menuSettings);
     m_menu.addRef(&m_menuView);
 }
 
@@ -304,7 +311,8 @@ void ProgramManager::onChosenMenuItem(MenuItem *sender)
     if(sender->getId() == m_menuOpenFile.getId()) m_fileDialogFile.setOpen(true);
     else if(sender->getId() == m_menuOpenFolder.getId()) m_fileDialogFolder.setOpen(true);
     else if(sender->getId() == m_menuQuit.getId()) m_window.close();
-    else if(sender->getId() == m_menuLayoutReset.getId()) resetDock();
+    else if(sender->getId() == m_menuSettingsReset.getId()) resetDock();
+    else if(sender->getId() == m_menuSettingsPreferences.getId()) m_preferences.setOpen(true);
     else if(sender->getId() == m_menuViewPlaylist.getId()) m_formManager.toggleOpened(FormType::Playlist);
     else if(sender->getId() == m_menuViewAudioPlayer.getId()) m_formManager.toggleOpened(FormType::AudioPlayer);
     else if(sender->getId() == m_menuViewFiles.getId()) m_formManager.toggleOpened(FormType::Files);
@@ -331,7 +339,8 @@ void ProgramManager::registerCallbacks()
     m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuOpenFile.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuQuit.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
-    m_menuLayoutReset.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuSettingsReset.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuSettingsPreferences.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewAudioPlayer.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewFiles.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));

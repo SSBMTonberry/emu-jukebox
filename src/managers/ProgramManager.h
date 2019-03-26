@@ -17,6 +17,7 @@
 #include "../../content/files_mapper.h"
 #include "Hotkeys.h"
 #include "../data/IniFile.h"
+#include "../popups/PreferencesPopup.h"
 
 namespace ebox
 {
@@ -63,8 +64,9 @@ namespace ebox
             MenuItem m_menuOpenFile {"main_file_open_file", "Open File"};
             MenuItem m_menuQuit {"main_file_quit", "Quit"};
 
-            MenuItemCollection m_menuLayout {"main_layout", "Layout"};
-            MenuItem m_menuLayoutReset {"main_layout_reset", "Reset Layout"};
+            MenuItemCollection m_menuSettings {"main_settings", "Settings"};
+            MenuItem m_menuSettingsReset {"main_settings_reset", "Reset Layout"};
+            MenuItem m_menuSettingsPreferences {"main_settings_preferences", "Preferences"};
 
             MenuItemCollection m_menuView {"main_view", "View"};
             MenuItem m_menuViewFiles {"main_view_files", "Files"};
@@ -76,11 +78,13 @@ namespace ebox
             Image m_openFolderImage {"img_open_folder", files_mapper::gui::general::_OPENPROJECT_PNG, files_mapper::gui::general::_OPENPROJECT_PNG_SIZE};
             Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
             Image m_resetLayoutImage {"img_reset_layout", files_mapper::gui::debugger::_RESTORELAYOUT_PNG, files_mapper::gui::debugger::_RESTORELAYOUT_PNG_SIZE};
+            Image m_preferencesImage {"img_preferences", files_mapper::gui::general::_GEARPLAIN_DARK_PNG, files_mapper::gui::general::_GEARPLAIN_DARK_PNG_SIZE};
             Image m_imgQuit {"img_quit", files_mapper::gui::actions::_EXIT_PNG, files_mapper::gui::actions::_EXIT_PNG_SIZE};
 
             //File dialogs
             FileDialog m_fileDialogFile { DialogType::OpenFile, "main_file_dialog_file", "Choose a file", "main_file_dialog_file"};
             FileDialog m_fileDialogFolder { DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder", "main_file_dialog_folder" };
+            PreferencesPopup m_preferences {"preferences_popup", "Preferences"};
 
             bool m_firstRun = true; //Used to make stuff happen on first run
             sf::RenderWindow m_window;
