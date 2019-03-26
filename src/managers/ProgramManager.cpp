@@ -21,8 +21,6 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_window.setVerticalSyncEnabled(true);
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
 
-    initializeFiles();
-
     m_events.initialize(&m_window);
     m_formManager.initialize(&m_window, &m_events);
     m_formManager.showImguiDemoWindow(false);
@@ -35,6 +33,8 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFolder.assignDefaults();
     m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
+
+    initializeFiles();
 
     if (m_args.size() > 1) {
         fs::path currentPath = fs::path(m_args[1]);
@@ -73,8 +73,11 @@ void ProgramManager::initializeFiles()
 
     if(!m_iniFile.getLastOpenedFolder().u8string().empty())
     {
-        m_fileDialogFile.setPath(m_iniFile.getLastOpenedFolder());
-        m_fileDialogFolder.setPath(m_iniFile.getLastOpenedFolder());
+        if(!m_iniFile.getLastOpenedFolder().empty())
+        {
+            m_fileDialogFile.setPath(m_iniFile.getLastOpenedFolder());
+            m_fileDialogFolder.setPath(m_iniFile.getLastOpenedFolder());
+        }
     }
 }
 
@@ -89,6 +92,7 @@ void ebox::ProgramManager::run()
         handleEvents();
         draw();
         handleActions();
+        processHotkeys();
         //if(ImGui::IsKeyPressed(sf::Keyboard::Key::Escape))
         //    m_window.close();
 
@@ -151,15 +155,20 @@ void ProgramManager::handleClipboard()
 
 void ebox::ProgramManager::handleActions()
 {
-
     m_formManager.handleEvents();
     m_fileDialogFile.handleEvents();
     m_fileDialogFolder.handleEvents();
+
 }
 
 void ebox::ProgramManager::processHotkeys()
 {
-
+    if(Hotkeys::get()->isProgramHotkeyPressed(ebox::Hotkeys::ProgramHotkey::OpenFolder))
+        m_fileDialogFolder.setOpen(true);
+    if(Hotkeys::get()->isProgramHotkeyPressed(ebox::Hotkeys::ProgramHotkey::OpenFile))
+        m_fileDialogFile.setOpen(true);
+    if(Hotkeys::get()->isProgramHotkeyPressed(ebox::Hotkeys::ProgramHotkey::CloseApplication))
+        m_window.close();
 }
 
 void ebox::ProgramManager::draw()
@@ -267,9 +276,12 @@ void ProgramManager::resetDock()
 void ProgramManager::createMenu()
 {
     m_menuOpenFolder.setImageRef(&m_openFolderImage);
+    m_menuOpenFolder.setShortcut("<Ctrl>+O");
     m_menuOpenFile.setImageRef(&m_openFileImage);
+    m_menuOpenFile.setShortcut("<Ctrl>+<Shift>+O");
     m_menuLayoutReset.setImageRef(&m_resetLayoutImage);
     m_menuQuit.setImageRef(&m_imgQuit);
+    m_menuQuit.setShortcut("<Ctrl>+Q");
 
     m_menuFile.addRef(&m_menuOpenFolder);
     m_menuFile.addRef(&m_menuOpenFile);
@@ -303,12 +315,14 @@ void ProgramManager::onFileChosen(const std::string &path)
 {
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadFile(currentPath);
+    m_iniFile.setLastOpenedFolder(currentPath.parent_path().u8string());
 }
 
 void ProgramManager::onFolderChosen(const std::string &path)
 {
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
+    m_iniFile.setLastOpenedFolder(currentPath.u8string());
 }
 
 void ProgramManager::registerCallbacks()
