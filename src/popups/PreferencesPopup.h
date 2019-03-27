@@ -8,6 +8,12 @@
 #include "../gui/forms/Popup.h"
 #include "../data/IniFile.h"
 
+#include "../gui/controls/ColorButton.h"
+#include "../gui/controls/ColorPicker.h"
+#include "../gui/controls/Checkbox.h"
+#include "../gui/controls/Button.h"
+
+
 namespace ebox
 {
     class PreferencesPopup : public Popup
@@ -28,8 +34,21 @@ namespace ebox
             void drawGeneralTab();
             void drawThemesTab();
             void drawFontsTab();
+            void drawButtonBar();
 
             IniFile *m_iniFile;
+
+            //General
+            Checkbox m_loadLastFileOnStartup {"load_last_file_on_startup", "Load last opened file/folder on startup"};
+            Checkbox m_filePreviewsPlayForever {"file_previews_plays_forever", "Play tracks from file explorer forever"};
+            ColorPicker m_backgroundColor {"background_color", "Background color", ColorPicker::ColorPickerType::ColorEdit3, {35, 65, 90, 255}};
+
+            //Buttons
+            int m_buttonOffset = 0;
+            int m_totalButtonWidth = 0;
+            Button m_okButton {"preferences_ok_button", "OK", {90, 30}};
+            Button m_applyButton {"preferences_apply_button", "Apply", {90, 30}};
+            Button m_cancelButton {"preferences_cancel_button", "Cancel", {90, 30}};
     };
 }
 
