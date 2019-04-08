@@ -5,9 +5,9 @@
 #ifndef EMU_JUKEBOX_EMUEQUALIZER_H
 #define EMU_JUKEBOX_EMUEQUALIZER_H
 
-#include "libgme/gme_types.h"
-#include "libgme/Music_Emu.h"
-#include "libgme/Nsf_Emu.h"
+//#include <gme_types.h>
+#include <Music_Emu.h>
+#include <Nsf_Emu.h>
 #include "imgui/imgui.h"
 
 namespace ebox

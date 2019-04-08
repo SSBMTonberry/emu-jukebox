@@ -8,7 +8,7 @@
 #include "AudioCommon.h"
 #include "SFML/Audio.hpp"
 #include "fmt/format.h"
-#include "libgme/Music_Emu.h"
+#include <Music_Emu.h>
 
 namespace ebox
 {

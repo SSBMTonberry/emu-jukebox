@@ -5,8 +5,8 @@
 #ifndef EMU_JUKEBOX_EMUSTREAM_H
 #define EMU_JUKEBOX_EMUSTREAM_H
 
-#include "libgme/gme_types.h"
-#include "libgme/Music_Emu.h"
+//#include <gme_types.h>
+#include <Music_Emu.h>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>

@@ -6,7 +6,7 @@
 #define EMU_JUKEBOX_VOICE_H
 
 #include <iostream>
-#include <libgme/Music_Emu.h>
+#include <Music_Emu.h>
 #include <SFML/Window.hpp>
 #include <map>
 #include "../gui/controls/Checkbox.h"

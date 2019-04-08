@@ -30,8 +30,8 @@ namespace fs = std::filesystem;
 #endif
 #endif
 
-#include "libgme/gme_types.h"
-#include "libgme/Music_Emu.h"
+//#include "libgme/gme_types.h"
+#include <Music_Emu.h>
 
 #include "../forms/SystemLog.h"
 
