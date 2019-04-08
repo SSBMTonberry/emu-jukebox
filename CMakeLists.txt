@@ -60,7 +60,7 @@ configure_file (
         "${PROJECT_SOURCE_DIR}/EmuJukeboxConfig.h"
 )
 
-include_directories(${PROJECT_SOURCE_DIR}/external_libs/include/ ${PROJECT_SOURCE_DIR}/external_libs/include/libgme2/)
+include_directories(${PROJECT_SOURCE_DIR}/external_libs/include/ ${PROJECT_SOURCE_DIR}/external_libs/include/libgme/)
 
 if(LINUX)
     set(SFML_DEPENDENCIES jpeg X11 Xrandr freetype xcb X11-xcb xcb-randr xcb-image GL FLAC ogg vorbis vorbisenc vorbisfile openal pthread)
@@ -98,166 +98,175 @@ endif()
 
 set(FMT_SOURCE_FILES ${PROJECT_SOURCE_DIR}/external_libs/source/fmt/format.cc ${PROJECT_SOURCE_DIR}/external_libs/source/fmt/posix.cc)
 
-#set(GME_SOURCE_FILES ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ay_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ay_Cpu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ay_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Blip_Buffer.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Classic_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Data_Reader.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Dual_Resampler.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Effects_Buffer.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Fir_Resampler.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gb_Apu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gb_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gb_Oscs.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gbs_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/gme.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gme_File.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gym_Emu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Hes_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Hes_Cpu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Hes_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Kss_Cpu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Kss_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Kss_Scc_Apu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/M3u_Playlist.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Multi_Buffer.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Music_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Apu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Fme7_Apu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Namco_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Oscs.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Vrc6_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nsf_Emu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nsfe_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sap_Apu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sap_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sap_Emu.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sms_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Snes_Spc.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Dsp.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Filter.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Vgm_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Vgm_Emu_Impl.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2413_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2612_GENS.cpp
-#        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2612_MAME.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2612_Nuked.cpp)
-set(GME_PATH ${PROJECT_SOURCE_DIR}/external_libs/source/gme2)
+set(GME_SOURCE_FILES ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ay_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ay_Cpu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ay_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Blip_Buffer.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Classic_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Data_Reader.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Dual_Resampler.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Effects_Buffer.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Fir_Resampler.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gb_Apu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gb_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gb_Oscs.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gbs_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/gme.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gme_File.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Gym_Emu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Hes_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Hes_Cpu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Hes_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Kss_Cpu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Kss_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Kss_Scc_Apu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/M3u_Playlist.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Multi_Buffer.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Music_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Apu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Fme7_Apu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Namco_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Oscs.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nes_Vrc6_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nsf_Emu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Nsfe_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sap_Apu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sap_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sap_Emu.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Sms_Apu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Snes_Spc.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Cpu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Dsp.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Spc_Filter.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Vgm_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Vgm_Emu_Impl.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2413_Emu.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2612_GENS.cpp
+        ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2612_MAME.cpp ${PROJECT_SOURCE_DIR}/external_libs/source/gme/Ym2612_Nuked.cpp)
 
-set(GME_SOURCE_FILES
-${GME_PATH}/higan/dsp/dsp.hpp
-${GME_PATH}/higan/dsp/dsp.cpp
-${GME_PATH}/higan/dsp/SPC_DSP.cpp
-#${GME_PATH}/higan/processor/spc700/memory.hpp
-#${GME_PATH}/higan/processor/spc700/registers.hpp
-${GME_PATH}/higan/processor/spc700/spc700.hpp
-#${GME_PATH}/higan/processor/spc700/algorithms.cpp
-#${GME_PATH}/higan/processor/spc700/disassembler.cpp
-#${GME_PATH}/higan/processor/spc700/instructions.cpp
-${GME_PATH}/higan/processor/spc700/spc700.cpp
-${GME_PATH}/higan/smp/memory.cpp
-${GME_PATH}/higan/smp/smp.hpp
-${GME_PATH}/higan/smp/smp.cpp
-${GME_PATH}/higan/smp/timing.cpp
 
-${GME_PATH}/Ay_Apu.cpp
-${GME_PATH}/Ay_Core.cpp
-${GME_PATH}/Ay_Cpu.cpp
-${GME_PATH}/Ay_Emu.cpp
-${GME_PATH}/blargg_common.cpp
-${GME_PATH}/blargg_errors.cpp
-${GME_PATH}/Blip_Buffer.cpp
-${GME_PATH}/Bml_Parser.cpp
-${GME_PATH}/c140.c
-${GME_PATH}/C140_Emu.cpp
-${GME_PATH}/Classic_Emu.cpp
-${GME_PATH}/dac_control.c
-${GME_PATH}/dbopl.cpp
-${GME_PATH}/Downsampler.cpp
-${GME_PATH}/Data_Reader.cpp
-${GME_PATH}/Dual_Resampler.cpp
-${GME_PATH}/Effects_Buffer.cpp
-${GME_PATH}/Fir_Resampler.cpp
-${GME_PATH}/fm2612.c
-${GME_PATH}/fm.c
-${GME_PATH}/fmopl.cpp
-${GME_PATH}/Gb_Apu.cpp
-${GME_PATH}/Gb_Cpu.cpp
-${GME_PATH}/Gb_Oscs.cpp
-${GME_PATH}/Gbs_Core.cpp
-${GME_PATH}/Gbs_Cpu.cpp
-${GME_PATH}/Gbs_Emu.cpp
-${GME_PATH}/gme.cpp
-${GME_PATH}/gme_custom_dprintf.c
-${GME_PATH}/Gme_File.cpp
-${GME_PATH}/Gme_Loader.cpp
-${GME_PATH}/Gym_Emu.cpp
-${GME_PATH}/Hes_Apu_Adpcm.cpp
-${GME_PATH}/Hes_Apu.cpp
-${GME_PATH}/Hes_Core.cpp
-${GME_PATH}/Hes_Cpu.cpp
-${GME_PATH}/Hes_Emu.cpp
-${GME_PATH}/k051649.c
-${GME_PATH}/K051649_Emu.cpp
-${GME_PATH}/k053260.c
-${GME_PATH}/K053260_Emu.cpp
-${GME_PATH}/k054539.c
-${GME_PATH}/K054539_Emu.cpp
-${GME_PATH}/Kss_Core.cpp
-${GME_PATH}/Kss_Cpu.cpp
-${GME_PATH}/Kss_Emu.cpp
-${GME_PATH}/Kss_Scc_Apu.cpp
-${GME_PATH}/M3u_Playlist.cpp
-${GME_PATH}/Multi_Buffer.cpp
-${GME_PATH}/Music_Emu.cpp
-${GME_PATH}/Nes_Apu.cpp
-${GME_PATH}/Nes_Cpu.cpp
-${GME_PATH}/Nes_Fds_Apu.cpp
-${GME_PATH}/Nes_Fme7_Apu.cpp
-${GME_PATH}/Nes_Namco_Apu.cpp
-${GME_PATH}/Nes_Oscs.cpp
-${GME_PATH}/Nes_Vrc6_Apu.cpp
-${GME_PATH}/Nes_Vrc7_Apu.cpp
-${GME_PATH}/Nsf_Core.cpp
-${GME_PATH}/Nsf_Cpu.cpp
-${GME_PATH}/Nsfe_Emu.cpp
-${GME_PATH}/Nsf_Emu.cpp
-${GME_PATH}/Nsf_Impl.cpp
-${GME_PATH}/okim6258.c
-${GME_PATH}/Okim6258_Emu.cpp
-${GME_PATH}/okim6295.c
-${GME_PATH}/Okim6295_Emu.cpp
-${GME_PATH}/Opl_Apu.cpp
-${GME_PATH}/pwm.c
-${GME_PATH}/Pwm_Emu.cpp
-${GME_PATH}/qmix.c
-${GME_PATH}/Qsound_Apu.cpp
-${GME_PATH}/Resampler.cpp
-${GME_PATH}/Rf5C164_Emu.cpp
-${GME_PATH}/rf5c68.c
-${GME_PATH}/Rf5C68_Emu.cpp
-${GME_PATH}/Rom_Data.cpp
-${GME_PATH}/Sap_Apu.cpp
-${GME_PATH}/Sap_Core.cpp
-${GME_PATH}/Sap_Cpu.cpp
-${GME_PATH}/Sap_Emu.cpp
-${GME_PATH}/scd_pcm.c
-${GME_PATH}/s_deltat.c
-${GME_PATH}/segapcm.c
-${GME_PATH}/SegaPcm_Emu.cpp
-${GME_PATH}/Sgc_Core.cpp
-${GME_PATH}/Sgc_Cpu.cpp
-${GME_PATH}/Sgc_Emu.cpp
-${GME_PATH}/Sgc_Impl.cpp
-${GME_PATH}/s_logtbl.c
-${GME_PATH}/Sms_Apu.cpp
-${GME_PATH}/Sms_Fm_Apu.cpp
-${GME_PATH}/s_opl.c
-${GME_PATH}/s_opltbl.c
-${GME_PATH}/Spc_Emu.cpp
-${GME_PATH}/Spc_Filter.cpp
-${GME_PATH}/Spc_Sfm.cpp
-${GME_PATH}/Track_Filter.cpp
-${GME_PATH}/Upsampler.cpp
-${GME_PATH}/Vgm_Core.cpp
-${GME_PATH}/Vgm_Emu.cpp
-${GME_PATH}/ym2151.c
-${GME_PATH}/Ym2151_Emu.cpp
-${GME_PATH}/Ym2203_Emu.cpp
-${GME_PATH}/ym2413.c
-${GME_PATH}/Ym2413_Emu.cpp
-${GME_PATH}/Ym2608_Emu.cpp
-${GME_PATH}/Ym2610b_Emu.cpp
-#${GME_PATH}/Ym2612_Emu.cpp
-#${GME_PATH}/Ym2612_Emu_Gens.cpp
-${GME_PATH}/Ym2612_Emu_MAME.cpp
-${GME_PATH}/Ym3812_Emu.cpp
-${GME_PATH}/ymdeltat.cpp
-${GME_PATH}/Ymf262_Emu.cpp
-${GME_PATH}/ymz280b.c
-${GME_PATH}/Ymz280b_Emu.cpp
-${GME_PATH}/Z80_Cpu.cpp
-)
+#set(GME_PATH ${PROJECT_SOURCE_DIR}/external_libs/source/gme2)
+#set(GME_SOURCE_FILES
+#${GME_PATH}/higan/dsp/dsp.hpp
+#${GME_PATH}/higan/dsp/dsp.cpp
+#${GME_PATH}/higan/dsp/SPC_DSP.cpp
+##${GME_PATH}/higan/processor/spc700/memory.hpp
+##${GME_PATH}/higan/processor/spc700/registers.hpp
+#${GME_PATH}/higan/processor/spc700/spc700.hpp
+##${GME_PATH}/higan/processor/spc700/algorithms.cpp
+##${GME_PATH}/higan/processor/spc700/disassembler.cpp
+##${GME_PATH}/higan/processor/spc700/instructions.cpp
+#${GME_PATH}/higan/processor/spc700/spc700.cpp
+#${GME_PATH}/higan/smp/memory.cpp
+#${GME_PATH}/higan/smp/smp.hpp
+#${GME_PATH}/higan/smp/smp.cpp
+#${GME_PATH}/higan/smp/timing.cpp
+
+#${GME_PATH}/Ay_Apu.cpp
+#${GME_PATH}/Ay_Core.cpp
+#${GME_PATH}/Ay_Cpu.cpp
+#${GME_PATH}/Ay_Emu.cpp
+#${GME_PATH}/blargg_common.cpp
+#${GME_PATH}/blargg_errors.cpp
+#${GME_PATH}/Blip_Buffer.cpp
+#${GME_PATH}/Bml_Parser.cpp
+#${GME_PATH}/c140.c
+#${GME_PATH}/C140_Emu.cpp
+#${GME_PATH}/Classic_Emu.cpp
+#${GME_PATH}/dac_control.c
+#${GME_PATH}/dbopl.cpp
+#${GME_PATH}/Downsampler.cpp
+#${GME_PATH}/Data_Reader.cpp
+#${GME_PATH}/Dual_Resampler.cpp
+#${GME_PATH}/Effects_Buffer.cpp
+#${GME_PATH}/Fir_Resampler.cpp
+#${GME_PATH}/fm2612.c
+#${GME_PATH}/fm.c
+#${GME_PATH}/fmopl.cpp
+#${GME_PATH}/Gb_Apu.cpp
+#${GME_PATH}/Gb_Cpu.cpp
+#${GME_PATH}/Gb_Oscs.cpp
+#${GME_PATH}/Gbs_Core.cpp
+#${GME_PATH}/Gbs_Cpu.cpp
+#${GME_PATH}/Gbs_Emu.cpp
+#${GME_PATH}/gme.cpp
+#${GME_PATH}/gme_custom_dprintf.c
+#${GME_PATH}/Gme_File.cpp
+#${GME_PATH}/Gme_Loader.cpp
+#${GME_PATH}/Gym_Emu.cpp
+#${GME_PATH}/Hes_Apu_Adpcm.cpp
+#${GME_PATH}/Hes_Apu.cpp
+#${GME_PATH}/Hes_Core.cpp
+#${GME_PATH}/Hes_Cpu.cpp
+#${GME_PATH}/Hes_Emu.cpp
+#${GME_PATH}/k051649.c
+#${GME_PATH}/K051649_Emu.cpp
+#${GME_PATH}/k053260.c
+#${GME_PATH}/K053260_Emu.cpp
+#${GME_PATH}/k054539.c
+#${GME_PATH}/K054539_Emu.cpp
+#${GME_PATH}/Kss_Core.cpp
+#${GME_PATH}/Kss_Cpu.cpp
+#${GME_PATH}/Kss_Emu.cpp
+#${GME_PATH}/Kss_Scc_Apu.cpp
+#${GME_PATH}/M3u_Playlist.cpp
+#${GME_PATH}/Multi_Buffer.cpp
+#${GME_PATH}/Music_Emu.cpp
+#${GME_PATH}/Nes_Apu.cpp
+#${GME_PATH}/Nes_Cpu.cpp
+#${GME_PATH}/Nes_Fds_Apu.cpp
+#${GME_PATH}/Nes_Fme7_Apu.cpp
+#${GME_PATH}/Nes_Namco_Apu.cpp
+#${GME_PATH}/Nes_Oscs.cpp
+#${GME_PATH}/Nes_Vrc6_Apu.cpp
+#${GME_PATH}/Nes_Vrc7_Apu.cpp
+#${GME_PATH}/Nsf_Core.cpp
+#${GME_PATH}/Nsf_Cpu.cpp
+#${GME_PATH}/Nsfe_Emu.cpp
+#${GME_PATH}/Nsf_Emu.cpp
+#${GME_PATH}/Nsf_Impl.cpp
+#${GME_PATH}/okim6258.c
+#${GME_PATH}/Okim6258_Emu.cpp
+#${GME_PATH}/okim6295.c
+#${GME_PATH}/Okim6295_Emu.cpp
+#${GME_PATH}/Opl_Apu.cpp
+#${GME_PATH}/pwm.c
+#${GME_PATH}/Pwm_Emu.cpp
+#${GME_PATH}/qmix.c
+#${GME_PATH}/Qsound_Apu.cpp
+#${GME_PATH}/Resampler.cpp
+#${GME_PATH}/Rf5C164_Emu.cpp
+#${GME_PATH}/rf5c68.c
+#${GME_PATH}/Rf5C68_Emu.cpp
+#${GME_PATH}/Rom_Data.cpp
+#${GME_PATH}/Sap_Apu.cpp
+#${GME_PATH}/Sap_Core.cpp
+#${GME_PATH}/Sap_Cpu.cpp
+#${GME_PATH}/Sap_Emu.cpp
+#${GME_PATH}/scd_pcm.c
+#${GME_PATH}/s_deltat.c
+#${GME_PATH}/segapcm.c
+#${GME_PATH}/SegaPcm_Emu.cpp
+#${GME_PATH}/Sgc_Core.cpp
+#${GME_PATH}/Sgc_Cpu.cpp
+#${GME_PATH}/Sgc_Emu.cpp
+#${GME_PATH}/Sgc_Impl.cpp
+#${GME_PATH}/s_logtbl.c
+#${GME_PATH}/Sms_Apu.cpp
+#${GME_PATH}/Sms_Fm_Apu.cpp
+#${GME_PATH}/s_opl.c
+#${GME_PATH}/s_opltbl.c
+#
+##${GME_PATH}/Spc_Emu.cpp
+##${GME_PATH}/Spc_Filter.cpp
+##${GME_PATH}/Spc_Sfm.cpp
+#
+#${GME_PATH}/Snes_Spc.cpp
+#${GME_PATH}/Spc_Emu.cpp
+#${GME_PATH}/Spc_Filter.cpp
+#${GME_PATH}/Spc_Dsp.cpp
+#${GME_PATH}/Spc_Cpu.cpp
+#
+#${GME_PATH}/Track_Filter.cpp
+#${GME_PATH}/Upsampler.cpp
+#${GME_PATH}/Vgm_Core.cpp
+#${GME_PATH}/Vgm_Emu.cpp
+#${GME_PATH}/ym2151.c
+#${GME_PATH}/Ym2151_Emu.cpp
+#${GME_PATH}/Ym2203_Emu.cpp
+#${GME_PATH}/ym2413.c
+#${GME_PATH}/Ym2413_Emu.cpp
+#${GME_PATH}/Ym2608_Emu.cpp
+#${GME_PATH}/Ym2610b_Emu.cpp
+##${GME_PATH}/Ym2612_Emu.cpp
+##${GME_PATH}/Ym2612_Emu_Gens.cpp
+#${GME_PATH}/Ym2612_Emu_MAME.cpp
+#${GME_PATH}/Ym3812_Emu.cpp
+#${GME_PATH}/ymdeltat.cpp
+#${GME_PATH}/Ymf262_Emu.cpp
+#${GME_PATH}/ymz280b.c
+#${GME_PATH}/Ymz280b_Emu.cpp
+#${GME_PATH}/Z80_Cpu.cpp
+#)
 
 set(IMGUI_SOURCE_FILES ${PROJECT_SOURCE_DIR}/external_libs/include/imgui/imgui.cpp ${PROJECT_SOURCE_DIR}/external_libs/include/imgui/imconfig.h
         ${PROJECT_SOURCE_DIR}/external_libs/include/imgui/imgui_draw.cpp ${PROJECT_SOURCE_DIR}/external_libs/include/imgui/imgui_widgets.cpp
