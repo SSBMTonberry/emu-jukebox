@@ -105,7 +105,7 @@ void ebox::PreferencesPopup::drawButtonBar()
 void ebox::PreferencesPopup::onOpen()
 {
     //General
-    m_loadLastFileOnStartup.setChecked(m_iniFile->openLastOpenedFolderOnStartup());
+    m_loadLastFileOnStartup.setChecked(m_iniFile->openLastOpenedItemOnStartup());
     m_filePreviewsPlayForever.setChecked(m_iniFile->loopPreviewTracksForever());
     m_backgroundColor.setColor(m_iniFile->getBackgroundColor());
 }
@@ -113,8 +113,8 @@ void ebox::PreferencesPopup::onOpen()
 void ebox::PreferencesPopup::updateIniData()
 {
     //General
-    m_iniFile->setOpenLastOpenedFolderOnStartup(m_loadLastFileOnStartup.getChecked());
-    m_iniFile->setLoopPreviewTracksForever(m_filePreviewsPlayForever.getChecked());
+    m_iniFile->setOpenLastOpenedItemOnStartup(m_loadLastFileOnStartup.isChecked());
+    m_iniFile->setLoopPreviewTracksForever(m_filePreviewsPlayForever.isChecked());
     m_iniFile->setBackgroundColor(m_backgroundColor.getColor());
     m_iniFile->write();
 }

@@ -18,6 +18,7 @@
 #include "../classes/Timer.h"
 #include "AudioPlayerForm.h"
 #include "PlaylistForm.h"
+#include "../data/IniFile.h"
 
 #if MSVC
 #include <filesystem>
@@ -54,6 +55,7 @@ namespace ebox
                          const std::string &imguiId = "");
 
             void handleEvents() override;
+            void setIniFile(IniFile *iniFile);
 
             void loadFile(const fs::path & path);
             void loadAllFilesInFolder(const fs::path & folder);
@@ -100,6 +102,7 @@ namespace ebox
 
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;
+            IniFile *m_iniFile;
             ebox::Textbox m_filterTextbox {"filter_textbox", "Filter"};
 
             ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};

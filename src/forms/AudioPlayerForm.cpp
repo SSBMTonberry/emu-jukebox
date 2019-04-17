@@ -184,11 +184,11 @@ void AudioPlayerForm::drawAudioPanel()
 
     if(m_stream != nullptr && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength())
     {
-        bool abort = false;
+        bool proceedAfterEnd = false;
         for(auto const &callback : m_callbackOnTrackEnded)
-            abort = callback(this, m_stream.get()) ? true : abort;
+            proceedAfterEnd = callback(this, m_stream.get()) ? true : proceedAfterEnd;
 
-        if(!abort) m_stream->stop();
+        if(!proceedAfterEnd) m_stream->stop();
     }
 
     ImGui::EndChild();

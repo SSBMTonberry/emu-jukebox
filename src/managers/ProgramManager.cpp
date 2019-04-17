@@ -21,30 +21,39 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_window.setVerticalSyncEnabled(true);
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
 
+    m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogFile.assignDefaults();
+    m_fileDialogFile.setUseFileIcons(true);
+
+    m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogFolder.assignDefaults();
+    m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
+
     m_events.initialize(&m_window);
     m_formManager.initialize(&m_window, &m_events, &m_iniFile);
     m_formManager.showImguiDemoWindow(false);
     createMenu();
     registerCallbacks();
-    m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
-    m_fileDialogFile.assignDefaults();
-    m_fileDialogFile.setUseFileIcons(true);
-    
-    m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
-    m_fileDialogFolder.assignDefaults();
-    m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
 
     m_preferences.setIniFile(&m_iniFile);
     m_preferences.initialize({resolution.x / 3, resolution.y / 2});
 
-    initializeFiles();
-
-    if (m_args.size() > 1) {
-        fs::path currentPath = fs::path(m_args[1]);
-        if (fs::is_directory(currentPath)) {
-            onFolderChosen(m_args[1]);
-        } else {
-            onFileChosen(m_args[1]);
+    if(initializeFiles())
+    {
+        if(m_iniFile.isLastItemFolder() && fs::is_directory(m_iniFile.getLastOpenedFolder()))
+            onFolderChosen(m_iniFile.getLastOpenedFolder());
+        else if(!m_iniFile.isLastItemFolder() && fs::is_regular_file(m_iniFile.getLastOpenedFile()))
+            onFileChosen(m_iniFile.getLastOpenedFile());
+    }
+    else
+    {
+        if (m_args.size() > 1)
+        {
+            fs::path currentPath = fs::path(m_args[1]);
+            if (fs::is_directory(currentPath))
+                onFolderChosen(m_args[1]);
+            else if(fs::is_regular_file(currentPath))
+                onFileChosen(m_args[1]);
         }
     }
 }
@@ -70,7 +79,7 @@ void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
     }
 }
 
-void ProgramManager::initializeFiles()
+bool ProgramManager::initializeFiles()
 {
     m_iniFile.load();
 
@@ -82,6 +91,8 @@ void ProgramManager::initializeFiles()
             m_fileDialogFolder.setPath(m_iniFile.getLastOpenedFolder());
         }
     }
+
+    return (m_iniFile.openLastOpenedItemOnStartup()) ? true : false;
 }
 
 void ebox::ProgramManager::run()
@@ -324,6 +335,8 @@ void ProgramManager::onFileChosen(const std::string &path)
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadFile(currentPath);
     m_iniFile.setLastOpenedFolder(currentPath.parent_path().u8string());
+    m_iniFile.setLastOpenedFile(currentPath.u8string());
+    m_iniFile.setLastItemIsFolder(false);
     m_iniFile.write();
 }
 
@@ -332,6 +345,7 @@ void ProgramManager::onFolderChosen(const std::string &path)
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
     m_iniFile.setLastOpenedFolder(currentPath.u8string());
+    m_iniFile.setLastItemIsFolder(true);
     m_iniFile.write();
 }
 

@@ -30,7 +30,7 @@ namespace ebox
 
         private:
             void initializeArgs(int argc, char **argv, char** envp);
-            void initializeFiles();
+            bool initializeFiles();
 
             void update();
             void handleActions();
@@ -87,6 +87,7 @@ namespace ebox
             PreferencesPopup m_preferences {"preferences_popup", "Preferences"};
 
             bool m_firstRun = true; //Used to make stuff happen on first run
+            //bool m_itemChosenOnStartup = false;
             sf::RenderWindow m_window;
             EventManager m_events;
             FormManager m_formManager;

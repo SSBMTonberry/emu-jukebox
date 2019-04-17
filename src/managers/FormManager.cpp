@@ -28,8 +28,10 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
 
     m_filelistForm.setPlaylist(&m_playlistForm);
     m_filelistForm.setAudioPlayer(&m_audioPlayerForm);
+    m_filelistForm.setIniFile(m_iniFile);
 
     m_audioPlayerForm.setIniFile(m_iniFile);
+
 
     initializeForms();
 }

@@ -328,7 +328,7 @@ bool FilelistForm::onPreviousTrack(AudioPlayerForm *player)
 
 bool FilelistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
-    return true;
+    return (m_iniFile->loopPreviewTracksForever()) ? true : false;
 }
 
 void FilelistForm::removeAllTracks()
@@ -341,4 +341,7 @@ void FilelistForm::removeAllTracks()
     SystemLog::get()->addInfo("Removed all tracks!");
 }
 
-
+void FilelistForm::setIniFile(IniFile *iniFile)
+{
+    m_iniFile = iniFile;
+}

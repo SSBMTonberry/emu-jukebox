@@ -24,9 +24,11 @@ void ebox::IniFile::write()
 {
     std::string filepath = fmt::format("{0}/{1}", m_path.u8string(), FILENAME);
     m_data["last_folder"] = m_lastOpenedFolder.u8string();
+    m_data["last_file"] = m_lastOpenedFile.u8string();
+    m_data["last_item_is_folder"] = m_lastItemIsFolder;
     m_data["current_font"] = m_currentFont;
     m_data["loop_forever"] = m_loopPreviewTracksForever;
-    m_data["open_last_folder_on_startup"] = m_openLastOpenedFolderOnStartup;
+    m_data["open_last_item_on_startup"] = m_openLastOpenedItemOnStartup;
     m_data["bg_color"] = {m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a};
 
     writeToFile(filepath);
@@ -65,9 +67,11 @@ const string &ebox::IniFile::getCurrentFont() const
 void ebox::IniFile::parseData()
 {
     if(m_data.count("last_folder") > 0) m_lastOpenedFolder = m_data["last_folder"].get<string>();
+    if(m_data.count("last_file") > 0) m_lastOpenedFile = m_data["last_file"].get<string>();
+    if(m_data.count("last_item_is_folder") > 0) m_lastItemIsFolder = m_data["last_item_is_folder"].get<bool>();
     if(m_data.count("current_font") > 0) m_currentFont = m_data["current_font"].get<string>();
-    if(m_data.count("loop_forever") > 0) m_currentFont = m_data["loop_forever"].get<bool>();
-    if(m_data.count("open_last_folder_on_startup") > 0) m_currentFont = m_data["open_last_folder_on_startup"].get<bool>();
+    if(m_data.count("loop_forever") > 0) m_loopPreviewTracksForever = m_data["loop_forever"].get<bool>();
+    if(m_data.count("open_last_item_on_startup") > 0) m_openLastOpenedItemOnStartup = m_data["open_last_item_on_startup"].get<bool>();
     if(m_data.count("bg_color") > 0)
     {
         json bg_color = m_data["bg_color"];
@@ -86,14 +90,14 @@ void ebox::IniFile::setLoopPreviewTracksForever(bool loopPreviewTracksForever)
     m_loopPreviewTracksForever = loopPreviewTracksForever;
 }
 
-bool ebox::IniFile::openLastOpenedFolderOnStartup() const
+bool ebox::IniFile::openLastOpenedItemOnStartup() const
 {
-    return m_openLastOpenedFolderOnStartup;
+    return m_openLastOpenedItemOnStartup;
 }
 
-void ebox::IniFile::setOpenLastOpenedFolderOnStartup(bool openLastOpenedFolderOnStartup)
+void ebox::IniFile::setOpenLastOpenedItemOnStartup(bool openLastOpenedFolderOnStartup)
 {
-    m_openLastOpenedFolderOnStartup = openLastOpenedFolderOnStartup;
+    m_openLastOpenedItemOnStartup = openLastOpenedFolderOnStartup;
 }
 
 const sf::Color &ebox::IniFile::getBackgroundColor() const
@@ -104,6 +108,26 @@ const sf::Color &ebox::IniFile::getBackgroundColor() const
 void ebox::IniFile::setBackgroundColor(const sf::Color &backgroundColor)
 {
     m_backgroundColor = backgroundColor;
+}
+
+const filesystem::path &ebox::IniFile::getLastOpenedFile() const
+{
+    return m_lastOpenedFile;
+}
+
+void ebox::IniFile::setLastOpenedFile(const filesystem::path &lastOpenedFile)
+{
+    m_lastOpenedFile = lastOpenedFile;
+}
+
+bool ebox::IniFile::isLastItemFolder() const
+{
+    return m_lastItemIsFolder;
+}
+
+void ebox::IniFile::setLastItemIsFolder(bool lastItemIsFolder)
+{
+    m_lastItemIsFolder = lastItemIsFolder;
 }
 
 
