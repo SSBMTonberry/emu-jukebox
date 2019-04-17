@@ -8,6 +8,7 @@
 #include "JsonFile.h"
 #include <map>
 #include <any>
+#include "SFML/Graphics.hpp"
 
 namespace ebox
 {
@@ -23,10 +24,16 @@ namespace ebox
             void setPath(const filesystem::path &path);
             void setLastOpenedFolder(const filesystem::path &lastOpenedFolder);
             void setCurrentFont(const string &currentFont);
+            void setLoopPreviewTracksForever(bool loopPreviewTracksForever);
+            void setOpenLastOpenedFolderOnStartup(bool openLastOpenedFolderOnStartup);
+            void setBackgroundColor(const sf::Color &backgroundColor);
 
             const filesystem::path &getPath() const;
             const filesystem::path &getLastOpenedFolder() const;
             const string &getCurrentFont() const;
+            bool loopPreviewTracksForever() const;
+            bool openLastOpenedFolderOnStartup() const;
+            const sf::Color &getBackgroundColor() const;
 
         protected:
             const string FILENAME = "ebox.ini";
@@ -35,6 +42,9 @@ namespace ebox
 
             filesystem::path m_path = "./";
             filesystem::path m_lastOpenedFolder = "";
+            bool m_loopPreviewTracksForever = true;
+            bool m_openLastOpenedFolderOnStartup = false;
+            sf::Color m_backgroundColor {35, 65, 90, 255};
             std::string m_currentFont = "";
     };
 }

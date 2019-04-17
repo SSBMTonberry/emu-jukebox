@@ -30,11 +30,15 @@ namespace ebox
         protected:
             bool customDraw() override;
 
+            void onOpen() override;
+
         private:
             void drawGeneralTab();
             void drawThemesTab();
             void drawFontsTab();
             void drawButtonBar();
+
+            void updateIniData();
 
             IniFile *m_iniFile;
 

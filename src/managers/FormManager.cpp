@@ -9,13 +9,14 @@ ebox::FormManager::FormManager()
 
 }
 
-void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * events)
+void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * events, IniFile *iniFile)
 {
     ImGui::CreateContext(); //IMGUI 1.60
     m_window = window;
     m_style = &ImGui::GetStyle();
     m_io = &ImGui::GetIO();
     m_events = events;
+    m_iniFile = iniFile;
 
     ImGui::SFML::Init(*m_window);
     //Enable Ctrl+TAB (New in ImGui 1.63)
@@ -27,6 +28,9 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
 
     m_filelistForm.setPlaylist(&m_playlistForm);
     m_filelistForm.setAudioPlayer(&m_audioPlayerForm);
+
+    m_audioPlayerForm.setIniFile(m_iniFile);
+
     initializeForms();
 }
 

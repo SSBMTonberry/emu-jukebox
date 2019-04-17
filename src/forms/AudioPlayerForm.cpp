@@ -391,3 +391,8 @@ std::string AudioPlayerForm::getStreamId()
 
     return nullptr;
 }
+
+void AudioPlayerForm::setIniFile(IniFile *iniFile)
+{
+    m_iniFile = iniFile;
+}

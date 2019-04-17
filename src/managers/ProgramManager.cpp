@@ -22,7 +22,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
 
     m_events.initialize(&m_window);
-    m_formManager.initialize(&m_window, &m_events);
+    m_formManager.initialize(&m_window, &m_events, &m_iniFile);
     m_formManager.showImguiDemoWindow(false);
     createMenu();
     registerCallbacks();
@@ -90,7 +90,7 @@ void ebox::ProgramManager::run()
 
     while (m_window.isOpen())
     {
-        m_window.clear(m_backgroundColor);
+        m_window.clear(m_iniFile.getBackgroundColor());
         update();
         handleEvents();
         draw();
@@ -210,7 +210,7 @@ void ProgramManager::drawDock()
         createDock();
     }
 
-    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, m_backgroundColor);
+    ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, m_iniFile.getBackgroundColor());
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), 0);
     ImGui::PopStyleColor();
@@ -324,6 +324,7 @@ void ProgramManager::onFileChosen(const std::string &path)
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadFile(currentPath);
     m_iniFile.setLastOpenedFolder(currentPath.parent_path().u8string());
+    m_iniFile.write();
 }
 
 void ProgramManager::onFolderChosen(const std::string &path)
@@ -331,6 +332,7 @@ void ProgramManager::onFolderChosen(const std::string &path)
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
     m_iniFile.setLastOpenedFolder(currentPath.u8string());
+    m_iniFile.write();
 }
 
 void ProgramManager::registerCallbacks()

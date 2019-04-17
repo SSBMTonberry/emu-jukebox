@@ -18,6 +18,8 @@
 #include "../gui/controls/Visualizer.h"
 #include "../managers/Hotkeys.h"
 
+#include "../data/IniFile.h"
+
 namespace ebox
 {
     class AudioPlayerForm : public Form
@@ -43,6 +45,8 @@ namespace ebox
             bool createStream(const EmuFileInfo &info);
             void setStream(std::unique_ptr<EmuStream> stream);
             void setTrack(int trackNo);
+            void setIniFile(IniFile *iniFile);
+
 
             std::string getStreamId();
 
@@ -91,6 +95,7 @@ namespace ebox
 
             //EmuStream *m_stream = nullptr;
             std::unique_ptr<EmuStream> m_stream;
+            IniFile *m_iniFile;
 
             ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG, files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_stopButton {"test_stop_button", files_mapper::gui::ebox::_STOP_16_PNG, files_mapper::gui::ebox::_STOP_16_PNG_SIZE, sf::Vector2i(30, 30)};

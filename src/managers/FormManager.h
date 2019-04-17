@@ -29,7 +29,7 @@ namespace ebox
     {
         public:
             FormManager();
-            void initialize(sf::RenderWindow *window, EventManager * events);
+            void initialize(sf::RenderWindow *window, EventManager * events, IniFile *iniFile);
 
             void showImguiDemoWindow(bool showImguiDemoWindow);
 
@@ -56,6 +56,7 @@ namespace ebox
             //AudioTestForm m_audioTestForm {"audio_test_form", "Audio Test", AudioTestForm::ID};
             //AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", AudioTestForm::ID};
 
+            IniFile *m_iniFile;
             sf::RenderWindow *m_window;
             EventManager *m_events;
             bool m_showImguiDemoWindow;

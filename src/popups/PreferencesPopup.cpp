@@ -88,11 +88,35 @@ void ebox::PreferencesPopup::drawButtonBar()
     ImGui::EndChild();
     ImGui::SameLine();
     ImGui::BeginChild("preferences_buttons", {-1, -1}, false, 0);
-    m_okButton.process();
-    m_applyButton.process();
+    if(m_okButton.process())
+    {
+        updateIniData();
+        setOpen(false);
+    }
+    if(m_applyButton.process())
+    {
+        updateIniData();
+    }
     if(m_cancelButton.process())
         setOpen(false);
     ImGui::EndChild();
+}
+
+void ebox::PreferencesPopup::onOpen()
+{
+    //General
+    m_loadLastFileOnStartup.setChecked(m_iniFile->openLastOpenedFolderOnStartup());
+    m_filePreviewsPlayForever.setChecked(m_iniFile->loopPreviewTracksForever());
+    m_backgroundColor.setColor(m_iniFile->getBackgroundColor());
+}
+
+void ebox::PreferencesPopup::updateIniData()
+{
+    //General
+    m_iniFile->setOpenLastOpenedFolderOnStartup(m_loadLastFileOnStartup.getChecked());
+    m_iniFile->setLoopPreviewTracksForever(m_filePreviewsPlayForever.getChecked());
+    m_iniFile->setBackgroundColor(m_backgroundColor.getColor());
+    m_iniFile->write();
 }
 
 
