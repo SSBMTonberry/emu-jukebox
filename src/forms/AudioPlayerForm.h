@@ -97,7 +97,7 @@ namespace ebox
             //EmuStream *m_stream = nullptr;
             std::unique_ptr<EmuStream> m_stream;
             IniFile *m_iniFile;
-            float m_previousVolume = 100.f;
+            //float m_previousVolume = 100.f;
 
             ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG, files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_stopButton {"test_stop_button", files_mapper::gui::ebox::_STOP_16_PNG, files_mapper::gui::ebox::_STOP_16_PNG_SIZE, sf::Vector2i(30, 30)};

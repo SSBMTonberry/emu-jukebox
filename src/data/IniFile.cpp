@@ -30,6 +30,7 @@ void ebox::IniFile::write()
     m_data["loop_forever"] = m_loopPreviewTracksForever;
     m_data["open_last_item_on_startup"] = m_openLastOpenedItemOnStartup;
     m_data["bg_color"] = {m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a};
+    m_data["volume"] = m_lastVolume;
 
     writeToFile(filepath);
 }
@@ -78,6 +79,7 @@ void ebox::IniFile::parseData()
         m_backgroundColor = {bg_color[0].get<uint8_t>(), bg_color[1].get<uint8_t>(), bg_color[2].get<uint8_t>(),
                              bg_color[3].get<uint8_t>()};
     }
+    if(m_data.count("volume") > 0) m_lastVolume = m_data["volume"].get<float>();
 }
 
 bool ebox::IniFile::loopPreviewTracksForever() const
@@ -128,6 +130,16 @@ bool ebox::IniFile::isLastItemFolder() const
 void ebox::IniFile::setLastItemIsFolder(bool lastItemIsFolder)
 {
     m_lastItemIsFolder = lastItemIsFolder;
+}
+
+float ebox::IniFile::getLastVolume() const
+{
+    return m_lastVolume;
+}
+
+void ebox::IniFile::setLastVolume(float lastVolume)
+{
+    m_lastVolume = lastVolume;
 }
 
 

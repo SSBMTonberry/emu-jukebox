@@ -29,6 +29,7 @@ namespace ebox
             void setOpenLastOpenedItemOnStartup(bool openLastOpenedFolderOnStartup);
             void setBackgroundColor(const sf::Color &backgroundColor);
             void setLastItemIsFolder(bool lastItemIsFolder);
+            void setLastVolume(float lastVolume);
 
             const filesystem::path &getPath() const;
             const filesystem::path &getLastOpenedFolder() const;
@@ -38,6 +39,7 @@ namespace ebox
             bool openLastOpenedItemOnStartup() const;
             const sf::Color &getBackgroundColor() const;
             bool isLastItemFolder() const;
+            float getLastVolume() const;
 
         protected:
             const string FILENAME = "ebox.ini";
@@ -52,6 +54,8 @@ namespace ebox
             bool m_openLastOpenedItemOnStartup = false;
             sf::Color m_backgroundColor {35, 65, 90, 255};
             std::string m_currentFont = "";
+            float m_lastVolume = 100.f;
+
     };
 }
 

@@ -20,7 +20,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_window.setFramerateLimit(60);
     m_window.setVerticalSyncEnabled(true);
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
-
+    
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFile.assignDefaults();
     m_fileDialogFile.setUseFileIcons(true);
@@ -28,6 +28,8 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFolder.assignDefaults();
     m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
+
+    bool openLastOpenedItemOnStartup = initializeFiles();
 
     m_events.initialize(&m_window);
     m_formManager.initialize(&m_window, &m_events, &m_iniFile);
@@ -38,7 +40,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_preferences.setIniFile(&m_iniFile);
     m_preferences.initialize({resolution.x / 3, resolution.y / 2});
 
-    if(initializeFiles())
+    if(openLastOpenedItemOnStartup)
     {
         if(m_iniFile.isLastItemFolder() && fs::is_directory(m_iniFile.getLastOpenedFolder()))
             onFolderChosen(m_iniFile.getLastOpenedFolder());

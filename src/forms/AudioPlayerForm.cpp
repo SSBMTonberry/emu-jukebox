@@ -169,10 +169,11 @@ void AudioPlayerForm::drawAudioPanel()
 
     ImGui::SameLine(0, spacingLength2);
     ImGui::PushItemWidth(100);
-    if(m_volume.process() && m_stream != nullptr)
+    if(m_volume.process())
     {
-        m_previousVolume = m_volume.getValues()[0];
-        m_stream->setVolume(m_previousVolume);
+        m_iniFile->setLastVolume(m_volume.getValues()[0]);
+        if(m_stream != nullptr)
+            m_stream->setVolume(m_iniFile->getLastVolume());
     }
 
     ImGui::PushItemWidth(100);
@@ -285,7 +286,7 @@ bool AudioPlayerForm::createStream(const EmuFileInfo &info)
     m_stream->setId(info.getId());
     m_state = AudioPlayerState::Stopped;
     m_visualizer.attachToStream(m_stream);
-    m_stream->setVolume(m_previousVolume);
+    m_stream->setVolume(m_iniFile->getLastVolume());
     m_volume.setValues({m_stream->getVolume()});
     return m_stream->isValid();
 }
@@ -294,7 +295,7 @@ void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 {
     m_stream = std::move(stream);
     m_visualizer.attachToStream(m_stream);
-    m_stream->setVolume(m_previousVolume);
+    m_stream->setVolume(m_iniFile->getLastVolume());
     m_volume.setValues({m_stream->getVolume()});
     m_state = AudioPlayerState::Stopped;
 }
@@ -407,4 +408,5 @@ std::string AudioPlayerForm::getStreamId()
 void AudioPlayerForm::setIniFile(IniFile *iniFile)
 {
     m_iniFile = iniFile;
+    m_volume.setValues({m_iniFile->getLastVolume()});
 }
