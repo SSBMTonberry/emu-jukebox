@@ -35,6 +35,7 @@ void AudioPlayerForm::initialize()
     m_pauseButton.getImage()->setColor(sf::Color::Yellow);
     m_stopButton.getImage()->setColor(sf::Color::Red);
 
+    m_tempo.setOnSameLine(true);
     m_tempo.setValue(1);
     m_state = AudioPlayerState::Stopped;
 }
@@ -121,7 +122,7 @@ void AudioPlayerForm::drawAudioPanel()
 
     int numberOfButtons = 4;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
-    size_t spacingLength2 = (spacingLength - 160);
+    size_t spacingLength2 = (spacingLength - (160 * 2));
 
     ImGui::BeginChild("audio_player_panel", {-1, 80}, true, 0);
     ImGui::SameLine(0, spacingLength);
@@ -167,6 +168,13 @@ void AudioPlayerForm::drawAudioPanel()
     }
 
     ImGui::SameLine(0, spacingLength2);
+    ImGui::PushItemWidth(100);
+    if(m_volume.process() && m_stream != nullptr)
+    {
+        m_previousVolume = m_volume.getValues()[0];
+        m_stream->setVolume(m_previousVolume);
+    }
+
     ImGui::PushItemWidth(100);
     if(m_tempo.process() && m_stream != nullptr)
     {
@@ -277,6 +285,8 @@ bool AudioPlayerForm::createStream(const EmuFileInfo &info)
     m_stream->setId(info.getId());
     m_state = AudioPlayerState::Stopped;
     m_visualizer.attachToStream(m_stream);
+    m_stream->setVolume(m_previousVolume);
+    m_volume.setValues({m_stream->getVolume()});
     return m_stream->isValid();
 }
 
@@ -284,6 +294,8 @@ void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 {
     m_stream = std::move(stream);
     m_visualizer.attachToStream(m_stream);
+    m_stream->setVolume(m_previousVolume);
+    m_volume.setValues({m_stream->getVolume()});
     m_state = AudioPlayerState::Stopped;
 }
 

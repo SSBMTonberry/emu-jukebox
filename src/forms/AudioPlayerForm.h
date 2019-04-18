@@ -7,6 +7,7 @@
 
 #include "../gui/forms/Form.h"
 #include "../gui/controls/Button.h"
+#include "../gui/controls/DragFloat.h"
 #include "../../content/files_mapper.h"
 #include "../gui/controls/ImageButton.h"
 #include "../audio/EmuStream.h"
@@ -96,12 +97,14 @@ namespace ebox
             //EmuStream *m_stream = nullptr;
             std::unique_ptr<EmuStream> m_stream;
             IniFile *m_iniFile;
+            float m_previousVolume = 100.f;
 
             ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG, files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_stopButton {"test_stop_button", files_mapper::gui::ebox::_STOP_16_PNG, files_mapper::gui::ebox::_STOP_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_pauseButton {"test_pause_button", files_mapper::gui::ebox::_PAUSE_16_PNG, files_mapper::gui::ebox::_PAUSE_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_playButton {"test_play_button", files_mapper::gui::ebox::_PLAY_16_PNG, files_mapper::gui::ebox::_PLAY_16_PNG_SIZE, sf::Vector2i(30, 30)};
             ebox::ImageButton m_nextButton {"test_next_button", files_mapper::gui::ebox::_NEXT_TRACK_16_PNG, files_mapper::gui::ebox::_NEXT_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
+            ebox::DragFloat m_volume {"volume_control", "volume", 0.f, 100.f, 0};
             ebox::InputFloat m_tempo {"tempo_float", "tempo", 0.1, 5, 0.1, 0.3};
             ebox::Visualizer m_visualizer{"visualizer", "viz"};
     };
