@@ -62,6 +62,8 @@ namespace ebox
             MenuItemCollection m_menuFile {"main_file", "File"};
             MenuItem m_menuOpenFolder {"main_file_open_folder", "Open Folder"};
             MenuItem m_menuOpenFile {"main_file_open_file", "Open File"};
+            MenuItem m_menuSavePlaylist {"main_file_save_playlist", "Save Playlist"};
+            MenuItem m_menuOpenPlaylist {"main_file_open_playlist", "Open Playlist"};
             MenuItem m_menuQuit {"main_file_quit", "Quit"};
 
             MenuItemCollection m_menuSettings {"main_settings", "Settings"};
@@ -77,6 +79,8 @@ namespace ebox
             //Images
             Image m_openFolderImage {"img_open_folder", files_mapper::gui::general::_OPENPROJECT_PNG, files_mapper::gui::general::_OPENPROJECT_PNG_SIZE};
             Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
+            Image m_savePlaylistImage {"img_save_playlist", files_mapper::gui::actions::_QUICKLIST_PNG, files_mapper::gui::actions::_QUICKLIST_PNG_SIZE};
+            Image m_openPlaylistImage {"img_open_playlist", files_mapper::gui::actions::_PROPERTIES_PNG, files_mapper::gui::actions::_PROPERTIES_PNG_SIZE};
             Image m_resetLayoutImage {"img_reset_layout", files_mapper::gui::debugger::_RESTORELAYOUT_PNG, files_mapper::gui::debugger::_RESTORELAYOUT_PNG_SIZE};
             Image m_preferencesImage {"img_preferences", files_mapper::gui::general::_GEARPLAIN_DARK_PNG, files_mapper::gui::general::_GEARPLAIN_DARK_PNG_SIZE};
             Image m_imgQuit {"img_quit", files_mapper::gui::actions::_EXIT_PNG, files_mapper::gui::actions::_EXIT_PNG_SIZE};

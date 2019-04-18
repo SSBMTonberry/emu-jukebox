@@ -294,6 +294,8 @@ void ProgramManager::createMenu()
     m_menuOpenFolder.setShortcut("(<Ctrl>+O)");
     m_menuOpenFile.setImageRef(&m_openFileImage);
     m_menuOpenFile.setShortcut("(<Alt>+O)");
+    m_menuSavePlaylist.setImageRef(&m_savePlaylistImage);
+    m_menuOpenPlaylist.setImageRef(&m_openPlaylistImage);
     m_menuQuit.setImageRef(&m_imgQuit);
     m_menuQuit.setShortcut("(<Ctrl>+Q)");
 
@@ -302,6 +304,8 @@ void ProgramManager::createMenu()
 
     m_menuFile.addRef(&m_menuOpenFolder);
     m_menuFile.addRef(&m_menuOpenFile);
+    m_menuFile.addRef(&m_menuSavePlaylist);
+    m_menuFile.addRef(&m_menuOpenPlaylist);
     m_menuFile.addRef(&m_menuQuit);
 
     m_menuSettings.addRef(&m_menuSettingsReset);
@@ -354,6 +358,8 @@ void ProgramManager::registerCallbacks()
 {
     m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuOpenFile.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuSavePlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuOpenPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuQuit.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuSettingsReset.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuSettingsPreferences.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
