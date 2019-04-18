@@ -30,6 +30,11 @@ namespace ebox
             void setBackgroundColor(const sf::Color &backgroundColor);
             void setLastItemIsFolder(bool lastItemIsFolder);
             void setLastVolume(float lastVolume);
+            void setPlaylistData(const json &playlistData);
+
+            bool openLastPlaylistOnStartup() const;
+
+            void setOpenLastPlaylistOnStartup(bool openLastPlaylistOnStartup);
 
             const filesystem::path &getPath() const;
             const filesystem::path &getLastOpenedFolder() const;
@@ -40,6 +45,7 @@ namespace ebox
             const sf::Color &getBackgroundColor() const;
             bool isLastItemFolder() const;
             float getLastVolume() const;
+            json getPlaylistData();
 
         protected:
             const string FILENAME = "ebox.ini";
@@ -52,6 +58,7 @@ namespace ebox
             bool m_lastItemIsFolder = true;
             bool m_loopPreviewTracksForever = true;
             bool m_openLastOpenedItemOnStartup = false;
+            bool m_openLastPlaylistOnStartup = false;
             sf::Color m_backgroundColor {35, 65, 90, 255};
             std::string m_currentFont = "";
             float m_lastVolume = 100.f;

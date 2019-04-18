@@ -12,6 +12,7 @@
 #include "../misc/Tools.hpp"
 #include <random>
 #include "../managers/Hotkeys.h"
+#include "../data/JsonFile.h"
 
 namespace ebox
 {
@@ -27,9 +28,12 @@ namespace ebox
             void handleEvents() override;
 
             void setPlayer(AudioPlayerForm *player);
+            void createByJson(json playlist);
 
             void add(const EmuFileInfo &fileInfo, int trackNumber);
             bool containsId(const std::string &id);
+
+            json getAsJson();
 
             static const std::string ID;
 

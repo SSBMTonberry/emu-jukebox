@@ -20,7 +20,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_window.setFramerateLimit(60);
     m_window.setVerticalSyncEnabled(true);
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
-    
+
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFile.assignDefaults();
     m_fileDialogFile.setUseFileIcons(true);
@@ -120,7 +120,7 @@ void ebox::ProgramManager::run()
 
         m_window.display();
     }
-
+    m_formManager.shutdown();
     m_iniFile.write();
 }
 

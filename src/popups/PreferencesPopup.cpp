@@ -63,6 +63,7 @@ void ebox::PreferencesPopup::drawGeneralTab()
 {
     ImGui::BeginChild("preferences_general_tab", {-1, (int)(m_size.y * 0.85)}, true, 0);
     m_loadLastFileOnStartup.process();
+    m_loadLastPlaylistOnStartup.process();
     m_filePreviewsPlayForever.process();
     m_backgroundColor.process();
     ImGui::EndChild();
@@ -106,6 +107,7 @@ void ebox::PreferencesPopup::onOpen()
 {
     //General
     m_loadLastFileOnStartup.setChecked(m_iniFile->openLastOpenedItemOnStartup());
+    m_loadLastPlaylistOnStartup.setChecked(m_iniFile->openLastPlaylistOnStartup());
     m_filePreviewsPlayForever.setChecked(m_iniFile->loopPreviewTracksForever());
     m_backgroundColor.setColor(m_iniFile->getBackgroundColor());
 }
@@ -114,6 +116,7 @@ void ebox::PreferencesPopup::updateIniData()
 {
     //General
     m_iniFile->setOpenLastOpenedItemOnStartup(m_loadLastFileOnStartup.isChecked());
+    m_iniFile->setOpenLastPlaylistOnStartup(m_loadLastPlaylistOnStartup.isChecked());
     m_iniFile->setLoopPreviewTracksForever(m_filePreviewsPlayForever.isChecked());
     m_iniFile->setBackgroundColor(m_backgroundColor.getColor());
     m_iniFile->write();

@@ -50,6 +50,23 @@ void PlaylistForm::processPlaylistButtonPanel()
     ImGui::Separator();
 }
 
+json PlaylistForm::getAsJson()
+{
+    json playlist;
+    playlist["name"] = "<unnamed>";
+    std::vector<json> files;
+    for(auto &item : m_playlist)
+    {
+        json data;
+        data["name"] = m_filemapping.getItem(item.first.getId())->getLabel();
+        data["path"] = item.first.getPath().u8string();
+        data["track_no"] = item.second;
+        files.push_back(data);
+    }
+    playlist["files"] = files;
+    return playlist;
+}
+
 void PlaylistForm::processHotkeys()
 {
     if(m_formIsActive)
@@ -112,6 +129,20 @@ void PlaylistForm::setPlayer(AudioPlayerForm *player)
     m_player->registerOnNextTrackCallback(std::bind(&PlaylistForm::onNextTrack, this, std::placeholders::_1));
     m_player->registerOnPreviousTrackCallback(std::bind(&PlaylistForm::onPreviousTrack, this, std::placeholders::_1));
     m_player->registerOnTrackEndedCallback(std::bind(&PlaylistForm::onTrackEnded, this, std::placeholders::_1, std::placeholders::_2));
+}
+
+void PlaylistForm::createByJson(json playlist)
+{
+    json files = playlist["files"];
+    for(auto &i : files)
+    {
+        EmuFileInfo emufile {i["path"].get<std::string>(), false };
+        int trackNo {i["track_no"].get<int>()};
+        if(emufile.loadEmuData())
+        {
+            add(emufile, trackNo);
+        }
+    }
 }
 
 void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)

@@ -26,7 +26,7 @@ void ebox::PlaylistFile::write()
     {
         files.push_back(data.getAsJson());
     }
-
+    m_data["files"] = files;
     writeToFile(m_path.u8string());
 }
 
