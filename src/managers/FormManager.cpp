@@ -137,6 +137,11 @@ FilelistForm *FormManager::getFilelistForm()
     return &m_filelistForm;
 }
 
+PlaylistForm *FormManager::getPlaylistForm()
+{
+    return &m_playlistForm;
+}
+
 /*!
  * Perform final actions before shutting down
  */

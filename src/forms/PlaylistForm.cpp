@@ -175,6 +175,16 @@ void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
     SystemLog::get()->addDebug(fmt::format("Playlist - added item with id '{0}': {1}", id, item->getLabel()));
 }
 
+void ebox::PlaylistForm::createByFile(const PlaylistFile &file)
+{
+    m_filemapping.clear();
+    m_playlist.clear();
+    for(auto &item : file.getPlaylistData())
+    {
+        add(item.getEmuFileInfo(), item.getTrackNumber());
+    }
+}
+
 std::string ebox::PlaylistForm::getId(size_t number, int digits)
 {
     std::string num = fmt::format("{0}", number);

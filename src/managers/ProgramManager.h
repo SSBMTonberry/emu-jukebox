@@ -18,6 +18,7 @@
 #include "Hotkeys.h"
 #include "../data/IniFile.h"
 #include "../popups/PreferencesPopup.h"
+#include "../data/PlaylistFile.h"
 
 namespace ebox
 {

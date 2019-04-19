@@ -372,12 +372,27 @@ void ProgramManager::onFolderChosen(const std::string &path)
 
 void ProgramManager::onSavePlaylist(const std::string &path)
 {
+    PlaylistFile file {fs::path(path)};
 
+    json data = m_formManager.getPlaylistForm()->getAsJson();
+    file.setName(data["name"].get<std::string>());
+    json files = data["files"];
+    int i = 0;
+    for(auto const &item : files)
+    {
+        file.add(fs::path(item["path"].get<std::string>()), item["name"].get<std::string>(), item["track_no"].get<int>());
+        ++i;
+    }
+    file.write();
+    SystemLog::get()->addSuccess(fmt::format("Wrote playlist with {0} items to path: {1}", i, path));
 }
 
 void ProgramManager::onOpenPlaylist(const std::string &path)
 {
-
+    PlaylistFile file {fs::path(path)};
+    file.load();
+    m_formManager.getPlaylistForm()->createByFile(file);
+    SystemLog::get()->addSuccess(fmt::format("Loaded playlist with {0} items from path: {1}", file.getPlaylistData().size(), path));
 }
 
 void ProgramManager::registerCallbacks()

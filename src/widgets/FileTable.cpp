@@ -235,6 +235,7 @@ void ebox::FileTable::initializeImgFilemap()
     m_imgFileMap[".sap"] = {".sap", fm::gui::filetypes::_AUDIO_PNG, fm::gui::filetypes::_AUDIO_PNG_SIZE};
     m_imgFileMap[".spc"] = {".spc", fm::gui::filetypes::_AUDIO_PNG, fm::gui::filetypes::_AUDIO_PNG_SIZE};
     m_imgFileMap[".vgm"] = {".vgm", fm::gui::filetypes::_AUDIO_PNG, fm::gui::filetypes::_AUDIO_PNG_SIZE};
+    m_imgFileMap[".epl"] = {".epl", fm::gui::actions::_QUICKLIST_PNG, fm::gui::actions::_QUICKLIST_PNG_SIZE};
     //Non
     m_imgFileMap["default"] = {"default", fm::gui::filetypes::_BLANK_PNG, fm::gui::filetypes::_BLANK_PNG_SIZE};
     m_imgFileMap["directory"] = {"directory", fm::gui::folders::blue::_FOLDER_CLOSED_PNG, fm::gui::folders::blue::_FOLDER_CLOSED_PNG_SIZE};

@@ -38,7 +38,7 @@ void ebox::PlaylistFile::parseData()
         json files = m_data["files"];
         for(auto const & file : files)
         {
-            PlaylistData data { fs::path(m_data["path"].get<std::string>()), m_data["name"].get<std::string>(), m_data["track_no"].get<int>(), false };
+            PlaylistData data { fs::path(file["path"].get<std::string>()), file["name"].get<std::string>(), file["track_no"].get<int>(), false };
             if(data.loadEmuFile())
             {
                 m_playlistData.push_back(data);
@@ -55,4 +55,19 @@ void ebox::PlaylistFile::clearPlaylist()
 void ebox::PlaylistFile::add(const fs::path &path, const std::string &name, int trackNumber)
 {
     m_playlistData.emplace_back(path, name, trackNumber, false);
+}
+
+const string &ebox::PlaylistFile::getName() const
+{
+    return m_name;
+}
+
+void ebox::PlaylistFile::setName(const string &name)
+{
+    m_name = name;
+}
+
+const std::vector<ebox::PlaylistData> &ebox::PlaylistFile::getPlaylistData() const
+{
+    return m_playlistData;
 }

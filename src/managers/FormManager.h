@@ -44,6 +44,7 @@ namespace ebox
             bool isOpened(FormType formType);
 
             FilelistForm * getFilelistForm();
+            PlaylistForm * getPlaylistForm();
             void shutdown();
 
         private:

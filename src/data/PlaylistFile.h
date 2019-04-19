@@ -22,6 +22,11 @@ namespace ebox
 
             void add(const fs::path &path, const std::string &name, int trackNumber);
 
+            void setName(const string &name);
+
+            const string &getName() const;
+            const std::vector<PlaylistData> &getPlaylistData() const;
+
         protected:
             void parseData();
 
