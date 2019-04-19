@@ -47,6 +47,7 @@ namespace ebox
             void processHotkeys();
 
             int getIndex(const std::string &id);
+            std::pair<EmuFileInfo, int> *getPlaylistItemById(const std::string &id);
 
             void onFocusedChildNode(Selectable *sender);
             void onChosenChildNode(Selectable *sender);

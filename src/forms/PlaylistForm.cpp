@@ -55,13 +55,25 @@ json PlaylistForm::getAsJson()
     json playlist;
     playlist["name"] = "<unnamed>";
     std::vector<json> files;
-    for(auto &item : m_playlist)
+    //for(auto &item : m_playlist)
+    //{
+    //    json data;
+    //    data["name"] = m_filemapping.getItem(item.first.getId())->getLabel();
+    //    data["path"] = item.first.getPath().u8string();
+    //    data["track_no"] = item.second;
+    //    files.push_back(data);
+    //}
+    for(auto &item : m_filemapping.getItems())
     {
         json data;
-        data["name"] = m_filemapping.getItem(item.first.getId())->getLabel();
-        data["path"] = item.first.getPath().u8string();
-        data["track_no"] = item.second;
-        files.push_back(data);
+        data["name"] = item->getLabel();
+        auto playlistItem = getPlaylistItemById(item->getId());
+        if(playlistItem != nullptr)
+        {
+            data["path"] = playlistItem->first.getPath().u8string(); //item.first.getPath().u8string();
+            data["track_no"] = playlistItem->second;
+            files.push_back(data);
+        }
     }
     playlist["files"] = files;
     return playlist;
@@ -438,6 +450,17 @@ int PlaylistForm::getIndex(const std::string &id)
     }
 
     return -1;
+}
+
+std::pair<EmuFileInfo, int> *PlaylistForm::getPlaylistItemById(const std::string &id)
+{
+    for(int i = 0; i < m_playlist.size(); ++i)
+    {
+        if(m_playlist[i].first.getId() == id)
+            return &m_playlist[i];
+    }
+
+    return nullptr;
 }
 
 bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
