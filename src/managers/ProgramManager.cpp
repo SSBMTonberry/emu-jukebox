@@ -23,11 +23,19 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFile.assignDefaults();
-    m_fileDialogFile.setUseFileIcons(true);
+    //m_fileDialogFile.setUseFileIcons(true);
 
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFolder.assignDefaults();
     m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
+
+    m_fileDialogSavePlaylist.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogSavePlaylist.assignDefaults();
+    m_fileDialogSavePlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
+
+    m_fileDialogOpenPlaylist.assignEnvironmentMap(&m_environmentMap);
+    m_fileDialogOpenPlaylist.assignDefaults();
+    m_fileDialogOpenPlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
 
     bool openLastOpenedItemOnStartup = initializeFiles();
 
@@ -91,6 +99,8 @@ bool ProgramManager::initializeFiles()
         {
             m_fileDialogFile.setPath(m_iniFile.getLastOpenedFolder());
             m_fileDialogFolder.setPath(m_iniFile.getLastOpenedFolder());
+            m_fileDialogSavePlaylist.setPath(m_iniFile.getLastOpenedFolder());
+            m_fileDialogOpenPlaylist.setPath(m_iniFile.getLastOpenedFolder());
         }
     }
 
@@ -174,7 +184,8 @@ void ebox::ProgramManager::handleActions()
     m_formManager.handleEvents();
     m_fileDialogFile.handleEvents();
     m_fileDialogFolder.handleEvents();
-
+    m_fileDialogSavePlaylist.handleEvents();
+    m_fileDialogOpenPlaylist.handleEvents();
 }
 
 void ebox::ProgramManager::processHotkeys()
@@ -194,6 +205,8 @@ void ebox::ProgramManager::draw()
     m_formManager.draw();
     m_fileDialogFile.draw();
     m_fileDialogFolder.draw();
+    m_fileDialogSavePlaylist.draw();
+    m_fileDialogOpenPlaylist.draw();
     m_preferences.draw();
     ImGui::SFML::Render(m_window);
 }
@@ -327,6 +340,8 @@ void ProgramManager::onChosenMenuItem(MenuItem *sender)
 {
     if(sender->getId() == m_menuOpenFile.getId()) m_fileDialogFile.setOpen(true);
     else if(sender->getId() == m_menuOpenFolder.getId()) m_fileDialogFolder.setOpen(true);
+    else if(sender->getId() == m_menuSavePlaylist.getId()) m_fileDialogSavePlaylist.setOpen(true);
+    else if(sender->getId() == m_menuOpenPlaylist.getId()) m_fileDialogOpenPlaylist.setOpen(true);
     else if(sender->getId() == m_menuQuit.getId()) m_window.close();
     else if(sender->getId() == m_menuSettingsReset.getId()) resetDock();
     else if(sender->getId() == m_menuSettingsPreferences.getId()) m_preferences.setOpen(true);
@@ -355,6 +370,16 @@ void ProgramManager::onFolderChosen(const std::string &path)
     m_iniFile.write();
 }
 
+void ProgramManager::onSavePlaylist(const std::string &path)
+{
+
+}
+
+void ProgramManager::onOpenPlaylist(const std::string &path)
+{
+
+}
+
 void ProgramManager::registerCallbacks()
 
 {
@@ -372,6 +397,8 @@ void ProgramManager::registerCallbacks()
 
     m_fileDialogFile.registerOnFileChosenCallback(std::bind(&ProgramManager::onFileChosen, this, std::placeholders::_1));
     m_fileDialogFolder.registerOnFileChosenCallback(std::bind(&ProgramManager::onFolderChosen, this, std::placeholders::_1));
+    m_fileDialogSavePlaylist.registerOnFileChosenCallback(std::bind(&ProgramManager::onSavePlaylist, this, std::placeholders::_1));
+    m_fileDialogOpenPlaylist.registerOnFileChosenCallback(std::bind(&ProgramManager::onOpenPlaylist, this, std::placeholders::_1));
 }
 
 void ProgramManager::updateViewMenu()
@@ -381,5 +408,3 @@ void ProgramManager::updateViewMenu()
     m_menuViewPlaylist.setIsSelected(m_formManager.isOpened(FormType::Playlist));
     m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
 }
-
-

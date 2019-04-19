@@ -451,6 +451,17 @@ void ebox::FileDialog::setFileTypes(const ebox::FileTypeMode &mode)
             m_fileTable.setFileFilter(filter);
         }
             break;
+
+        case FileTypeMode::EmuPlaylists:
+        {
+            m_fileTypeCombo.clear();
+            m_fileTypeCombo.addValue("Emu Playlist (*.epl)");
+            m_filetypeFilter["Emu Playlist (*.epl)"] = ".epl";
+            m_fileTypeCombo.setValue(0);
+            std::string filter = m_filetypeFilter[m_fileTypeCombo.getValue()];
+            m_fileTable.setFileFilter(filter);
+        }
+            break;
     }
 }
 

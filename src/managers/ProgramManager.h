@@ -51,6 +51,9 @@ namespace ebox
             void onChosenMenuItem(MenuItem *sender);
             void onFileChosen(const std::string &path);
             void onFolderChosen(const std::string &path);
+            void onSavePlaylist(const std::string &path);
+            void onOpenPlaylist(const std::string &path);
+
 
             void updateViewMenu();
 
@@ -88,6 +91,8 @@ namespace ebox
             //File dialogs
             FileDialog m_fileDialogFile { DialogType::OpenFile, "main_file_dialog_file", "Choose a file", "main_file_dialog_file"};
             FileDialog m_fileDialogFolder { DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder", "main_file_dialog_folder" };
+            FileDialog m_fileDialogSavePlaylist { DialogType::SaveFile, "main_file_dialog_save_playlist", "Save playlist", "main_file_dialog_save_playlist"};
+            FileDialog m_fileDialogOpenPlaylist { DialogType::OpenFile, "main_file_dialog_open_playlist", "Open playlist", "main_file_dialog_open_playlist"};
             PreferencesPopup m_preferences {"preferences_popup", "Preferences"};
 
             bool m_firstRun = true; //Used to make stuff happen on first run
