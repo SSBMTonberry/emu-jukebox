@@ -118,10 +118,12 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint3
 
 ebox::EmuStream::~EmuStream()
 {
-    // We must stop before destroying the file
-    //stop();
+    // We must stop before destroying the file (issue: #24)
+    stop();
+
     if(m_emu != nullptr)
     {
+        m_isShuttingDown = true;
         delete m_emu;
         m_emu = nullptr;
     }

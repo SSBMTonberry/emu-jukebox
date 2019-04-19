@@ -113,9 +113,11 @@ namespace ebox
 
             int m_timePlayed = 0;
             bool m_isValid = true;
+            bool m_isShuttingDown = false; //Set to true when calling destructor
 
             int m_numberOfTracks = 0;
             std::vector<Voice> m_voices;
+
 
 
             EmuTrackInfo m_emptyTrack; //When no track info exists
