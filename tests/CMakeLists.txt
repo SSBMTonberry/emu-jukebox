@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.12)
-project(tests)
+cmake_minimum_required(VERSION 3.11)
+project(tests_emu-jukebox)
 
 set(TEST_SOURCE_FILES tests_main.cpp)
 
@@ -39,16 +39,16 @@ set(SOURCE_FILES ../src/managers/ProgramManager.cpp ../src/managers/ProgramManag
         ../src/popups/PreferencesPopup.h ../src/data/PlaylistFile.cpp ../src/data/PlaylistFile.h ../src/classes/PlaylistData.cpp ../src/classes/PlaylistData.h
         ../src/audio/EmuFile.cpp ../src/audio/EmuFile.h)
 
-add_executable(tests ${TEST_SOURCE_FILES} ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
+add_executable(tests_emu-jukebox ${TEST_SOURCE_FILES} ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
 
 if(LINUX)
-    target_link_libraries(tests stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
+    target_link_libraries(tests_emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 elseif(WIN32)
     if(MSVC)
-        target_link_libraries(tests ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
+        target_link_libraries(tests_emu-jukebox ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     else()
-        target_link_libraries(tests stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
+        target_link_libraries(tests_emu-jukebox stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     endif()
 elseif(APPLE)
-    target_link_libraries(tests stdc++ -ObjC /usr/local/opt/llvm/lib/libc++experimental.a /usr/local/opt/llvm/lib/libc++fs.a ${MY_DYNAMIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
+    target_link_libraries(tests_emu-jukebox stdc++ -ObjC /usr/local/opt/llvm/lib/libc++experimental.a /usr/local/opt/llvm/lib/libc++fs.a ${MY_DYNAMIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
 endif()
