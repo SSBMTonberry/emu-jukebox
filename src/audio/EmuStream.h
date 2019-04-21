@@ -118,8 +118,6 @@ namespace ebox
             int m_numberOfTracks = 0;
             std::vector<Voice> m_voices;
 
-
-
             EmuTrackInfo m_emptyTrack; //When no track info exists
             std::vector<EmuTrackInfo> m_tracks;
             EmuEqualizer m_equalizer;

@@ -297,14 +297,17 @@ set(GUI_SOURCE_FILES src/gui/controls/Button.cpp src/gui/controls/Button.h src/g
                      src/gui/properties/Tooltip.cpp src/gui/properties/Tooltip.h src/gui/themes/Theme.cpp src/gui/themes/Theme.h
                      src/gui/TextEditor.cpp src/gui/TextEditor.h src/gui/controls/Visualizer.cpp src/gui/controls/Visualizer.h)
 
-set(SOURCE_FILES main.cpp src/managers/ProgramManager.cpp src/managers/ProgramManager.h src/audio/Voice.cpp src/audio/Voice.h
+set(SOURCE_FILES src/managers/ProgramManager.cpp src/managers/ProgramManager.h src/audio/Voice.cpp src/audio/Voice.h
                           src/managers/FormManager.cpp src/managers/FormManager.h src/managers/EventManager.cpp src/managers/EventManager.h
                           src/forms/AudioTestForm.cpp src/forms/AudioTestForm.h src/audio/EmuStream.cpp src/audio/EmuStream.h src/audio/EmuTrackInfo.cpp
                           src/audio/EmuTrackInfo.h src/audio/AudioCommon.h src/managers/ClipboardManager.cpp src/managers/ClipboardManager.h src/audio/EmuEqualizer.cpp
                           src/audio/EmuEqualizer.h src/widgets/FileDialog.cpp src/widgets/FileDialog.h src/widgets/FileTable.cpp src/widgets/FileTable.h
                           src/forms/SystemLog.cpp src/forms/SystemLog.h src/forms/FilelistForm.cpp src/forms/FilelistForm.h src/forms/PlaylistForm.cpp
                           src/forms/PlaylistForm.h src/classes/Timer.cpp src/classes/Timer.h src/forms/AudioPlayerForm.cpp src/forms/AudioPlayerForm.h
-                          src/audio/EmuFileInfo.cpp src/audio/EmuFileInfo.h src/classes/Hotkey.cpp src/classes/Hotkey.h src/managers/Hotkeys.cpp src/managers/Hotkeys.h src/data/JsonFile.cpp src/data/JsonFile.h src/data/IniFile.cpp src/data/IniFile.h src/popups/PreferencesPopup.cpp src/popups/PreferencesPopup.h src/data/PlaylistFile.cpp src/data/PlaylistFile.h src/classes/PlaylistData.cpp src/classes/PlaylistData.h)
+                          src/audio/EmuFileInfo.cpp src/audio/EmuFileInfo.h src/classes/Hotkey.cpp src/classes/Hotkey.h src/managers/Hotkeys.cpp
+                          src/managers/Hotkeys.h src/data/JsonFile.cpp src/data/JsonFile.h src/data/IniFile.cpp src/data/IniFile.h src/popups/PreferencesPopup.cpp
+                          src/popups/PreferencesPopup.h src/data/PlaylistFile.cpp src/data/PlaylistFile.h src/classes/PlaylistData.cpp src/classes/PlaylistData.h
+                          src/audio/EmuFile.cpp src/audio/EmuFile.h)
 
 
 
@@ -321,7 +324,7 @@ if(LINUX)
     #set(MY_STATIC_LIBS ${PATH_LIBS}/libclip.a ${PATH_LIBS}/libfmt.a ${PATH_LIBS}/libgme.a ${PATH_SFML_LIB}/libsfml-network-s.a ${PATH_SFML_LIB}/libsfml-audio-s.a ${PATH_SFML_LIB}/libsfml-graphics-s.a ${PATH_SFML_LIB}/libsfml-window-s.a ${PATH_SFML_LIB}/libsfml-system-s.a)
     #target_link_libraries(emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 
-    add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} )
+    add_executable(emu-jukebox main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES} )
     target_link_libraries(emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 elseif(WIN32)
     if(MSVC)
@@ -333,7 +336,7 @@ elseif(WIN32)
             set(PATH_SFML_LIB ${PROJECT_SOURCE_DIR}/external_libs/libs/win/release/msvc/sfml)
             set(MY_STATIC_LIBS ${PATH_SFML_LIB}/sfml-network-s.lib ${PATH_SFML_LIB}/sfml-audio-s.lib ${PATH_SFML_LIB}/sfml-main.lib ${PATH_SFML_LIB}/sfml-graphics-s.lib ${PATH_SFML_LIB}/sfml-window-s.lib ${PATH_SFML_LIB}/sfml-system-s.lib)
         endif()
-        add_executable(EmuJukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
+        add_executable(EmuJukebox main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
         target_link_libraries(EmuJukebox ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     else()
         #set(MY_STATIC_LIBS ${PATH_LIBS}/libfmt.a ${PATH_SFML_LIB}/libsfml-network.a ${PATH_SFML_LIB}/libsfml-audio.a ${PATH_SFML_LIB}/libsfml-graphics.a ${PATH_SFML_LIB}/libsfml-window.a ${PATH_SFML_LIB}/libsfml-system.a)
@@ -345,7 +348,7 @@ elseif(WIN32)
             set(MY_STATIC_LIBS ${PATH_SFML_LIB}/libsfml-network-s.a ${PATH_SFML_LIB}/libsfml-audio-s.a ${PATH_SFML_LIB}/libsfml-graphics-s.a ${PATH_SFML_LIB}/libsfml-window-s.a ${PATH_SFML_LIB}/libsfml-system-s.a)
         endif()
 
-        add_executable(EmuJukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
+        add_executable(EmuJukebox main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
         target_link_libraries(EmuJukebox stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     endif()
 elseif(APPLE)
@@ -376,7 +379,7 @@ elseif(APPLE)
     set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
     set(MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
     #add_executable(emu-jukebox ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
-    add_executable(EmuJukebox MACOSX_BUNDLE ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
+    add_executable(EmuJukebox MACOSX_BUNDLE main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
     #target_link_libraries(emu-jukebox stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     #stdc++
     if(SFML_BUILD_STATIC)

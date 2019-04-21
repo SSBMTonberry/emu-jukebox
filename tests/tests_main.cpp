@@ -5,6 +5,7 @@
 #include <fmt/printf.h>
 #include "catch.hpp"
 #include "../src/forms/FilelistForm.h"
+#include "../src/audio/EmuFile.h"
 
 int theAnswer() { return 6*9; }
 
@@ -54,4 +55,30 @@ TEST_CASE( "Test digit string", "[string][digit]" ) {
     int number = 45;
     std::string result = getId(number, 6);
     REQUIRE( result == "000045" );
+}
+
+TEST_CASE( "Test file export", "[file_export]" )
+{
+    //TODO: Add file export code
+    std::string path = "../../content/test_files/test.nsf";
+    std::string exportPath = "./test.ogg";
+    std::string exportPath2 = "./test.FLAC";
+    std::string exportPath3 = "./test.wav";
+    ebox::EmuFile file;
+    bool success = true;
+
+    success = file.initialize(path, 2);
+    if(success)
+    {
+        success = file.createSamplesAndFillBuffer();
+        if(success)
+        {
+            file.exportToSoundFile(exportPath);
+            file.exportToSoundFile(exportPath2);
+            file.exportToSoundFile(exportPath3);
+        }
+    }
+
+
+    REQUIRE( success );
 }
