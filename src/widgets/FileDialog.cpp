@@ -480,6 +480,11 @@ void ebox::FileDialog::setFileTypes(const ebox::FileTypeMode &mode)
     }
 }
 
+void ebox::FileDialog::setFilename(const std::string &filename)
+{
+    m_filenametext.setValue(filename);
+}
+
 bool ebox::FileDialog::customDraw()
 {
     m_msgPopup.draw();

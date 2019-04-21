@@ -142,6 +142,11 @@ PlaylistForm *FormManager::getPlaylistForm()
     return &m_playlistForm;
 }
 
+AudioPlayerForm *FormManager::getAudioPlayerForm()
+{
+    return &m_audioPlayerForm;
+}
+
 /*!
  * Perform final actions before shutting down
  */

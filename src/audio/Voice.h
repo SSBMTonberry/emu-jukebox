@@ -33,7 +33,7 @@ namespace ebox
             const std::string &getChannelName() const;
             bool isMuted() const;
             bool *getMuted();
-
+            Checkbox *getCheckbox();
 
         private:
 

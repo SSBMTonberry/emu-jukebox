@@ -84,6 +84,7 @@ namespace ebox
             void handleEvents() override;
 
             void setFileTypes(const ebox::FileTypeMode &mode);
+            void setFilename(const std::string &filename);
             void setUseFileIcons(bool useFileIcons);
 
             void registerOnFileChosenCallback(const func_str &cb);

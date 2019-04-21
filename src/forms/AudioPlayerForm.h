@@ -48,8 +48,8 @@ namespace ebox
             void setTrack(int trackNo);
             void setIniFile(IniFile *iniFile);
 
-
             std::string getStreamId();
+            EmuStream *getCurrentStream();
 
             void registerOnPlayCallback(const func_audioplayer &cb);
             void registerOnStopCallback(const func_audioplayer &cb);

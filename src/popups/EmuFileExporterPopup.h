@@ -23,17 +23,17 @@ namespace ebox
                                  const std::string &imguiId = "");
 
             void setExportInfo(const fs::path &path, int trackNo);
+            void transferVoiceStates(std::vector<Voice> * voices);
 
             void initialize(const sf::Vector2<int> &size);
             void handleEvents() override;
 
-
+            void onFileChosen(const std::string &path);
 
         protected:
 
             bool customDraw() override;
             void onOpen() override;
-
 
             fs::path m_path;
             int m_trackNo = 0;
@@ -48,7 +48,7 @@ namespace ebox
             Label m_sampleRateLabel {"sample_rate_label", "Sample rate:", "", LabelType::OnlyLabel};
             Combobox m_sampleRateCombobox {"sample_rate_combobox", ""};
 
-            Button m_exportButton {"path_button", "Export", {120, 60}};
+            Button m_exportButton {"path_button", "Export", {120, 40}};
 
             EmuFile m_file;
     };

@@ -405,6 +405,14 @@ std::string AudioPlayerForm::getStreamId()
     return nullptr;
 }
 
+EmuStream *AudioPlayerForm::getCurrentStream()
+{
+    if(m_stream != nullptr)
+        return m_stream.get();
+
+    return nullptr;
+}
+
 void AudioPlayerForm::setIniFile(IniFile *iniFile)
 {
     m_iniFile = iniFile;

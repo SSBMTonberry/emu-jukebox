@@ -45,6 +45,7 @@ namespace ebox
 
             FilelistForm * getFilelistForm();
             PlaylistForm * getPlaylistForm();
+            AudioPlayerForm * getAudioPlayerForm();
             void shutdown();
 
         private:

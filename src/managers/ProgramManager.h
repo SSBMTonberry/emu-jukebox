@@ -19,6 +19,7 @@
 #include "../data/IniFile.h"
 #include "../popups/PreferencesPopup.h"
 #include "../data/PlaylistFile.h"
+#include "../popups/EmuFileExporterPopup.h"
 
 namespace ebox
 {
@@ -55,8 +56,8 @@ namespace ebox
             void onSavePlaylist(const std::string &path);
             void onOpenPlaylist(const std::string &path);
 
-
             void updateViewMenu();
+            void openExportPopup();
 
             static const std::string DOCK_ROOT_ID;
             static const std::string DOCKSPACE_ID;
@@ -80,6 +81,9 @@ namespace ebox
             MenuItem m_menuViewSystemlog {"main_view_systemlog", "System log"};
             MenuItem m_menuViewAudioPlayer {"main_view_audioplayer", "Audio Player"};
 
+            MenuItemCollection m_menuTools {"main_tools", "Tools"};
+            MenuItem m_menuToolsExport {"main_tools_export", "Export to audio file..."};
+
             //Images
             Image m_openFolderImage {"img_open_folder", files_mapper::gui::general::_OPENPROJECT_PNG, files_mapper::gui::general::_OPENPROJECT_PNG_SIZE};
             Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
@@ -88,13 +92,16 @@ namespace ebox
             Image m_resetLayoutImage {"img_reset_layout", files_mapper::gui::debugger::_RESTORELAYOUT_PNG, files_mapper::gui::debugger::_RESTORELAYOUT_PNG_SIZE};
             Image m_preferencesImage {"img_preferences", files_mapper::gui::general::_GEARPLAIN_DARK_PNG, files_mapper::gui::general::_GEARPLAIN_DARK_PNG_SIZE};
             Image m_imgQuit {"img_quit", files_mapper::gui::actions::_EXIT_PNG, files_mapper::gui::actions::_EXIT_PNG_SIZE};
+            Image m_imgExport {"img_export", files_mapper::gui::misc::_EXPORT_PNG, files_mapper::gui::misc::_EXPORT_PNG_SIZE};
 
             //File dialogs
             FileDialog m_fileDialogFile { DialogType::OpenFile, "main_file_dialog_file", "Choose a file", "main_file_dialog_file"};
             FileDialog m_fileDialogFolder { DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder", "main_file_dialog_folder" };
             FileDialog m_fileDialogSavePlaylist { DialogType::SaveFile, "main_file_dialog_save_playlist", "Save playlist", "main_file_dialog_save_playlist"};
             FileDialog m_fileDialogOpenPlaylist { DialogType::OpenFile, "main_file_dialog_open_playlist", "Open playlist", "main_file_dialog_open_playlist"};
+
             PreferencesPopup m_preferences {"preferences_popup", "Preferences"};
+            EmuFileExporterPopup m_fileExporter {"file_exporter_popup", "Export to audio file"};
 
             bool m_firstRun = true; //Used to make stuff happen on first run
             //bool m_itemChosenOnStartup = false;

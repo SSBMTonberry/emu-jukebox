@@ -47,6 +47,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_preferences.setIniFile(&m_iniFile);
     m_preferences.initialize({resolution.x / 3, resolution.y / 2});
+    m_fileExporter.initialize({resolution.x / 4, resolution.y / 3});
 
     if(openLastOpenedItemOnStartup)
     {
@@ -186,6 +187,7 @@ void ebox::ProgramManager::handleActions()
     m_fileDialogFolder.handleEvents();
     m_fileDialogSavePlaylist.handleEvents();
     m_fileDialogOpenPlaylist.handleEvents();
+    m_fileExporter.handleEvents();
 }
 
 void ebox::ProgramManager::processHotkeys()
@@ -208,6 +210,7 @@ void ebox::ProgramManager::draw()
     m_fileDialogSavePlaylist.draw();
     m_fileDialogOpenPlaylist.draw();
     m_preferences.draw();
+    m_fileExporter.draw();
     ImGui::SFML::Render(m_window);
 }
 
@@ -331,9 +334,13 @@ void ProgramManager::createMenu()
     m_menuView.addRef(&m_menuViewPlaylist);
     m_menuView.addRef(&m_menuViewSystemlog);
 
+    m_menuToolsExport.setImageRef(&m_imgExport);
+    m_menuTools.addRef(&m_menuToolsExport);
+
     m_menu.addRef(&m_menuFile);
     m_menu.addRef(&m_menuSettings);
     m_menu.addRef(&m_menuView);
+    m_menu.addRef(&m_menuTools);
 }
 
 void ProgramManager::onChosenMenuItem(MenuItem *sender)
@@ -349,6 +356,21 @@ void ProgramManager::onChosenMenuItem(MenuItem *sender)
     else if(sender->getId() == m_menuViewAudioPlayer.getId()) m_formManager.toggleOpened(FormType::AudioPlayer);
     else if(sender->getId() == m_menuViewFiles.getId()) m_formManager.toggleOpened(FormType::Files);
     else if(sender->getId() == m_menuViewSystemlog.getId()) m_formManager.toggleOpened(FormType::SystemLog);
+    else if(sender->getId() == m_menuToolsExport.getId()) openExportPopup();
+}
+
+void ProgramManager::openExportPopup()
+{
+    AudioPlayerForm *audioPlayer = m_formManager.getAudioPlayerForm();
+    EmuStream * stream = audioPlayer->getCurrentStream();
+    if(stream != nullptr)
+    {
+        m_fileExporter.setExportInfo(fs::path(stream->getFilename()), stream->getTrack());
+        m_fileExporter.transferVoiceStates(stream->getVoices());
+        m_fileExporter.setOpen(true);
+    }
+    else
+        SystemLog::get()->addError("No stream data found in player. You must open a track to be able to export it.");
 }
 
 void ProgramManager::onFileChosen(const std::string &path)
@@ -409,6 +431,7 @@ void ProgramManager::registerCallbacks()
     m_menuViewFiles.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewSystemlog.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuToolsExport.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
 
     m_fileDialogFile.registerOnFileChosenCallback(std::bind(&ProgramManager::onFileChosen, this, std::placeholders::_1));
     m_fileDialogFolder.registerOnFileChosenCallback(std::bind(&ProgramManager::onFolderChosen, this, std::placeholders::_1));

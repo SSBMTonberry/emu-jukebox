@@ -103,7 +103,7 @@ bool ebox::EmuFile::initializeEmu()
         if (i < voices)
         {
             auto item = m_voices.emplace_back(m_emu, i, *voice_names++, false); //, hotkey);
-            m_voices[m_voices.size()-1].setTooltip(fmt::format("Hotkey: <Alt>+{0}", i+1));
+            //m_voices[m_voices.size()-1].setTooltip(fmt::format("Hotkey: <Alt>+{0}", i+1));
             ++i;
         }
         else
