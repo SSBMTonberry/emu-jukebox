@@ -40,6 +40,7 @@ bool ebox::PreferencesPopup::customDraw()
         }
         ImGui::EndTabBar();
     }
+    return true;
 }
 
 void ebox::PreferencesPopup::initialize(const sf::Vector2<int> &size)

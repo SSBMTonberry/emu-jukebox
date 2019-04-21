@@ -63,7 +63,8 @@ namespace ebox
             EmuFiles = 1,
             Sprites = 2,
             Folder = 3,
-            EmuPlaylists = 4
+            EmuPlaylists = 4,
+            SoundFiles = 5
     };
 
     class FileDialog : public ebox::Popup

@@ -462,6 +462,21 @@ void ebox::FileDialog::setFileTypes(const ebox::FileTypeMode &mode)
             m_fileTable.setFileFilter(filter);
         }
             break;
+
+        case FileTypeMode::SoundFiles:
+        {
+            m_fileTypeCombo.clear();
+            m_fileTypeCombo.addValue("OGG/Vorbis (*.ogg)");
+            m_fileTypeCombo.addValue("FLAC (Free Lossless Audio Codec) (*.FLAC)");
+            m_fileTypeCombo.addValue("Wave (*.wav)");
+            m_filetypeFilter["OGG/Vorbis (*.ogg)"] = ".ogg";
+            m_filetypeFilter["FLAC (Free Lossless Audio Codec) (*.FLAC)"] = ".FLAC";
+            m_filetypeFilter["Wave (*.wav)"] = ".wav";
+            m_fileTypeCombo.setValue(0);
+            std::string filter = m_filetypeFilter[m_fileTypeCombo.getValue()];
+            m_fileTable.setFileFilter(filter);
+        }
+            break;
     }
 }
 
