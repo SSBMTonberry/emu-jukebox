@@ -47,7 +47,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_preferences.setIniFile(&m_iniFile);
     m_preferences.initialize({resolution.x / 3, resolution.y / 2});
-    m_fileExporter.initialize({resolution.x / 4, resolution.y / 3});
+    m_fileExporter.initialize({resolution.x / 4, resolution.y / 2.5f});
 
     if(openLastOpenedItemOnStartup)
     {
@@ -365,7 +365,7 @@ void ProgramManager::openExportPopup()
     EmuStream * stream = audioPlayer->getCurrentStream();
     if(stream != nullptr)
     {
-        m_fileExporter.setExportInfo(fs::path(stream->getFilename()), stream->getTrack());
+        m_fileExporter.setExportInfo(fs::path(stream->getFilename()), stream->getTrack(), audioPlayer->getTempo());
         m_fileExporter.transferVoiceStates(stream->getVoices());
         m_fileExporter.setOpen(true);
     }

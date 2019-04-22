@@ -182,9 +182,9 @@ std::vector<ebox::Voice> *ebox::EmuFile::getVoices()
     return &m_voices;
 }
 
-const ebox::EmuTrackInfo &ebox::EmuFile::getInfoFromCurrentTrack() const
+ebox::EmuTrackInfo *ebox::EmuFile::getInfoFromCurrentTrack()
 {
-    return (m_numberOfTracks > 0) ? m_tracks[m_track] : m_emptyTrack;
+    return (m_numberOfTracks > 0) ? &m_tracks[m_track] : &m_emptyTrack;
 }
 
 const std::vector<ebox::EmuTrackInfo> &ebox::EmuFile::getTracks() const
@@ -227,17 +227,17 @@ bool ebox::EmuFile::isValid() const
     return m_isValid;
 }
 
-bool ebox::EmuFile::createSamplesAndFillBuffer()
+bool ebox::EmuFile::createSamplesAndFillBuffer(uint64_t startPos, float tempo)
 {
     m_samples.clear();
-    m_emu->seek(0);
+    m_emu->seek(startPos);
     int i = 1;
     size_t sampleSize = m_sampleRate * 2;
     m_samples.resize(sampleSize);
 
-    EmuTrackInfo info = getInfoFromCurrentTrack();
+    EmuTrackInfo *info = getInfoFromCurrentTrack();
     long songLength = 0;
-    while ((songLength = m_emu->tell()) > -1 && songLength <= info.getPlayLength())
+    while ((songLength = m_emu->tell()) > -1 && songLength <= (info->getPlayLength() / tempo))
     {
         m_samples.resize(i * sampleSize);
         m_emu->play(sampleSize, &m_samples[0]+(sampleSize*(i-1)));
@@ -268,4 +268,9 @@ void ebox::EmuFile::reload(uint32_t sampleRate, float tempo)
         m_voices[i].setMuted(voicesMuted[i]);
         m_voices[i].getCheckbox()->setChecked(!voicesMuted[i]);
     }
+}
+
+Music_Emu *ebox::EmuFile::getEmu()
+{
+    return m_emu;
 }

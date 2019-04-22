@@ -50,6 +50,7 @@ namespace ebox
 
             std::string getStreamId();
             EmuStream *getCurrentStream();
+            float getTempo();
 
             void registerOnPlayCallback(const func_audioplayer &cb);
             void registerOnStopCallback(const func_audioplayer &cb);

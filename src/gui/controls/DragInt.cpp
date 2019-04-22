@@ -70,6 +70,7 @@ void ebox::DragInt::initialize()
 bool ebox::DragInt::processDrag()
 {
     std::string format = (m_hideNumber) ? "" : "%.0f";
+    ImGui::PushItemWidth(m_width);
     switch (m_dragSize)
     {
         case DragIntSize::One:
@@ -81,6 +82,7 @@ bool ebox::DragInt::processDrag()
         case DragIntSize::Four:
             return ImGui::DragInt4(m_label.c_str(), m_values.get(), m_speed, m_minimum, m_maximum, format.c_str());
     }
+    ImGui::PopItemWidth();
 }
 
 void ebox::DragInt::setValues(const std::initializer_list<int> &values)
@@ -145,4 +147,14 @@ bool ebox::DragInt::performValueValidation()
     }
 
     return valuesHasBeenCorrected;
+}
+
+float ebox::DragInt::getWidth() const
+{
+    return m_width;
+}
+
+void ebox::DragInt::setWidth(float width)
+{
+    m_width = width;
 }

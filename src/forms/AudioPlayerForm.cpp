@@ -418,3 +418,8 @@ void AudioPlayerForm::setIniFile(IniFile *iniFile)
     m_iniFile = iniFile;
     m_volume.setValues({m_iniFile->getLastVolume()});
 }
+
+float AudioPlayerForm::getTempo()
+{
+    return m_tempo.getValue();
+}

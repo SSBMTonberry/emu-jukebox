@@ -28,10 +28,14 @@ namespace ebox
             void setValues(const std::initializer_list<int> &values);
             void setSpeed(float speed);
             void setHideNumber(bool hideNumber);
+            void setWidth(float width);
 
             const int * getValues() const;
             float getSpeed() const;
             bool getHideNumber() const;
+            float getWidth() const;
+
+
 
         protected:
             bool processDrag();
@@ -44,6 +48,8 @@ namespace ebox
             int m_minimum;
             int m_maximum;
             float m_speed;
+
+            float m_width = 100.f;
 
         private:
             void initialize();

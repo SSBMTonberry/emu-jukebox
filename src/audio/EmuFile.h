@@ -23,7 +23,7 @@ namespace ebox
 
             bool initialize(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100, bool printAsDebug = false);
 
-            bool createSamplesAndFillBuffer();
+            bool createSamplesAndFillBuffer(uint64_t startPos, float tempo = 1.f);
             bool exportToSoundFile(const std::string &path);
             void reload(uint32_t sampleRate = 44100, float tempo = -1.f);
 
@@ -35,12 +35,14 @@ namespace ebox
             void setTempo(float tempo);
             void setTrack(int track);
 
+
+            Music_Emu *getEmu();
+
             size_t getNumberOfVoices();
             std::vector<Voice> *getVoices();
-            const EmuTrackInfo &getInfoFromCurrentTrack() const;
+            EmuTrackInfo * getInfoFromCurrentTrack();
             const std::vector<EmuTrackInfo> &getTracks() const;
             EmuEqualizer *getEqualizer();
-
             const std::string &getFilename() const;
             int getTrack() const;
             uint32_t getChannelCount() const;
