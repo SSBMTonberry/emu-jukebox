@@ -25,6 +25,7 @@ namespace ebox
 
             bool createSamplesAndFillBuffer();
             bool exportToSoundFile(const std::string &path);
+            void reload(uint32_t sampleRate = 44100, float tempo = -1.f);
 
             void muteChannel(int channelNo, bool mute);
 
@@ -49,10 +50,8 @@ namespace ebox
             bool isValid() const;
 
         private:
-            bool initializeEmu();
+            bool initializeEmu(float tempo = -1.f);
             bool handleError(const char *errorText);
-
-
 
             std::vector<sf::Int16> m_samples;
 

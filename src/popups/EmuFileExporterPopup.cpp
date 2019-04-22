@@ -25,6 +25,7 @@ void EmuFileExporterPopup::setExportInfo(const fs::path &path, int trackNo)
     m_pathText.setValue(suggestedPath);
     m_fileDialog.setPath(fs::path(m_path.parent_path().u8string()));
     m_fileDialog.setFilename(m_path.stem().u8string());
+    m_file.initialize(m_path.u8string(), m_trackNo);
 }
 
 void EmuFileExporterPopup::transferVoiceStates(std::vector<Voice> *voices)
@@ -95,6 +96,8 @@ bool ebox::EmuFileExporterPopup::customDraw()
         fs::path path{m_pathText.getValue()};
         if(fs::exists(path.parent_path()))
         {
+            int sampleRate = std::stoi(m_sampleRateCombobox.getValue());
+            m_file.reload(sampleRate);
             if(m_file.createSamplesAndFillBuffer())
             {
                 if(m_file.exportToSoundFile(path.u8string()))
@@ -113,5 +116,5 @@ bool ebox::EmuFileExporterPopup::customDraw()
 
 void ebox::EmuFileExporterPopup::onOpen()
 {
-    m_file.initialize(m_path.u8string(), m_trackNo);
+
 }

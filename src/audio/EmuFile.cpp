@@ -45,7 +45,7 @@ bool ebox::EmuFile::initialize(const std::string &filename, int track, uint32_t 
     return false;
 }
 
-bool ebox::EmuFile::initializeEmu()
+bool ebox::EmuFile::initializeEmu(float tempo)
 {
     if(m_emu != nullptr)
     {
@@ -88,7 +88,7 @@ bool ebox::EmuFile::initializeEmu()
             SystemLog::get()->addError(fmt::format("Error loading track: {0}: {1}", i, m_tracks[i].getErrorText()));
     }
 
-    float tempo = m_tracks[m_track].getTempo();
+    tempo = (tempo < 0) ? m_tracks[m_track].getTempo() : tempo;
     setTempo(tempo);
     m_emu->ignore_silence(); //This makes sure the music doesn't stop when all channels are muted.
 
@@ -252,4 +252,20 @@ bool ebox::EmuFile::createSamplesAndFillBuffer()
 bool ebox::EmuFile::exportToSoundFile(const std::string &path)
 {
     return m_buffer.saveToFile(path);
+}
+
+void ebox::EmuFile::reload(uint32_t sampleRate, float tempo)
+{
+    std::vector<bool> voicesMuted;
+    for(auto &voice : m_voices)
+        voicesMuted.push_back(voice.isMuted());
+
+    m_sampleRate = sampleRate;
+    initializeEmu(tempo);
+
+    for(int i = 0; i < m_voices.size(); ++i)
+    {
+        m_voices[i].setMuted(voicesMuted[i]);
+        m_voices[i].getCheckbox()->setChecked(!voicesMuted[i]);
+    }
 }
