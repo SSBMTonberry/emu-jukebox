@@ -62,7 +62,7 @@ void ebox::PreferencesPopup::setIniFile(ebox::IniFile *iniFile)
 
 void ebox::PreferencesPopup::drawGeneralTab()
 {
-    ImGui::BeginChild("preferences_general_tab", {-1, (int)(m_size.y * 0.85)}, true, 0);
+    ImGui::BeginChild("preferences_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
     m_loadLastFileOnStartup.process();
     m_loadLastPlaylistOnStartup.process();
     m_filePreviewsPlayForever.process();
@@ -72,21 +72,21 @@ void ebox::PreferencesPopup::drawGeneralTab()
 
 void ebox::PreferencesPopup::drawThemesTab()
 {
-    ImGui::BeginChild("themes_general_tab", {-1, (int)(m_size.y * 0.85)}, true, 0);
+    ImGui::BeginChild("themes_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
     ImGui::Text("Themes coming soon!");
     ImGui::EndChild();
 }
 
 void ebox::PreferencesPopup::drawFontsTab()
 {
-    ImGui::BeginChild("fonts_general_tab", {-1, (int)(m_size.y * 0.85)}, true, 0);
+    ImGui::BeginChild("fonts_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
     ImGui::Text("Fonts coming soon!");
     ImGui::EndChild();
 }
 
 void ebox::PreferencesPopup::drawButtonBar()
 {
-    ImGui::BeginChild("button_offset", {m_buttonOffset, -1}, false, 0);
+    ImGui::BeginChild("button_offset", {(float) m_buttonOffset, -1}, false, 0);
     ImGui::EndChild();
     ImGui::SameLine();
     ImGui::BeginChild("preferences_buttons", {-1, -1}, false, 0);

@@ -5,6 +5,8 @@
 #ifndef EMU_JUKEBOX_JSONFILE_H
 #define EMU_JUKEBOX_JSONFILE_H
 
+#include "../../EmuJukeboxConfig.h"
+
 #if MSVC
 #include <filesystem>
     namespace fs = std::filesystem;
@@ -34,6 +36,7 @@ namespace fs = std::filesystem;
 #include <fstream>
 #include <fmt/format.h>
 #include <json.hpp>
+#include <sstream>
 
 using namespace nlohmann;
 using namespace std;

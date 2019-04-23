@@ -12,10 +12,10 @@ ebox::IniFile::IniFile() : JsonFile()
 void ebox::IniFile::load()
 {
     std::string filepath = fmt::format("{0}/{1}", m_path.u8string(), FILENAME);
-    filesystem::path path(filepath);
-    if(filesystem::exists(path))
+    fs::path path(filepath);
+    if(fs::exists(path))
     {
-        createByFile(path);
+        createByFile(path.u8string());
         parseData();
     }
 }
@@ -36,12 +36,12 @@ void ebox::IniFile::write()
     writeToFile(filepath);
 }
 
-void ebox::IniFile::setPath(const filesystem::path &path)
+void ebox::IniFile::setPath(const fs::path &path)
 {
     m_path = path;
 }
 
-void ebox::IniFile::setLastOpenedFolder(const filesystem::path &lastOpenedFolder)
+void ebox::IniFile::setLastOpenedFolder(const fs::path &lastOpenedFolder)
 {
     m_lastOpenedFolder = lastOpenedFolder;
 }
@@ -51,12 +51,12 @@ void ebox::IniFile::setCurrentFont(const string &currentFont)
     m_currentFont = currentFont;
 }
 
-const filesystem::path &ebox::IniFile::getPath() const
+const fs::path &ebox::IniFile::getPath() const
 {
     return m_path;
 }
 
-const filesystem::path &ebox::IniFile::getLastOpenedFolder() const
+const fs::path &ebox::IniFile::getLastOpenedFolder() const
 {
     return m_lastOpenedFolder;
 }
@@ -114,12 +114,12 @@ void ebox::IniFile::setBackgroundColor(const sf::Color &backgroundColor)
     m_backgroundColor = backgroundColor;
 }
 
-const filesystem::path &ebox::IniFile::getLastOpenedFile() const
+const fs::path &ebox::IniFile::getLastOpenedFile() const
 {
     return m_lastOpenedFile;
 }
 
-void ebox::IniFile::setLastOpenedFile(const filesystem::path &lastOpenedFile)
+void ebox::IniFile::setLastOpenedFile(const fs::path &lastOpenedFile)
 {
     m_lastOpenedFile = lastOpenedFile;
 }

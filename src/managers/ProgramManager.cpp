@@ -46,15 +46,15 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     registerCallbacks();
 
     m_preferences.setIniFile(&m_iniFile);
-    m_preferences.initialize({resolution.x / 3, resolution.y / 2});
-    m_fileExporter.initialize({resolution.x / 4, resolution.y / 2.5f});
+    m_preferences.initialize({(int)(resolution.x / 3), (int)(resolution.y / 2)});
+    m_fileExporter.initialize({(int)(resolution.x / 4), (int)(resolution.y / 2.5f)});
 
     if(openLastOpenedItemOnStartup)
     {
         if(m_iniFile.isLastItemFolder() && fs::is_directory(m_iniFile.getLastOpenedFolder()))
-            onFolderChosen(m_iniFile.getLastOpenedFolder());
+            onFolderChosen(m_iniFile.getLastOpenedFolder().u8string());
         else if(!m_iniFile.isLastItemFolder() && fs::is_regular_file(m_iniFile.getLastOpenedFile()))
-            onFileChosen(m_iniFile.getLastOpenedFile());
+            onFileChosen(m_iniFile.getLastOpenedFile().u8string());
     }
     else
     {

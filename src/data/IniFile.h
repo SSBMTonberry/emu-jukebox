@@ -21,9 +21,9 @@ namespace ebox
 
             void write();
 
-            void setPath(const filesystem::path &path);
-            void setLastOpenedFolder(const filesystem::path &lastOpenedFolder);
-            void setLastOpenedFile(const filesystem::path &lastOpenedFile);
+            void setPath(const fs::path &path);
+            void setLastOpenedFolder(const fs::path &lastOpenedFolder);
+            void setLastOpenedFile(const fs::path &lastOpenedFile);
             void setCurrentFont(const string &currentFont);
             void setLoopPreviewTracksForever(bool loopPreviewTracksForever);
             void setOpenLastOpenedItemOnStartup(bool openLastOpenedFolderOnStartup);
@@ -36,9 +36,9 @@ namespace ebox
 
             void setOpenLastPlaylistOnStartup(bool openLastPlaylistOnStartup);
 
-            const filesystem::path &getPath() const;
-            const filesystem::path &getLastOpenedFolder() const;
-            const filesystem::path &getLastOpenedFile() const;
+            const fs::path &getPath() const;
+            const fs::path &getLastOpenedFolder() const;
+            const fs::path &getLastOpenedFile() const;
             const string &getCurrentFont() const;
             bool loopPreviewTracksForever() const;
             bool openLastOpenedItemOnStartup() const;
@@ -52,9 +52,9 @@ namespace ebox
 
             void parseData();
 
-            filesystem::path m_path = "./";
-            filesystem::path m_lastOpenedFolder = "";
-            filesystem::path m_lastOpenedFile = "";
+            fs::path m_path = "./";
+            fs::path m_lastOpenedFolder = "";
+            fs::path m_lastOpenedFile = "";
             bool m_lastItemIsFolder = true;
             bool m_loopPreviewTracksForever = true;
             bool m_openLastOpenedItemOnStartup = false;
