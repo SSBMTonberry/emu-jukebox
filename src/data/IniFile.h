@@ -9,6 +9,7 @@
 #include <map>
 #include <any>
 #include "SFML/Graphics.hpp"
+#include "../misc/EmuThemes.hpp"
 
 namespace ebox
 {
@@ -31,6 +32,7 @@ namespace ebox
             void setLastItemIsFolder(bool lastItemIsFolder);
             void setLastVolume(float lastVolume);
             void setPlaylistData(const json &playlistData);
+            void setCurrentTheme(const string &currentTheme);
 
             bool openLastPlaylistOnStartup() const;
 
@@ -46,6 +48,9 @@ namespace ebox
             bool isLastItemFolder() const;
             float getLastVolume() const;
             json getPlaylistData();
+            const string &getCurrentTheme() const;
+
+            void applyTheme();
 
         protected:
             const string FILENAME = "ebox.ini";
@@ -61,6 +66,7 @@ namespace ebox
             bool m_openLastPlaylistOnStartup = false;
             sf::Color m_backgroundColor {35, 65, 90, 255};
             std::string m_currentFont = "";
+            std::string m_currentTheme = "dark";
             float m_lastVolume = 100.f;
 
     };

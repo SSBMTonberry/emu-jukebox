@@ -32,6 +32,7 @@ void ebox::IniFile::write()
     m_data["open_last_playlist_on_startup"] = m_openLastPlaylistOnStartup;
     m_data["bg_color"] = {m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a};
     m_data["volume"] = m_lastVolume;
+    m_data["theme"] = m_currentTheme;
 
     writeToFile(filepath);
 }
@@ -75,6 +76,7 @@ void ebox::IniFile::parseData()
     if(m_data.count("loop_forever") > 0) m_loopPreviewTracksForever = m_data["loop_forever"].get<bool>();
     if(m_data.count("open_last_item_on_startup") > 0) m_openLastOpenedItemOnStartup = m_data["open_last_item_on_startup"].get<bool>();
     if(m_data.count("open_last_playlist_on_startup") > 0) m_openLastPlaylistOnStartup = m_data["open_last_playlist_on_startup"].get<bool>();
+    if(m_data.count("theme") > 0) m_currentTheme = m_data["theme"].get<std::string>();
     if(m_data.count("bg_color") > 0)
     {
         json bg_color = m_data["bg_color"];
@@ -164,3 +166,24 @@ json ebox::IniFile::getPlaylistData()
     return m_data["playlist"];
 }
 
+const string &ebox::IniFile::getCurrentTheme() const
+{
+    return m_currentTheme;
+}
+
+void ebox::IniFile::setCurrentTheme(const string &currentTheme)
+{
+    m_currentTheme = currentTheme;
+}
+
+void ebox::IniFile::applyTheme()
+{
+    if(m_currentTheme == "light")
+        theme::SetLightTheme();
+    else if(m_currentTheme == "classic")
+        theme::SetClassicTheme();
+    else if(m_currentTheme == "modern")
+        theme::SetModernTheme();
+    else
+        theme::SetDarkTheme();
+}

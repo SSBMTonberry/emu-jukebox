@@ -12,7 +12,7 @@
 #include "../gui/controls/ColorPicker.h"
 #include "../gui/controls/Checkbox.h"
 #include "../gui/controls/Button.h"
-
+#include "../gui/controls/Combobox.h"
 
 namespace ebox
 {
@@ -47,6 +47,9 @@ namespace ebox
             Checkbox m_loadLastPlaylistOnStartup {"load_last_playlist_on_startup", "Store current playlist on shutdown and load on startup"};
             Checkbox m_filePreviewsPlayForever {"file_previews_plays_forever", "Play tracks from file explorer forever"};
             ColorPicker m_backgroundColor {"background_color", "Background color", ColorPicker::ColorPickerType::ColorEdit3, {35, 65, 90, 255}};
+
+            //Themes
+            Combobox m_themes {"themes_combo", "Theme"};
 
             //Buttons
             int m_buttonOffset = 0;

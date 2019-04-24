@@ -53,6 +53,9 @@ void ebox::PreferencesPopup::initialize(const sf::Vector2<int> &size)
 
     m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + 20;
     m_buttonOffset = (m_size.x / 2) - (m_totalButtonWidth / 2);
+
+    m_themes.addValueRange({"dark", "light", "classic", "modern"});
+    m_themes.setValue(0);
 }
 
 void ebox::PreferencesPopup::setIniFile(ebox::IniFile *iniFile)
@@ -73,7 +76,7 @@ void ebox::PreferencesPopup::drawGeneralTab()
 void ebox::PreferencesPopup::drawThemesTab()
 {
     ImGui::BeginChild("themes_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
-    ImGui::Text("Themes coming soon!");
+    m_themes.process();
     ImGui::EndChild();
 }
 
@@ -111,6 +114,7 @@ void ebox::PreferencesPopup::onOpen()
     m_loadLastPlaylistOnStartup.setChecked(m_iniFile->openLastPlaylistOnStartup());
     m_filePreviewsPlayForever.setChecked(m_iniFile->loopPreviewTracksForever());
     m_backgroundColor.setColor(m_iniFile->getBackgroundColor());
+    m_themes.setValue(m_iniFile->getCurrentTheme());
 }
 
 void ebox::PreferencesPopup::updateIniData()
@@ -120,6 +124,8 @@ void ebox::PreferencesPopup::updateIniData()
     m_iniFile->setOpenLastPlaylistOnStartup(m_loadLastPlaylistOnStartup.isChecked());
     m_iniFile->setLoopPreviewTracksForever(m_filePreviewsPlayForever.isChecked());
     m_iniFile->setBackgroundColor(m_backgroundColor.getColor());
+    m_iniFile->setCurrentTheme(m_themes.getValue());
+    m_iniFile->applyTheme();
     m_iniFile->write();
 }
 

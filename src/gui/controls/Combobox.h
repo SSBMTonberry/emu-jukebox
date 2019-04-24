@@ -27,6 +27,7 @@ namespace ebox
             void setColor(const sf::Color &text, const sf::Color &background);
             void setHasLabel(bool hasLabel, bool disablePushItemWidth = false);
             void setValue(int index);
+            bool setValue(const std::string &value);
 
             bool valueHasBeenChosen() const;
             bool hasLabel() const;

@@ -142,6 +142,26 @@ void ebox::Combobox::setValue(int index)
     }
 }
 
+/*!
+ * Sets value by string, if it exists.
+ * @param value
+ * @return true if value was found, false otherwise. If value has not been found, first element is set.
+ */
+bool ebox::Combobox::setValue(const std::string &value)
+{
+    for(int i = 0; i < m_list.size(); ++i)
+    {
+        if(m_list[i] == value)
+        {
+            setValue(i);
+            return true;
+        }
+    }
+
+    setValue(0);
+    return false;
+}
+
 bool ebox::Combobox::valueHasBeenChosen() const
 {
     return m_valueHasBeenChosen;
