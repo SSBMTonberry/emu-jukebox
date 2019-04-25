@@ -13,6 +13,8 @@
 #include "../gui/controls/Checkbox.h"
 #include "../gui/controls/Button.h"
 #include "../gui/controls/Combobox.h"
+#include "../classes/Font.h"
+#include "../../content/files_mapper.h"
 
 namespace ebox
 {
@@ -40,6 +42,18 @@ namespace ebox
 
             void updateIniData();
 
+            //Font related
+            void createFonts();
+            void setCurrentFontByName(const std::string_view &name);
+            Font *getFont(const std::string &name);
+            void createDefaultFont(const std::string &name, float fontSize);
+            void createFont(const std::string &name, void * data, size_t size, float fontSize);
+            void setChosenFontAsDefaultFont();
+            const std::string PREVIEW_TEXT = "HELLO! This is a rather fantastic preview of text";
+            Font *m_chosenFont = nullptr;
+            const char* m_currentFont = nullptr;
+            bool m_fontHasBeenChosen = false;
+
             IniFile *m_iniFile;
 
             //General
@@ -50,6 +64,9 @@ namespace ebox
 
             //Themes
             Combobox m_themes {"themes_combo", "Theme"};
+
+            //Fonts
+            std::vector<Font> m_fonts;
 
             //Buttons
             int m_buttonOffset = 0;
