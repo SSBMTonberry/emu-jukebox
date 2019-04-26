@@ -10,6 +10,7 @@
 #include <any>
 #include "SFML/Graphics.hpp"
 #include "../misc/EmuThemes.hpp"
+#include "../managers/FontManager.h"
 
 namespace ebox
 {
@@ -49,6 +50,7 @@ namespace ebox
             float getLastVolume() const;
             json getPlaylistData();
             const string &getCurrentTheme() const;
+            ebox::FontManager *getFontManager();
 
             void applyTheme();
 
@@ -68,6 +70,8 @@ namespace ebox
             std::string m_currentFont = "";
             std::string m_currentTheme = "dark";
             float m_lastVolume = 100.f;
+
+            ebox::FontManager m_fonts;
 
     };
 }

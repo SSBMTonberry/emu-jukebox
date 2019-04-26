@@ -187,3 +187,8 @@ void ebox::IniFile::applyTheme()
     else
         theme::SetDarkTheme();
 }
+
+ebox::FontManager *ebox::IniFile::getFontManager()
+{
+    return &m_fonts;
+}

@@ -126,6 +126,7 @@ void ebox::ProgramManager::run()
         if(m_firstRun)
         {
             //m_clipboard.update(); //Update clipboard once on first run!
+            m_iniFile.getFontManager()->initialize();
             m_iniFile.applyTheme();
             m_firstRun = false;
         }
