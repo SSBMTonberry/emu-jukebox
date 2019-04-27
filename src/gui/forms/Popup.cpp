@@ -35,7 +35,7 @@ bool ebox::Popup::draw()
         if(m_positionHasBeenChanged || m_useLockedPosition)
         {
             ImGui::SetNextWindowPos(ImVec2(m_position));
-            ImGui::SetNextWindowSize(ImVec2(m_size));
+            ImGui::SetNextWindowSize(ImVec2(m_scaledSize));
             m_positionHasBeenChanged = false;
         }
     }

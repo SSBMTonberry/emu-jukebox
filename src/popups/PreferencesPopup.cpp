@@ -51,8 +51,8 @@ void ebox::PreferencesPopup::initialize(const sf::Vector2<int> &size)
     m_applyButton.setOnSameLine(true);
     m_cancelButton.setOnSameLine(true);
 
-    m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + 20;
-    m_buttonOffset = (m_size.x / 2) - (m_totalButtonWidth / 2);
+    m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + (20 * m_scaleFactor);
+    m_buttonOffset = (m_scaledSize.x / 2) - (m_totalButtonWidth / 2);
 
     m_themes.addValueRange({"dark", "light", "classic", "modern"});
     m_themes.setValue(0);
@@ -65,7 +65,7 @@ void ebox::PreferencesPopup::setIniFile(ebox::IniFile *iniFile)
 
 void ebox::PreferencesPopup::drawGeneralTab()
 {
-    ImGui::BeginChild("preferences_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
+    ImGui::BeginChild("preferences_general_tab", {-1, (float)(m_scaledSize.y * 0.85)}, true, 0);
     m_loadLastFileOnStartup.process();
     m_loadLastPlaylistOnStartup.process();
     m_filePreviewsPlayForever.process();
@@ -75,14 +75,14 @@ void ebox::PreferencesPopup::drawGeneralTab()
 
 void ebox::PreferencesPopup::drawThemesTab()
 {
-    ImGui::BeginChild("themes_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
+    ImGui::BeginChild("themes_general_tab", {-1, (float)(m_scaledSize.y * 0.85)}, true, 0);
     m_themes.process();
     ImGui::EndChild();
 }
 
 void ebox::PreferencesPopup::drawFontsTab()
 {
-    ImGui::BeginChild("fonts_general_tab", {-1, (float)(m_size.y * 0.85)}, true, 0);
+    ImGui::BeginChild("fonts_general_tab", {-1, (float)(m_scaledSize.y * 0.85)}, true, 0);
     m_iniFile->getFontManager()->process();
     ImGui::EndChild();
 }
@@ -126,5 +126,22 @@ void ebox::PreferencesPopup::updateIniData()
     m_iniFile->setBackgroundColor(m_backgroundColor.getColor());
     m_iniFile->setCurrentTheme(m_themes.getValue());
     m_iniFile->applyTheme();
+    m_iniFile->getFontManager()->setChosenFontAsDefaultFont();
+    setScaleOnAllItems(m_iniFile->getFontManager()->getFontSizeFactor());
     m_iniFile->write();
+}
+
+void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
+{
+    //float scale = 1 + ((scaleFactor - 1) / 2);
+    //if(scale < 1)
+    //    scale = 1;
+    float scale = scaleFactor;
+    setScaleFactor(scale);
+    m_okButton.setSize({(int)(90 * scale), (int)(30 * scale)});
+    m_applyButton.setSize({(int)(90 * scale), (int)(30 * scale)});
+    m_cancelButton.setSize({(int)(90 * scale), (int)(30 * scale)});
+
+    m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + (20 * m_scaleFactor);
+    m_buttonOffset = (m_scaledSize.x / 2) - (m_totalButtonWidth / 2);
 }

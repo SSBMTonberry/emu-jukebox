@@ -14,15 +14,17 @@ namespace ebox
     class Font
     {
         public:
-            Font(std::string name, ImFont *font);
+            Font(std::string name, ImFont *font, float fontSize);
 
             void setName(const std::string &name);
 
             const std::string &getName() const;
+            float  getFontSize() const;
             ImFont *getImFont() const;
 
         protected:
             std::string m_name;
+            float m_fontSize;
             ImFont *m_imFont;
     };
 }

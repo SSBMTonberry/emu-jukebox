@@ -4,7 +4,7 @@
 
 #include "Font.h"
 
-ebox::Font::Font(std::string name, ImFont *font) : m_name {std::move(name)}, m_imFont {font}
+ebox::Font::Font(std::string name, ImFont *font, float fontSize) : m_name {std::move(name)}, m_imFont {font}, m_fontSize {fontSize}
 {
 
 }
@@ -22,5 +22,10 @@ const std::string &ebox::Font::getName() const
 ImFont *ebox::Font::getImFont() const
 {
     return m_imFont;
+}
+
+float ebox::Font::getFontSize() const
+{
+    return m_fontSize;
 }
 

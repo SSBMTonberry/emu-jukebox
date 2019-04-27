@@ -41,6 +41,8 @@ namespace ebox
 
             void updateIniData();
 
+            void setScaleOnAllItems(float scaleFactor);
+
             IniFile *m_iniFile;
 
             //General

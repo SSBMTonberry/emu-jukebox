@@ -12,7 +12,7 @@ ebox::Form::Form(std::string id, std::string title, std::string imguiId) :
 
 ebox::Form::Form(const sf::Vector2<int> &position, const sf::Vector2<int> &size, std::string id,
                 std::string title, std::string imguiId) :
-                m_position {position}, m_size {size}, m_id {std::move(id)}, m_title {std::move(title)}, m_imguiId {std::move(imguiId)},
+                m_position {position}, m_size {size}, m_scaledSize {size}, m_id {std::move(id)}, m_title {std::move(title)}, m_imguiId {std::move(imguiId)},
                 m_positionHasBeenChanged {true}
 {
 
@@ -42,7 +42,7 @@ bool ebox::Form::draw()
     if(m_positionHasBeenChanged || m_useLockedPosition)
     {
         ImGui::SetNextWindowPos(ImVec2(m_position));
-        ImGui::SetNextWindowSize(ImVec2(m_size));
+        ImGui::SetNextWindowSize(ImVec2(m_scaledSize));
         m_positionHasBeenChanged = false;
     }
 
@@ -168,6 +168,7 @@ void ebox::Form::setSize(const sf::Vector2<int> &size)
 {
     m_positionHasBeenChanged = true;
     m_size = size;
+    m_scaledSize = {(int)(size.x * m_scaleFactor), (int)(size.y * m_scaleFactor)};
 }
 
 const sf::Vector2<int> &ebox::Form::getPosition() const
@@ -200,4 +201,24 @@ const sf::Vector2<size_t> &ebox::Form::getCurrentWindowPosition() const
     return m_currentWindowPosition;
 }
 
+/*!
+ * Used to scale the size of the form and/or its elements.
+ * Default is set to 1.
+ * @param scaleFactor
+ */
+float ebox::Form::getScaleFactor() const
+{
+    return m_scaleFactor;
+}
 
+/*!
+ * Used to scale the size of the form and/or its elements.
+ * Default is set to 1.
+ * @param scaleFactor
+ */
+void ebox::Form::setScaleFactor(float scaleFactor)
+{
+    m_scaleFactor = scaleFactor;
+    m_scaledSize = {(int)(m_size.x * m_scaleFactor), (int)(m_size.y * m_scaleFactor)};
+    m_positionHasBeenChanged = true;
+}

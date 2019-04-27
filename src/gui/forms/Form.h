@@ -30,6 +30,7 @@ namespace ebox
             void setIsVisible(bool isVisible);
             void setSize(const sf::Vector2<int> &size);
             void setPosition(const sf::Vector2<int> &position);
+            void setScaleFactor(float scaleFactor);
 
             //Flags
             void setFormFlags(const FormFlags &formFlags);
@@ -43,12 +44,10 @@ namespace ebox
             const std::string &getId() const;
             const sf::Vector2<int> &getSize() const;
             const sf::Vector2<int> &getPosition() const;
-
             const sf::Vector2<size_t> &getCurrentWindowSize() const;
-
             const sf::Vector2<size_t> &getCurrentWindowPosition() const;
-
             bool hasImguiId() const;
+            float getScaleFactor() const;
 
             template <typename T>
             T * getControl(const std::string &id);
@@ -75,6 +74,7 @@ namespace ebox
             FormFlags m_flags = FormFlags::None;
             std::string m_id;
             std::string m_title;
+            float m_scaleFactor = 1.f;
 
             /*!
              * 2018-10-08 - ImGuiID should never have been a number, as it behaves like a string.
@@ -83,6 +83,8 @@ namespace ebox
             std::string m_imguiId;
             sf::Vector2<int> m_position;
             sf::Vector2<int> m_size;
+            sf::Vector2<int> m_scaledSize;
+
             sf::Vector2<size_t> m_previousWindowSize {0, 0};
             sf::Vector2<size_t> m_previousWindowPosition {0, 0};
             sf::Vector2<size_t> m_currentWindowSize {0, 0};

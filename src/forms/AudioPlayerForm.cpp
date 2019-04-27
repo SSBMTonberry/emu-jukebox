@@ -118,13 +118,14 @@ bool AudioPlayerForm::customDraw()
 
 void AudioPlayerForm::drawAudioPanel()
 {
+    float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
     ImGui::PushAllowKeyboardFocus(false);
 
     int numberOfButtons = 4;
     size_t spacingLength = (getCurrentWindowSize().x / 2) - (numberOfButtons * 20);
-    size_t spacingLength2 = (spacingLength - (160 * 2));
+    size_t spacingLength2 = (size_t) ((spacingLength - (160 * 2)) / scaleFactor);
 
-    ImGui::BeginChild("audio_player_panel", {-1, 80}, true, 0);
+    ImGui::BeginChild("audio_player_panel", {-1, 90 * scaleFactor}, true, 0);
     ImGui::SameLine(0, spacingLength);
     if(m_previousButton.process() && m_stream != nullptr)
     {
@@ -167,20 +168,8 @@ void AudioPlayerForm::drawAudioPanel()
         if(!abort) m_stream->nextTrack();
     }
 
-    ImGui::SameLine(0, spacingLength2);
-    ImGui::PushItemWidth(100);
-    if(m_volume.process())
-    {
-        m_iniFile->setLastVolume(m_volume.getValues()[0]);
-        if(m_stream != nullptr)
-            m_stream->setVolume(m_iniFile->getLastVolume());
-    }
+    //ImGui::SameLine(0, spacingLength2);
 
-    ImGui::PushItemWidth(100);
-    if(m_tempo.process() && m_stream != nullptr)
-    {
-        m_stream->setTempo(m_tempo.getValue());
-    }
 
     ImGui::PushItemWidth(-1);
     int dummy = 0;
@@ -199,6 +188,22 @@ void AudioPlayerForm::drawAudioPanel()
 
         if(!proceedAfterEnd) m_stream->stop();
     }
+    ImGui::NewLine();
+    ImGui::SameLine(0, spacingLength + spacingLength2);
+    ImGui::PushItemWidth(100 * scaleFactor);
+    if(m_volume.process())
+    {
+        m_iniFile->setLastVolume(m_volume.getValues()[0]);
+        if(m_stream != nullptr)
+            m_stream->setVolume(m_iniFile->getLastVolume());
+    }
+
+    ImGui::PushItemWidth(100 * scaleFactor);
+    ImGui::SameLine(0, 10 * scaleFactor);
+    if(m_tempo.process() && m_stream != nullptr)
+    {
+        m_stream->setTempo(m_tempo.getValue());
+    }
 
     ImGui::EndChild();
 
@@ -207,6 +212,7 @@ void AudioPlayerForm::drawAudioPanel()
 
 void AudioPlayerForm::drawAudioVisualizer()
 {
+
     ImGui::BeginChild("visualizer_panel", { -1, 100 }, true, 0);
     if (m_visualizer.process() && m_stream != nullptr) {
         //???
@@ -216,7 +222,8 @@ void AudioPlayerForm::drawAudioVisualizer()
 
 void AudioPlayerForm::drawAudioInfo()
 {
-    ImGui::BeginChild("audio_info", {-1, 250}, true, 0);
+    float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
+    ImGui::BeginChild("audio_info", {-1, 250 * scaleFactor}, true, 0);
     ImGui::BeginChild("audio_info_sub1", {(static_cast<float>(getCurrentWindowSize().x) / 2), -1}, true, 0);
     ImGui::Text(fmt::format("Track: {0} of {1}", m_stream->getInfoFromCurrentTrack().getTrackNumber() + 1, m_stream->getNumberOfTracks()).c_str());
     ImGui::Text(fmt::format("Song: {0}", m_stream->getInfoFromCurrentTrack().getSong()).c_str());

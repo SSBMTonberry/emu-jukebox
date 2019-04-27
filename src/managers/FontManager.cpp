@@ -9,8 +9,9 @@ void ebox::FontManager::initialize()
     createFonts();
 }
 
-void ebox::FontManager::process()
+bool ebox::FontManager::process()
 {
+    bool fontChosen = false;
     if (ImGui::BeginCombo("Fonts", m_currentFont))
     {
         for (int i = 0; i < m_fonts.size(); i++)
@@ -21,6 +22,7 @@ void ebox::FontManager::process()
                 m_currentFont = m_fonts[i].getName().c_str();
                 m_fontHasBeenChosen = true;
                 m_chosenFont = &m_fonts[i];
+                fontChosen = true;
             }
 
             if (is_selected)
@@ -31,10 +33,10 @@ void ebox::FontManager::process()
         ImGui::EndCombo();
     }
 
-    if (ImGui::SmallButton("Set as default"))
-    {
-        setChosenFontAsDefaultFont();
-    }
+    //if (ImGui::SmallButton("Set as default"))
+    //{
+    //    setChosenFontAsDefaultFont();
+    //}
 
     for(int i = 0; i < 5; ++i)
         ImGui::Spacing();
@@ -52,6 +54,8 @@ void ebox::FontManager::process()
 
     for(int i = 0; i < 5; ++i)
         ImGui::Spacing();
+
+    return fontChosen;
 }
 
 void ebox::FontManager::createFonts()
@@ -89,6 +93,7 @@ void ebox::FontManager::createFonts()
     createFont("code_big", (void *)files_mapper::gui::fonts::_PROGGYCLEAN_TTF, files_mapper::gui::fonts::_PROGGYCLEAN_TTF_SIZE, 26);
 
     ImGui::SFML::UpdateFontTexture();
+    m_currentFont = m_fonts[0].getName().c_str();
 }
 
 void ebox::FontManager::setCurrentFontByName(const std::string_view &name)
@@ -120,7 +125,7 @@ void ebox::FontManager::createDefaultFont(const std::string &name, float fontSiz
 {
     ImFontConfig config;
     config.SizePixels = fontSize;
-    m_fonts.emplace_back(name, ImGui::GetIO().Fonts->AddFontDefault(&config));
+    m_fonts.emplace_back(name, ImGui::GetIO().Fonts->AddFontDefault(&config), fontSize);
 }
 
 void ebox::FontManager::createFont(const std::string &name, void *data, size_t size, float fontSize)
@@ -128,8 +133,9 @@ void ebox::FontManager::createFont(const std::string &name, void *data, size_t s
     ImFontConfig config;
     config.FontDataOwnedByAtlas = false;
 
-    m_fonts.emplace_back(name, ImGui::GetIO().Fonts->AddFontFromMemoryTTF(data, size, fontSize, &config));
+    m_fonts.emplace_back(name, ImGui::GetIO().Fonts->AddFontFromMemoryTTF(data, size, fontSize, &config), fontSize);
 }
+
 
 void ebox::FontManager::setChosenFontAsDefaultFont()
 {
@@ -143,4 +149,20 @@ void ebox::FontManager::setChosenFontAsDefaultFont()
             atlas->Fonts[0] = font;
         }
     }
+}
+
+/*!
+ * Gets the font size factor, used for other parts of the program to know how to scale things.
+ * If default size, the value is 1. If twice the default size, the value is 2.
+ * @return
+ */
+float ebox::FontManager::getFontSizeFactor()
+{
+    ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+    float scaleFactor = (atlas->Fonts[0]->FontSize / 13);
+    float scale = 1 + ((scaleFactor - 1) / 2);
+    if(scale < 1)
+        scale = 1;
+
+    return scale;
 }

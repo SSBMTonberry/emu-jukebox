@@ -19,6 +19,8 @@ ebox::FilelistForm::FilelistForm(const sf::Vector2<int> &position, const sf::Vec
 
 bool ebox::FilelistForm::customDraw()
 {
+    float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
+
     if (m_eraseItems.size() > 0) {
         for (auto id : m_eraseItems) {
             m_fileMap.erase(id);
@@ -47,7 +49,7 @@ bool ebox::FilelistForm::customDraw()
         }
     }
 
-    int spacing = getCurrentWindowSize().x - m_filterTextbox.getControlSize().x - 45;
+    int spacing = getCurrentWindowSize().x - m_filterTextbox.getControlSize().x - (45 * scaleFactor);
     m_removeAllButton.setSpacing(spacing); //(40); //getCurrentWindowSize().x);
     if(m_removeAllButton.process())
         removeAllTracks();

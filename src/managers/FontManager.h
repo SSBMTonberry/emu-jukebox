@@ -17,10 +17,12 @@ namespace ebox
             FontManager() = default;
             void initialize();
 
-            void process();
+            bool process();
 
             void setChosenFontAsDefaultFont();
             void setCurrentFontByName(const std::string_view &name);
+
+            float getFontSizeFactor();
 
         private:
             void createFonts();
