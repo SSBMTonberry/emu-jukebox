@@ -414,3 +414,13 @@ void ebox::FileTable::setUseFileIcons(bool useFileIcons)
 {
     m_useFileIcons = useFileIcons;
 }
+
+float ebox::FileTable::getScaleFactor() const
+{
+    return m_scaleFactor;
+}
+
+void ebox::FileTable::setScaleFactor(float scaleFactor)
+{
+    m_scaleFactor = scaleFactor;
+}

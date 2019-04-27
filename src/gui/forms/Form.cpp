@@ -49,6 +49,8 @@ bool ebox::Form::draw()
     ImGui::Begin(getImguiId().c_str(), &m_open, getFlagsAsImGuiFlags());
     m_currentWindowSize = ImGui::GetWindowSize();
     m_currentWindowPosition = ImGui::GetWindowPos();
+    m_position = {(int)m_currentWindowPosition.x, (int) m_currentWindowPosition.y};
+
     if (ImGui::IsWindowHovered())
     {
         m_formIsHovered = true;

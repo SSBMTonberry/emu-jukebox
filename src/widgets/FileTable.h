@@ -70,6 +70,7 @@ namespace ebox
 
             void setFileFilter(const std::string &filter);
             void setUseFileIcons(bool useFileIcons);
+            void setScaleFactor(float scaleFactor);
 
             bool canCallPathOpening() const;
             const fs::path &getPathToOpen() const;
@@ -78,6 +79,7 @@ namespace ebox
             const string &getSelectedFile() const;
             bool useFileIcons() const;
             bool canCallRowChangeEvent() const;
+            float getScaleFactor() const;
 
         protected:
             void create();
@@ -103,6 +105,7 @@ namespace ebox
 
             bool m_useFileIcons = true;
             std::string m_fileFilter = "*.*"; //Shows all as standard
+            float m_scaleFactor = 1.f;
 
             fs::path m_lastOpenedPath;
             fs::path m_pathToOpen;

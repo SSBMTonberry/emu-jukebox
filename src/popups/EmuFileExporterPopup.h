@@ -32,6 +32,8 @@ namespace ebox
 
             void onFileChosen(const std::string &path);
 
+            void setScaleFactor(float scaleFactor) override;
+
         protected:
 
             bool customDraw() override;

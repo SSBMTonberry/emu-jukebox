@@ -129,6 +129,9 @@ void ebox::PreferencesPopup::updateIniData()
     m_iniFile->getFontManager()->setChosenFontAsDefaultFont();
     setScaleOnAllItems(m_iniFile->getFontManager()->getFontSizeFactor());
     m_iniFile->write();
+
+    for(auto const &callback : m_callbackOnChanged)
+        callback(this);
 }
 
 void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
@@ -144,4 +147,9 @@ void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
 
     m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + (20 * m_scaleFactor);
     m_buttonOffset = (m_scaledSize.x / 2) - (m_totalButtonWidth / 2);
+}
+
+void ebox::PreferencesPopup::registerOnChangedCallback(const func_on_changed &cb)
+{
+    m_callbackOnChanged.emplace_back(cb);
 }

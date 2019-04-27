@@ -19,6 +19,7 @@ namespace ebox
 {
     class PreferencesPopup : public Popup
     {
+            typedef std::function<void(ebox::PreferencesPopup*)> func_on_changed; //OnPressed(), for instance
         public:
             PreferencesPopup(const std::string &id, const std::string &title, const std::string &imguiId = "");
 
@@ -27,6 +28,8 @@ namespace ebox
 
             void initialize(const sf::Vector2<int> &size);
             void setIniFile(IniFile *iniFile);
+
+            void registerOnChangedCallback(const func_on_changed &cb);
 
         protected:
             bool customDraw() override;
@@ -50,6 +53,8 @@ namespace ebox
             Checkbox m_loadLastPlaylistOnStartup {"load_last_playlist_on_startup", "Store current playlist on shutdown and load on startup"};
             Checkbox m_filePreviewsPlayForever {"file_previews_plays_forever", "Play tracks from file explorer forever"};
             ColorPicker m_backgroundColor {"background_color", "Background color", ColorPicker::ColorPickerType::ColorEdit3, {35, 65, 90, 255}};
+
+            std::vector<func_on_changed> m_callbackOnChanged;
 
             //Themes
             Combobox m_themes {"themes_combo", "Theme"};

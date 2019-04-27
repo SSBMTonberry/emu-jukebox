@@ -128,6 +128,7 @@ void ebox::ProgramManager::run()
             //m_clipboard.update(); //Update clipboard once on first run!
             m_iniFile.getFontManager()->initialize();
             m_iniFile.applyTheme();
+            applyIniFileToProgram();
             m_firstRun = false;
         }
 
@@ -439,6 +440,8 @@ void ProgramManager::registerCallbacks()
     m_fileDialogFolder.registerOnFileChosenCallback(std::bind(&ProgramManager::onFolderChosen, this, std::placeholders::_1));
     m_fileDialogSavePlaylist.registerOnFileChosenCallback(std::bind(&ProgramManager::onSavePlaylist, this, std::placeholders::_1));
     m_fileDialogOpenPlaylist.registerOnFileChosenCallback(std::bind(&ProgramManager::onOpenPlaylist, this, std::placeholders::_1));
+
+    m_preferences.registerOnChangedCallback(std::bind(&ProgramManager::onChangedPreferences, this, std::placeholders::_1));
 }
 
 void ProgramManager::updateViewMenu()
@@ -447,4 +450,19 @@ void ProgramManager::updateViewMenu()
     m_menuViewAudioPlayer.setIsSelected(m_formManager.isOpened(FormType::AudioPlayer));
     m_menuViewPlaylist.setIsSelected(m_formManager.isOpened(FormType::Playlist));
     m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
+}
+
+void ProgramManager::onChangedPreferences(PreferencesPopup *sender)
+{
+    applyIniFileToProgram();
+}
+
+void ProgramManager::applyIniFileToProgram()
+{
+    m_fileDialogFile.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_fileDialogFolder.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_fileDialogSavePlaylist.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_fileDialogOpenPlaylist.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_preferences.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_fileExporter.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
 }

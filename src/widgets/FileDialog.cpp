@@ -502,3 +502,21 @@ bool FileDialog::useFileIcons()
 {
     return m_fileTable.useFileIcons();
 }
+
+void FileDialog::setScaleFactor(float scaleFactor)
+{
+    Form::setScaleFactor(scaleFactor);
+    scaleFactor *= 0.75f; //Make it a bit smaller
+    if(scaleFactor < 1.f)
+        scaleFactor = 1.f;
+
+    m_upperLeftChild.setSize({(int)(m_scaledSize.x * 0.05f * scaleFactor), (int)(m_scaledSize.y * 0.07f * scaleFactor)});
+    m_upperMiddleChild.setSize({(int)(m_scaledSize.x * 0.8f * scaleFactor), (int)(m_scaledSize.y * 0.07f * scaleFactor)});
+    m_upperRightChild.setSize({(int)(m_scaledSize.x * 0.15f * scaleFactor), (int)(m_scaledSize.y * 0.07f * scaleFactor)});
+    m_midRightChild.setSize({-1, (int)(m_scaledSize.y * 0.7f * scaleFactor)});
+    m_bottomchildleft.setSize({(int)(m_scaledSize.x * 0.1f * scaleFactor), (int)(m_scaledSize.y * 0.18f * scaleFactor)});
+    m_bottomchildmid.setSize({(int)(m_scaledSize.x * 0.74f * scaleFactor), (int)(m_scaledSize.y * 0.18f * scaleFactor)});
+    m_bottomchildright.setSize({(int)(m_scaledSize.x * 0.2f * scaleFactor), (int)(m_scaledSize.y * 0.18f * scaleFactor)});
+    m_okBtn.setSize({(int)(m_scaledSize.x * 0.1f * scaleFactor), (int)(m_scaledSize.y * 0.045f * scaleFactor)});
+    m_cancelBtn.setSize({(int)(m_scaledSize.x * 0.1f * scaleFactor), (int)(m_scaledSize.y * 0.045f * scaleFactor)});
+}

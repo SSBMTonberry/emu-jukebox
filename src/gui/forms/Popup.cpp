@@ -23,8 +23,14 @@ ebox::Popup::Popup(const sf::Vector2<int> &position, const sf::Vector2<int> &siz
  */
 bool ebox::Popup::draw()
 {
+    m_formIsHovered = false;
+    m_formIsActive = false;
+
     if(!m_isVisible)
         return false;
+
+    m_previousWindowPosition = m_currentWindowPosition;
+    m_previousWindowSize = m_currentWindowSize;
 
     bool anyItemChanged = false;
     if(m_open)
@@ -42,6 +48,22 @@ bool ebox::Popup::draw()
 
     if (ImGui::BeginPopupModal(getImguiId().c_str(), &m_open, getFlagsAsImGuiFlags()))
     {
+        m_currentWindowSize = ImGui::GetWindowSize();
+        m_currentWindowPosition = ImGui::GetWindowPos();
+        m_position = {(int)m_currentWindowPosition.x, (int) m_currentWindowPosition.y};
+
+        if (ImGui::IsWindowHovered())
+        {
+            m_formIsHovered = true;
+        }
+        if (ImGui::IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows))
+        {
+            m_formIsActive = true;
+        }
+
+        if(m_currentWindowSize != m_previousWindowSize) onWindowResize();
+        if(m_currentWindowPosition != m_previousWindowPosition) onMoved();
+
         for (auto const &item : m_controls)
         {
             if(item->process())

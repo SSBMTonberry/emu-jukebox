@@ -35,8 +35,6 @@ namespace ebox
             bool getHideNumber() const;
             float getWidth() const;
 
-
-
         protected:
             bool processDrag();
             bool performValueValidation();

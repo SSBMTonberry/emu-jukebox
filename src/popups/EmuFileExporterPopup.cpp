@@ -95,7 +95,7 @@ bool ebox::EmuFileExporterPopup::customDraw()
     m_tempoLabel.process();
     m_tempo.process();
 
-    ImGui::BeginChild("file_exporter_custom_length", {-1.f, 60.f}, true, 0);
+    ImGui::BeginChild("file_exporter_custom_length", {-1.f, 60.f * m_scaleFactor}, true, 0);
     m_useCustomLength.process();
     if(m_useCustomLength.isChecked())
     {
@@ -108,7 +108,7 @@ bool ebox::EmuFileExporterPopup::customDraw()
     }
     ImGui::EndChild();
 
-    ImGui::BeginChild("file_exporter_voices", {-1.f, (float)(40 + (m_file.getVoices()->size() * 30))}, true, 0);
+    ImGui::BeginChild("file_exporter_voices", {-1.f, (float)(40 + (m_file.getVoices()->size() * 30)) * m_scaleFactor}, true, 0);
     ImGui::Text("Voices:");
     for(auto &voice : *m_file.getVoices())
     {
@@ -148,4 +148,13 @@ bool ebox::EmuFileExporterPopup::customDraw()
 void ebox::EmuFileExporterPopup::onOpen()
 {
 
+}
+
+void EmuFileExporterPopup::setScaleFactor(float scaleFactor)
+{
+    Form::setScaleFactor(scaleFactor);
+    m_exportButton.setSize({(int)(120 * scaleFactor), (int)(40 * scaleFactor)});
+    m_pathButton.setSize({(int)(60 * scaleFactor), (int)(20 * scaleFactor)});
+    m_customStart.setWidth(100.f * scaleFactor);
+    m_customStop.setWidth(100.f * scaleFactor);
 }

@@ -30,7 +30,7 @@ namespace ebox
             void setIsVisible(bool isVisible);
             void setSize(const sf::Vector2<int> &size);
             void setPosition(const sf::Vector2<int> &position);
-            void setScaleFactor(float scaleFactor);
+            virtual void setScaleFactor(float scaleFactor);
 
             //Flags
             void setFormFlags(const FormFlags &formFlags);

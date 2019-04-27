@@ -96,6 +96,7 @@ namespace ebox
 
             void setPath(const fs::path &path);
 
+            void setScaleFactor(float scaleFactor) override;
 
         protected:
             void update();
