@@ -10,7 +10,6 @@
 #include <unordered_map>
 #include <any>
 
-using namespace std;
 namespace ebox
 {
     class DataRow

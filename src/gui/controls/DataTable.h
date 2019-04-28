@@ -9,7 +9,6 @@
 #include "DataColumnDefinition.h"
 #include "DataRow.h"
 #include <optional>
-using namespace std;
 namespace ebox
 {
     class DataTable : public Control
@@ -21,13 +20,13 @@ namespace ebox
 
             DataRow *newRow();
             void addColumn(const std::string &columnName, const std::string &columnTitle, const DataColumnType &dataColumnType = DataColumnType::Selectable, size_t dataSize = 25);
-            const vector<DataColumn *> getColumns();
+            const std::vector<DataColumn *> getColumns();
 
-            const optional<DataRow *> &getSelectedRow() const;
+            const std::optional<DataRow *> &getSelectedRow() const;
 
         protected:
             void drawHeader();
-            virtual void onHeaderColumnClicked(const string &id);
+            virtual void onHeaderColumnClicked(const std::string &id);
             virtual void onRowDoubleClicked(DataRow *row);
             virtual void onRowMarked(DataRow *row);
             void markSelectedRow();
@@ -35,7 +34,7 @@ namespace ebox
             size_t m_rowIdCounter = 0;
             DataColumnDefinition m_columnDefinition;
             //vector<unique_ptr<DataRow>> m_rows;
-            vector<DataRow> m_rows;
+            std::vector<DataRow> m_rows;
             DataRow* m_lastMarkedRow = nullptr;
             std::optional<DataRow*> m_selectedRow = std::nullopt;
 

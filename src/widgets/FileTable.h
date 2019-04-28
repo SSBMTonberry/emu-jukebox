@@ -44,9 +44,11 @@ namespace fs = std::filesystem;
 #endif
 
 namespace fm = files_mapper;
-using namespace std;
 using namespace cpplinq;
 
+#if MSVC
+#include <Windows.h>
+#endif
 
 
 namespace ebox
@@ -55,15 +57,15 @@ namespace ebox
     class FileTable : public DataTable
     {
         public:
-            FileTable(const string &id, const string &label, bool useFileIcons = true);
+            FileTable(const std::string &id, const std::string &label, bool useFileIcons = true);
 
             void listFilesByDirectory(const fs::path &path, const fs::path &parentDirectory);
-            pair<const unsigned char *, size_t> getFileIcon(const string &key);
-            ebox::Image *getImgFileIcon(const string &key);
+            std::pair<const unsigned char *, size_t> getFileIcon(const std::string &key);
+            ebox::Image *getImgFileIcon(const std::string &key);
 
             void sort();
-            void sort(const string &columnName, bool sortDesc = false);
-            void sortAsInt(const string &columnName, bool sortDesc = false);
+            void sort(const std::string &columnName, bool sortDesc = false);
+            void sortAsInt(const std::string &columnName, bool sortDesc = false);
 
             void resetPathOpeningCall();
             void resetRowChangeCall();
@@ -75,15 +77,15 @@ namespace ebox
             bool canCallPathOpening() const;
             const fs::path &getPathToOpen() const;
             const fs::path &getLastOpenedPath() const;
-            const string &getFileFilter() const;
-            const string &getSelectedFile() const;
+            const std::string &getFileFilter() const;
+            const std::string &getSelectedFile() const;
             bool useFileIcons() const;
             bool canCallRowChangeEvent() const;
             float getScaleFactor() const;
 
         protected:
             void create();
-            void onHeaderColumnClicked(const string &id) override;
+            void onHeaderColumnClicked(const std::string &id) override;
             void onRowDoubleClicked(DataRow *row) override;
 
             void onRowMarked(DataRow *row) override;
@@ -92,10 +94,10 @@ namespace ebox
 
             void initializeFilemap();
             void initializeImgFilemap();
-            map<string, pair<const unsigned char *, size_t>> m_fileMap;
-            map<string, ebox::Image> m_imgFileMap;
-            map<std::string, fs::path> m_pathMap;
-            pair<std::string, bool> m_previousSortAction = {"filename", false}; //first: columnName, second: orderDesc
+            std::map<std::string, std::pair<const unsigned char *, size_t>> m_fileMap;
+            std::map<std::string, ebox::Image> m_imgFileMap;
+            std::map<std::string, fs::path> m_pathMap;
+            std::pair<std::string, bool> m_previousSortAction = {"filename", false}; //first: columnName, second: orderDesc
 
             std::string m_selectedFile = "";
 

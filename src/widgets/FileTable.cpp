@@ -4,7 +4,7 @@
 
 #include "FileTable.h"
 
-ebox::FileTable::FileTable(const string &id, const string &label, bool useFileIcons) : DataTable(id, label), m_useFileIcons {useFileIcons}
+ebox::FileTable::FileTable(const std::string &id, const std::string &label, bool useFileIcons) : DataTable(id, label), m_useFileIcons {useFileIcons}
 {
     create();
 }
@@ -241,7 +241,7 @@ void ebox::FileTable::initializeImgFilemap()
     m_imgFileMap["directory"] = {"directory", fm::gui::folders::blue::_FOLDER_CLOSED_PNG, fm::gui::folders::blue::_FOLDER_CLOSED_PNG_SIZE};
 }
 
-pair<const unsigned char *, size_t> ebox::FileTable::getFileIcon(const string &key)
+std::pair<const unsigned char *, size_t> ebox::FileTable::getFileIcon(const std::string &key)
 {
     if(m_fileMap.count(key) > 0)
         return m_fileMap[key];
@@ -249,7 +249,7 @@ pair<const unsigned char *, size_t> ebox::FileTable::getFileIcon(const string &k
         return m_fileMap["default"];
 }
 
-ebox::Image *ebox::FileTable::getImgFileIcon(const string &key)
+ebox::Image *ebox::FileTable::getImgFileIcon(const std::string &key)
 {
     if(m_imgFileMap.count(key) > 0)
         return &m_imgFileMap[key];
@@ -258,7 +258,7 @@ ebox::Image *ebox::FileTable::getImgFileIcon(const string &key)
 }
 
 
-void ebox::FileTable::onHeaderColumnClicked(const string &id)
+void ebox::FileTable::onHeaderColumnClicked(const std::string &id)
 {
     if(id == "filename" || id == "type")
     {
@@ -279,7 +279,7 @@ void ebox::FileTable::onHeaderColumnClicked(const string &id)
     m_previousSortAction = {id, !m_sortDesc};
 }
 
-void ebox::FileTable::sort(const string &columnName, bool sortDesc)
+void ebox::FileTable::sort(const std::string &columnName, bool sortDesc)
 {
     std::sort(m_rows.begin(), m_rows.end(), [&columnName, &sortDesc](DataRow const &a, DataRow const &b) -> bool
     {
@@ -303,7 +303,7 @@ void ebox::FileTable::sort(const string &columnName, bool sortDesc)
     });
 }
 
-void ebox::FileTable::sortAsInt(const string &columnName, bool sortDesc)
+void ebox::FileTable::sortAsInt(const std::string &columnName, bool sortDesc)
 {
     std::sort(m_rows.begin(), m_rows.end(), [&columnName, &sortDesc](DataRow const &a, DataRow const &b) -> bool
     {
@@ -389,7 +389,7 @@ void ebox::FileTable::resetRowChangeCall()
     m_callRowChangeEvent = false;
 }
 
-const string &ebox::FileTable::getSelectedFile() const
+const std::string &ebox::FileTable::getSelectedFile() const
 {
     return m_selectedFile;
 }
@@ -400,7 +400,7 @@ void ebox::FileTable::setFileFilter(const std::string &filter)
     listFilesByDirectory(m_lastOpenedPath, m_parentDirectory);
 }
 
-const string &ebox::FileTable::getFileFilter() const
+const std::string &ebox::FileTable::getFileFilter() const
 {
     return m_fileFilter;
 }

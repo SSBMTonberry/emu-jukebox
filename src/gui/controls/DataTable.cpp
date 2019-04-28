@@ -90,14 +90,14 @@ void ebox::DataTable::drawHeader()
     ImGui::Columns(1); //Do this to prevent nesting, which makes things crash :(
 }
 
-void ebox::DataTable::onHeaderColumnClicked(const string &id)
+void ebox::DataTable::onHeaderColumnClicked(const std::string &id)
 {
 
 }
 
-const vector<ebox::DataColumn *> ebox::DataTable::getColumns()
+const std::vector<ebox::DataColumn *> ebox::DataTable::getColumns()
 {
-    vector<DataColumn *> columns;
+    std::vector<DataColumn *> columns;
     for(auto &item : m_columnDefinition.getColumns())
     {
         columns.push_back(item.get());
@@ -105,7 +105,7 @@ const vector<ebox::DataColumn *> ebox::DataTable::getColumns()
     return columns;
 }
 
-const optional<ebox::DataRow *> &ebox::DataTable::getSelectedRow() const
+const std::optional<ebox::DataRow *> &ebox::DataTable::getSelectedRow() const
 {
     return m_selectedRow;
 }
