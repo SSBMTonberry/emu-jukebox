@@ -88,6 +88,9 @@ namespace ebox
             void onHeaderColumnClicked(const std::string &id) override;
             void onRowDoubleClicked(DataRow *row) override;
 
+#if MSVC
+            std::string getWindowsTimeStampString(const fs::path &path);
+#endif
             void onRowMarked(DataRow *row) override;
 
             const std::string generatePathId(const DataRow &row) const ;

@@ -424,3 +424,13 @@ void ebox::FileTable::setScaleFactor(float scaleFactor)
 {
     m_scaleFactor = scaleFactor;
 }
+
+#if MSVC
+std::string ebox::FileTable::getWindowsTimeStampString(const fs::path &path)
+{
+    //OpenFile();
+    //LPFILETIME creation, last_access, last_write;
+    //GetFileTime(path.u8string().c_str(), creation, last_access, last_write);
+    return "<Empty>";
+}
+#endif
