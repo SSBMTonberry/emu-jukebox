@@ -13,6 +13,7 @@
 #include "../gui/controls/Checkbox.h"
 #include "../gui/controls/Button.h"
 #include "../gui/controls/Combobox.h"
+#include "../gui/controls/InputInt.h"
 #include "../classes/Font.h"
 
 namespace ebox
@@ -49,14 +50,14 @@ namespace ebox
             void setScaleOnAllItems(float scaleFactor);
 
             IniFile *m_iniFile;
+            std::vector<func_on_changed> m_callbackOnChanged;
 
             //General
             Checkbox m_loadLastFileOnStartup {"load_last_file_on_startup", "Load last opened file/folder on startup"};
             Checkbox m_loadLastPlaylistOnStartup {"load_last_playlist_on_startup", "Store current playlist on shutdown and load on startup"};
             Checkbox m_filePreviewsPlayForever {"file_previews_plays_forever", "Play tracks from file explorer forever"};
             ColorPicker m_backgroundColor {"background_color", "Background color", ColorPicker::ColorPickerType::ColorEdit3, {35, 65, 90, 255}};
-
-            std::vector<func_on_changed> m_callbackOnChanged;
+            InputInt m_numberOfRepeats {"no_of_repeats", "Number of repeats (0 = infinite)", 0, 100, 1, 2};
 
             //Themes
             Combobox m_themes {"themes_combo", "Theme"};

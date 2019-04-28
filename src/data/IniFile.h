@@ -34,9 +34,7 @@ namespace ebox
             void setLastVolume(float lastVolume);
             void setPlaylistData(const json &playlistData);
             void setCurrentTheme(const string &currentTheme);
-
-            bool openLastPlaylistOnStartup() const;
-
+            void setNumberOfRepeats(int numberOfRepeats);
             void setOpenLastPlaylistOnStartup(bool openLastPlaylistOnStartup);
 
             const fs::path &getPath() const;
@@ -51,6 +49,8 @@ namespace ebox
             json getPlaylistData();
             const string &getCurrentTheme() const;
             ebox::FontManager *getFontManager();
+            int getNumberOfRepeats() const;
+            bool openLastPlaylistOnStartup() const;
 
             void applyTheme();
 
@@ -70,6 +70,7 @@ namespace ebox
             std::string m_currentFont = "";
             std::string m_currentTheme = "dark";
             float m_lastVolume = 100.f;
+            int m_numberOfRepeats = 0; //0 = infinite, 1 = once(like no repeat), 2 = twice etc...
 
             ebox::FontManager m_fonts;
 

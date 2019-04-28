@@ -36,6 +36,7 @@ void ebox::IniFile::write()
     m_data["bg_color"] = {m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a};
     m_data["volume"] = m_lastVolume;
     m_data["theme"] = m_currentTheme;
+    m_data["no_of_repeats"] = m_numberOfRepeats;
 
     writeToFile(filepath);
 }
@@ -80,6 +81,8 @@ void ebox::IniFile::parseData()
     if(m_data.count("open_last_item_on_startup") > 0) m_openLastOpenedItemOnStartup = m_data["open_last_item_on_startup"].get<bool>();
     if(m_data.count("open_last_playlist_on_startup") > 0) m_openLastPlaylistOnStartup = m_data["open_last_playlist_on_startup"].get<bool>();
     if(m_data.count("theme") > 0) m_currentTheme = m_data["theme"].get<std::string>();
+    if(m_data.count("no_of_repeats") > 0) m_numberOfRepeats = m_data["no_of_repeats"].get<int>();
+
     if(m_data.count("bg_color") > 0)
     {
         json bg_color = m_data["bg_color"];
@@ -194,4 +197,14 @@ void ebox::IniFile::applyTheme()
 ebox::FontManager *ebox::IniFile::getFontManager()
 {
     return &m_fonts;
+}
+
+int ebox::IniFile::getNumberOfRepeats() const
+{
+    return m_numberOfRepeats;
+}
+
+void ebox::IniFile::setNumberOfRepeats(int numberOfRepeats)
+{
+    m_numberOfRepeats = numberOfRepeats;
 }
