@@ -65,7 +65,7 @@ namespace ebox
             bool m_lastItemIsFolder = true;
             bool m_loopPreviewTracksForever = true;
             bool m_openLastOpenedItemOnStartup = false;
-            bool m_openLastPlaylistOnStartup = false;
+            bool m_openLastPlaylistOnStartup = true;
             sf::Color m_backgroundColor {35, 65, 90, 255};
             std::string m_currentFont = "";
             std::string m_currentTheme = "dark";
