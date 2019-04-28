@@ -444,3 +444,18 @@ const std::string &ebox::EmuStream::getId() const
 {
     return m_id;
 }
+
+int ebox::EmuStream::getNumberOfPlays() const
+{
+    return m_numberOfPlays;
+}
+
+void ebox::EmuStream::setNumberOfPlays(int numberOfPlays)
+{
+    m_numberOfPlays = numberOfPlays;
+}
+
+void ebox::EmuStream::incrementNumberOfPlays()
+{
+    ++m_numberOfPlays;
+}

@@ -141,6 +141,7 @@ void PlaylistForm::setPlayer(AudioPlayerForm *player)
     m_player->registerOnNextTrackCallback(std::bind(&PlaylistForm::onNextTrack, this, std::placeholders::_1));
     m_player->registerOnPreviousTrackCallback(std::bind(&PlaylistForm::onPreviousTrack, this, std::placeholders::_1));
     m_player->registerOnTrackEndedCallback(std::bind(&PlaylistForm::onTrackEnded, this, std::placeholders::_1, std::placeholders::_2));
+    m_player->setPlaylistRepeatPtr(&m_hasRepeat);
 }
 
 void PlaylistForm::createByJson(json playlist)
@@ -387,7 +388,7 @@ bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
     if(m_player != nullptr && containsId(stream->getId()))
     {
-        if(m_hasRepeat)
+        if(m_hasRepeat && m_iniFile->getNumberOfRepeats() <= 0)
             startTrack(m_player->getStreamId());
         else if(m_hasShuffle)
             startRandomTrack(m_player->getStreamId());
@@ -597,4 +598,9 @@ void PlaylistForm::removeItem(const std::string &id)
             setAsSelectedChildNode((removedAt < size-1) ? removedAt+1 : removedAt-1);
     }
 
+}
+
+void PlaylistForm::setIniFile(IniFile *iniFile)
+{
+    m_iniFile = iniFile;
 }

@@ -53,6 +53,9 @@ namespace ebox
             void setTempo(float tempo);
             void setTrack(int track);
             void setId(const std::string &id);
+            void setNumberOfPlays(int numberOfPlays);
+            void incrementNumberOfPlays();
+
 
             void nextTrack();
             void previousTrack();
@@ -75,6 +78,7 @@ namespace ebox
             size_t getDataSize() const;
             int getNumberOfTracks() const;
             const std::string &getId() const;
+            int getNumberOfPlays() const;
 
             void registerSampleObserver(func_sampleObserver callback);
 
@@ -117,6 +121,8 @@ namespace ebox
 
             int m_numberOfTracks = 0;
             std::vector<Voice> m_voices;
+
+            int m_numberOfPlays = 0;
 
             EmuTrackInfo m_emptyTrack; //When no track info exists
             std::vector<EmuTrackInfo> m_tracks;

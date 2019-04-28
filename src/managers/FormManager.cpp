@@ -31,6 +31,7 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * even
     m_filelistForm.setIniFile(m_iniFile);
 
     m_audioPlayerForm.setIniFile(m_iniFile);
+    m_playlistForm.setIniFile(m_iniFile);
 
     if(m_iniFile->openLastPlaylistOnStartup())
         m_playlistForm.createByJson(m_iniFile->getPlaylistData());

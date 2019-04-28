@@ -182,11 +182,21 @@ void AudioPlayerForm::drawAudioPanel()
 
     if(m_stream != nullptr && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength())
     {
-        bool proceedAfterEnd = false;
-        for(auto const &callback : m_callbackOnTrackEnded)
-            proceedAfterEnd = callback(this, m_stream.get()) ? true : proceedAfterEnd;
+        m_stream->incrementNumberOfPlays();
 
-        if(!proceedAfterEnd) m_stream->stop();
+        //TODO: Make this only check when repeat is on.
+        if(*m_playlistRepeat && m_stream->getNumberOfPlays() < m_iniFile->getNumberOfRepeats())
+        {
+            m_stream->setPlayingOffset(sf::milliseconds(0));
+        }
+        else
+        {
+            bool proceedAfterEnd = false;
+            for (auto const &callback : m_callbackOnTrackEnded)
+                proceedAfterEnd = callback(this, m_stream.get()) ? true : proceedAfterEnd;
+
+            if (!proceedAfterEnd) m_stream->stop();
+        }
     }
     ImGui::NewLine();
     ImGui::SameLine(0, spacingLength + spacingLength2);
@@ -429,4 +439,9 @@ void AudioPlayerForm::setIniFile(IniFile *iniFile)
 float AudioPlayerForm::getTempo()
 {
     return m_tempo.getValue();
+}
+
+void AudioPlayerForm::setPlaylistRepeatPtr(bool *playlistRepeat)
+{
+    m_playlistRepeat = playlistRepeat;
 }

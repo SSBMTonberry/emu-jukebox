@@ -13,6 +13,7 @@
 #include <random>
 #include "../managers/Hotkeys.h"
 #include "../data/PlaylistFile.h"
+#include "../data/IniFile.h"
 
 namespace ebox
 {
@@ -28,6 +29,7 @@ namespace ebox
             void handleEvents() override;
 
             void setPlayer(AudioPlayerForm *player);
+            void setIniFile(IniFile *iniFile);
             void createByJson(json playlist);
             void createByFile(const PlaylistFile &file);
 
@@ -86,6 +88,7 @@ namespace ebox
             void setRepeat(bool repeat);
 
             AudioPlayerForm *m_player;
+            IniFile *m_iniFile;
             bool m_hasShuffle = false;
             bool m_hasRepeat = false;
 

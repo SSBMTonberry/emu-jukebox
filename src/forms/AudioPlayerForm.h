@@ -47,6 +47,7 @@ namespace ebox
             void setStream(std::unique_ptr<EmuStream> stream);
             void setTrack(int trackNo);
             void setIniFile(IniFile *iniFile);
+            void setPlaylistRepeatPtr(bool *playlistRepeat);
 
             std::string getStreamId();
             EmuStream *getCurrentStream();
@@ -98,6 +99,8 @@ namespace ebox
             //EmuStream *m_stream = nullptr;
             std::unique_ptr<EmuStream> m_stream;
             IniFile *m_iniFile;
+
+            bool *m_playlistRepeat;
             //float m_previousVolume = 100.f;
 
             ebox::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG, files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
