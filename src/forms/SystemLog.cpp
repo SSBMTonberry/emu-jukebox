@@ -62,7 +62,7 @@ bool ebox::SystemLog::process()
 
         ImGui::SetNextWindowSize(m_size, ImGuiCond_FirstUseEver);
         ImGui::Begin(ID.c_str(), &m_isOpen, 0);
-        ImGui::BeginChild("debug_child_1", {-1, 60}, true, 0);
+        ImGui::BeginChild("debug_child_1", {-1, 60 * m_scaleFactor}, true, 0);
         if (m_filter.process())
         {
             valueChanged = true;
@@ -191,4 +191,14 @@ const sf::Vector2<int> &ebox::SystemLog::getPosition() const
 bool ebox::SystemLog::isVisible() const
 {
     return m_isVisible;
+}
+
+float ebox::SystemLog::getScaleFactor() const
+{
+    return m_scaleFactor;
+}
+
+void ebox::SystemLog::setScaleFactor(float scaleFactor)
+{
+    m_scaleFactor = scaleFactor;
 }

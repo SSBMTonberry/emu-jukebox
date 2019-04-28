@@ -31,6 +31,8 @@ namespace ebox
 
             void registerOnChangedCallback(const func_on_changed &cb);
 
+            void setScaleFactor(float scaleFactor) override;
+
         protected:
             bool customDraw() override;
 

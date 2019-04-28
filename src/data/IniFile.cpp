@@ -22,6 +22,9 @@ void ebox::IniFile::load()
 
 void ebox::IniFile::write()
 {
+    Font *font = m_fonts.getChosenFont();
+    m_currentFont = (font == nullptr) ? "" : font->getName();
+
     std::string filepath = fmt::format("{0}/{1}", m_path.u8string(), FILENAME);
     m_data["last_folder"] = m_lastOpenedFolder.u8string();
     m_data["last_file"] = m_lastOpenedFile.u8string();

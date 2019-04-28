@@ -37,9 +37,11 @@ namespace ebox
             void setIsVisible(bool isVisible);
             void setSize(const sf::Vector2<int> &size);
             void setPosition(const sf::Vector2<int> &position);
+            void setScaleFactor(float scaleFactor);
 
             const sf::Vector2<int> &getSize() const;
             const sf::Vector2<int> &getPosition() const;
+            float getScaleFactor() const;
 
             void clear();
 
@@ -72,6 +74,7 @@ namespace ebox
             std::vector<ebox::ColoredText> m_filteredTexts;
             std::vector<ebox::ColoredText> m_texts;
             sf::Image m_image;
+            float m_scaleFactor = 1.f;
 
         private:
             explicit SystemLog(const sf::Vector2<int> &sizeOnFirstUse = {640, 480});

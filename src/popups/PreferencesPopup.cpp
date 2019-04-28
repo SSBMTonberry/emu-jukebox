@@ -127,7 +127,10 @@ void ebox::PreferencesPopup::updateIniData()
     m_iniFile->setCurrentTheme(m_themes.getValue());
     m_iniFile->applyTheme();
     m_iniFile->getFontManager()->setChosenFontAsDefaultFont();
-    setScaleOnAllItems(m_iniFile->getFontManager()->getFontSizeFactor());
+
+    Font *font = m_iniFile->getFontManager()->getChosenFont();
+    m_iniFile->setCurrentFont((font == nullptr) ? "" : font->getName());
+    setScaleFactor(m_iniFile->getFontManager()->getFontSizeFactor());
     m_iniFile->write();
 
     for(auto const &callback : m_callbackOnChanged)
@@ -140,7 +143,7 @@ void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
     //if(scale < 1)
     //    scale = 1;
     float scale = scaleFactor;
-    setScaleFactor(scale);
+
     m_okButton.setSize({(int)(90 * scale), (int)(30 * scale)});
     m_applyButton.setSize({(int)(90 * scale), (int)(30 * scale)});
     m_cancelButton.setSize({(int)(90 * scale), (int)(30 * scale)});
@@ -152,4 +155,10 @@ void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
 void ebox::PreferencesPopup::registerOnChangedCallback(const func_on_changed &cb)
 {
     m_callbackOnChanged.emplace_back(cb);
+}
+
+void ebox::PreferencesPopup::setScaleFactor(float scaleFactor)
+{
+    Form::setScaleFactor(scaleFactor);
+    setScaleOnAllItems(scaleFactor);
 }

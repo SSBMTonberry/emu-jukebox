@@ -21,6 +21,7 @@ namespace ebox
 
             void setChosenFontAsDefaultFont();
             void setCurrentFontByName(const std::string_view &name);
+            Font *getChosenFont();
 
             float getFontSizeFactor();
 

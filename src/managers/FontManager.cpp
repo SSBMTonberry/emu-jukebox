@@ -103,6 +103,7 @@ void ebox::FontManager::setCurrentFontByName(const std::string_view &name)
         if(m_fonts[i].getName() == name)
         {
             m_chosenFont = &m_fonts[i];
+            m_currentFont = m_chosenFont->getName().c_str();
             setChosenFontAsDefaultFont();
         }
     }
@@ -165,4 +166,9 @@ float ebox::FontManager::getFontSizeFactor()
         scale = 1;
 
     return scale;
+}
+
+ebox::Font *ebox::FontManager::getChosenFont()
+{
+    return m_chosenFont;
 }

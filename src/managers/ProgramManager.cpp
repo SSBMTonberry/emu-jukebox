@@ -128,6 +128,8 @@ void ebox::ProgramManager::run()
             //m_clipboard.update(); //Update clipboard once on first run!
             m_iniFile.getFontManager()->initialize();
             m_iniFile.applyTheme();
+            std::string fontName = m_iniFile.getCurrentFont();
+            m_iniFile.getFontManager()->setCurrentFontByName(fontName);
             applyIniFileToProgram();
             m_firstRun = false;
         }
@@ -380,19 +382,25 @@ void ProgramManager::onFileChosen(const std::string &path)
 {
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadFile(currentPath);
-    m_iniFile.setLastOpenedFolder(currentPath.parent_path().u8string());
-    m_iniFile.setLastOpenedFile(currentPath.u8string());
-    m_iniFile.setLastItemIsFolder(false);
-    m_iniFile.write();
+    if(!m_firstRun)
+    {
+        m_iniFile.setLastOpenedFolder(currentPath.parent_path().u8string());
+        m_iniFile.setLastOpenedFile(currentPath.u8string());
+        m_iniFile.setLastItemIsFolder(false);
+        m_iniFile.write();
+    }
 }
 
 void ProgramManager::onFolderChosen(const std::string &path)
 {
     fs::path currentPath = fs::path(path);
     m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
-    m_iniFile.setLastOpenedFolder(currentPath.u8string());
-    m_iniFile.setLastItemIsFolder(true);
-    m_iniFile.write();
+    if(!m_firstRun)
+    {
+        m_iniFile.setLastOpenedFolder(currentPath.u8string());
+        m_iniFile.setLastItemIsFolder(true);
+        m_iniFile.write();
+    }
 }
 
 void ProgramManager::onSavePlaylist(const std::string &path)
@@ -465,4 +473,5 @@ void ProgramManager::applyIniFileToProgram()
     m_fileDialogOpenPlaylist.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     m_preferences.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     m_fileExporter.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    SystemLog::get()->setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
 }
