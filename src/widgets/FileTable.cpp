@@ -63,8 +63,8 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
 
                 #if MSVC
                     fs::file_time_type timeEntry = fs::last_write_time(entry);
-                    //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
-                    std::string timefmt = "<not supported by MSVC>"; //fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+
+                    std::string timefmt = getWindowsTimeStampString(entry);
                 #elif APPLE
                 auto timeEntry = fs::last_write_time(entry);
                 //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
@@ -92,8 +92,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
 
 #if MSVC
                     fs::file_time_type timeEntry = fs::last_write_time(entry);
-                    //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
-                    std::string timefmt = "<not supported by MSVC>"; //fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+                    std::string timefmt = getWindowsTimeStampString(entry);
 #elif APPLE
                     auto timeEntry = fs::last_write_time(entry);
                     //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
@@ -426,11 +425,31 @@ void ebox::FileTable::setScaleFactor(float scaleFactor)
 }
 
 #if MSVC
+std::string to_string( FILETIME ftime ) // ISO format, time zone designator Z == zero (UTC)
+{
+    SYSTEMTIME utc ;
+    ::FileTimeToSystemTime( std::addressof(ftime), std::addressof(utc) );
+
+    std::ostringstream stm;
+    const auto w2 = std::setw(2) ;
+    stm << std::setfill('0') << std::setw(4) << utc.wYear << '.' << w2 << utc.wMonth
+        << '.' << w2 << utc.wDay << ' ' << w2 << utc.wHour
+        << ':' << w2 << utc.wMinute << ':' << w2 << utc.wSecond;
+
+    return stm.str() ;
+}
+
 std::string ebox::FileTable::getWindowsTimeStampString(const fs::path &path)
 {
-    //OpenFile();
-    //LPFILETIME creation, last_access, last_write;
-    //GetFileTime(path.u8string().c_str(), creation, last_access, last_write);
-    return "<Empty>";
+    FILETIME filetime = { 0 };
+    WIN32_FILE_ATTRIBUTE_DATA data;
+    if (GetFileAttributesExW(path.wstring().c_str(), GetFileExInfoStandard, &data))
+    {
+        filetime = data.ftLastWriteTime;
+        return to_string(filetime);
+    }
+    return "<date not found>";
 }
+
+
 #endif

@@ -17,6 +17,7 @@
 #include <chrono>
 #include <iomanip>
 #include <fstream>
+#include <sstream>
 
 //namespace fs = std::experimental::filesystem;
 #if MSVC
