@@ -95,6 +95,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                     std::string timefmt = getWindowsTimeStampString(entry);
 #elif APPLE
                     //auto timeEntry = fs::last_write_time(entry);
+                    //std::time_t cftime = decltype(timeEntry)::clock::to_time_t(timeEntry);
                     //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
                     std::string timefmt = getOsxTimeStampString(entry);//"<not supported by Clang!>";//fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 #else
@@ -427,7 +428,11 @@ void ebox::FileTable::setScaleFactor(float scaleFactor)
 #if APPLE
 std::string ebox::FileTable::getOsxTimeStampString(const fs::path &path)
 {
-    return "<undefined>";
+    auto timeEntry = fs::last_write_time(path);
+    std::time_t cftime = decltype(timeEntry)::clock::to_time_t(timeEntry);
+    std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+
+    return timefmt;
 }
 #endif
 
