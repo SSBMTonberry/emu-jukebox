@@ -91,6 +91,8 @@ namespace ebox
 
 #if MSVC
             std::string getWindowsTimeStampString(const fs::path &path);
+#elif APPLE
+            std::string getOsxTimeStampString(const fs::path &path);
 #endif
             void onRowMarked(DataRow *row) override;
 

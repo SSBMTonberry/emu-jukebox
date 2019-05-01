@@ -20,6 +20,7 @@
 #include <regex>
 
 #include <SFML/System.hpp>
+#include <codecvt>
 
 #if MSVC
 #include <filesystem>
