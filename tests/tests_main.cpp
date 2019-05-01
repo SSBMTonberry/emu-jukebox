@@ -71,7 +71,7 @@ TEST_CASE( "Test file export", "[file_export]" )
     success = file.initialize(path, 2);
     if(success)
     {
-        success = file.createSamplesAndFillBuffer();
+        success = file.createSamplesAndFillBuffer(0);
         if(success)
         {
             file.exportToSoundFile(exportPath);

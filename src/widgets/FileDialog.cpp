@@ -44,7 +44,7 @@ void ebox::FileDialog::createLayout()
     m_upperMiddleChild.setSize({(int)(m_size.x * 0.8f), (int)(m_size.y * 0.07f)});
     m_upperMiddleChild.setOnSameLine(true);
     m_filepathtext.setHasLabel(false);
-    m_filepathtext.setValue(getPath().string());
+    m_filepathtext.setValue(getPath().u8string());
     m_upperMiddleChild.addReference(&m_filepathtext);
 
     m_upperRightChild.setSize({(int)(m_size.x * 0.15f), (int)(m_size.y * 0.07f)});
@@ -102,7 +102,7 @@ void ebox::FileDialog::handleEvents()
             m_path = (m_filepathtext.isChanged()) ? fs::path(m_filepathtext.getValue())
                                                   : m_fileTable.getLastOpenedPath();
             if (m_refreshbtn.isPressed())
-                m_filepathtext.setValue(m_path.string());
+                m_filepathtext.setValue(m_path.u8string());
 
             if (fs::exists(m_path))
             {
@@ -172,7 +172,7 @@ void ebox::FileDialog::onOpen()
     if(!fs::exists(m_path))
         m_path = m_filepathtext.getValue();
     else
-        m_filepathtext.setValue(m_path.string());
+        m_filepathtext.setValue(m_path.u8string());
 
     if(fs::exists(m_path))
     {
@@ -227,7 +227,7 @@ void ebox::FileDialog::assignDefaults()
  * @param cb Example of valid parameter: std::bind(&ProgramManager::onChosenProject, this, std::placeholders::_1)
  * Actual function - ebox::ProgramManager::onChosenProject(const std::string &path)
  */
-void ebox::FileDialog::registerOnFileChosenCallback(const ebox::func_str &cb)
+void ebox::FileDialog::registerOnFileChosenCallback(const ebox::func_path &cb)
 {
     m_callbackOnFileChosen.emplace_back(cb);
 }

@@ -30,7 +30,7 @@ namespace ebox
             void initialize(const sf::Vector2<int> &size);
             void handleEvents() override;
 
-            void onFileChosen(const std::string &path);
+			void onFileChosen(const fs::path& path);//(const std::string &path);
 
             void setScaleFactor(float scaleFactor) override;
 

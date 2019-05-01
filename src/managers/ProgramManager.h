@@ -53,10 +53,10 @@ namespace ebox
             void applyIniFileToProgram();
 
             void onChosenMenuItem(MenuItem *sender);
-            void onFileChosen(const std::string &path);
-            void onFolderChosen(const std::string &path);
-            void onSavePlaylist(const std::string &path);
-            void onOpenPlaylist(const std::string &path);
+			void onFileChosen(const fs::path& path); //(const std::string &path);
+			void onFolderChosen(const fs::path& path); //(const std::string &path);
+            void onSavePlaylist(const fs::path& path); //(const std::string &path);
+            void onOpenPlaylist(const fs::path& path); //(const std::string &path);
             void onChangedPreferences(PreferencesPopup *sender);
 
             void updateViewMenu();

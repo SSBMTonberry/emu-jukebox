@@ -64,7 +64,7 @@ namespace ebox
             void drawAudioInfo();
             void drawEqualizer();
 
-            void onFileChosen(const std::string &path);
+			void onFileChosen(const fs::path& path); //(const std::string &path);
 
             EmuStream m_stream;
             FileDialog m_fileDialog { DialogType::OpenFile, "audio_test_file_dialog", "Choose a file" };

@@ -11,6 +11,7 @@
 #include "SFML/Graphics.hpp"
 #include "../misc/EmuThemes.hpp"
 #include "../managers/FontManager.h"
+#include "../misc/Tools.hpp"
 
 namespace ebox
 {

@@ -211,7 +211,7 @@ void AudioTestForm::handleEvents()
     m_fileDialog.handleEvents();
 }
 
-void AudioTestForm::onFileChosen(const std::string &path)
+void AudioTestForm::onFileChosen(const fs::path& path)//(const std::string &path)
 {
-    m_loadFromFileText.setValue(path);
+    m_loadFromFileText.setValue(path.u8string());
 }

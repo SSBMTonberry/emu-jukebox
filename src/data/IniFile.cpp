@@ -26,8 +26,8 @@ void ebox::IniFile::write()
     m_currentFont = (font == nullptr) ? "" : font->getName();
 
     std::string filepath = fmt::format("{0}/{1}", m_path.u8string(), FILENAME);
-    m_data["last_folder"] = m_lastOpenedFolder.u8string();
-    m_data["last_file"] = m_lastOpenedFile.u8string();
+    m_data["last_folder"] = tools::string::Wstring2String(m_lastOpenedFolder.wstring());
+    m_data["last_file"] = tools::string::Wstring2String(m_lastOpenedFile.wstring());
     m_data["last_item_is_folder"] = m_lastItemIsFolder;
     m_data["current_font"] = m_currentFont;
     m_data["loop_forever"] = m_loopPreviewTracksForever;
@@ -73,8 +73,8 @@ const string &ebox::IniFile::getCurrentFont() const
 
 void ebox::IniFile::parseData()
 {
-    if(m_data.count("last_folder") > 0) m_lastOpenedFolder = m_data["last_folder"].get<string>();
-    if(m_data.count("last_file") > 0) m_lastOpenedFile = m_data["last_file"].get<string>();
+    if(m_data.count("last_folder") > 0) m_lastOpenedFolder = fs::path(tools::string::String2Wstring(m_data["last_folder"].get<string>()));
+    if(m_data.count("last_file") > 0) m_lastOpenedFile = fs::path(tools::string::String2Wstring(m_data["last_file"].get<string>()));
     if(m_data.count("last_item_is_folder") > 0) m_lastItemIsFolder = m_data["last_item_is_folder"].get<bool>();
     if(m_data.count("current_font") > 0) m_currentFont = m_data["current_font"].get<string>();
     if(m_data.count("loop_forever") > 0) m_loopPreviewTracksForever = m_data["loop_forever"].get<bool>();

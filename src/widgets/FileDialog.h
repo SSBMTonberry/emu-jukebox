@@ -46,7 +46,7 @@ namespace fm = files_mapper;
 
 namespace ebox
 {
-    typedef std::function<void(std::string)> func_str; //OnFileChosen, for instance
+    typedef std::function<void(fs::path)> func_path; //OnFileChosen, for instance
     typedef std::function<void(void)> func_void; //OnCancel(), for instance
 
     enum class DialogType : unsigned
@@ -87,7 +87,7 @@ namespace ebox
             void setFilename(const std::string &filename);
             void setUseFileIcons(bool useFileIcons);
 
-            void registerOnFileChosenCallback(const func_str &cb);
+            void registerOnFileChosenCallback(const func_path &cb);
             void registerOnCancelCallback(const func_void &cb);
 
             const fs::path &getPath() const;
@@ -149,7 +149,7 @@ namespace ebox
             MessagePopup m_msgPopupNoFileChosen {"msg_popup_no_file_chosen", "No file chosen!", MessagePopupType::Ok, "2"};
             MessagePopup m_msgPopupFileDoesNotExist {"msg_popup_file_does_not_exist", "File does not exist!", MessagePopupType::Ok, "3"};
 
-            vector<func_str> m_callbackOnFileChosen;
+            vector<func_path> m_callbackOnFileChosen;
             vector<func_void> m_callbackOnClose;
 
             unordered_map<std::string, std::string> m_filetypeFilter; //first: the text displayed in dropdown of file type, second: the file extension

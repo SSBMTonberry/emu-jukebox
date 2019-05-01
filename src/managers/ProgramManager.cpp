@@ -52,9 +52,9 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     if(openLastOpenedItemOnStartup)
     {
         if(m_iniFile.isLastItemFolder() && fs::is_directory(m_iniFile.getLastOpenedFolder()))
-            onFolderChosen(m_iniFile.getLastOpenedFolder().u8string());
+            onFolderChosen(m_iniFile.getLastOpenedFolder());
         else if(!m_iniFile.isLastItemFolder() && fs::is_regular_file(m_iniFile.getLastOpenedFile()))
-            onFileChosen(m_iniFile.getLastOpenedFile().u8string());
+            onFileChosen(m_iniFile.getLastOpenedFile());
     }
     else
     {
@@ -378,34 +378,34 @@ void ProgramManager::openExportPopup()
         SystemLog::get()->addError("No stream data found in player. You must open a track to be able to export it.");
 }
 
-void ProgramManager::onFileChosen(const std::string &path)
+void ProgramManager::onFileChosen(const fs::path& path)//(const std::string &path)
 {
-    fs::path currentPath = fs::path(path);
+	fs::path currentPath = path;//fs::path(path);
     m_formManager.getFilelistForm()->loadFile(currentPath);
     if(!m_firstRun)
     {
-        m_iniFile.setLastOpenedFolder(currentPath.parent_path().u8string());
-        m_iniFile.setLastOpenedFile(currentPath.u8string());
+		m_iniFile.setLastOpenedFolder(currentPath.parent_path());//.u8string());
+        m_iniFile.setLastOpenedFile(currentPath);
         m_iniFile.setLastItemIsFolder(false);
         m_iniFile.write();
     }
 }
 
-void ProgramManager::onFolderChosen(const std::string &path)
+void ProgramManager::onFolderChosen(const fs::path& path)//(const std::string &path)
 {
-    fs::path currentPath = fs::path(path);
+	fs::path currentPath = path;//fs::path(path);
     m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
     if(!m_firstRun)
     {
-        m_iniFile.setLastOpenedFolder(currentPath.u8string());
+		m_iniFile.setLastOpenedFolder(currentPath); //currentPath.u8string());
         m_iniFile.setLastItemIsFolder(true);
         m_iniFile.write();
     }
 }
 
-void ProgramManager::onSavePlaylist(const std::string &path)
+void ProgramManager::onSavePlaylist(const fs::path& path)//(const std::string &path)
 {
-    PlaylistFile file {fs::path(path)};
+	PlaylistFile file{ path }; //{fs::path(path)};
 
     json data = m_formManager.getPlaylistForm()->getAsJson();
     file.setName(data["name"].get<std::string>());
@@ -420,9 +420,9 @@ void ProgramManager::onSavePlaylist(const std::string &path)
     SystemLog::get()->addSuccess(fmt::format("Wrote playlist with {0} items to path: {1}", i, path));
 }
 
-void ProgramManager::onOpenPlaylist(const std::string &path)
+void ProgramManager::onOpenPlaylist(const fs::path& path)//(const std::string &path)
 {
-    PlaylistFile file {fs::path(path)};
+	PlaylistFile file{ path }; //{fs::path(path)};
     file.load();
     m_formManager.getPlaylistForm()->createByFile(file);
     SystemLog::get()->addSuccess(fmt::format("Loaded playlist with {0} items from path: {1}", file.getPlaylistData().size(), path));

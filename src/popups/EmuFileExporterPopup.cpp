@@ -74,9 +74,9 @@ void ebox::EmuFileExporterPopup::handleEvents()
     m_fileDialog.handleEvents();
 }
 
-void ebox::EmuFileExporterPopup::onFileChosen(const std::string &path)
+void ebox::EmuFileExporterPopup::onFileChosen(const fs::path& path)//(const std::string &path)
 {
-    m_pathText.setValue(path);
+    m_pathText.setValue(path.u8string());
 }
 
 bool ebox::EmuFileExporterPopup::customDraw()

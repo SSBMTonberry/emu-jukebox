@@ -121,6 +121,18 @@ namespace ebox::tools
                 }
             }
         }
+
+		static std::string Wstring2String(const std::wstring& s)
+		{
+			std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+			return conv.to_bytes(s);
+		}
+
+		static std::wstring String2Wstring(const std::string& ws)
+		{
+			std::wstring_convert<std::codecvt_utf8<wchar_t>> conv;
+			return conv.from_bytes(ws);
+		}
     }
 
     namespace filesystem
