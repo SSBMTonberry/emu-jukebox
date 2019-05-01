@@ -67,11 +67,13 @@ namespace ebox
             Selectable *getSelected();
             EmuFileInfo * getEmuFileInfo(const std::string &id);
             int getSelectedIndex();
+            int getNumberOfSelectedItems();
 
             void moveItemUp();
             void moveItemDown();
             void removeAllItems();
             void removeItem(const std::string &id);
+            void removeSelectedItems();
 
             bool loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo);
 
@@ -91,6 +93,7 @@ namespace ebox
             IniFile *m_iniFile;
             bool m_hasShuffle = false;
             bool m_hasRepeat = false;
+            bool m_hasMultiSelect = false;
 
             std::vector<std::pair<EmuFileInfo, int>> m_playlist;
             TreeList m_filemapping {"playlist_filemapper", "Playlist"};

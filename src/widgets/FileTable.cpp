@@ -71,7 +71,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                 std::string timefmt = getOsxTimeStampString(entry); //"<not supported by Clang!>";//fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
                 #else
                     auto timeEntry = fs::last_write_time(entry);
-                    time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                    time_t cftime = std::chrono::system_clock::to_time_t(timeEntry);
                     std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
                 #endif
                 row->setValue("filename", filename.u8string());
@@ -100,7 +100,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                     std::string timefmt = getOsxTimeStampString(entry);//"<not supported by Clang!>";//fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 #else
                     auto timeEntry = fs::last_write_time(entry);
-                    time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                    time_t cftime = std::chrono::system_clock::to_time_t(timeEntry);
                     std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
 #endif
 

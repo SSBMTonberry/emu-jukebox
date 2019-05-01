@@ -71,6 +71,11 @@ void ebox::Selectable::setSelected(bool isSelected)
     m_isSelected = isSelected;
 }
 
+void ebox::Selectable::toggleSelected()
+{
+    m_isSelected = !m_isSelected;
+}
+
 //void ebox::Selectable::setFocused()
 //{
 //    m_setFocused = true;

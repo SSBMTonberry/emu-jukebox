@@ -56,7 +56,8 @@ namespace ebox
                     SelectPreviousItem = 5,
                     SelectNextItem = 6,
                     Shuffle = 7,
-                    Repeat = 8
+                    Repeat = 8,
+                    MultiSelect = 9
             };
 
             enum class FilelistHotkey

@@ -132,6 +132,9 @@ void ebox::ProgramManager::run()
             m_iniFile.getFontManager()->setCurrentFontByName(fontName);
             applyIniFileToProgram();
             m_firstRun = false;
+
+            //m_window.requestFocus();
+            //m_window.setActive();
         }
 
         m_window.display();

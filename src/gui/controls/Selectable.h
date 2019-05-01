@@ -29,6 +29,7 @@ namespace ebox
             void setImage(const std::string &id, const void *imageData, size_t imageDataSize, bool hasZoomTooltip = false);
             void setImageRef(ebox::Image *image);
             void setSelected(bool isSelected);
+            void toggleSelected();
             void setIsToggleable(bool isToggleable);
             void setSize(const sf::Vector2<int> &size);
             //void setFocused();

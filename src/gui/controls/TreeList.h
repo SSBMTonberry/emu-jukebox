@@ -40,7 +40,6 @@ namespace ebox
             void registerOnRightClickCallback(const func_treelist_parent_rightclick &cb);
             void registerOnDoubleClickCallback(const func_treelist_parent &cb);
             void registerOnChosenContextItemCallback(const func_treelist_parent_chosencontextitem &cb);
-
             void setHasParentNode(bool hasParentNode);
 
             void swap(const std::string &id1, const std::string &id2);
@@ -49,10 +48,9 @@ namespace ebox
             ebox::Selectable * getItem(int index);
             std::string_view getItemId(int index);
             std::vector<ebox::Selectable *> getItems();
-
             bool isOpen() const;
-
             bool hasParentNode() const;
+
 
         protected:
             void processMouseEvents();

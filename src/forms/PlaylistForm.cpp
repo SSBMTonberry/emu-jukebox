@@ -89,9 +89,10 @@ void PlaylistForm::processHotkeys()
             moveItemDown();
         else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::DeleteItem))
         {
-            ebox::Selectable *item = getSelected();
-            if (item != nullptr)
-                removeItem(item->getId());
+            removeSelectedItems();
+            //ebox::Selectable *item = getSelected();
+            //if (item != nullptr)
+            //    removeItem(item->getId());
         }
         else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::PlaySelectedItem))
         {
@@ -103,6 +104,10 @@ void PlaylistForm::processHotkeys()
             selectPreviousItem();
         else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::SelectNextItem) && !Hotkeys::get()->isPlaylistHotkeyDown(key::MoveItemDown))
             selectNextItem();
+        else
+        {
+            m_hasMultiSelect = Hotkeys::get()->isPlaylistHotkeyDown(key::MultiSelect);
+        }
     }
 
     //These are okay to handle globally:
@@ -214,7 +219,8 @@ void ebox::PlaylistForm::onChosenChildNode(ebox::Selectable *sender)
 
 bool ebox::PlaylistForm::onRightClickedChildNode(ebox::Selectable *sender)
 {
-    setAsSelectedChildNode(sender);
+    if(getNumberOfSelectedItems() < 2)
+        setAsSelectedChildNode(sender);
     sender->createRightClickContextItems({"Play", "Remove"});
     return true;
 }
@@ -256,17 +262,8 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
     }
     else if(sender->getId() == "remove")
     {
-        removeItem(owner->getId());
-        //for(int i = 0; i < m_playlist.size(); ++i)
-        //{
-        //    if (m_playlist[i].first.getId() == owner->getId())
-        //    {
-        //        m_playlist.erase(m_playlist.begin() + i);
-        //        break;
-        //    }
-        //}
-        //m_filemapping.remove(owner->getId());
-
+        //removeItem(owner->getId());
+        removeSelectedItems();
     }
 }
 
@@ -276,12 +273,28 @@ void ebox::PlaylistForm::setAsSelectedChildNode(ebox::Selectable *child)
     {
         if(item == child)
         {
-            item->setSelected(true);
+            if(m_hasMultiSelect)
+            {
+                item->toggleSelected();
+                item->toggleSelected();
+            }
+            else
+                item->setSelected(true);
             //item->setFocused();
         }
-        else
+        else if(!m_hasMultiSelect)
             item->setSelected(false);
     }
+}
+
+int ebox::PlaylistForm::getNumberOfSelectedItems()
+{
+    int selectedItems = 0;
+    for (auto const &item : m_filemapping.getItems())
+    {
+        selectedItems += item->isSelected();
+    }
+    return selectedItems;
 }
 
 void PlaylistForm::setAsSelectedChildNode(const std::string &id)
@@ -290,10 +303,16 @@ void PlaylistForm::setAsSelectedChildNode(const std::string &id)
     {
         if(item->getId() == id)
         {
-            item->setSelected(true);
+            if(m_hasMultiSelect)
+            {
+                item->toggleSelected();
+                item->toggleSelected();
+            }
+            else
+                item->setSelected(true);
             //item->setFocused();
         }
-        else
+        else if(!m_hasMultiSelect)
             item->setSelected(false);
     }
 }
@@ -305,10 +324,16 @@ void PlaylistForm::setAsSelectedChildNode(int index)
     {
         if(i == index)
         {
-            items[i]->setSelected(true);
+            if(m_hasMultiSelect)
+            {
+                items[i]->toggleSelected();
+                items[i]->toggleSelected();
+            }
+            else
+                items[i]->setSelected(true);
             //items[i]->setFocused();
         }
-        else
+        else if(!m_hasMultiSelect)
             items[i]->setSelected(false);
     }
 }
@@ -597,7 +622,41 @@ void PlaylistForm::removeItem(const std::string &id)
         if(size > 0)
             setAsSelectedChildNode((removedAt < size-1) ? removedAt+1 : removedAt-1);
     }
+}
 
+void PlaylistForm::removeSelectedItems()
+{
+    int removedAt = -1;
+    for(auto &item : m_filemapping.getItems())
+    {
+        if(item->isSelected())
+        {
+            std::string_view id = item->getId();
+
+            for (int i = 0; i < m_playlist.size(); ++i)
+            {
+                if (m_playlist[i].first.getId() == id)
+                {
+                    removedAt = i;
+                    m_playlist.erase(m_playlist.begin() + i);
+                    break;
+                }
+            }
+
+
+            if (m_filemapping.remove(id.data()))
+            {
+
+            }
+        }
+    }
+    //If removed: select next/previous based on where the item was removed.
+    if(removedAt > -1)
+    {
+        size_t size = m_filemapping.getItems().size();
+        if (size > 0)
+            setAsSelectedChildNode((removedAt < size - 1) ? removedAt + 1 : removedAt - 1);
+    }
 }
 
 void PlaylistForm::setIniFile(IniFile *iniFile)
