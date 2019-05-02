@@ -133,8 +133,8 @@ void ebox::ProgramManager::run()
             applyIniFileToProgram();
             m_firstRun = false;
 
-            //m_window.requestFocus();
-            //m_window.setActive();
+            //Maybe it can solve the problem where you have to unfocus and then re-focus the application (#58)
+            m_window.resetGLStates();
         }
 
         m_window.display();

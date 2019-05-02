@@ -37,7 +37,8 @@ set(SOURCE_FILES ../src/managers/ProgramManager.cpp ../src/managers/ProgramManag
         ../src/audio/EmuFileInfo.cpp ../src/audio/EmuFileInfo.h ../src/classes/Hotkey.cpp ../src/classes/Hotkey.h ../src/managers/Hotkeys.cpp
         ../src/managers/Hotkeys.h ../src/data/JsonFile.cpp ../src/data/JsonFile.h ../src/data/IniFile.cpp ../src/data/IniFile.h ../src/popups/PreferencesPopup.cpp
         ../src/popups/PreferencesPopup.h ../src/data/PlaylistFile.cpp ../src/data/PlaylistFile.h ../src/classes/PlaylistData.cpp ../src/classes/PlaylistData.h
-        ../src/audio/EmuFile.cpp ../src/audio/EmuFile.h)
+        ../src/audio/EmuFile.cpp ../src/audio/EmuFile.h ../src/popups/EmuFileExporterPopup.cpp ../src/popups/EmuFileExporterPopup.h
+        ../src/misc/EmuThemes.hpp ../src/classes/Font.cpp ../src/classes/Font.h ../src/managers/FontManager.cpp ../src/managers/FontManager.h)
 
 add_executable(tests_emu-jukebox ${TEST_SOURCE_FILES} ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
 
