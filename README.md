@@ -44,6 +44,7 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 
 ## Known issues (as of version 0.8):
 - If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability. If not otherwise specified, `Release` is used as the default build type.
+- There has been a problem in the past where the application needs to be unfocused then re-focused to be able to use the gui-controls (in these cases it happens on startup). There has been done things to fix this, but I have not been able to verify whether it worked. Please post in issue #58 if you experience this problem.
 
 ## Screenshot (default look):
 ![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.8.0_1.png "Emu Jukebox Screenshot") 
