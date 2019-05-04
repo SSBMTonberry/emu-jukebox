@@ -18,7 +18,7 @@ The file formats that are supported:
 ## Cross-platform
 Emu-Jukebox is designed to be cross-platform. That means that whether you use Windows, Linux or Mac (OS X), you should be able to use this program! This project utilizes CMake to make it possible to easily compile the program on different systems without any problem!
 
-## Features that are implemented (as of version 0.7):
+## Features that are implemented (as of version 0.8):
 - The possibility to load either single files or entire folders of files.
 - The possibility to play all formats either from a file explorer or an own playlist.
 - The possibility to control the tempo of the files you play.
@@ -28,15 +28,27 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - Audio visualizer by [Alexander Brevig](https://github.com/AlexanderBrevig/) ([#28](https://github.com/SSBMTonberry/emu-jukebox/issues/28))
 - Hotkey support for common actions (see tooltips on buttons and controls).
 - Filter search on files (by [Alexander Brevig](https://github.com/AlexanderBrevig/))
-- You can now clear filelists and playlists. 
-- You can now move playlist items up and down.
-- Note: Files loaded from the file explorer ("Files") will run indefinitely. This is intentional, as it's only meant for previewing of songs, and some songs do loop indefinitely. When you however to play songs from a playlist, the next song will automatically be calle after end of track. 
+- You can clear filelists and playlists. 
+- You can move playlist items up and down.
+- Playlists can be saved to and loaded from files.
+- You can control program settings via **Preferences**, including fonts and themes. This is stored into an .ini file that is checked when loading the application.
+- Multi-selection of Playlist items using the Ctrl key + mouse click.
+- You can choose number of times you want a Playlist song to be repeated in **Preferences**. This is only considered if a song is loaded from a Playlist and **Repeat** is active.
+- Emu file data can now be exported to music files. Supported file types to export to are .ogg, .FLAC and .wav.
+- You can optionally make the program load data from the previously opened folder, or store the current Playlist when shutting down. Check **Preferences**. Playlist items are stored by default.
+- You can control the internal volume of the application.
+- File Dialog now supports file dates for all platforms, but the Windows implementation is a bit slow. Which you will notice if you load a folder with an insane number of files. Like 30000+. 
+- Paths with special letters should now load properly on all platforms.
 
-## Known critical issues (as of version 0.7):
-- If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability. As of v0.7: If not otherwise specified, `Release` is used as the default build type.
+- Note: Files loaded from the file explorer ("Files") will run indefinitely. This is intentional, as it's only meant for previewing of songs, and some songs do loop indefinitely. When you however to play songs from a playlist, the next song will automatically be called after end of track. This can as of version 0.8 be turned off via "Preferences". 
 
-## Screenshot:
-![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.7.0.png "Emu Jukebox Screenshot") 
+## Known issues (as of version 0.8):
+- If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability. If not otherwise specified, `Release` is used as the default build type.
+
+## Screenshot (default look):
+![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.8.0_1.png "Emu Jukebox Screenshot") 
+## Screenshot (custom theme and custom large font):
+![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.8.0_2.png "Emu Jukebox Screenshot") 
 
 ## Compiling
 Since Emu-Jukebox is using CMake, it should be pretty straightforward to compile, as long as CMake is installed. Since Emu-Jukebox is using C++17 functionality, like `std::filesystem`, a compiler that is supporting this is required. By design Emu-Jukebox is copiled with static libraries, and is compiling all its resources statically, the program should (at least in version 1.0) be able to work as one single executable! Emu-Jukebox is using [f2src](https://github.com/SSBMTonberry/f2src) to generate header files with its file data. The required external dependencies are included in this project, and should make the compilation pretty traight forward. 
