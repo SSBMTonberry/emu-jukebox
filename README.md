@@ -44,8 +44,8 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 
 ## Known issues (as of version 0.8):
 - If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability. If not otherwise specified, `Release` is used as the default build type.
-- There is a problem that is happening when you use the <Alt>-key, which makes it impossible to open TereeLists (see files). This will be fixed in version 0.9, but the work-around is easy: Just unfocus the application, then refocus it, and you are good to go. (Issue: [#66](https://github.com/SSBMTonberry/emu-jukebox/issues/66)
-- There has been a problem in the past where the application needs to be unfocused then re-focused to be able to use the gui-controls (in these cases it happens on startup). There has been done things to fix this, but I have not been able to verify whether it worked. Please post in issue [#58](https://github.com/SSBMTonberry/emu-jukebox/issues/58 if you experience this problem.
+- There is a problem that is happening when you use the <Alt>-key, which makes it impossible to open TereeLists (see files). This will be fixed in version 0.9, but the work-around is easy: Just unfocus the application, then refocus it, and you are good to go. (Issue: [#66](https://github.com/SSBMTonberry/emu-jukebox/issues/66))
+- There has been a problem in the past where the application needs to be unfocused then re-focused to be able to use the gui-controls (in these cases it happens on startup). There has been done things to fix this, but I have not been able to verify whether it worked. Please post in issue [#58](https://github.com/SSBMTonberry/emu-jukebox/issues/58) if you experience this problem.
 
 
 ## Screenshot (default look):
