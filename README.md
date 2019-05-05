@@ -34,7 +34,7 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - You can control program settings via **Preferences**, including fonts and themes. This is stored into an .ini file that is checked when loading the application.
 - Multi-selection of Playlist items using the Ctrl key + mouse click.
 - You can choose number of times you want a Playlist song to be repeated in **Preferences**. This is only considered if a song is loaded from a Playlist and **Repeat** is active.
-- Emu file data can now be exported to music files. Supported file types to export to are .ogg, .FLAC and .wav. Not that you need to open a file in the Player to be able to export it.
+- Emu file data can now be exported to music files. Supported file types to export to are .ogg, .FLAC and .wav. Note that you need to open a file in the Player to be able to export it.
 - You can optionally make the program load data from the previously opened folder, or store the current Playlist when shutting down. Check **Preferences**. Playlist items are stored by default.
 - You can control the internal volume of the application.
 - File Dialog now supports file dates for all platforms, but the Windows implementation is a bit slow. Which you will notice if you load a folder with an insane number of files. Like 30000+. 
