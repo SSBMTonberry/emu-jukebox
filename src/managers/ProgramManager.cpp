@@ -25,24 +25,28 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
     m_fileDialogFile.assignDefaults();
     m_fileDialogFile.createFileTypeCollection("EmuFiles", {".ay", ".gbs", ".gym", ".hes", ".kss", ".nsf", ".nsfe", ".sap", ".spc", ".vgm"});
     m_fileDialogFile.setFileTypeCollection("EmuFiles", true);
+    m_fileDialogFile.setFileType("*.*");
     //m_fileDialogFile.setUseFileIcons(true);
 
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFolder.assignDefaults();
-    m_fileDialogFolder.createFileTypeCollection("Folder", {"directory"}); //FileTypeMode::Folder
-    m_fileDialogFolder.setFileTypeCollection("Folder", false);
+    //m_fileDialogFolder.createFileTypeCollection("Folder", {"directory"}); //FileTypeMode::Folder
+    //m_fileDialogFolder.setFileTypeCollection("Folder", false);
+    //m_fileDialogFolder.setFileType("directory");
     //m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
 
     m_fileDialogSavePlaylist.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogSavePlaylist.assignDefaults();
     m_fileDialogSavePlaylist.createFileTypeCollection("EmuPlaylists", {".epl"});
     m_fileDialogSavePlaylist.setFileTypeCollection("EmuPlaylists", false);
+    m_fileDialogSavePlaylist.setFileType(".epl");
     //m_fileDialogSavePlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
 
     m_fileDialogOpenPlaylist.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogOpenPlaylist.assignDefaults();
     m_fileDialogOpenPlaylist.createFileTypeCollection("EmuPlaylists", {".epl"});
     m_fileDialogOpenPlaylist.setFileTypeCollection("EmuPlaylists", false);
+    m_fileDialogOpenPlaylist.setFileType(".epl");
     //m_fileDialogOpenPlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
 
     bool openLastOpenedItemOnStartup = initializeFiles();
