@@ -89,6 +89,7 @@ namespace ebox
             void onHeaderColumnClicked(const std::string &id) override;
             void onRowDoubleClicked(DataRow *row) override;
 
+            std::string getFileTimeString(const fs::directory_entry & entry);
 #if MSVC
             std::string getWindowsTimeStampString(const fs::path &path);
 #elif APPLE

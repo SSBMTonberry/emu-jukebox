@@ -106,8 +106,6 @@ sf::Vector2i ebox::Hotkeys::getMousePosition()
     return sf::Mouse::getPosition();
 }
 
-
-
 bool ebox::Hotkeys::isShiftKeyDown()
 {
     if(!m_isActive)

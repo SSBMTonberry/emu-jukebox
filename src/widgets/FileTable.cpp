@@ -61,19 +61,8 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
             {
                 DataRow *row = newRow();
 
-                #if MSVC
-                    fs::file_time_type timeEntry = fs::last_write_time(entry);
+                std::string timefmt = getFileTimeString(entry);
 
-                    std::string timefmt = getWindowsTimeStampString(entry);
-                #elif APPLE
-                //auto timeEntry = fs::last_write_time(entry);
-                //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
-                std::string timefmt = getOsxTimeStampString(entry); //"<not supported by Clang!>";//fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
-                #else
-                    auto timeEntry = fs::last_write_time(entry);
-                    time_t cftime = std::chrono::system_clock::to_time_t(timeEntry);
-                    std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
-                #endif
                 row->setValue("filename", filename.u8string());
                 //auto imgData = getFileIcon("directory");
                 //row->setImage("filename", imgData.first, imgData.second);
@@ -90,20 +79,7 @@ void ebox::FileTable::listFilesByDirectory(const fs::path &path,const fs::path &
                     auto err = std::error_code{};
                     auto filesize = fs::file_size(entry, err);
 
-#if MSVC
-                    fs::file_time_type timeEntry = fs::last_write_time(entry);
-                    std::string timefmt = getWindowsTimeStampString(entry);
-#elif APPLE
-                    //auto timeEntry = fs::last_write_time(entry);
-                    //std::time_t cftime = decltype(timeEntry)::clock::to_time_t(timeEntry);
-                    //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
-                    std::string timefmt = getOsxTimeStampString(entry);//"<not supported by Clang!>";//fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
-#else
-                    auto timeEntry = fs::last_write_time(entry);
-                    time_t cftime = std::chrono::system_clock::to_time_t(timeEntry);
-                    std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
-#endif
-
+                    std::string timefmt = getFileTimeString(entry);
 
                     DataRow *row = newRow();
                     row->setValue("filename", filename.string());
@@ -423,6 +399,38 @@ float ebox::FileTable::getScaleFactor() const
 void ebox::FileTable::setScaleFactor(float scaleFactor)
 {
     m_scaleFactor = scaleFactor;
+}
+
+std::string ebox::FileTable::getFileTimeString(const fs::directory_entry &entry)
+{
+    #if MSVC
+    fs::file_time_type timeEntry = fs::last_write_time(entry);
+                        std::string timefmt = getWindowsTimeStampString(entry);
+    #elif APPLE
+    //auto timeEntry = fs::last_write_time(entry);
+                        //std::time_t cftime = decltype(timeEntry)::clock::to_time_t(timeEntry);
+                        //time_t cftime = chrono::system_clock::to_time_t(timeEntry);
+                        std::string timefmt = getOsxTimeStampString(entry);//"<not supported by Clang!>";//fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+    #elif __GNUC__ > 8
+    //auto timeEntry = fs::last_write_time(entry);
+    //time_t cftime = std::chrono::system_clock::to_time_t(timeEntry);
+    //std::string timefmt = "<Missing for GCC9>"; //fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+
+    std::filesystem::file_time_type timeEntry = fs::last_write_time(entry);
+
+    //auto now = std::filesystem::file_time_type::clock::now() + timeEntry.time_since_epoch();
+    //auto time = date::make_time(timeEntry);
+
+    //auto year = date::year_month_day(date::make_time<int64_t, std::ratio<31556952>>(timeEntry.time_since_epoch()));
+
+    std::string timefmt = "<Missing for GCC9>";
+    #else
+    auto timeEntry = fs::last_write_time(entry);
+                        time_t cftime = std::chrono::system_clock::to_time_t(timeEntry);
+                        std::string timefmt = fmt::format("{0:%Y.%m.%d %H:%M:%S}", *std::localtime(&cftime));
+    #endif
+
+    return timefmt;
 }
 
 #if APPLE
