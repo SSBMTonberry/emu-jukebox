@@ -6,30 +6,29 @@
 
 const std::string ebox::AudioPlayerForm::ID = "AudioPlayer";
 
-AudioPlayerForm::AudioPlayerForm(const string &id, const string &title, const string &imguiId) : Form(id, title, imguiId)
+ebox::AudioPlayerForm::AudioPlayerForm(const string &id, const string &title) : pmgui::Form(id, title)
 {
     initialize();
 }
 
-AudioPlayerForm::AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const string &id, const string &title,
-                                 const string &imguiId) : Form(position, size, id, title, imguiId)
+ebox::AudioPlayerForm::AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const string &id, const string &title) : pmgui::Form(position, size, id, title)
 {
     initialize();
 }
 
-void AudioPlayerForm::initialize()
+void ebox::AudioPlayerForm::initialize()
 {
     const sf::Rect rect = m_previousButton.getImage()->getTextureRect();
     //m_previousButton.getImage()->setTextureRect(sf::IntRect(rect.width, 0, -rect.width, rect.height)); //Flip sprite
-    m_previousButton.setTooltip(std::make_optional<Tooltip>("Previous track (<Alt>+<Left>)"));
+    m_previousButton.setTooltip(std::make_optional<pmgui::Tooltip>("Previous track (<Alt>+<Left>)"));
     m_stopButton.setOnSameLine(true);
-    m_stopButton.setTooltip(std::make_optional<Tooltip>("Stop (<Ctrl>+<Space>)"));
+    m_stopButton.setTooltip(std::make_optional<pmgui::Tooltip>("Stop (<Ctrl>+<Space>)"));
     m_pauseButton.setOnSameLine(true);
-    m_pauseButton.setTooltip(std::make_optional<Tooltip>("Pause (<Alt>+<Space>)"));
+    m_pauseButton.setTooltip(std::make_optional<pmgui::Tooltip>("Pause (<Alt>+<Space>)"));
     m_playButton.setOnSameLine(true);
-    m_playButton.setTooltip(std::make_optional<Tooltip>("Play (<Alt>+<Space>)"));
+    m_playButton.setTooltip(std::make_optional<pmgui::Tooltip>("Play (<Alt>+<Space>)"));
     m_nextButton.setOnSameLine(true);
-    m_nextButton.setTooltip(std::make_optional<Tooltip>("Next track (<Alt>+<Right>)"));
+    m_nextButton.setTooltip(std::make_optional<pmgui::Tooltip>("Next track (<Alt>+<Right>)"));
 
     m_playButton.getImage()->setColor(sf::Color::Green);
     m_pauseButton.getImage()->setColor(sf::Color::Yellow);
@@ -40,12 +39,12 @@ void AudioPlayerForm::initialize()
     m_state = AudioPlayerState::Stopped;
 }
 
-void AudioPlayerForm::handleEvents()
+void ebox::AudioPlayerForm::handleEvents()
 {
     processHotkeys();
 }
 
-void AudioPlayerForm::processHotkeys()
+void ebox::AudioPlayerForm::processHotkeys()
 {
     if(m_stream != nullptr)
     {
@@ -104,7 +103,7 @@ void AudioPlayerForm::processHotkeys()
     }
 }
 
-bool AudioPlayerForm::customDraw()
+bool ebox::AudioPlayerForm::onDraw()
 {
     drawAudioPanel();
     drawAudioVisualizer();
@@ -116,7 +115,7 @@ bool AudioPlayerForm::customDraw()
     return true;
 }
 
-void AudioPlayerForm::drawAudioPanel()
+void ebox::AudioPlayerForm::drawAudioPanel()
 {
     float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
     ImGui::PushAllowKeyboardFocus(false);
@@ -220,7 +219,7 @@ void AudioPlayerForm::drawAudioPanel()
     ImGui::PopAllowKeyboardFocus();
 }
 
-void AudioPlayerForm::drawAudioVisualizer()
+void ebox::AudioPlayerForm::drawAudioVisualizer()
 {
 
     ImGui::BeginChild("visualizer_panel", { -1, 100 }, true, 0);
@@ -230,7 +229,7 @@ void AudioPlayerForm::drawAudioVisualizer()
     ImGui::EndChild();
 }
 
-void AudioPlayerForm::drawAudioInfo()
+void ebox::AudioPlayerForm::drawAudioInfo()
 {
     float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
     ImGui::BeginChild("audio_info", {-1, 250 * scaleFactor}, true, 0);
@@ -256,7 +255,7 @@ void AudioPlayerForm::drawAudioInfo()
     ImGui::EndChild();
 }
 
-void AudioPlayerForm::drawEqualizer()
+void ebox::AudioPlayerForm::drawEqualizer()
 {
     ImGui::BeginChild("audio_eq", {-1, -1}, true, 0);
     //m_hasItemsFocused = ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows);
@@ -264,13 +263,13 @@ void AudioPlayerForm::drawEqualizer()
     ImGui::EndChild();
 }
 
-std::string AudioPlayerForm::getAudioTimestamp()
+std::string ebox::AudioPlayerForm::getAudioTimestamp()
 {
     return fmt::format("{0}/{1}", getMillisecondsAsTimeString((m_stream != nullptr) ? m_stream->getTimePlayed() : 0),
             getMillisecondsAsTimeString((m_stream != nullptr) ? m_stream->getInfoFromCurrentTrack().getPlayLength() : 0));
 }
 
-std::string AudioPlayerForm::getMillisecondsAsTimeString(int milliseconds)
+std::string ebox::AudioPlayerForm::getMillisecondsAsTimeString(int milliseconds)
 {
     if(milliseconds < 0)
         return "00:00.000";
@@ -297,7 +296,7 @@ std::string AudioPlayerForm::getMillisecondsAsTimeString(int milliseconds)
     }
 }
 
-bool AudioPlayerForm::createStream(const EmuFileInfo &info)
+bool ebox::AudioPlayerForm::createStream(const EmuFileInfo &info)
 {
     m_stream = std::make_unique<EmuStream>(info.getPath().string());
     m_stream->setId(info.getId());
@@ -308,7 +307,7 @@ bool AudioPlayerForm::createStream(const EmuFileInfo &info)
     return m_stream->isValid();
 }
 
-void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
+void ebox::AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
 {
     m_stream = std::move(stream);
     m_visualizer.attachToStream(m_stream);
@@ -317,7 +316,7 @@ void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
     m_state = AudioPlayerState::Stopped;
 }
 
-//EmuStream *AudioPlayerForm::getStream() const
+//EmuStream *ebox::AudioPlayerForm::getStream() const
 //{
 //    return m_stream.get();
 //}
@@ -328,7 +327,7 @@ void AudioPlayerForm::setStream(std::unique_ptr<EmuStream> stream)
  *
  * @param cb The callback function. Example: bool onPlay(AudioPlayerForm *player)
  */
-void AudioPlayerForm::registerOnPlayCallback(const AudioPlayerForm::func_audioplayer &cb)
+void ebox::AudioPlayerForm::registerOnPlayCallback(const ebox::AudioPlayerForm::func_audioplayer &cb)
 {
     m_callbackOnPlay.emplace_back(cb);
 }
@@ -339,7 +338,7 @@ void AudioPlayerForm::registerOnPlayCallback(const AudioPlayerForm::func_audiopl
  *
  * @param cb The callback function. Example: bool onStop(AudioPlayerForm *player)
  */
-void AudioPlayerForm::registerOnStopCallback(const AudioPlayerForm::func_audioplayer &cb)
+void ebox::AudioPlayerForm::registerOnStopCallback(const ebox::AudioPlayerForm::func_audioplayer &cb)
 {
     m_callbackOnStop.emplace_back(cb);
 }
@@ -350,7 +349,7 @@ void AudioPlayerForm::registerOnStopCallback(const AudioPlayerForm::func_audiopl
  *
  * @param cb The callback function. Example: bool onPause(AudioPlayerForm *player)
  */
-void AudioPlayerForm::registerOnPauseCallback(const AudioPlayerForm::func_audioplayer &cb)
+void ebox::AudioPlayerForm::registerOnPauseCallback(const ebox::AudioPlayerForm::func_audioplayer &cb)
 {
     m_callbackOnPause.emplace_back(cb);
 }
@@ -361,7 +360,7 @@ void AudioPlayerForm::registerOnPauseCallback(const AudioPlayerForm::func_audiop
  *
  * @param cb The callback function. Example: bool onNextTrack(AudioPlayerForm *player)
  */
-void AudioPlayerForm::registerOnNextTrackCallback(const AudioPlayerForm::func_audioplayer &cb)
+void ebox::AudioPlayerForm::registerOnNextTrackCallback(const ebox::AudioPlayerForm::func_audioplayer &cb)
 {
     m_callbackOnNext.emplace_back(cb);
 }
@@ -372,7 +371,7 @@ void AudioPlayerForm::registerOnNextTrackCallback(const AudioPlayerForm::func_au
  *
  * @param cb The callback function. Example: bool onPreviousTrack(AudioPlayerForm *player)
  */
-void AudioPlayerForm::registerOnPreviousTrackCallback(const AudioPlayerForm::func_audioplayer &cb)
+void ebox::AudioPlayerForm::registerOnPreviousTrackCallback(const ebox::AudioPlayerForm::func_audioplayer &cb)
 {
     m_callbackOnPrevious.emplace_back(cb);
 }
@@ -382,39 +381,39 @@ void AudioPlayerForm::registerOnPreviousTrackCallback(const AudioPlayerForm::fun
  *
  * @param cb The callback function. Example: bool onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
  */
-void AudioPlayerForm::registerOnTrackEndedCallback(const AudioPlayerForm::func_audioplayertrack &cb)
+void ebox::AudioPlayerForm::registerOnTrackEndedCallback(const ebox::AudioPlayerForm::func_audioplayertrack &cb)
 {
     m_callbackOnTrackEnded.emplace_back(cb);
 }
 
-void AudioPlayerForm::setTrack(int trackNo)
+void ebox::AudioPlayerForm::setTrack(int trackNo)
 {
     if(m_stream != nullptr)
         m_stream->setTrack(trackNo);
 }
 
-void AudioPlayerForm::play()
+void ebox::AudioPlayerForm::play()
 {
     m_state = AudioPlayerState::Play;
     if(m_stream != nullptr)
         m_stream->play();
 }
 
-void AudioPlayerForm::stop()
+void ebox::AudioPlayerForm::stop()
 {
     m_state = AudioPlayerState::Stopped;
     if(m_stream != nullptr)
         m_stream->stop();
 }
 
-void AudioPlayerForm::pause()
+void ebox::AudioPlayerForm::pause()
 {
     m_state = AudioPlayerState::Pause;
     if(m_stream != nullptr)
         m_stream->pause();
 }
 
-std::string AudioPlayerForm::getStreamId()
+std::string ebox::AudioPlayerForm::getStreamId()
 {
     if(m_stream != nullptr)
         return m_stream->getId();
@@ -422,7 +421,7 @@ std::string AudioPlayerForm::getStreamId()
     return nullptr;
 }
 
-EmuStream *AudioPlayerForm::getCurrentStream()
+ebox::EmuStream *ebox::AudioPlayerForm::getCurrentStream()
 {
     if(m_stream != nullptr)
         return m_stream.get();
@@ -430,18 +429,18 @@ EmuStream *AudioPlayerForm::getCurrentStream()
     return nullptr;
 }
 
-void AudioPlayerForm::setIniFile(IniFile *iniFile)
+void ebox::AudioPlayerForm::setIniFile(IniFile *iniFile)
 {
     m_iniFile = iniFile;
     m_volume.setValues({m_iniFile->getLastVolume()});
 }
 
-float AudioPlayerForm::getTempo()
+float ebox::AudioPlayerForm::getTempo()
 {
     return m_tempo.getValue();
 }
 
-void AudioPlayerForm::setPlaylistRepeatPtr(bool *playlistRepeat)
+void ebox::AudioPlayerForm::setPlaylistRepeatPtr(bool *playlistRepeat)
 {
     m_playlistRepeat = playlistRepeat;
 }

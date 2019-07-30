@@ -9,10 +9,11 @@
 #include <SFML/Config.hpp>
 #include "kissfft/kissfft.hh"
 #include "../../audio/EmuStream.h"
-#include "Control.h"
+//#include "Control.h"
+#include "pmgui.h"
 
 namespace ebox {
-    class Visualizer : public Control {
+    class Visualizer : public pmgui::Control {
     public:
         Visualizer(const std::string &id, const std::string &label);
         void attachToStream(std::unique_ptr<ebox::EmuStream> &stream);

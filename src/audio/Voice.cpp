@@ -76,7 +76,7 @@ void ebox::Voice::setTooltip(const std::string &tooltip)
     m_checkbox.setTooltip(std::make_optional<Tooltip>(tooltip));
 }
 
-ebox::Checkbox *ebox::Voice::getCheckbox()
+pmgui::Checkbox *ebox::Voice::getCheckbox()
 {
     return &m_checkbox;
 }

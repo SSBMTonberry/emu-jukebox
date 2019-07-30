@@ -6,13 +6,12 @@
 
 const std::string ebox::AudioTestForm::ID = "AudioTest";
 
-ebox::AudioTestForm::AudioTestForm(const std::string &id, const std::string &title, const std::string &imguiId) : Form(id, title, imguiId)
+ebox::AudioTestForm::AudioTestForm(const std::string &id, const std::string &title) : pmgui::Form(id, title)
 {
     initialize();
 }
 
-ebox::AudioTestForm::AudioTestForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title,
-                                   const std::string &imguiId) : Form(position, size, id, title, imguiId)
+ebox::AudioTestForm::AudioTestForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title) : pmgui::Form(position, size, id, title)
 {
     initialize();
 }
@@ -44,7 +43,7 @@ void ebox::AudioTestForm::initialize()
     m_fileDialog.registerOnFileChosenCallback(std::bind(&ebox::AudioTestForm::onFileChosen, this, std::placeholders::_1));
 }
 
-bool ebox::AudioTestForm::customDraw()
+bool ebox::AudioTestForm::onDraw()
 {
     drawAudioPanel();
     drawAudioButtons();
@@ -155,7 +154,7 @@ void ebox::AudioTestForm::drawAudioButtons()
     ImGui::Spacing();
     m_loadFromFileLabel.process();
     m_loadFromFileText.process();
-    m_loadFromFileText.setTextboxFlags(TextboxFlags::ReadOnly);
+    m_loadFromFileText.setTextboxFlags(pmgui::TextboxFlags::ReadOnly);
     ImGui::SameLine();
     if(ImGui::SmallButton("..."))
     {
@@ -206,12 +205,12 @@ std::string ebox::AudioTestForm::getMillisecondsAsTimeString(int milliseconds)
     }
 }
 
-void AudioTestForm::handleEvents()
+void ebox::AudioTestForm::handleEvents()
 {
     m_fileDialog.handleEvents();
 }
 
-void AudioTestForm::onFileChosen(const fs::path& path)//(const std::string &path)
+void ebox::AudioTestForm::onFileChosen(const fs::path& path)//(const std::string &path)
 {
     m_loadFromFileText.setValue(path.u8string());
 }

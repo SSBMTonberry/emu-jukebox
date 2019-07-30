@@ -103,7 +103,7 @@ namespace ebox
             void initializePopups();
             void handleFileChosen();
 
-            bool customDraw() override;
+            bool onDraw() override;
 
             //void getHomeEnvironmentVariable();
             std::string getOkBtnText() const;

@@ -3,7 +3,7 @@
 #include <iostream>
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
-#include "fmt/format.h"
+//#include "fmt/format.h"
 #include "src/managers/ProgramManager.h"
 
 int main(int argc, char **argv, char** envp)
@@ -12,7 +12,7 @@ int main(int argc, char **argv, char** envp)
     sf::VideoMode mode = sf::VideoMode::getDesktopMode();
     program.initialize("Emu Jukebox", {mode.width, mode.height});
 
-    SystemLog::get()->addDebug("DEBUG on!");
+    ebox::SystemLog::get()->addDebug("DEBUG on!");
 
     program.run();
     return 0;

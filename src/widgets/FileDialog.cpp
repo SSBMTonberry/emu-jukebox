@@ -485,7 +485,7 @@ void ebox::FileDialog::setFilename(const std::string &filename)
     m_filenametext.setValue(filename);
 }
 
-bool ebox::FileDialog::customDraw()
+bool ebox::FileDialog::onDraw()
 {
     m_msgPopup.draw();
     m_msgPopupNoFileChosen.draw();

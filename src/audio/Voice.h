@@ -9,7 +9,8 @@
 #include <Music_Emu.h>
 #include <SFML/Window.hpp>
 #include <map>
-#include "../gui/controls/Checkbox.h"
+//#include "../gui/controls/Checkbox.h"
+#include "pmgui.h"
 
 namespace ebox
 {
@@ -33,12 +34,12 @@ namespace ebox
             const std::string &getChannelName() const;
             bool isMuted() const;
             bool *getMuted();
-            Checkbox *getCheckbox();
+            pmgui::Checkbox *getCheckbox();
 
         private:
 
 
-            ebox::Checkbox m_checkbox;
+            pmgui::Checkbox m_checkbox;
             int m_channelNo = 0;
             std::string m_channelName = "";
             bool m_isMuted = false;

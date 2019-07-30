@@ -4,18 +4,18 @@
 
 #include "PreferencesPopup.h"
 
-ebox::PreferencesPopup::PreferencesPopup(const std::string &id, const std::string &title, const std::string &imguiId) : Popup(id, title, imguiId)
+ebox::PreferencesPopup::PreferencesPopup(const std::string &id, const std::string &title) : Popup(id, title)
 {
 
 }
 
 ebox::PreferencesPopup::PreferencesPopup(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id,
-                                         const std::string &title, const std::string &imguiId) : Popup(position, size, id, title, imguiId)
+                                         const std::string &title) : Popup(position, size, id, title)
 {
 
 }
 
-bool ebox::PreferencesPopup::customDraw()
+bool ebox::PreferencesPopup::onDraw()
 {
     ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
     if (ImGui::BeginTabBar("PreferencesTabBar", tab_bar_flags))

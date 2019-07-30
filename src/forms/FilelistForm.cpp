@@ -6,18 +6,18 @@
 
 const std::string ebox::FilelistForm::ID = "FilelistForm";
 
-ebox::FilelistForm::FilelistForm(const std::string &id, const std::string &title, const std::string &imguiId) : Form(id, title, imguiId)
+ebox::FilelistForm::FilelistForm(const std::string &id, const std::string &title) : Form(id, title)
 {
     initialize();
 }
 
-ebox::FilelistForm::FilelistForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title,
-                                 const std::string &imguiId) : Form(position, size, id, title, imguiId)
+ebox::FilelistForm::FilelistForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title)
+                                 : Form(position, size, id, title)
 {
     initialize();
 }
 
-bool ebox::FilelistForm::customDraw()
+bool ebox::FilelistForm::onDraw()
 {
     float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
 
@@ -70,7 +70,7 @@ bool ebox::FilelistForm::customDraw()
 void ebox::FilelistForm::initialize()
 {
     m_removeAllButton.setOnSameLine(true);
-    m_removeAllButton.setTooltip(std::make_optional<Tooltip>("Remove all"));
+    m_removeAllButton.setTooltip(std::make_optional<pmgui::Tooltip>("Remove all"));
     //m_filelist.setHasParentNode(false);
 }
 
@@ -131,19 +131,19 @@ void ebox::FilelistForm::loadAllFilesInFolder(const fs::path &folder)
     }
 }
 
-void ebox::FilelistForm::onChosenChildNode(Selectable *sender)
+void ebox::FilelistForm::onChosenChildNode(pmgui::Selectable *sender)
 {
     setAsSelectedChildNode(sender);
 }
 
-bool ebox::FilelistForm::onRightClickedChildNode(Selectable *sender)
+bool ebox::FilelistForm::onRightClickedChildNode(pmgui::Selectable *sender)
 {
     setAsSelectedChildNode(sender);
     sender->createRightClickContextItems({"Add to playlist"});
     return true;
 }
 
-void FilelistForm::onChosenParentRightClickContextItems(TreeList *owner, MenuItem *sender)
+void ebox::FilelistForm::onChosenParentRightClickContextItems(pmgui::TreeList *owner, pmgui::MenuItem *sender)
 {
     if(sender->getId() == "add all songs to playlist")
     {
@@ -160,13 +160,13 @@ void FilelistForm::onChosenParentRightClickContextItems(TreeList *owner, MenuIte
     }
 }
 
-bool FilelistForm::onRightClickedParentNode(TreeList *sender)
+bool ebox::FilelistForm::onRightClickedParentNode(pmgui::TreeList *sender)
 {
     sender->createRightClickContextItems({"Add all songs to playlist", "Remove"});
     return true;
 }
 
-void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
+void ebox::FilelistForm::onDoubleClickChildNode(pmgui::Selectable *sender)
 {
     setAsSelectedChildNode(sender);
     if(m_fileMap.count(sender->getId()) > 0)
@@ -217,19 +217,19 @@ void ebox::FilelistForm::onDoubleClickChildNode(Selectable *sender)
         SystemLog::get()->addError(fmt::format("{0} does not exist!", sender->getId()));
 }
 
-void ebox::FilelistForm::onChosenRightClickContextItems(Selectable* owner, MenuItem *sender)
+void ebox::FilelistForm::onChosenRightClickContextItems(pmgui::Selectable* owner, pmgui::MenuItem *sender)
 {
     if(sender->getLabel() == "Add to playlist" && m_playlist != nullptr)
         addToPlaylist(owner);
 }
 
-void FilelistForm::addToPlaylist(Selectable *item)
+void ebox::FilelistForm::addToPlaylist(pmgui::Selectable *item)
 {
     if(m_fileMap.count(item->getId()) > 0)
     {
         auto *emuFile = &m_fileMap[item->getId()];
         auto *filelistItem = &m_filelist[item->getId()];
-        std::vector<Selectable *> songs = filelistItem->getItems();
+        std::vector<pmgui::Selectable *> songs = filelistItem->getItems();
         int trackNo = 0;
         bool songFound = false;
         for (int i = 0; i < songs.size(); ++i)
@@ -248,7 +248,7 @@ void FilelistForm::addToPlaylist(Selectable *item)
     }
 }
 
-void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
+void ebox::FilelistForm::setAsSelectedChildNode(pmgui::Selectable *child)
 {
     for(auto &[id, value]: m_filelist)
     {
@@ -267,7 +267,7 @@ void ebox::FilelistForm::setAsSelectedChildNode(Selectable *child)
  * Remember to call setPlaylist() first, as this sets the playlist of both.
  * @param audioPlayer
  */
-void FilelistForm::setAudioPlayer(AudioPlayerForm *audioPlayer)
+void ebox::FilelistForm::setAudioPlayer(AudioPlayerForm *audioPlayer)
 {
     m_audioPlayer = audioPlayer;
     m_audioPlayer->registerOnNextTrackCallback(std::bind(&FilelistForm::onNextTrack, this, std::placeholders::_1));
@@ -276,12 +276,12 @@ void FilelistForm::setAudioPlayer(AudioPlayerForm *audioPlayer)
     m_playlist->setPlayer(m_audioPlayer);
 }
 
-void FilelistForm::setPlaylist(PlaylistForm *playlist)
+void ebox::FilelistForm::setPlaylist(PlaylistForm *playlist)
 {
     m_playlist = playlist;
 }
 
-void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
+void ebox::FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo &info)
 {
     auto tracks = info.getTracks();
 
@@ -300,7 +300,7 @@ void FilelistForm::addTracksToFileList(const std::string &id, const EmuFileInfo 
     }
 }
 
-bool FilelistForm::onNextTrack(AudioPlayerForm *player)
+bool ebox::FilelistForm::onNextTrack(AudioPlayerForm *player)
 {
     if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStreamId())
     {
@@ -314,7 +314,7 @@ bool FilelistForm::onNextTrack(AudioPlayerForm *player)
     return false;
 }
 
-bool FilelistForm::onPreviousTrack(AudioPlayerForm *player)
+bool ebox::FilelistForm::onPreviousTrack(AudioPlayerForm *player)
 {
     if(m_lastChosenTreeList != nullptr && m_lastChosenEmuFile != nullptr && m_lastChosenEmuFile->getId() == player->getStreamId())
     {
@@ -328,12 +328,12 @@ bool FilelistForm::onPreviousTrack(AudioPlayerForm *player)
     return false;
 }
 
-bool FilelistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
+bool ebox::FilelistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
     return (m_iniFile->loopPreviewTracksForever()) ? true : false;
 }
 
-void FilelistForm::removeAllTracks()
+void ebox::FilelistForm::removeAllTracks()
 {
     m_lastChosenTreeList = nullptr;
     m_lastChosenEmuFile = nullptr;
@@ -343,7 +343,7 @@ void FilelistForm::removeAllTracks()
     SystemLog::get()->addInfo("Removed all tracks!");
 }
 
-void FilelistForm::setIniFile(IniFile *iniFile)
+void ebox::FilelistForm::setIniFile(IniFile *iniFile)
 {
     m_iniFile = iniFile;
 }

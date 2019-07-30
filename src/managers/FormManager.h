@@ -5,10 +5,11 @@
 #ifndef EMU_JUKEBOX_FORMMANAGER_H
 #define EMU_JUKEBOX_FORMMANAGER_H
 
-#include "imgui/imgui.h"
-#include "imgui/imgui-SFML.h"
+//#include "imgui/imgui.h"
+//#include "imgui/imgui-SFML.h"
 #include "EventManager.h"
-#include "../gui/forms/Form.h"
+#include "pmgui.h"
+//#include "../gui/forms/Form.h"
 //#include "../forms/AudioTestForm.h"
 #include "../forms/AudioPlayerForm.h"
 #include "../forms/FilelistForm.h"
@@ -51,11 +52,18 @@ namespace ebox
         private:
             void initializeForms();
 
-            std::vector<ebox::Form *> m_forms;
+            std::vector<pmgui::Form *> m_forms;
 
-            FilelistForm m_filelistForm {"filelist_form", "Files", FilelistForm::ID};
-            PlaylistForm m_playlistForm {"playlist_form", "Playlist", PlaylistForm::ID};
-            AudioPlayerForm m_audioPlayerForm {"audio_player_form", "Audio Player", AudioPlayerForm::ID};
+            FilelistForm m_filelistForm {FilelistForm::ID, "Files" };
+            PlaylistForm m_playlistForm {PlaylistForm::ID, "Playlist"};
+            AudioPlayerForm m_audioPlayerForm {AudioPlayerForm::ID, "Audio Player"};
+
+            //Before PMGUI
+            //FilelistForm m_filelistForm {"filelist_form", "Files", FilelistForm::ID};
+            //PlaylistForm m_playlistForm {"playlist_form", "Playlist", PlaylistForm::ID};
+            //AudioPlayerForm m_audioPlayerForm {"audio_player_form", "Audio Player", AudioPlayerForm::ID};
+
+
             //AudioTestForm m_audioTestForm {"audio_test_form", "Audio Test", AudioTestForm::ID};
             //AudioTestForm m_audioTestForm {{0,0}, {800, 900}, "audio_test_form", AudioTestForm::ID};
 

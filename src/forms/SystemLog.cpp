@@ -103,15 +103,15 @@ bool ebox::SystemLog::isOpen() const
     return m_isOpen;
 }
 
-std::vector<ebox::ColoredText> ebox::SystemLog::getFilteredTexts(const std::string &filter)
+std::vector<pmgui::ColoredText> ebox::SystemLog::getFilteredTexts(const std::string &filter)
 {
-    std::vector<ebox::ColoredText> filteredTexts;
+    std::vector<pmgui::ColoredText> filteredTexts;
     /*std::copy_if(m_texts.begin(), m_texts.end(),
                  std::back_inserter(filteredTexts),
                  [&filter](const std::string& s) { return s.find(filter) != std::string::npos; });*/
     std::copy_if(m_texts.begin(), m_texts.end(),
                  std::back_inserter(filteredTexts),
-                 [&filter](const ebox::ColoredText& s) { return s.getText().find(filter) != std::string::npos; });
+                 [&filter](const pmgui::ColoredText& s) { return s.getText().find(filter) != std::string::npos; });
 
     return filteredTexts;
 }

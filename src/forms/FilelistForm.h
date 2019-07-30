@@ -6,9 +6,10 @@
 #define EMU_JUKEBOX_FILELISTFORM_H
 
 #include "../misc/Tools.hpp"
-#include "../gui/forms/Form.h"
-#include "../gui/controls/TreeList.h"
-#include "../gui/controls/Selectable.h"
+//#include "../gui/forms/Form.h"
+//#include "../gui/controls/TreeList.h"
+//#include "../gui/controls/Selectable.h"
+#include "pmgui.h"
 #include "../audio/EmuStream.h"
 #include "../audio/EmuFileInfo.h"
 #include "../../content/files_mapper.h"
@@ -46,13 +47,12 @@ namespace fs = std::filesystem;
 
 namespace ebox
 {
-    class FilelistForm : public Form
+    class FilelistForm : public pmgui::Form
     {
         public:
-            FilelistForm(const std::string &id, const std::string &title, const std::string &imguiId);
+            FilelistForm(const std::string &id, const std::string &title);
 
-            FilelistForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title,
-                         const std::string &imguiId = "");
+            FilelistForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title);
 
             void handleEvents() override;
             void setIniFile(IniFile *iniFile);
@@ -66,17 +66,17 @@ namespace ebox
             static const std::string ID;
 
         protected:
-            bool customDraw() override;
+            bool onDraw() override;
 
         private:
             void initialize();
 
             void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
-            void addToPlaylist(Selectable* item);
+            void addToPlaylist(pmgui::Selectable* item);
             void removeAllTracks();
 
-            bool onRightClickedParentNode(TreeList *sender);
-            void onChosenParentRightClickContextItems(TreeList * owner, MenuItem *sender);
+            bool onRightClickedParentNode(pmgui::TreeList *sender);
+            void onChosenParentRightClickContextItems(pmgui::TreeList * owner, pmgui::MenuItem *sender);
 
             void onChosenChildNode(Selectable *sender);
             bool onRightClickedChildNode(Selectable *sender);
@@ -91,10 +91,10 @@ namespace ebox
 
             //std::map<std::string, EmuStream> m_emuMap;
             std::map<std::string, EmuFileInfo> m_fileMap;
-            std::map<std::string, TreeList> m_filelist;
+            std::map<std::string, pmgui::TreeList> m_filelist;
 
             //Stored when choosing an item to play
-            TreeList *m_lastChosenTreeList = nullptr;
+            pmgui::TreeList *m_lastChosenTreeList = nullptr;
             EmuFileInfo *m_lastChosenEmuFile = nullptr;
             int m_lastTrackNo = 0;
 
@@ -103,11 +103,9 @@ namespace ebox
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;
             IniFile *m_iniFile;
-            ebox::Textbox m_filterTextbox {"filter_textbox", "Filter"};
-
-            ebox::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
-
-            ebox::ImageButton m_removeAllButton {"remove_all_button", files_mapper::gui::debugger::_KILLPROCESS_PNG, files_mapper::gui::debugger::_KILLPROCESS_PNG_SIZE, sf::Vector2i(30, 30)};
+            pmgui::Textbox m_filterTextbox {"filter_textbox", "Filter"};
+            pmgui::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
+            pmgui::ImageButton m_removeAllButton {"remove_all_button", files_mapper::gui::debugger::_KILLPROCESS_PNG, files_mapper::gui::debugger::_KILLPROCESS_PNG_SIZE, sf::Vector2i(30, 30)};
             //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };

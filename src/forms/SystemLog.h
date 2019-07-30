@@ -5,11 +5,12 @@
 #ifndef EMU_JUKEBOX_SYSTEMLOG_H
 #define EMU_JUKEBOX_SYSTEMLOG_H
 
-#include "../gui/forms/Form.h"
-#include "../gui/controls/Textbox.h"
+//#include "../gui/forms/Form.h"
+//#include "../gui/controls/Textbox.h"
 //#include <Clipboard/Clipboard.h>
-#include "../gui/controls/ColoredText.h"
-#include "../../content/files_mapper.h"
+//#include "../gui/controls/ColoredText.h"
+//#include "../../content/files_mapper.h"
+#include "pmgui.h"
 #include <SFML/Graphics.hpp>
 #include <chrono>
 
@@ -59,7 +60,7 @@ namespace ebox
         protected:
             std::string getTimestamp(bool includeDate = false);
 
-            std::vector<ebox::ColoredText> getFilteredTexts(const std::string &filter);
+            std::vector<pmgui::ColoredText> getFilteredTexts(const std::string &filter);
 
             size_t m_nextId = 0;
 
@@ -70,9 +71,9 @@ namespace ebox
             sf::Vector2<int> m_position;
             sf::Vector2<int> m_size;
 
-            ebox::Textbox m_filter{"filter_textbox", "Filter", 0};//255};
-            std::vector<ebox::ColoredText> m_filteredTexts;
-            std::vector<ebox::ColoredText> m_texts;
+            pmgui::Textbox m_filter{"filter_textbox", "Filter", 0};//255};
+            std::vector<pmgui::ColoredText> m_filteredTexts;
+            std::vector<pmgui::ColoredText> m_texts;
             sf::Image m_image;
             float m_scaleFactor = 1.f;
 

@@ -58,7 +58,7 @@ namespace ebox
             bool isVisible() const;
 
         protected:
-            virtual bool customDraw();
+            virtual bool onDraw();
 
             bool m_positionHasBeenChanged = false;
             bool m_useLockedPosition = false;

@@ -4,19 +4,18 @@
 
 #include "EmuFileExporterPopup.h"
 
-ebox::EmuFileExporterPopup::EmuFileExporterPopup(const std::string &id, const std::string &title, const std::string &imguiId) : Popup(id, title,
-                                                                                                                                      imguiId)
+ebox::EmuFileExporterPopup::EmuFileExporterPopup(const std::string &id, const std::string &title) : Popup(id, title)
 {
 
 }
 
 ebox::EmuFileExporterPopup::EmuFileExporterPopup(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id,
-                                                 const std::string &title, const std::string &imguiId) : Popup(position, size, id, title, imguiId)
+                                                 const std::string &title) : Popup(position, size, id, title)
 {
 
 }
 
-void EmuFileExporterPopup::setExportInfo(const fs::path &path, int trackNo, float tempo)
+void ebox::EmuFileExporterPopup::setExportInfo(const fs::path &path, int trackNo, float tempo)
 {
     m_path = path;
     m_trackNo = trackNo;
@@ -36,7 +35,7 @@ void EmuFileExporterPopup::setExportInfo(const fs::path &path, int trackNo, floa
     m_tempo.setOnSameLine(true);
 }
 
-void EmuFileExporterPopup::transferVoiceStates(std::vector<Voice> *voices)
+void ebox::EmuFileExporterPopup::transferVoiceStates(std::vector<Voice> *voices)
 {
     if(voices->size() == m_file.getVoices()->size())
     {
@@ -48,13 +47,13 @@ void EmuFileExporterPopup::transferVoiceStates(std::vector<Voice> *voices)
     }
 }
 
-void EmuFileExporterPopup::initialize(const sf::Vector2<int> &size)
+void ebox::EmuFileExporterPopup::initialize(const sf::Vector2<int> &size)
 {
     setSize(size);
-    setFormFlags(FormFlags::NoDocking | FormFlags::NoCollapse | FormFlags::NoResize);
+    setFormFlags(pmgui::FormFlags::NoDocking | pmgui::FormFlags::NoCollapse | pmgui::FormFlags::NoResize);
 
     m_pathText.setOnSameLine(true);
-    m_pathText.setTextboxFlags(TextboxFlags::ReadOnly);
+    m_pathText.setTextboxFlags(pmgui::TextboxFlags::ReadOnly);
     m_pathText.setHasLabel(false, true);
     m_pathButton.setOnSameLine(true);
 
@@ -63,7 +62,9 @@ void EmuFileExporterPopup::initialize(const sf::Vector2<int> &size)
     m_sampleRateCombobox.addValueRange({"44100", "32000", "22050", "11025", "8000"});
     m_sampleRateCombobox.setValue(0);
 
-    m_fileDialog.setFileTypes(FileTypeMode::SoundFiles);
+    m_fileDialog.createFileTypeCollection("SoundFiles", {".ogg", ".FLAC", ".wav"});
+    m_fileDialog.setFileTypeCollection("SoundFiles", false);
+    //m_fileDialog.setFileTypes(FileTypeMode::SoundFiles);
     m_fileDialog.registerOnFileChosenCallback(std::bind(&EmuFileExporterPopup::onFileChosen, this, std::placeholders::_1));
 
     m_customStop.setOnSameLine(true);
@@ -79,7 +80,7 @@ void ebox::EmuFileExporterPopup::onFileChosen(const fs::path& path)//(const std:
     m_pathText.setValue(path.u8string());
 }
 
-bool ebox::EmuFileExporterPopup::customDraw()
+bool ebox::EmuFileExporterPopup::onDraw()
 {
     ImGui::Text(fmt::format("Song: {0}", m_file.getInfoFromCurrentTrack()->getSong()).c_str());
     ImGui::Text(fmt::format("Game: {0}", m_file.getInfoFromCurrentTrack()->getGame()).c_str());
@@ -150,7 +151,7 @@ void ebox::EmuFileExporterPopup::onOpen()
 
 }
 
-void EmuFileExporterPopup::setScaleFactor(float scaleFactor)
+void ebox::EmuFileExporterPopup::setScaleFactor(float scaleFactor)
 {
     Form::setScaleFactor(scaleFactor);
     m_exportButton.setSize({(int)(120 * scaleFactor), (int)(40 * scaleFactor)});

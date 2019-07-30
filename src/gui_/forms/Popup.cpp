@@ -75,7 +75,7 @@ bool ebox::Popup::draw()
             if(item->process())
                 anyItemChanged = true;
         }
-        customDraw();
+        onDraw();
         /*if (ImGui::Button("Close"))
         {
             ImGui::CloseCurrentPopup();

@@ -80,12 +80,12 @@ bool ebox::FormManager::showImguiDemoWindow() const
     return m_showImguiDemoWindow;
 }
 
-void FormManager::handleEvents()
+void ebox::FormManager::handleEvents()
 {
     m_audioPlayerForm.handleEvents();
 }
 
-void FormManager::setOpened(FormType formType, bool open)
+void ebox::FormManager::setOpened(FormType formType, bool open)
 {
     switch(formType)
     {
@@ -107,12 +107,12 @@ void FormManager::setOpened(FormType formType, bool open)
     }
 }
 
-void FormManager::toggleOpened(FormType formType)
+void ebox::FormManager::toggleOpened(FormType formType)
 {
     setOpened(formType, !isOpened(formType));
 }
 
-bool FormManager::isOpened(FormType formType)
+bool ebox::FormManager::isOpened(FormType formType)
 {
     switch(formType)
     {
@@ -133,17 +133,17 @@ bool FormManager::isOpened(FormType formType)
     }
 }
 
-FilelistForm *FormManager::getFilelistForm()
+ebox::FilelistForm *ebox::FormManager::getFilelistForm()
 {
     return &m_filelistForm;
 }
 
-PlaylistForm *FormManager::getPlaylistForm()
+ebox::PlaylistForm *ebox::FormManager::getPlaylistForm()
 {
     return &m_playlistForm;
 }
 
-AudioPlayerForm *FormManager::getAudioPlayerForm()
+ebox::AudioPlayerForm *ebox::FormManager::getAudioPlayerForm()
 {
     return &m_audioPlayerForm;
 }
@@ -151,7 +151,7 @@ AudioPlayerForm *FormManager::getAudioPlayerForm()
 /*!
  * Perform final actions before shutting down
  */
-void FormManager::shutdown()
+void ebox::FormManager::shutdown()
 {
     if(m_iniFile->openLastPlaylistOnStartup())
         m_iniFile->setPlaylistData(m_playlistForm.getAsJson());

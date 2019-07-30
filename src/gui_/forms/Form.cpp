@@ -74,7 +74,7 @@ bool ebox::Form::draw()
             anyItemChanged = true;
 
     }
-    customDraw();
+    onDraw();
     ImGui::End();
 
     return anyItemChanged;
@@ -188,7 +188,7 @@ bool ebox::Form::hasImguiId() const
     return m_imguiId.empty() ? false : true;
 }
 
-bool ebox::Form::customDraw()
+bool ebox::Form::onDraw()
 {
     return false;
 }

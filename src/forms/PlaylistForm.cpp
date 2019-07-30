@@ -6,18 +6,17 @@
 
 const std::string ebox::PlaylistForm::ID = "PlaylistForm";
 
-ebox::PlaylistForm::PlaylistForm(const std::string &id, const std::string &title, const std::string &imguiId) : Form(id, title, imguiId)
+ebox::PlaylistForm::PlaylistForm(const std::string &id, const std::string &title) : Form(id, title)
 {
     initialize();
 }
 
-ebox::PlaylistForm::PlaylistForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title,
-                                 const std::string &imguiId) : Form(position, size, id, title, imguiId)
+ebox::PlaylistForm::PlaylistForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title) : Form(position, size, id, title)
 {
     initialize();
 }
 
-bool ebox::PlaylistForm::customDraw()
+bool ebox::PlaylistForm::onDraw()
 {
     processHotkeys();
     processPlaylistButtonPanel();
@@ -27,7 +26,7 @@ bool ebox::PlaylistForm::customDraw()
     return true;
 }
 
-void PlaylistForm::processPlaylistButtonPanel()
+void ebox::PlaylistForm::processPlaylistButtonPanel()
 {
     ImGui::BeginChild("playlist_btn_panel", {-1, 30}, false, 0);
     if(m_shuffleButton.process())
@@ -50,7 +49,7 @@ void PlaylistForm::processPlaylistButtonPanel()
     ImGui::Separator();
 }
 
-json PlaylistForm::getAsJson()
+json ebox::PlaylistForm::getAsJson()
 {
     json playlist;
     playlist["name"] = "<unnamed>";
@@ -79,7 +78,7 @@ json PlaylistForm::getAsJson()
     return playlist;
 }
 
-void PlaylistForm::processHotkeys()
+void ebox::PlaylistForm::processHotkeys()
 {
     if(m_formIsActive)
     {
@@ -90,13 +89,13 @@ void PlaylistForm::processHotkeys()
         else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::DeleteItem))
         {
             removeSelectedItems();
-            //ebox::Selectable *item = getSelected();
+            //pmgui::Selectable *item = getSelected();
             //if (item != nullptr)
             //    removeItem(item->getId());
         }
         else if (Hotkeys::get()->isPlaylistHotkeyPressed(key::PlaySelectedItem))
         {
-            ebox::Selectable *item = getSelected();
+            pmgui::Selectable *item = getSelected();
             if (item != nullptr)
                 onDoubleClickChildNode(item);
         }
@@ -121,16 +120,16 @@ void ebox::PlaylistForm::initialize()
 {
     m_filemapping.setHasParentNode(false);
     m_shuffleButton.setOnSameLine(true);
-    m_shuffleButton.setTooltip(std::make_optional<Tooltip>("Shuffle (<Alt>+S)"));
+    m_shuffleButton.setTooltip(std::make_optional<pmgui::Tooltip>("Shuffle (<Alt>+S)"));
     m_repeatButton.setOnSameLine(true);
-    m_repeatButton.setTooltip(std::make_optional<Tooltip>("Repeat (<Alt>+R)"));
+    m_repeatButton.setTooltip(std::make_optional<pmgui::Tooltip>("Repeat (<Alt>+R)"));
     m_moveUpButton.setOnSameLine(true);
-    m_moveUpButton.setTooltip(std::make_optional<Tooltip>("Move item up (<Alt>+<Up>)"));
+    m_moveUpButton.setTooltip(std::make_optional<pmgui::Tooltip>("Move item up (<Alt>+<Up>)"));
     m_moveUpButton.setOnSameLine(true);
     m_moveDownButton.setOnSameLine(true);
-    m_moveDownButton.setTooltip(std::make_optional<Tooltip>("Move item down (<Alt>+<Down>)"));
+    m_moveDownButton.setTooltip(std::make_optional<pmgui::Tooltip>("Move item down (<Alt>+<Down>)"));
     m_removeAllButton.setOnSameLine(true);
-    m_removeAllButton.setTooltip(std::make_optional<Tooltip>("Remove all"));
+    m_removeAllButton.setTooltip(std::make_optional<pmgui::Tooltip>("Remove all"));
     setShuffle(m_hasShuffle);
     setRepeat(m_hasRepeat);
 }
@@ -140,7 +139,7 @@ void ebox::PlaylistForm::handleEvents()
 
 }
 
-void PlaylistForm::setPlayer(AudioPlayerForm *player)
+void ebox::PlaylistForm::setPlayer(AudioPlayerForm *player)
 {
     m_player = player;
     m_player->registerOnNextTrackCallback(std::bind(&PlaylistForm::onNextTrack, this, std::placeholders::_1));
@@ -149,7 +148,7 @@ void PlaylistForm::setPlayer(AudioPlayerForm *player)
     m_player->setPlaylistRepeatPtr(&m_hasRepeat);
 }
 
-void PlaylistForm::createByJson(json playlist)
+void ebox::PlaylistForm::createByJson(json playlist)
 {
     json files = playlist["files"];
     for(auto &i : files)
@@ -202,22 +201,22 @@ std::string ebox::PlaylistForm::getId(size_t number, int digits)
     return fmt::format("{0}{1}", zeroes, num);
 }
 
-std::string PlaylistForm::getId(const std::pair<EmuFileInfo, int> &item)
+std::string ebox::PlaylistForm::getId(const std::pair<EmuFileInfo, int> &item)
 {
     return fmt::format("{0} - {1}", item.first.getGameName(), item.first.getTracks()[item.second]);
 }
 
-void PlaylistForm::onFocusedChildNode(Selectable *sender)
+void ebox::PlaylistForm::onFocusedChildNode(Selectable *sender)
 {
     setAsSelectedChildNode(sender);
 }
 
-void ebox::PlaylistForm::onChosenChildNode(ebox::Selectable *sender)
+void ebox::PlaylistForm::onChosenChildNode(pmgui::Selectable *sender)
 {
     setAsSelectedChildNode(sender);
 }
 
-bool ebox::PlaylistForm::onRightClickedChildNode(ebox::Selectable *sender)
+bool ebox::PlaylistForm::onRightClickedChildNode(pmgui::Selectable *sender)
 {
     if(getNumberOfSelectedItems() < 2)
         setAsSelectedChildNode(sender);
@@ -225,7 +224,7 @@ bool ebox::PlaylistForm::onRightClickedChildNode(ebox::Selectable *sender)
     return true;
 }
 
-void ebox::PlaylistForm::onDoubleClickChildNode(ebox::Selectable *sender)
+void ebox::PlaylistForm::onDoubleClickChildNode(pmgui::Selectable *sender)
 {
     for(auto &[emuFile, trackNo] : m_playlist)
     {
@@ -248,7 +247,7 @@ void ebox::PlaylistForm::onDoubleClickChildNode(ebox::Selectable *sender)
     }
 }
 
-void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner, ebox::MenuItem *sender)
+void ebox::PlaylistForm::onChosenRightClickContextItems(pmgui::Selectable *owner, pmgui::MenuItem *sender)
 {
     if(sender->getId() == "play")
     {
@@ -267,7 +266,7 @@ void ebox::PlaylistForm::onChosenRightClickContextItems(ebox::Selectable *owner,
     }
 }
 
-void ebox::PlaylistForm::setAsSelectedChildNode(ebox::Selectable *child)
+void ebox::PlaylistForm::setAsSelectedChildNode(pmgui::Selectable *child)
 {
     for (auto const &item : m_filemapping.getItems())
     {
@@ -297,7 +296,7 @@ int ebox::PlaylistForm::getNumberOfSelectedItems()
     return selectedItems;
 }
 
-void PlaylistForm::setAsSelectedChildNode(const std::string &id)
+void ebox::PlaylistForm::setAsSelectedChildNode(const std::string &id)
 {
     for (auto const &item : m_filemapping.getItems())
     {
@@ -317,7 +316,7 @@ void PlaylistForm::setAsSelectedChildNode(const std::string &id)
     }
 }
 
-void PlaylistForm::setAsSelectedChildNode(int index)
+void ebox::PlaylistForm::setAsSelectedChildNode(int index)
 {
     auto items = m_filemapping.getItems();
     for(int i = 0; i < items.size(); ++i)
@@ -338,7 +337,7 @@ void PlaylistForm::setAsSelectedChildNode(int index)
     }
 }
 
-void PlaylistForm::selectNextItem()
+void ebox::PlaylistForm::selectNextItem()
 {
     int index = getSelectedIndex();
     if(m_playlist.size() > 0 && index > -1)
@@ -352,7 +351,7 @@ void PlaylistForm::selectNextItem()
     }
 }
 
-void PlaylistForm::selectPreviousItem()
+void ebox::PlaylistForm::selectPreviousItem()
 {
     int index = getSelectedIndex();
     if(m_playlist.size() > 0 && index > -1)
@@ -373,7 +372,7 @@ void PlaylistForm::selectPreviousItem()
 //    m_forceSelectIndex = index;
 //}
 
-bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
+bool ebox::PlaylistForm::onNextTrack(AudioPlayerForm *player)
 {
     if(m_player != nullptr && containsId(m_player->getStreamId()))
     {
@@ -387,7 +386,7 @@ bool PlaylistForm::onNextTrack(AudioPlayerForm *player)
     return false;
 }
 
-bool PlaylistForm::onPreviousTrack(AudioPlayerForm *player)
+bool ebox::PlaylistForm::onPreviousTrack(AudioPlayerForm *player)
 {
     if(m_player != nullptr && containsId(m_player->getStreamId()))
     {
@@ -401,7 +400,7 @@ bool PlaylistForm::onPreviousTrack(AudioPlayerForm *player)
     return false;
 }
 
-bool PlaylistForm::containsId(const std::string &id)
+bool ebox::PlaylistForm::containsId(const std::string &id)
 {
     for(auto const &[emu, trackNo] : m_playlist)
         if(emu.getId() == id) return true;
@@ -409,7 +408,7 @@ bool PlaylistForm::containsId(const std::string &id)
     return false;
 }
 
-bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
+bool ebox::PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
     if(m_player != nullptr && containsId(stream->getId()))
     {
@@ -424,7 +423,7 @@ bool PlaylistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
     return false;
 }
 
-void PlaylistForm::startNextTrack(const std::string &currentId)
+void ebox::PlaylistForm::startNextTrack(const std::string &currentId)
 {
     if(m_playlist.size() > 0)
     {
@@ -437,7 +436,7 @@ void PlaylistForm::startNextTrack(const std::string &currentId)
     }
 }
 
-void PlaylistForm::startPreviousTrack(const std::string &currentId)
+void ebox::PlaylistForm::startPreviousTrack(const std::string &currentId)
 {
     if(m_playlist.size() > 0)
     {
@@ -452,7 +451,7 @@ void PlaylistForm::startPreviousTrack(const std::string &currentId)
     }
 }
 
-void PlaylistForm::startTrack(const std::string &currentId)
+void ebox::PlaylistForm::startTrack(const std::string &currentId)
 {
     if(m_playlist.size() > 0)
     {
@@ -461,7 +460,7 @@ void PlaylistForm::startTrack(const std::string &currentId)
     }
 }
 
-void PlaylistForm::startRandomTrack(const std::string &currentId)
+void ebox::PlaylistForm::startRandomTrack(const std::string &currentId)
 {
     if(m_playlist.size() > 1)
     {
@@ -477,7 +476,7 @@ void PlaylistForm::startRandomTrack(const std::string &currentId)
     }
 }
 
-int PlaylistForm::getIndex(const std::string &id)
+int ebox::PlaylistForm::getIndex(const std::string &id)
 {
     for(int i = 0; i < m_playlist.size(); ++i)
     {
@@ -488,7 +487,7 @@ int PlaylistForm::getIndex(const std::string &id)
     return -1;
 }
 
-std::pair<EmuFileInfo, int> *PlaylistForm::getPlaylistItemById(const std::string &id)
+std::pair<ebox::EmuFileInfo, int> *ebox::PlaylistForm::getPlaylistItemById(const std::string &id)
 {
     for(int i = 0; i < m_playlist.size(); ++i)
     {
@@ -499,7 +498,7 @@ std::pair<EmuFileInfo, int> *PlaylistForm::getPlaylistItemById(const std::string
     return nullptr;
 }
 
-bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
+bool ebox::PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
 {
     if(emuFileInfo->exists())
     {
@@ -521,19 +520,19 @@ bool PlaylistForm::loadEmuFile(EmuFileInfo *emuFileInfo, int trackNo)
     return false;
 }
 
-void PlaylistForm::setShuffle(bool shuffle)
+void ebox::PlaylistForm::setShuffle(bool shuffle)
 {
     m_hasShuffle = shuffle;
     m_shuffleButton.getImage()->setColor(shuffle ? sf::Color(20, 240, 20, 255) : sf::Color(173, 22, 22, 255));
 }
 
-void PlaylistForm::setRepeat(bool repeat)
+void ebox::PlaylistForm::setRepeat(bool repeat)
 {
     m_hasRepeat = repeat;
     m_repeatButton.getImage()->setColor(repeat ? sf::Color(20, 240, 20, 255) : sf::Color(173, 22, 22, 255));
 }
 
-void PlaylistForm::moveItemUp()
+void ebox::PlaylistForm::moveItemUp()
 {
     int index = getSelectedIndex();
     if(index > -1 && index > 0)
@@ -547,7 +546,7 @@ void PlaylistForm::moveItemUp()
     }
 }
 
-void PlaylistForm::moveItemDown()
+void ebox::PlaylistForm::moveItemDown()
 {
     int index = getSelectedIndex();
     if(index > -1 && index < (m_filemapping.getItems().size() - 1))
@@ -561,7 +560,7 @@ void PlaylistForm::moveItemDown()
     }
 }
 
-Selectable *PlaylistForm::getSelected()
+pmgui::Selectable *ebox::PlaylistForm::getSelected()
 {
     for (int i = 0; i < m_filemapping.getItems().size(); ++i)
     {
@@ -573,7 +572,7 @@ Selectable *PlaylistForm::getSelected()
     return nullptr;
 }
 
-int PlaylistForm::getSelectedIndex()
+int ebox::PlaylistForm::getSelectedIndex()
 {
     for (int i = 0; i < m_filemapping.getItems().size(); ++i)
     {
@@ -584,7 +583,7 @@ int PlaylistForm::getSelectedIndex()
     return -1;
 }
 
-EmuFileInfo *PlaylistForm::getEmuFileInfo(const std::string &id)
+ebox::EmuFileInfo *ebox::PlaylistForm::getEmuFileInfo(const std::string &id)
 {
     for(int i = 0; i < m_playlist.size(); ++i)
     {
@@ -595,14 +594,14 @@ EmuFileInfo *PlaylistForm::getEmuFileInfo(const std::string &id)
     return nullptr;
 }
 
-void PlaylistForm::removeAllItems()
+void ebox::PlaylistForm::removeAllItems()
 {
     m_filemapping.clear();
     m_playlist.clear();
     SystemLog::get()->addInfo("Removed all items from playlist!");
 }
 
-void PlaylistForm::removeItem(const std::string &id)
+void ebox::PlaylistForm::removeItem(const std::string &id)
 {
     int removedAt = -1;
     for(int i = 0; i < m_playlist.size(); ++i)
@@ -624,7 +623,7 @@ void PlaylistForm::removeItem(const std::string &id)
     }
 }
 
-void PlaylistForm::removeSelectedItems()
+void ebox::PlaylistForm::removeSelectedItems()
 {
     int removedAt = -1;
     for(auto &item : m_filemapping.getItems())
@@ -659,7 +658,7 @@ void PlaylistForm::removeSelectedItems()
     }
 }
 
-void PlaylistForm::setIniFile(IniFile *iniFile)
+void ebox::PlaylistForm::setIniFile(IniFile *iniFile)
 {
     m_iniFile = iniFile;
 }

@@ -23,19 +23,27 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFile.assignDefaults();
+    m_fileDialogFile.createFileTypeCollection("EmuFiles", {".ay", ".gbs", ".gym", ".hes", ".kss", ".nsf", ".nsfe", ".sap", ".spc", ".vgm"});
+    m_fileDialogFile.setFileTypeCollection("EmuFiles", true);
     //m_fileDialogFile.setUseFileIcons(true);
 
     m_fileDialogFolder.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFolder.assignDefaults();
-    m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
+    m_fileDialogFolder.createFileTypeCollection("Folder", {"directory"}); //FileTypeMode::Folder
+    m_fileDialogFolder.setFileTypeCollection("Folder", false);
+    //m_fileDialogFolder.setFileTypes(FileTypeMode::Folder);
 
     m_fileDialogSavePlaylist.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogSavePlaylist.assignDefaults();
-    m_fileDialogSavePlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
+    m_fileDialogSavePlaylist.createFileTypeCollection("EmuPlaylists", {".epl"});
+    m_fileDialogSavePlaylist.setFileTypeCollection("EmuPlaylists", false);
+    //m_fileDialogSavePlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
 
     m_fileDialogOpenPlaylist.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogOpenPlaylist.assignDefaults();
-    m_fileDialogOpenPlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
+    m_fileDialogOpenPlaylist.createFileTypeCollection("EmuPlaylists", {".epl"});
+    m_fileDialogOpenPlaylist.setFileTypeCollection("EmuPlaylists", false);
+    //m_fileDialogOpenPlaylist.setFileTypes(FileTypeMode::EmuPlaylists);
 
     bool openLastOpenedItemOnStartup = initializeFiles();
 
@@ -90,7 +98,7 @@ void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
     }
 }
 
-bool ProgramManager::initializeFiles()
+bool ebox::ProgramManager::initializeFiles()
 {
     m_iniFile.load();
 
@@ -143,7 +151,7 @@ void ebox::ProgramManager::run()
     m_iniFile.write();
 }
 
-void ProgramManager::handleEvents()
+void ebox::ProgramManager::handleEvents()
 {
     for(auto &event : m_events.getAllEvents())
     {
@@ -173,7 +181,7 @@ void ebox::ProgramManager::update()
     updateViewMenu();
 }
 
-void ProgramManager::handleClipboard()
+void ebox::ProgramManager::handleClipboard()
 {
     if(m_clipboardDelay.getElapsedTime() > std::chrono::milliseconds(100))
     {
@@ -222,7 +230,7 @@ void ebox::ProgramManager::draw()
     ImGui::SFML::Render(m_window);
 }
 
-void ProgramManager::drawDock()
+void ebox::ProgramManager::drawDock()
 {
     bool open = true;
 
@@ -254,7 +262,7 @@ void ProgramManager::drawDock()
     ImGui::End();
 }
 
-void ProgramManager::createDock()
+void ebox::ProgramManager::createDock()
 {
     ImGuiID dockspace_id = ImGui::GetID(DOCKSPACE_ID.c_str());
     ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -282,7 +290,7 @@ void ProgramManager::createDock()
     ImGui::DockBuilderFinish(dockspace_id);
 }
 
-void ProgramManager::resetDock()
+void ebox::ProgramManager::resetDock()
 {
     bool open = true;
 
@@ -314,7 +322,7 @@ void ProgramManager::resetDock()
     SystemLog::get()->addDebug("Layout has been reset.");
 }
 
-void ProgramManager::createMenu()
+void ebox::ProgramManager::createMenu()
 {
     m_menuOpenFolder.setImageRef(&m_openFolderImage);
     m_menuOpenFolder.setShortcut("(<Ctrl>+O)");
@@ -351,7 +359,7 @@ void ProgramManager::createMenu()
     m_menu.addRef(&m_menuTools);
 }
 
-void ProgramManager::onChosenMenuItem(MenuItem *sender)
+void ebox::ProgramManager::onChosenMenuItem(pmgui::MenuItem *sender)
 {
     if(sender->getId() == m_menuOpenFile.getId()) m_fileDialogFile.setOpen(true);
     else if(sender->getId() == m_menuOpenFolder.getId()) m_fileDialogFolder.setOpen(true);
@@ -367,7 +375,7 @@ void ProgramManager::onChosenMenuItem(MenuItem *sender)
     else if(sender->getId() == m_menuToolsExport.getId()) openExportPopup();
 }
 
-void ProgramManager::openExportPopup()
+void ebox::ProgramManager::openExportPopup()
 {
     AudioPlayerForm *audioPlayer = m_formManager.getAudioPlayerForm();
     EmuStream * stream = audioPlayer->getCurrentStream();
@@ -381,7 +389,7 @@ void ProgramManager::openExportPopup()
         SystemLog::get()->addError("No stream data found in player. You must open a track to be able to export it.");
 }
 
-void ProgramManager::onFileChosen(const fs::path& path)//(const std::string &path)
+void ebox::ProgramManager::onFileChosen(const fs::path& path)//(const std::string &path)
 {
 	fs::path currentPath = path;//fs::path(path);
     m_formManager.getFilelistForm()->loadFile(currentPath);
@@ -394,7 +402,7 @@ void ProgramManager::onFileChosen(const fs::path& path)//(const std::string &pat
     }
 }
 
-void ProgramManager::onFolderChosen(const fs::path& path)//(const std::string &path)
+void ebox::ProgramManager::onFolderChosen(const fs::path& path)//(const std::string &path)
 {
 	fs::path currentPath = path;//fs::path(path);
     m_formManager.getFilelistForm()->loadAllFilesInFolder(currentPath);
@@ -406,7 +414,7 @@ void ProgramManager::onFolderChosen(const fs::path& path)//(const std::string &p
     }
 }
 
-void ProgramManager::onSavePlaylist(const fs::path& path)//(const std::string &path)
+void ebox::ProgramManager::onSavePlaylist(const fs::path& path)//(const std::string &path)
 {
 	PlaylistFile file{ path }; //{fs::path(path)};
 
@@ -420,18 +428,20 @@ void ProgramManager::onSavePlaylist(const fs::path& path)//(const std::string &p
         ++i;
     }
     file.write();
-    SystemLog::get()->addSuccess(fmt::format("Wrote playlist with {0} items to path: {1}", i, path));
+    //TODO: 30.07.2019 - Check why this was ambigiously defined (fmt)
+    //SystemLog::get()->addSuccess(fmt::format("Wrote playlist with {0} items to path: {1}", i, path));
 }
 
-void ProgramManager::onOpenPlaylist(const fs::path& path)//(const std::string &path)
+void ebox::ProgramManager::onOpenPlaylist(const fs::path& path)//(const std::string &path)
 {
 	PlaylistFile file{ path }; //{fs::path(path)};
     file.load();
     m_formManager.getPlaylistForm()->createByFile(file);
-    SystemLog::get()->addSuccess(fmt::format("Loaded playlist with {0} items from path: {1}", file.getPlaylistData().size(), path));
+    //TODO: 30.07.2019 - Check why this was ambigiously defined (fmt)
+    //SystemLog::get()->addSuccess(fmt::format("Loaded playlist with {0} items from path: {1}", file.getPlaylistData().size(), path));
 }
 
-void ProgramManager::registerCallbacks()
+void ebox::ProgramManager::registerCallbacks()
 
 {
     m_menuOpenFolder.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
@@ -455,7 +465,7 @@ void ProgramManager::registerCallbacks()
     m_preferences.registerOnChangedCallback(std::bind(&ProgramManager::onChangedPreferences, this, std::placeholders::_1));
 }
 
-void ProgramManager::updateViewMenu()
+void ebox::ProgramManager::updateViewMenu()
 {
     m_menuViewSystemlog.setIsSelected(m_formManager.isOpened(FormType::SystemLog));
     m_menuViewAudioPlayer.setIsSelected(m_formManager.isOpened(FormType::AudioPlayer));
@@ -463,12 +473,12 @@ void ProgramManager::updateViewMenu()
     m_menuViewFiles.setIsSelected(m_formManager.isOpened(FormType::Files));
 }
 
-void ProgramManager::onChangedPreferences(PreferencesPopup *sender)
+void ebox::ProgramManager::onChangedPreferences(PreferencesPopup *sender)
 {
     applyIniFileToProgram();
 }
 
-void ProgramManager::applyIniFileToProgram()
+void ebox::ProgramManager::applyIniFileToProgram()
 {
     m_fileDialogFile.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     m_fileDialogFolder.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());

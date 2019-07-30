@@ -1,9 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-#include <fmt/core.h>
-#include <fmt/format.h>
-#include <fmt/printf.h>
+//#include <fmt/core.h>
+//#include <fmt/format.h>
+//#include <fmt/printf.h>
+#include "pmgui.h"
 
 #include "../src/forms/FilelistForm.h"
 #include "../src/audio/EmuFile.h"
