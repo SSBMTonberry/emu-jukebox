@@ -1,0 +1,3 @@
+[submodule "external_libs/submodules/pmgui"]
+	path = external_libs/submodules/pmgui
+	url = https://github.com/SSBMTonberry/pmgui.git
