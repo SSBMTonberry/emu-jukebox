@@ -58,6 +58,7 @@ namespace ebox
     class FileTable : public DataTable
     {
         public:
+            [[deprecated("emu-jukebox now uses the pmgui version of FileTable")]]
             FileTable(const std::string &id, const std::string &label, bool useFileIcons = true);
 
             void listFilesByDirectory(const fs::path &path, const fs::path &parentDirectory);

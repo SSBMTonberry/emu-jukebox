@@ -72,8 +72,10 @@ namespace ebox
         public:
             static const int MAX_FILE_PATH_LENGTH = 512;
 
+            [[deprecated("emu-jukebox now uses the pmgui version of FileDialog")]]
             FileDialog(const DialogType &dialogType, std::string id, std::string title, std::string imguiId = "");
 
+            [[deprecated("emu-jukebox now uses the pmgui version of FileDialog")]]
             FileDialog(const DialogType &dialogType, const sf::Vector2<int> &position, const sf::Vector2<int> &size,
                        std::string id, std::string title, std::string imguiId = "");
 

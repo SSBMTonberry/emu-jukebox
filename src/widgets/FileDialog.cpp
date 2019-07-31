@@ -4,6 +4,7 @@
 
 #include "FileDialog.h"
 
+
 ebox::FileDialog::FileDialog(const DialogType &dialogType, std::string id, std::string title, std::string imguiId) :
         Popup(std::move(id), std::move(title), std::move(imguiId))
 {

@@ -37,6 +37,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_fileDialogSavePlaylist.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogSavePlaylist.assignDefaults();
+    m_fileDialogSavePlaylist.addFileType({".epl", "Emu Playlist (*.epl)"});
     m_fileDialogSavePlaylist.createFileTypeCollection("EmuPlaylists", {".epl"});
     m_fileDialogSavePlaylist.setFileTypeCollection("EmuPlaylists", false);
     m_fileDialogSavePlaylist.setFileType(".epl");
@@ -44,6 +45,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_fileDialogOpenPlaylist.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogOpenPlaylist.assignDefaults();
+    m_fileDialogOpenPlaylist.addFileType({".epl", "Emu Playlist (*.epl)"});
     m_fileDialogOpenPlaylist.createFileTypeCollection("EmuPlaylists", {".epl"});
     m_fileDialogOpenPlaylist.setFileTypeCollection("EmuPlaylists", false);
     m_fileDialogOpenPlaylist.setFileType(".epl");
