@@ -82,7 +82,7 @@ void ebox::Hotkeys::resetStates()
     m_filelistHotkeyPressed[FilelistHotkey::DeleteItem] = false;
 }
 
-void ebox::Hotkeys::setEventManager(ebox::EventManager *eventManager)
+void ebox::Hotkeys::setEventManager(pmgui::EventManager *eventManager)
 {
     m_events = eventManager;
 }

@@ -110,7 +110,7 @@ namespace ebox
             bool m_firstRun = true; //Used to make stuff happen on first run
             //bool m_itemChosenOnStartup = false;
             sf::RenderWindow m_window;
-            EventManager m_events;
+            pmgui::EventManager m_events;
             FormManager m_formManager;
             ClipboardManager m_clipboard;
             std::vector<std::string> m_args;

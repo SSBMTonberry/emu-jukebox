@@ -6,8 +6,6 @@
 #define EMU_JUKEBOX_EMUTHEMES_HPP
 
 #include "pmgui.h"
-//#include <imgui/imgui.h>
-//#include <imgui/imgui_internal.h>
 
 namespace ebox::theme
 {

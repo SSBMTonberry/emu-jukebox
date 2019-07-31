@@ -6,7 +6,7 @@
 #define EMU_JUKEBOX_HOTKEYMANAGER_H
 
 #include <map>
-#include "EventManager.h"
+#include "pmgui.h"
 #include "../classes/Hotkey.h"
 
 namespace ebox
@@ -71,7 +71,7 @@ namespace ebox
                 return &manager;
             }
 
-            void setEventManager(ebox::EventManager *eventManager);
+            void setEventManager(pmgui::EventManager *eventManager);
             sf::Vector2i getMousePosition();
 
             bool isActive() const;
@@ -102,7 +102,7 @@ namespace ebox
             Hotkeys();
             void generateDefaultHotkeys();
 
-            ebox::EventManager *m_events;
+            pmgui::EventManager *m_events;
 
             bool m_isActive = true;
 

@@ -435,7 +435,7 @@ void ebox::ProgramManager::onSavePlaylist(const fs::path& path)//(const std::str
     }
     file.write();
     //TODO: 30.07.2019 - Check why this was ambigiously defined (fmt)
-    //SystemLog::get()->addSuccess(fmt::format("Wrote playlist with {0} items to path: {1}", i, path));
+    SystemLog::get()->addSuccess(fmt::format("Wrote playlist with {0} items to path: {1}", i, path.u8string()));
 }
 
 void ebox::ProgramManager::onOpenPlaylist(const fs::path& path)//(const std::string &path)
@@ -444,7 +444,7 @@ void ebox::ProgramManager::onOpenPlaylist(const fs::path& path)//(const std::str
     file.load();
     m_formManager.getPlaylistForm()->createByFile(file);
     //TODO: 30.07.2019 - Check why this was ambigiously defined (fmt)
-    //SystemLog::get()->addSuccess(fmt::format("Loaded playlist with {0} items from path: {1}", file.getPlaylistData().size(), path));
+    SystemLog::get()->addSuccess(fmt::format("Loaded playlist with {0} items from path: {1}", file.getPlaylistData().size(), path.u8string()));
 }
 
 void ebox::ProgramManager::registerCallbacks()

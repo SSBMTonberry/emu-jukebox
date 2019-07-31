@@ -9,7 +9,7 @@ ebox::FormManager::FormManager()
 
 }
 
-void ebox::FormManager::initialize(sf::RenderWindow *window, EventManager * events, IniFile *iniFile)
+void ebox::FormManager::initialize(sf::RenderWindow *window, pmgui::EventManager * events, IniFile *iniFile)
 {
     ImGui::CreateContext(); //IMGUI 1.60
     m_window = window;
