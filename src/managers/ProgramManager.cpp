@@ -359,10 +359,14 @@ void ebox::ProgramManager::createMenu()
     m_menuToolsExport.setImageRef(&m_imgExport);
     m_menuTools.addRef(&m_menuToolsExport);
 
+    m_menuHelpAbout.setImageRef(&m_imgAbout);
+    m_menuHelp.addRef(&m_menuHelpAbout);
+
     m_menu.addRef(&m_menuFile);
     m_menu.addRef(&m_menuSettings);
     m_menu.addRef(&m_menuView);
     m_menu.addRef(&m_menuTools);
+    m_menu.addRef(&m_menuHelp);
 }
 
 void ebox::ProgramManager::onChosenMenuItem(pmgui::MenuItem *sender)
@@ -462,6 +466,7 @@ void ebox::ProgramManager::registerCallbacks()
     m_menuViewPlaylist.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuViewSystemlog.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
     m_menuToolsExport.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
+    m_menuHelpAbout.registerOnChosenCallback(std::bind(&ProgramManager::onChosenMenuItem, this, std::placeholders::_1));
 
     m_fileDialogFile.registerOnFileChosenCallback(std::bind(&ProgramManager::onFileChosen, this, std::placeholders::_1));
     m_fileDialogFolder.registerOnFileChosenCallback(std::bind(&ProgramManager::onFolderChosen, this, std::placeholders::_1));

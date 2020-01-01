@@ -88,6 +88,9 @@ namespace ebox
             pmgui::MenuItemCollection m_menuTools {"main_tools", "Tools"};
             pmgui::MenuItem m_menuToolsExport {"main_tools_export", "Export to audio file..."};
 
+            pmgui::MenuItemCollection m_menuHelp {"main_help", "Help"};
+            pmgui::MenuItem m_menuHelpAbout {"main_help_about", "About"};
+
             //Images
             pmgui::Image m_openFolderImage {"img_open_folder", files_mapper::gui::general::_OPENPROJECT_PNG, files_mapper::gui::general::_OPENPROJECT_PNG_SIZE};
             pmgui::Image m_openFileImage {"img_open_file", files_mapper::gui::filetypes::_TEXT_PNG, files_mapper::gui::filetypes::_TEXT_PNG_SIZE};
@@ -97,6 +100,7 @@ namespace ebox
             pmgui::Image m_preferencesImage {"img_preferences", files_mapper::gui::general::_GEARPLAIN_DARK_PNG, files_mapper::gui::general::_GEARPLAIN_DARK_PNG_SIZE};
             pmgui::Image m_imgQuit {"img_quit", files_mapper::gui::actions::_EXIT_PNG, files_mapper::gui::actions::_EXIT_PNG_SIZE};
             pmgui::Image m_imgExport {"img_export", files_mapper::gui::misc::_EXPORT_PNG, files_mapper::gui::misc::_EXPORT_PNG_SIZE};
+            pmgui::Image m_imgAbout {"img_about", files_mapper::gui::general::_BALLOONINFORMATION_PNG, files_mapper::gui::general::_BALLOONINFORMATION_PNG_SIZE};
 
             //File dialogs
             pmgui::FileDialog m_fileDialogFile { pmgui::DialogType::OpenFile, "main_file_dialog_file", "Choose a file"};
