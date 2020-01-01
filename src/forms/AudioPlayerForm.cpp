@@ -6,12 +6,12 @@
 
 const std::string ebox::AudioPlayerForm::ID = "AudioPlayer";
 
-ebox::AudioPlayerForm::AudioPlayerForm(const string &id, const string &title) : pmgui::Form(id, title)
+ebox::AudioPlayerForm::AudioPlayerForm(const std::string &id, const std::string &title) : pmgui::Form(id, title)
 {
     initialize();
 }
 
-ebox::AudioPlayerForm::AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const string &id, const string &title) : pmgui::Form(position, size, id, title)
+ebox::AudioPlayerForm::AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title) : pmgui::Form(position, size, id, title)
 {
     initialize();
 }

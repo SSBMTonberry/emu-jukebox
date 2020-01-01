@@ -37,9 +37,9 @@ namespace ebox
             typedef std::function<bool(AudioPlayerForm* )> func_audioplayer; //OnCancel(), for instance
             typedef std::function<bool(AudioPlayerForm*, EmuStream *)> func_audioplayertrack;
 
-            AudioPlayerForm(const string &id, const string &title);
+            AudioPlayerForm(const std::string &id, const std::string &title);
 
-            AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const string &id, const string &title);
+            AudioPlayerForm(const sf::Vector2<int> &position, const sf::Vector2<int> &size, const std::string &id, const std::string &title);
 
             void handleEvents() override;
 

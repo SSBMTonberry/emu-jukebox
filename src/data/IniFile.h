@@ -27,28 +27,28 @@ namespace ebox
             void setPath(const fs::path &path);
             void setLastOpenedFolder(const fs::path &lastOpenedFolder);
             void setLastOpenedFile(const fs::path &lastOpenedFile);
-            void setCurrentFont(const string &currentFont);
+            void setCurrentFont(const std::string &currentFont);
             void setLoopPreviewTracksForever(bool loopPreviewTracksForever);
             void setOpenLastOpenedItemOnStartup(bool openLastOpenedFolderOnStartup);
             void setBackgroundColor(const sf::Color &backgroundColor);
             void setLastItemIsFolder(bool lastItemIsFolder);
             void setLastVolume(float lastVolume);
             void setPlaylistData(const json &playlistData);
-            void setCurrentTheme(const string &currentTheme);
+            void setCurrentTheme(const std::string &currentTheme);
             void setNumberOfRepeats(int numberOfRepeats);
             void setOpenLastPlaylistOnStartup(bool openLastPlaylistOnStartup);
 
             const fs::path &getPath() const;
             const fs::path &getLastOpenedFolder() const;
             const fs::path &getLastOpenedFile() const;
-            const string &getCurrentFont() const;
+            const std::string &getCurrentFont() const;
             bool loopPreviewTracksForever() const;
             bool openLastOpenedItemOnStartup() const;
             const sf::Color &getBackgroundColor() const;
             bool isLastItemFolder() const;
             float getLastVolume() const;
             json getPlaylistData();
-            const string &getCurrentTheme() const;
+            const std::string &getCurrentTheme() const;
             ebox::FontManager *getFontManager();
             int getNumberOfRepeats() const;
             bool openLastPlaylistOnStartup() const;
@@ -56,7 +56,7 @@ namespace ebox
             void applyTheme();
 
         protected:
-            const string FILENAME = "ebox.ini";
+            const std::string FILENAME = "ebox.ini";
 
             void parseData();
 

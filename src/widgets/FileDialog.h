@@ -40,7 +40,6 @@ namespace fs = std::experimental::filesystem;
 #include "../gui/controls/Combobox.h"
 #include <SFML/Window/VideoMode.hpp>
 
-using namespace std;
 using namespace ebox;
 namespace fm = files_mapper;
 

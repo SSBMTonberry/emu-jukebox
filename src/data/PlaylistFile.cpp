@@ -57,12 +57,12 @@ void ebox::PlaylistFile::add(const fs::path &path, const std::string &name, int 
     m_playlistData.emplace_back(path, name, trackNumber, false);
 }
 
-const string &ebox::PlaylistFile::getName() const
+const std::string &ebox::PlaylistFile::getName() const
 {
     return m_name;
 }
 
-void ebox::PlaylistFile::setName(const string &name)
+void ebox::PlaylistFile::setName(const std::string &name)
 {
     m_name = name;
 }

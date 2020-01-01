@@ -39,7 +39,6 @@ namespace fs = std::filesystem;
 #include <sstream>
 
 using namespace nlohmann;
-using namespace std;
 
 namespace ebox
 {

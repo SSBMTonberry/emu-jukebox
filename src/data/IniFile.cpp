@@ -51,7 +51,7 @@ void ebox::IniFile::setLastOpenedFolder(const fs::path &lastOpenedFolder)
     m_lastOpenedFolder = lastOpenedFolder;
 }
 
-void ebox::IniFile::setCurrentFont(const string &currentFont)
+void ebox::IniFile::setCurrentFont(const std::string &currentFont)
 {
     m_currentFont = currentFont;
 }
@@ -66,17 +66,17 @@ const fs::path &ebox::IniFile::getLastOpenedFolder() const
     return m_lastOpenedFolder;
 }
 
-const string &ebox::IniFile::getCurrentFont() const
+const std::string &ebox::IniFile::getCurrentFont() const
 {
     return m_currentFont;
 }
 
 void ebox::IniFile::parseData()
 {
-    if(m_data.count("last_folder") > 0) m_lastOpenedFolder = fs::path(tools::string::String2Wstring(m_data["last_folder"].get<string>()));
-    if(m_data.count("last_file") > 0) m_lastOpenedFile = fs::path(tools::string::String2Wstring(m_data["last_file"].get<string>()));
+    if(m_data.count("last_folder") > 0) m_lastOpenedFolder = fs::path(tools::string::String2Wstring(m_data["last_folder"].get<std::string>()));
+    if(m_data.count("last_file") > 0) m_lastOpenedFile = fs::path(tools::string::String2Wstring(m_data["last_file"].get<std::string>()));
     if(m_data.count("last_item_is_folder") > 0) m_lastItemIsFolder = m_data["last_item_is_folder"].get<bool>();
-    if(m_data.count("current_font") > 0) m_currentFont = m_data["current_font"].get<string>();
+    if(m_data.count("current_font") > 0) m_currentFont = m_data["current_font"].get<std::string>();
     if(m_data.count("loop_forever") > 0) m_loopPreviewTracksForever = m_data["loop_forever"].get<bool>();
     if(m_data.count("open_last_item_on_startup") > 0) m_openLastOpenedItemOnStartup = m_data["open_last_item_on_startup"].get<bool>();
     if(m_data.count("open_last_playlist_on_startup") > 0) m_openLastPlaylistOnStartup = m_data["open_last_playlist_on_startup"].get<bool>();
@@ -172,12 +172,12 @@ json ebox::IniFile::getPlaylistData()
     return m_data["playlist"];
 }
 
-const string &ebox::IniFile::getCurrentTheme() const
+const std::string &ebox::IniFile::getCurrentTheme() const
 {
     return m_currentTheme;
 }
 
-void ebox::IniFile::setCurrentTheme(const string &currentTheme)
+void ebox::IniFile::setCurrentTheme(const std::string &currentTheme)
 {
     m_currentTheme = currentTheme;
 }

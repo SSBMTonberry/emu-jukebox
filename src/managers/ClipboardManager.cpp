@@ -18,12 +18,12 @@ void ClipboardManager::update()
 {
     bool valuesHasBeenChanged = false;
     //string osStr = "";
-    string osStr;
+    std::string osStr;
     sf::String osSfStr = sf::Clipboard::getString();
     osStr = ws2s(osSfStr.toWideString());
 
     const char * imguiCharPtr = ImGui::GetClipboardText();
-    string imguiStr = (imguiCharPtr == nullptr) ? "" : imguiCharPtr;
+    std::string imguiStr = (imguiCharPtr == nullptr) ? "" : imguiCharPtr;
     //ebox::SystemLog::get()->addDebug(fmt::format("ImGui Clipboard: {0}", imguiStr));
     //If changes in clipboard related to OS
     if(m_lastOsClipboardValue != osStr)
