@@ -21,6 +21,7 @@
 #include "../popups/PreferencesPopup.h"
 #include "../data/PlaylistFile.h"
 #include "../popups/EmuFileExporterPopup.h"
+#include "../popups/AboutPopup.h"
 
 namespace ebox
 {
@@ -110,6 +111,7 @@ namespace ebox
 
             PreferencesPopup m_preferences {"preferences_popup", "Preferences"};
             EmuFileExporterPopup m_fileExporter {"file_exporter_popup", "Export to audio file"};
+            AboutPopup m_about {"about_popup", "About"};
 
             bool m_firstRun = true; //Used to make stuff happen on first run
             //bool m_itemChosenOnStartup = false;

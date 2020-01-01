@@ -61,6 +61,7 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_preferences.setIniFile(&m_iniFile);
     m_preferences.initialize({(int)(resolution.x / 3), (int)(resolution.y / 2)});
+    m_about.initialize({(int)(resolution.x / 4), (int)(resolution.y / 3)});
     m_fileExporter.initialize({(int)(resolution.x / 4), (int)(resolution.y / 2.5f)});
 
     if(openLastOpenedItemOnStartup)
@@ -232,6 +233,7 @@ void ebox::ProgramManager::draw()
     m_fileDialogSavePlaylist.draw();
     m_fileDialogOpenPlaylist.draw();
     m_preferences.draw();
+    m_about.draw();
     m_fileExporter.draw();
     ImGui::SFML::Render(m_window);
 }
@@ -383,6 +385,7 @@ void ebox::ProgramManager::onChosenMenuItem(pmgui::MenuItem *sender)
     else if(sender->getId() == m_menuViewFiles.getId()) m_formManager.toggleOpened(FormType::Files);
     else if(sender->getId() == m_menuViewSystemlog.getId()) m_formManager.toggleOpened(FormType::SystemLog);
     else if(sender->getId() == m_menuToolsExport.getId()) openExportPopup();
+    else if(sender->getId() == m_menuHelpAbout.getId()) m_about.setOpen(true);
 }
 
 void ebox::ProgramManager::openExportPopup()
@@ -496,6 +499,7 @@ void ebox::ProgramManager::applyIniFileToProgram()
     m_fileDialogSavePlaylist.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     m_fileDialogOpenPlaylist.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     m_preferences.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_about.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     m_fileExporter.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     SystemLog::get()->setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
 }

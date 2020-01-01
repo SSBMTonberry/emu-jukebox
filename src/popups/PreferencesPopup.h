@@ -5,15 +5,7 @@
 #ifndef EMU_JUKEBOX_PREFERENCESPOPUP_H
 #define EMU_JUKEBOX_PREFERENCESPOPUP_H
 
-//#include "../gui/forms/Popup.h"
 #include "../data/IniFile.h"
-
-//#include "../gui/controls/ColorButton.h"
-//#include "../gui/controls/ColorPicker.h"
-//#include "../gui/controls/Checkbox.h"
-//#include "../gui/controls/Button.h"
-//#include "../gui/controls/Combobox.h"
-//#include "../gui/controls/InputInt.h"
 #include "../classes/Font.h"
 
 namespace ebox
@@ -35,7 +27,6 @@ namespace ebox
 
         protected:
             bool onDraw() override;
-
             void onOpen() override;
 
         private:
