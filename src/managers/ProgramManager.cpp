@@ -61,7 +61,8 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     m_preferences.setIniFile(&m_iniFile);
     m_preferences.initialize({(int)(resolution.x / 3), (int)(resolution.y / 2)});
-    m_about.initialize({(int)(resolution.x / 4), (int)(resolution.y / 3)});
+    m_about.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
+    m_about.initialize({(int)(resolution.x / 2.5f), (int)(resolution.y / 2.5f)});
     m_fileExporter.initialize({(int)(resolution.x / 4), (int)(resolution.y / 2.5f)});
 
     if(openLastOpenedItemOnStartup)

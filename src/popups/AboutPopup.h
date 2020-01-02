@@ -6,6 +6,7 @@
 #define EMU_JUKEBOX_ABOUTPOPUP_H
 
 #include "pmgui.h"
+#include "../../EmuJukeboxConfig.h"
 
 namespace ebox
 {
