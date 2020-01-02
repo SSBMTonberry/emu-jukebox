@@ -65,7 +65,7 @@ void ebox::PreferencesPopup::setIniFile(ebox::IniFile *iniFile)
 
 void ebox::PreferencesPopup::drawGeneralTab()
 {
-    ImGui::BeginChild("preferences_general_tab", {-1, (float)(m_scaledSize.y * 0.85)}, true, 0);
+    ImGui::BeginChild("preferences_general_tab", {-1, (float)(m_scaledSize.y * 0.82)}, true, 0);
     m_loadLastFileOnStartup.process();
     m_loadLastPlaylistOnStartup.process();
     m_filePreviewsPlayForever.process();
@@ -79,14 +79,14 @@ void ebox::PreferencesPopup::drawGeneralTab()
 
 void ebox::PreferencesPopup::drawThemesTab()
 {
-    ImGui::BeginChild("themes_general_tab", {-1, (float)(m_scaledSize.y * 0.85)}, true, 0);
+    ImGui::BeginChild("themes_general_tab", {-1, (float)(m_scaledSize.y * 0.82)}, true, 0);
     m_themes.process();
     ImGui::EndChild();
 }
 
 void ebox::PreferencesPopup::drawFontsTab()
 {
-    ImGui::BeginChild("fonts_general_tab", {-1, (float)(m_scaledSize.y * 0.85)}, true, 0);
+    ImGui::BeginChild("fonts_general_tab", {-1, (float)(m_scaledSize.y * 0.82)}, true, 0);
     m_iniFile->getFontManager()->process();
     ImGui::EndChild();
 }
