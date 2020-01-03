@@ -99,6 +99,7 @@ namespace ebox
             sf::Mutex m_mutex;       ///< Mutex protecting the data
 
             Mode m_loadMode = Mode::File;
+            uint32_t m_sampleSize; //Ref. #70
             /*! Sample rate. 44100 is default and is the best quality. Anything below will take less space, but will
              *  also get worse quality on the sound. */
             uint32_t m_sampleRate;
