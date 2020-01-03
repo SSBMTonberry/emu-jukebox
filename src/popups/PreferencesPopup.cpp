@@ -69,10 +69,13 @@ void ebox::PreferencesPopup::drawGeneralTab()
     m_loadLastFileOnStartup.process();
     m_loadLastPlaylistOnStartup.process();
     m_filePreviewsPlayForever.process();
-    m_backgroundColor.process();
 
     ImGui::PushItemWidth(100.f * m_scaleFactor);
     m_numberOfRepeats.process();
+
+    ImGui::NewLine();
+    if(m_resetButton.process())
+        reset();
 
     ImGui::EndChild();
 }
@@ -124,6 +127,8 @@ void ebox::PreferencesPopup::onOpen()
 
 void ebox::PreferencesPopup::updateIniData()
 {
+    float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
+
     //General
     m_iniFile->setOpenLastOpenedItemOnStartup(m_loadLastFileOnStartup.isChecked());
     m_iniFile->setOpenLastPlaylistOnStartup(m_loadLastPlaylistOnStartup.isChecked());
@@ -153,6 +158,7 @@ void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
     m_okButton.setSize({(int)(90 * scale), (int)(30 * scale)});
     m_applyButton.setSize({(int)(90 * scale), (int)(30 * scale)});
     m_cancelButton.setSize({(int)(90 * scale), (int)(30 * scale)});
+    m_resetButton.setSize({(int)(200 * scale), (int)(30 * scale)});
 
     m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + (20 * m_scaleFactor);
     m_buttonOffset = (m_scaledSize.x / 2) - (m_totalButtonWidth / 2);
@@ -167,4 +173,31 @@ void ebox::PreferencesPopup::setScaleFactor(float scaleFactor)
 {
     Form::setScaleFactor(scaleFactor);
     setScaleOnAllItems(scaleFactor);
+}
+
+void ebox::PreferencesPopup::reset()
+{
+    if(m_iniFile != nullptr)
+    {
+        m_iniFile->reset();
+
+        float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
+
+        m_loadLastFileOnStartup.setChecked(m_iniFile->openLastOpenedItemOnStartup());
+        m_loadLastPlaylistOnStartup.setChecked(m_iniFile->openLastPlaylistOnStartup());
+        m_filePreviewsPlayForever.setChecked(m_iniFile->loopPreviewTracksForever());
+        m_backgroundColor.setColor(m_iniFile->getBackgroundColor());
+        m_themes.setValue(m_iniFile->getCurrentTheme());
+        m_iniFile->getFontManager()->setChosenFontAsDefaultFont();
+        m_numberOfRepeats.setValue(m_iniFile->getNumberOfRepeats());
+        m_iniFile->write();
+//
+        //Font *font = m_iniFile->getFontManager()->getChosenFont();
+        //m_iniFile->setCurrentFont((font == nullptr) ? "" : font->getName());
+        //setScaleFactor(m_iniFile->getFontManager()->getFontSizeFactor());
+        //m_iniFile->write();
+
+        for (auto const &callback : m_callbackOnChanged)
+            callback(this);
+    }
 }

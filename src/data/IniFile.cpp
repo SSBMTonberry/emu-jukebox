@@ -208,3 +208,16 @@ void ebox::IniFile::setNumberOfRepeats(int numberOfRepeats)
 {
     m_numberOfRepeats = numberOfRepeats;
 }
+
+void ebox::IniFile::reset()
+{
+    m_currentFont = "imgui_default";
+    m_fonts.setCurrentFontByName(m_currentFont);
+    m_loopPreviewTracksForever = true;
+    m_openLastOpenedItemOnStartup = false;
+    m_openLastPlaylistOnStartup = true;
+    m_numberOfRepeats = 0;
+    m_backgroundColor = {35, 65, 90, 255};
+    setCurrentTheme("dark");
+    applyTheme();
+}

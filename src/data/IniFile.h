@@ -21,8 +21,8 @@ namespace ebox
             IniFile();
 
             void load();
-
             void write();
+            void reset();
 
             void setPath(const fs::path &path);
             void setLastOpenedFolder(const fs::path &lastOpenedFolder);
