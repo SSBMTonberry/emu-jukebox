@@ -30,6 +30,8 @@ namespace ebox
             void onOpen() override;
 
         private:
+            void onMessageResponse(const Button *btn, const MessagePopupResponse &response);
+
             void drawGeneralTab();
             void drawThemesTab();
             void drawFontsTab();
@@ -50,6 +52,8 @@ namespace ebox
             pmgui::ColorPicker m_backgroundColor {"background_color", "Background color", ColorPicker::ColorPickerType::ColorEdit3, {35, 65, 90, 255}};
             pmgui::InputInt m_numberOfRepeats {"no_of_repeats", "Number of repeats (0 = infinite)", 0, 100, 1, 2};
             pmgui::Button m_resetButton {"reset_button", "Reset to default values", {200, 30}};
+
+            MessagePopup m_resetPopup {"msg_popup_reset", "Reset preferences?", MessagePopupType::YesNo};
 
             //Themes
             pmgui::Combobox m_themes {"themes_combo", "Theme"};

@@ -40,6 +40,7 @@ bool ebox::PreferencesPopup::onDraw()
         }
         ImGui::EndTabBar();
     }
+    m_resetPopup.draw();
     return true;
 }
 
@@ -56,6 +57,9 @@ void ebox::PreferencesPopup::initialize(const sf::Vector2<int> &size)
 
     m_themes.addValueRange({"dark", "light", "classic", "modern"});
     m_themes.setValue(0);
+
+    m_resetPopup.setMessage("Do you want to reset your preferences?\nThis cannot be undone! ");
+    m_resetPopup.registerOnMsgResponseCallback(std::bind(&PreferencesPopup::onMessageResponse, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void ebox::PreferencesPopup::setIniFile(ebox::IniFile *iniFile)
@@ -75,7 +79,7 @@ void ebox::PreferencesPopup::drawGeneralTab()
 
     ImGui::NewLine();
     if(m_resetButton.process())
-        reset();
+        m_resetPopup.setOpen(true);
 
     ImGui::EndChild();
 }
@@ -158,7 +162,10 @@ void ebox::PreferencesPopup::setScaleOnAllItems(float scaleFactor)
     m_okButton.setSize({(int)(90 * scale), (int)(30 * scale)});
     m_applyButton.setSize({(int)(90 * scale), (int)(30 * scale)});
     m_cancelButton.setSize({(int)(90 * scale), (int)(30 * scale)});
-    m_resetButton.setSize({(int)(200 * scale), (int)(30 * scale)});
+    m_resetButton.setSize({(int)(260 * scale), (int)(30 * scale)});
+
+    m_resetPopup.setSize({(int)(450 * scale), (int)(150 * scale)});
+    m_resetPopup.refresh();
 
     m_totalButtonWidth = m_okButton.getSize().x + m_applyButton.getSize().x + m_cancelButton.getSize().x + (20 * m_scaleFactor);
     m_buttonOffset = (m_scaledSize.x / 2) - (m_totalButtonWidth / 2);
@@ -200,4 +207,10 @@ void ebox::PreferencesPopup::reset()
         for (auto const &callback : m_callbackOnChanged)
             callback(this);
     }
+}
+
+void ebox::PreferencesPopup::onMessageResponse(const Button *btn, const MessagePopupResponse &response)
+{
+    if(btn->getParentId() == "msg_popup_reset" && response == MessagePopupResponse::Yes)
+        reset();
 }
