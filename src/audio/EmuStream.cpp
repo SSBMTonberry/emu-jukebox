@@ -80,7 +80,6 @@ void ebox::EmuStream::initializeFile(const std::string &filename, int track, uin
     m_track = track;
 
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
-    //m_sampleSize = (m_sampleRate * m_channelCount); //(m_sampleRate * m_channelCount) / 7;
     m_sampleSize = (m_sampleRate * m_channelCount) / 7;
     m_samples.resize(m_sampleSize);
 
@@ -105,7 +104,6 @@ void ebox::EmuStream::initializeMemory(void *data, size_t size, int track, uint3
     m_track = track;
 
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
-    //m_sampleSize = (m_sampleRate * m_channelCount); //(m_sampleRate * m_channelCount) / 7;
     m_sampleSize = (m_sampleRate * m_channelCount) / 7;
     m_samples.resize(m_sampleSize);
 

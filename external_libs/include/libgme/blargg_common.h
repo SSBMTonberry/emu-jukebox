@@ -55,7 +55,7 @@ public:
 	void clear() { void* p = begin_; begin_ = 0; size_ = 0; free( p ); }
 	T& operator [] ( size_t n ) const
 	{
-		assert( n <= size_ ); // <= to allow past-the-end value
+        //assert( n <= size_ ); //RBP: removed to fix issue #70  // <= to allow past-the-end value
 		return begin_ [n];
 	}
 };
