@@ -320,7 +320,8 @@ set(SOURCE_FILES src/managers/ProgramManager.cpp src/managers/ProgramManager.h s
                   src/managers/Hotkeys.h src/data/JsonFile.cpp src/data/JsonFile.h src/data/IniFile.cpp src/data/IniFile.h src/popups/PreferencesPopup.cpp
                   src/popups/PreferencesPopup.h src/data/PlaylistFile.cpp src/data/PlaylistFile.h src/classes/PlaylistData.cpp src/classes/PlaylistData.h
                   src/audio/EmuFile.cpp src/audio/EmuFile.h src/popups/EmuFileExporterPopup.cpp src/popups/EmuFileExporterPopup.h
-                  src/misc/EmuThemes.hpp src/classes/Font.cpp src/classes/Font.h src/managers/FontManager.cpp src/managers/FontManager.h)
+                  src/misc/EmuThemes.hpp src/classes/Font.cpp src/classes/Font.h src/managers/FontManager.cpp src/managers/FontManager.h
+                  src/popups/AboutPopup.cpp src/popups/AboutPopup.h)
 
 if(LINUX)
     if(DEBUG)
@@ -335,7 +336,7 @@ if(LINUX)
     #set(MY_STATIC_LIBS ${PATH_LIBS}/libclip.a ${PATH_LIBS}/libfmt.a ${PATH_LIBS}/libgme.a ${PATH_SFML_LIB}/libsfml-network-s.a ${PATH_SFML_LIB}/libsfml-audio-s.a ${PATH_SFML_LIB}/libsfml-graphics-s.a ${PATH_SFML_LIB}/libsfml-window-s.a ${PATH_SFML_LIB}/libsfml-system-s.a)
     #target_link_libraries(emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 
-    add_executable(emu-jukebox main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${GME_SOURCE_FILES} src/popups/AboutPopup.cpp src/popups/AboutPopup.h)
+    add_executable(emu-jukebox main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${GME_SOURCE_FILES})
     target_link_libraries(emu-jukebox pmgui stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 elseif(WIN32)
     if(MSVC)
