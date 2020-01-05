@@ -9,7 +9,7 @@
 //#include "../gui/forms/Form.h"
 //#include "../gui/controls/TreeList.h"
 //#include "../gui/controls/Selectable.h"
-#include "pmgui.h"
+//#include "pmgui.h"
 #include "../audio/EmuStream.h"
 #include "../audio/EmuFileInfo.h"
 #include "../../content/files_mapper.h"
@@ -21,29 +21,29 @@
 #include "PlaylistForm.h"
 #include "../data/IniFile.h"
 
-#if MSVC
-#include <filesystem>
-    namespace fs = std::filesystem;
-#elif MINGW
-#if __MINGW64_VERSION_MAJOR > 6
-        #include <filesystem>
-        namespace fs = std::filesystem;
-    #else
-        #include <experimental/filesystem>
-        namespace fs = std::experimental::filesystem;
-    #endif
-#elif APPLE
-#include <experimental/filesystem>
-        namespace fs = std::experimental::filesystem;
-#else
-#if __GNUC__ < 8 //GCC major version less than 8
-#include <experimental/filesystem>
-                namespace fs = std::experimental::filesystem;
-#else
-#include <filesystem>
-namespace fs = std::filesystem;
-#endif
-#endif
+//#if MSVC
+//#include <filesystem>
+//    namespace fs = std::filesystem;
+//#elif MINGW
+//#if __MINGW64_VERSION_MAJOR > 6
+//        #include <filesystem>
+//        namespace fs = std::filesystem;
+//    #else
+//        #include <experimental/filesystem>
+//        namespace fs = std::experimental::filesystem;
+//    #endif
+//#elif APPLE
+//#include <experimental/filesystem>
+//        namespace fs = std::experimental::filesystem;
+//#else
+//#if __GNUC__ < 8 //GCC major version less than 8
+//#include <experimental/filesystem>
+//                namespace fs = std::experimental::filesystem;
+//#else
+//#include <filesystem>
+//namespace fs = std::filesystem;
+//#endif
+//#endif
 
 namespace ebox
 {

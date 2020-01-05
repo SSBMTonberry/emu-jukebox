@@ -40,19 +40,20 @@ set(SOURCE_FILES ../src/managers/ProgramManager.cpp ../src/managers/ProgramManag
         ../src/managers/Hotkeys.h ../src/data/JsonFile.cpp ../src/data/JsonFile.h ../src/data/IniFile.cpp ../src/data/IniFile.h ../src/popups/PreferencesPopup.cpp
         ../src/popups/PreferencesPopup.h ../src/data/PlaylistFile.cpp ../src/data/PlaylistFile.h ../src/classes/PlaylistData.cpp ../src/classes/PlaylistData.h
         ../src/audio/EmuFile.cpp ../src/audio/EmuFile.h ../src/popups/EmuFileExporterPopup.cpp ../src/popups/EmuFileExporterPopup.h
-        ../src/misc/EmuThemes.hpp ../src/classes/Font.cpp ../src/classes/Font.h ../src/managers/FontManager.cpp ../src/managers/FontManager.h)
+        ../src/misc/EmuThemes.hpp ../src/classes/Font.cpp ../src/classes/Font.h ../src/managers/FontManager.cpp ../src/managers/FontManager.h
+        ../src/popups/AboutPopup.cpp)
 
 #add_executable(tests_emu-jukebox ${TEST_SOURCE_FILES} ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${IMGUI_SOURCE_FILES} ${FMT_SOURCE_FILES} ${GME_SOURCE_FILES})
 add_executable(tests_emu-jukebox ${TEST_SOURCE_FILES} ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${GME_SOURCE_FILES})
 
 if(LINUX)
-    target_link_libraries(tests_emu-jukebox stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
+    target_link_libraries(tests_emu-jukebox pmgui stdc++fs png ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES} ${SFML_REST})
 elseif(WIN32)
     if(MSVC)
-        target_link_libraries(tests_emu-jukebox ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
+        target_link_libraries(tests_emu-jukebox pmgui ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     else()
-        target_link_libraries(tests_emu-jukebox stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
+        target_link_libraries(tests_emu-jukebox pmgui stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     endif()
 elseif(APPLE)
-    target_link_libraries(tests_emu-jukebox stdc++ -ObjC /usr/local/opt/llvm/lib/libc++experimental.a /usr/local/opt/llvm/lib/libc++fs.a ${MY_STATIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
+    target_link_libraries(tests_emu-jukebox pmgui stdc++ -ObjC /usr/local/opt/llvm/lib/libc++experimental.a /usr/local/opt/llvm/lib/libc++fs.a ${MY_STATIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
 endif()
