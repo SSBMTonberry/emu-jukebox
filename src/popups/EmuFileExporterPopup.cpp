@@ -20,11 +20,17 @@ void ebox::EmuFileExporterPopup::setExportInfo(const fs::path &path, int trackNo
     m_path = path;
     m_trackNo = trackNo;
 
-    std::string suggestedPath = fmt::format("{0}/{1}.ogg", m_path.parent_path().u8string(), m_path.stem().u8string());
-    m_pathText.setValue(suggestedPath);
+
     m_fileDialog.setPath(fs::path(m_path.parent_path().u8string()));
-    m_fileDialog.setFilename(m_path.stem().u8string());
+
     m_file.initialize(m_path.u8string(), m_trackNo);
+
+    std::string suggestedFilename = fmt::format("{0} - {1}", m_file.getInfoFromCurrentTrack()->getGame(),
+                                                m_file.getInfoFromCurrentTrack()->getSong());
+
+    std::string suggestedPath = fmt::format("{0}/{1}.ogg", m_path.parent_path().u8string(), suggestedFilename);//m_path.stem().u8string());
+    m_pathText.setValue(suggestedPath);
+    m_fileDialog.setFilename(suggestedFilename); //(m_path.stem().u8string());
 
     m_useCustomLength.setChecked(false);
     m_customStart.setValues({0});
