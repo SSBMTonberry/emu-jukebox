@@ -52,20 +52,27 @@ void ebox::EmuFileExporterPopup::initialize(const sf::Vector2<int> &size)
     setSize(size);
     setFormFlags(pmgui::FormFlags::NoDocking | pmgui::FormFlags::NoCollapse | pmgui::FormFlags::NoResize);
 
+
     m_pathText.setOnSameLine(true);
     m_pathText.setTextboxFlags(pmgui::TextboxFlags::ReadOnly);
     m_pathText.setHasLabel(false, true);
     m_pathButton.setOnSameLine(true);
 
+    m_sampleRateCombobox.setWidth(size.x / 6);
     m_sampleRateCombobox.setOnSameLine(true);
     m_sampleRateCombobox.setHasLabel(false, true);
     m_sampleRateCombobox.addValueRange({"44100", "32000", "22050", "11025", "8000"});
     m_sampleRateCombobox.setValue(0);
 
+    m_tempo.setWidth(size.x / 6);
+
     m_fileDialog.createFileTypeCollection("SoundFiles", {".ogg", ".FLAC", ".wav"});
     m_fileDialog.setFileTypeCollection("SoundFiles", false);
     //m_fileDialog.setFileTypes(FileTypeMode::SoundFiles);
     m_fileDialog.registerOnFileChosenCallback(std::bind(&EmuFileExporterPopup::onFileChosen, this, std::placeholders::_1));
+
+    m_customStart.setWidth(size.x / 8);
+    m_customStop.setWidth(size.x / 8);
 
     m_customStop.setOnSameLine(true);
 }

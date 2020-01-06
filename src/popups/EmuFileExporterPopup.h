@@ -46,7 +46,7 @@ namespace ebox
             pmgui::FileDialog m_fileDialog { pmgui::DialogType::SaveFile ,"file_exporter_dialog", "Export" };
 
             pmgui::Label m_pathLabel {"path_label", "Path:", "", LabelType::OnlyLabel};
-            pmgui::Textbox m_pathText {"path_textbox", ""};
+            pmgui::Textbox m_pathText {"path_textbox", "", 0, 666}; //Need index to be able to hide label
             pmgui::Button m_pathButton {"path_button", "...", {60, 20}};
             pmgui::Checkbox m_useCustomLength {"use_custom_song_length", "Use custom song length", false};
             pmgui::DragInt m_customStart {"custom_start", "Start (ms)", 0, 500000, 100};
