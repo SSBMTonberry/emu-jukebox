@@ -42,10 +42,8 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 
 - Note: Files loaded from the file explorer ("Files") will run indefinitely. This is intentional, as it's only meant for previewing of songs, and some songs do loop indefinitely. When you however to play songs from a playlist, the next song will automatically be called after end of track. This can as of version 0.8 be turned off via "Preferences". 
 
-## Known issues (as of version 0.8):
-- If you build the `Debug`-version, a crash will happen if you skip time/fast forward on SNES/.spc-file. This is however not a problem when built in `Release`, so building in `Release` is highly recommended for maximum stability. If not otherwise specified, `Release` is used as the default build type.
-- There is a problem that is happening when you use the <Alt>-key, which makes it impossible to open TereeLists (see files). This will be fixed in version 0.9, but the work-around is easy: Just unfocus the application, then refocus it, and you are good to go. (Issue: [#66](https://github.com/SSBMTonberry/emu-jukebox/issues/66))
-- There has been a problem in the past where the application needs to be unfocused then re-focused to be able to use the gui-controls (in these cases it happens on startup). There has been done things to fix this, but I have not been able to verify whether it worked. Please post in issue [#58](https://github.com/SSBMTonberry/emu-jukebox/issues/58) if you experience this problem.
+## Known issues (as of version 0.8.1):
+- There is a problem occuring a few times when you start the application, where it appears "frozen". To fix this issue, you simply just have to unfocus then re-focus the application to be able to use the gui-controls. I've tried a couple of things to fix this, but with no luck. Issue: [#58](https://github.com/SSBMTonberry/emu-jukebox/issues/58) 
 
 
 ## Screenshot (default look):
@@ -67,12 +65,13 @@ Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `
 - `make`
 
 ### Mac (OS X)
-Requires the `llvm`/`clang` version shipped with (XCode 10) (OS X Mojave), or a newer version obtained by `homebrew`. You will need to either put the third party libraries provided in this project in a common `Library` folder, or in the same folder as the .app file is built, to make the program run without problems. 
+Requires the `llvm`/`clang` version obtained by `homebrew` (worked for some years now). If you have MacOS 10.15 (Catalina) with XCode 11, you should also be able to compile this program (untested). You will need to either put the third party libraries provided in this project in a common `Library` folder, or in the same folder as the .app file is built, to make the program run without problems. You can, alternatively, just use the .app file attached to a release (includes all dependencies).
 
 ## Libraries used by Emu-Jukebox
 - [Game_Music_Emu](http://blargg.8bitalley.com/libs/audio.html#Game_Music_Emu) - Used for emulating the sound chip of each retro console.
 - [SFML](https://github.com/SFML/SFML) - For sound streaming, window, clipboard and displaying graphics.
 - [Dear ImGui](https://github.com/ocornut/imgui) - For anything GUI related.
-- [Catch2](https://github.com/catchorg/Catch2/) - For testing
-- [json](https://github.com/nlohmann/json) - For JSON read/write
-- [fmt](https://github.com/fmtlib/fmt) - For formatting
+- [Catch2](https://github.com/catchorg/Catch2/) - For testing.
+- [json](https://github.com/nlohmann/json) - For JSON read/write.
+- [fmt](https://github.com/fmtlib/fmt) - For formatting.
+- [imgui-sfml](https://github.com/eliasdaler/imgui-sfml) - To use ImGui with SFML.
