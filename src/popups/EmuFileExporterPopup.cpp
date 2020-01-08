@@ -74,6 +74,7 @@ void ebox::EmuFileExporterPopup::initialize(const sf::Vector2<int> &size)
 
     m_fileDialog.createFileTypeCollection("SoundFiles", {".ogg", ".FLAC", ".wav"});
     m_fileDialog.setFileTypeCollection("SoundFiles", false);
+    m_fileDialog.setFileType(".ogg");
     //m_fileDialog.setFileTypes(FileTypeMode::SoundFiles);
     m_fileDialog.registerOnFileChosenCallback(std::bind(&EmuFileExporterPopup::onFileChosen, this, std::placeholders::_1));
 
