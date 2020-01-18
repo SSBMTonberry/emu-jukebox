@@ -8,7 +8,7 @@ ebox::IniFile::IniFile() : JsonFile()
 {
     #if APPLE
     m_path = getMacApplicationFolder();
-    #elif
+    #else
     m_path = fs::current_path();
     #endif
 }
