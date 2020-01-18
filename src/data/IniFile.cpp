@@ -6,18 +6,26 @@
 
 ebox::IniFile::IniFile() : JsonFile()
 {
-
+    #if APPLE
+    m_path = getMacApplicationFolder();
+    #elif
+    m_path = fs::current_path();
+    #endif
 }
 
 void ebox::IniFile::load()
 {
     std::string filepath = fmt::format("{0}/{1}", m_path.u8string(), FILENAME);
     fs::path path(filepath);
+    ebox::SystemLog::get()->addInfo(fmt::format("Searching for ebox.ini at: {0}", path.u8string()));
     if(fs::exists(path))
     {
         createByFile(path.u8string());
         parseData();
+        ebox::SystemLog::get()->addSuccess("Settings successfully loaded from ebox.ini! ");
     }
+    else
+        ebox::SystemLog::get()->addInfo("Could not find ebox.ini");
 }
 
 void ebox::IniFile::write()
@@ -221,3 +229,19 @@ void ebox::IniFile::reset()
     setCurrentTheme("dark");
     applyTheme();
 }
+
+#if APPLE
+fs::path ebox::IniFile::getMacApplicationFolder()
+{
+    char buf [PATH_MAX];
+    uint32_t bufsize = PATH_MAX;
+    if(!_NSGetExecutablePath(buf, &bufsize))
+        puts(buf);
+
+    fs::path path {buf};
+    //Using parent_path several times to get to the part of the .app file where we are allowed to
+    //produce a file. It is still inside the .app-file, which makes it possible to move preferences
+    //with the file itself.
+    return path.parent_path().parent_path().parent_path();
+}
+#endif

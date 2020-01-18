@@ -12,6 +12,13 @@
 #include "../misc/EmuThemes.hpp"
 #include "../managers/FontManager.h"
 #include "../misc/Tools.hpp"
+#include "../forms/SystemLog.h"
+
+#if APPLE
+#include <mach-o/dyld.h>
+#endif
+
+#include <climits>
 
 namespace ebox
 {
@@ -56,11 +63,15 @@ namespace ebox
             void applyTheme();
 
         protected:
+            #if APPLE
+            fs::path getMacApplicationFolder();
+            #endif
+
             const std::string FILENAME = "ebox.ini";
 
             void parseData();
 
-            fs::path m_path = "./";
+            fs::path m_path =  "./";
             fs::path m_lastOpenedFolder = "";
             fs::path m_lastOpenedFile = "";
             bool m_lastItemIsFolder = true;
