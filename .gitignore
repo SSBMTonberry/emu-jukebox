@@ -48,3 +48,5 @@ Debug/
 Win32/
 
 \.DS_Store
+
+cmake-build-minsizerel/
