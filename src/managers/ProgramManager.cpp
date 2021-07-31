@@ -53,8 +53,8 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
 
     bool openLastOpenedItemOnStartup = initializeFiles();
 
-    m_events.initialize(&m_window);
-    m_formManager.initialize(&m_window, &m_events, &m_iniFile);
+    //m_events.initialize(&m_window);
+    m_formManager.initialize(&m_window, &m_iniFile); //&m_events, &m_iniFile);
     m_formManager.showImguiDemoWindow(false);
     createMenu();
     registerCallbacks();
@@ -131,8 +131,8 @@ void ebox::ProgramManager::run()
     while (m_window.isOpen())
     {
         m_window.clear(m_iniFile.getBackgroundColor());
-        update();
         handleEvents();
+        update();
         draw();
         handleActions();
         processHotkeys();
@@ -161,8 +161,12 @@ void ebox::ProgramManager::run()
 
 void ebox::ProgramManager::handleEvents()
 {
-    for(auto &event : m_events.getAllEvents())
+    sf::Event event;
+    //for(sf::Event &event : m_events->getAllEvents())
+    //for(auto &event : m_events.getAllEvents())
+    while(m_window.pollEvent(event))
     {
+        ImGui::SFML::ProcessEvent(event);
         switch(event.type)
         {
             case sf::Event::EventType::GainedFocus:
@@ -175,6 +179,10 @@ void ebox::ProgramManager::handleEvents()
                 Hotkeys::get()->setActive(false);
                 break;
 
+            case sf::Event::Closed:
+                m_window.close();
+                break;
+
             default:
                 break;
         }
@@ -183,8 +191,8 @@ void ebox::ProgramManager::handleEvents()
 
 void ebox::ProgramManager::update()
 {
-    m_events.update();
-    m_formManager.update();
+    //m_events.update();
+    m_formManager.update(); //Handles ImGui-SFML update!
     handleClipboard();
     updateViewMenu();
 }

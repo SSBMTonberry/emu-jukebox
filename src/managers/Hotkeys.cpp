@@ -82,24 +82,24 @@ void ebox::Hotkeys::resetStates()
     m_filelistHotkeyPressed[FilelistHotkey::DeleteItem] = false;
 }
 
-void ebox::Hotkeys::setEventManager(pmgui::EventManager *eventManager)
-{
-    m_events = eventManager;
-}
+//void ebox::Hotkeys::setEventManager(pmgui::EventManager *eventManager)
+//{
+//    m_events = eventManager;
+//}
 
-float ebox::Hotkeys::getMouseWheelScroll()
-{
-    if(!m_isActive)
-        return 0.f;
-
-    for(auto const &event : m_events->getAllEvents())
-    {
-        if(event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
-            return event.mouseWheelScroll.delta;
-    }
-
-    return 0.f;
-}
+//float ebox::Hotkeys::getMouseWheelScroll()
+//{
+//    if(!m_isActive)
+//        return 0.f;
+//
+//    for(auto const &event : m_events->getAllEvents())
+//    {
+//        if(event.type == sf::Event::MouseWheelScrolled && event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+//            return event.mouseWheelScroll.delta;
+//    }
+//
+//    return 0.f;
+//}
 
 sf::Vector2i ebox::Hotkeys::getMousePosition()
 {
