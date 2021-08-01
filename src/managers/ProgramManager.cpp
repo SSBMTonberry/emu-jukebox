@@ -12,14 +12,24 @@ ebox::ProgramManager::ProgramManager(int argc, char **argv, char** envp)
     initializeArgs(argc, argv, envp);
 }
 
-void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector2<uint32_t> &resolution, sf::Uint32 style,
+void ebox::ProgramManager::initialize(const std::string &title, sf::Uint32 style,
                                       const sf::ContextSettings &settings)
 {
+
+    sf::Vector2<uint32_t> resolution = getResolution();
+
     m_window.create(sf::VideoMode(resolution.x, resolution.y), title, style, settings);
-    m_window.setView(sf::View(sf::FloatRect(0.f, 0.f, resolution.x, resolution.y)));
+    m_window.setView(sf::View(sf::FloatRect(0.f, 0.f, (float)resolution.x, (float)resolution.y)));
     m_window.setFramerateLimit(60);
     m_window.setVerticalSyncEnabled(true);
     m_window.resetGLStates(); // call it if you only process ImGui. Otherwise not needed.
+
+    sf::Vector2i dialogSize = {(int)resolution.x / 3, (int)resolution.y / 3};
+    sf::Vector2i dialogPosition = {((int)resolution.x / 2) - (dialogSize.x / 2), ((int)resolution.y / 2) - (dialogSize.y / 2)};
+    m_fileDialogFile.initialize(dialogPosition, dialogSize);
+    m_fileDialogFolder.initialize(dialogPosition, dialogSize);
+    m_fileDialogSavePlaylist.initialize(dialogPosition, dialogSize);
+    m_fileDialogOpenPlaylist.initialize(dialogPosition, dialogSize);
 
     m_fileDialogFile.assignEnvironmentMap(&m_environmentMap);
     m_fileDialogFile.assignDefaults();
@@ -83,6 +93,45 @@ void ebox::ProgramManager::initialize(const std::string &title, const sf::Vector
                 onFileChosen(m_args[1]);
         }
     }
+}
+
+sf::Vector2<uint32_t> ebox::ProgramManager::getResolution()
+{
+    sf::VideoMode mode = sf::VideoMode::getDesktopMode(); //This will on linux give total resolution if two screens.
+
+    std::vector<float> supportedRatios;
+    supportedRatios.push_back(16.f / 9);
+    supportedRatios.push_back(16.f / 10);
+    supportedRatios.push_back(21.f / 9);
+
+    float currentRatio = (float)mode.width / (float)mode.height;
+
+    bool foundRatio = false;
+    for(float f : supportedRatios)
+    {
+        if(Math::Equal(f, currentRatio))
+            foundRatio = true;
+    }
+
+    if(!foundRatio)
+    {
+        const std::vector<sf::VideoMode>& modes = sf::VideoMode::getFullscreenModes();
+
+        for(const auto &m : modes)
+        {
+            currentRatio = (float)m.width / (float)m.height;
+            for(float f : supportedRatios)
+            {
+                if(Math::Equal(f, currentRatio))
+                {
+                    sf::Vector2<uint32_t> resolution {m.width, m.height};
+                    return resolution;
+                }
+            }
+        }
+    }
+
+    return {mode.width, mode.height};
 }
 
 void ebox::ProgramManager::initializeArgs(int argc, char **argv, char **envp)
@@ -512,3 +561,5 @@ void ebox::ProgramManager::applyIniFileToProgram()
     m_fileExporter.setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
     SystemLog::get()->setScaleFactor(m_iniFile.getFontManager()->getFontSizeFactor());
 }
+
+

@@ -105,7 +105,7 @@ set(SOURCE_FILES src/managers/ProgramManager.cpp src/managers/ProgramManager.h s
                   src/popups/PreferencesPopup.h src/data/PlaylistFile.cpp src/data/PlaylistFile.h src/classes/PlaylistData.cpp src/classes/PlaylistData.h
                   src/audio/EmuFile.cpp src/audio/EmuFile.h src/popups/EmuFileExporterPopup.cpp src/popups/EmuFileExporterPopup.h
                   src/misc/EmuThemes.hpp src/classes/Font.cpp src/classes/Font.h src/managers/FontManager.cpp src/managers/FontManager.h
-                  src/popups/AboutPopup.cpp src/popups/AboutPopup.h)
+                  src/popups/AboutPopup.cpp src/popups/AboutPopup.h src/misc/Math.hpp)
 
 if(LINUX)
     set(MY_STATIC_LIBS sfml-network sfml-audio sfml-graphics sfml-window sfml-system)
