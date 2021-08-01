@@ -21,30 +21,6 @@
 #include "PlaylistForm.h"
 #include "../data/IniFile.h"
 
-//#if MSVC
-//#include <filesystem>
-//    namespace fs = std::filesystem;
-//#elif MINGW
-//#if __MINGW64_VERSION_MAJOR > 6
-//        #include <filesystem>
-//        namespace fs = std::filesystem;
-//    #else
-//        #include <experimental/filesystem>
-//        namespace fs = std::experimental::filesystem;
-//    #endif
-//#elif APPLE
-//#include <experimental/filesystem>
-//        namespace fs = std::experimental::filesystem;
-//#else
-//#if __GNUC__ < 8 //GCC major version less than 8
-//#include <experimental/filesystem>
-//                namespace fs = std::experimental::filesystem;
-//#else
-//#include <filesystem>
-//namespace fs = std::filesystem;
-//#endif
-//#endif
-
 namespace ebox
 {
     class FilelistForm : public pmgui::Form
@@ -74,6 +50,7 @@ namespace ebox
             void addTracksToFileList(const std::string &id, const EmuFileInfo &info);
             void addToPlaylist(pmgui::Selectable* item);
             void removeAllTracks();
+            void addAllTracksToPlaylist();
 
             bool onRightClickedParentNode(pmgui::TreeList *sender);
             void onChosenParentRightClickContextItems(pmgui::TreeList * owner, pmgui::MenuItem *sender);
@@ -105,6 +82,7 @@ namespace ebox
             IniFile *m_iniFile;
             pmgui::Textbox m_filterTextbox {"filter_textbox", "Filter"};
             pmgui::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
+            pmgui::ImageButton m_addAllButton {"add_all_button", files_mapper::gui::actions::_QUICKLIST_PNG, files_mapper::gui::actions::_QUICKLIST_PNG_SIZE, sf::Vector2i(30, 30)};
             pmgui::ImageButton m_removeAllButton {"remove_all_button", files_mapper::gui::debugger::_KILLPROCESS_PNG, files_mapper::gui::debugger::_KILLPROCESS_PNG_SIZE, sf::Vector2i(30, 30)};
             //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;

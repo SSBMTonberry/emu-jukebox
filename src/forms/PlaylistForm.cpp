@@ -168,8 +168,10 @@ void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
     std::string id = getId(m_playlist.size()-1);
     m_playlist[m_playlist.size()-1].first.setId(id);
 
-    auto *item = m_filemapping.add(id, fmt::format("{0} - {1}", fileInfo.getGameName(), fmt::format("{0} ({1})", fileInfo.getTracks()[trackNumber],
-                                       tools::string::GetMillisecondsAsTimeString(fileInfo.getTrackPlayLengths()[trackNumber], false))));
+    std::string timeStr = tools::string::GetMillisecondsAsTimeString(fileInfo.getTrackPlayLengths()[trackNumber], false);
+    std::string trackInfo = fmt::format("{0} ({1})", fileInfo.getTracks()[trackNumber], timeStr);
+
+    auto *item = m_filemapping.add(id, fmt::format("{0} - {1}", fileInfo.getGameName(), trackInfo));
 
     //item->registerOnFocusedCallback(std::bind(&PlaylistForm::onFocusedChildNode, this, std::placeholders::_1));
     item->registerOnChosenCallback(std::bind(&PlaylistForm::onChosenChildNode, this, std::placeholders::_1));
