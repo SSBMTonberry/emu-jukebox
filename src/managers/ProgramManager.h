@@ -23,16 +23,20 @@
 #include "../popups/EmuFileExporterPopup.h"
 #include "../popups/AboutPopup.h"
 
+#include "../misc/Math.hpp"
+
 namespace ebox
 {
     class ProgramManager
     {
         public:
             ProgramManager(int argc, char **argv, char** envp);
-            void initialize(const std::string &title, const sf::Vector2<uint32_t> &resolution, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings &settings = sf::ContextSettings());
+            void initialize(const std::string &title, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings &settings = sf::ContextSettings());
             void run();
 
         private:
+            sf::Vector2<uint32_t> getResolution();
+
             void initializeArgs(int argc, char **argv, char** envp);
             bool initializeFiles();
 
@@ -104,10 +108,10 @@ namespace ebox
             pmgui::Image m_imgAbout {"img_about", files_mapper::gui::general::_BALLOONINFORMATION_PNG, files_mapper::gui::general::_BALLOONINFORMATION_PNG_SIZE};
 
             //File dialogs
-            pmgui::FileDialog m_fileDialogFile { pmgui::DialogType::OpenFile, "main_file_dialog_file", "Choose a file"};
-            pmgui::FileDialog m_fileDialogFolder { pmgui::DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder" };
-            pmgui::FileDialog m_fileDialogSavePlaylist { pmgui::DialogType::SaveFile, "main_file_dialog_save_playlist", "Save playlist"};
-            pmgui::FileDialog m_fileDialogOpenPlaylist { pmgui::DialogType::OpenFile, "main_file_dialog_open_playlist", "Open playlist"};
+            pmgui::FileDialog m_fileDialogFile { pmgui::DialogType::OpenFile, "main_file_dialog_file", "Choose a file", false};
+            pmgui::FileDialog m_fileDialogFolder { pmgui::DialogType::OpenDirectory, "main_file_dialog_folder", "Choose a folder", false};
+            pmgui::FileDialog m_fileDialogSavePlaylist { pmgui::DialogType::SaveFile, "main_file_dialog_save_playlist", "Save playlist", false};
+            pmgui::FileDialog m_fileDialogOpenPlaylist { pmgui::DialogType::OpenFile, "main_file_dialog_open_playlist", "Open playlist", false};
 
             PreferencesPopup m_preferences {"preferences_popup", "Preferences"};
             EmuFileExporterPopup m_fileExporter {"file_exporter_popup", "Export to audio file"};
@@ -116,7 +120,7 @@ namespace ebox
             bool m_firstRun = true; //Used to make stuff happen on first run
             //bool m_itemChosenOnStartup = false;
             sf::RenderWindow m_window;
-            pmgui::EventManager m_events;
+            //pmgui::EventManager m_events;
             FormManager m_formManager;
             ClipboardManager m_clipboard;
             std::vector<std::string> m_args;

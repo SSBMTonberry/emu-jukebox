@@ -71,7 +71,7 @@ namespace ebox
                 return &manager;
             }
 
-            void setEventManager(pmgui::EventManager *eventManager);
+            //void setEventManager(pmgui::EventManager *eventManager);
             sf::Vector2i getMousePosition();
 
             bool isActive() const;
@@ -94,7 +94,7 @@ namespace ebox
             bool isMousePressed(sf::Mouse::Button button = sf::Mouse::Button::Left);
             bool isMouseDown(sf::Mouse::Button button = sf::Mouse::Button::Left);
 
-            float getMouseWheelScroll();
+            //float getMouseWheelScroll();
 
         protected:
             void resetStates();
@@ -102,7 +102,7 @@ namespace ebox
             Hotkeys();
             void generateDefaultHotkeys();
 
-            pmgui::EventManager *m_events;
+            //pmgui::EventManager *m_events;
 
             bool m_isActive = true;
 

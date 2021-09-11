@@ -30,7 +30,7 @@ namespace ebox
     {
         public:
             FormManager();
-            void initialize(sf::RenderWindow *window, pmgui::EventManager * events, IniFile *iniFile);
+            void initialize(sf::RenderWindow *window, IniFile *iniFile); //pmgui::EventManager * events, IniFile *iniFile);
 
             void showImguiDemoWindow(bool showImguiDemoWindow);
 
@@ -69,7 +69,7 @@ namespace ebox
 
             IniFile *m_iniFile;
             sf::RenderWindow *m_window;
-            pmgui::EventManager *m_events;
+            //pmgui::EventManager *m_events;
             bool m_showImguiDemoWindow;
             ImGuiStyle *m_style = nullptr;
             ImGuiIO *m_io = nullptr;

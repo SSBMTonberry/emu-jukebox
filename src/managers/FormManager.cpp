@@ -9,13 +9,13 @@ ebox::FormManager::FormManager()
 
 }
 
-void ebox::FormManager::initialize(sf::RenderWindow *window, pmgui::EventManager * events, IniFile *iniFile)
+void ebox::FormManager::initialize(sf::RenderWindow *window, IniFile *iniFile)//pmgui::EventManager * events, IniFile *iniFile)
 {
     ImGui::CreateContext(); //IMGUI 1.60
     m_window = window;
     m_style = &ImGui::GetStyle();
     m_io = &ImGui::GetIO();
-    m_events = events;
+    //m_events = events;
     m_iniFile = iniFile;
 
     ImGui::SFML::Init(*m_window);
@@ -48,14 +48,16 @@ void ebox::FormManager::initializeForms()
 
 void ebox::FormManager::update()
 {
-    for(sf::Event &event : m_events->getAllEvents())
-    {
-        ImGui::SFML::ProcessEvent(event);
-        if (event.type == sf::Event::Closed)
-        {
-            m_window->close();
-        }
-    }
+    //sf::Event event;
+    ////for(sf::Event &event : m_events->getAllEvents())
+    //while(m_window->pollEvent(event))
+    //{
+    //    ImGui::SFML::ProcessEvent(event);
+    //    if (event.type == sf::Event::Closed)
+    //    {
+    //        m_window->close();
+    //    }
+    //}
     ImGui::SFML::Update(*m_window, m_deltaClock.restart());
 }
 

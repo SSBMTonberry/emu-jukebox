@@ -72,7 +72,7 @@ namespace ebox
             std::string m_filename;
             std::string m_gameName;
             std::string m_extension; //.nsf/.nsfe/.spc etc...
-            int m_numberOfTracks;
+            int m_numberOfTracks {0};
             bool m_isValid = false;
             bool m_emuDataLoaded = false;
 
