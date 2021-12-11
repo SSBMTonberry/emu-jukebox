@@ -77,6 +77,11 @@ namespace ebox
 
             std::vector<std::string> m_eraseItems;
 
+            bool m_isAddingTracksToPlaylist = false;
+            size_t m_filesLoaded = 0;
+            size_t m_totalTracks = 0;
+            Timer m_fileLoadTimer;
+
             AudioPlayerForm *m_audioPlayer;
             PlaylistForm *m_playlist;
             IniFile *m_iniFile;
@@ -84,6 +89,7 @@ namespace ebox
             pmgui::Image audioImg = {"audio_img", files_mapper::gui::filetypes::_AUDIO_PNG, files_mapper::gui::filetypes::_AUDIO_PNG_SIZE, false};
             pmgui::ImageButton m_addAllButton {"add_all_button", files_mapper::gui::actions::_QUICKLIST_PNG, files_mapper::gui::actions::_QUICKLIST_PNG_SIZE, sf::Vector2i(30, 30)};
             pmgui::ImageButton m_removeAllButton {"remove_all_button", files_mapper::gui::debugger::_KILLPROCESS_PNG, files_mapper::gui::debugger::_KILLPROCESS_PNG_SIZE, sf::Vector2i(30, 30)};
+            pmgui::Progressbar m_progressbar {"add_all_tracks_progress", 0.f, 100.f,"{0}%/{1}%"};
             //TreeList m_filelist {"filelist", "Files"};
             //std::vector<EmuStream> m_files;
     };
