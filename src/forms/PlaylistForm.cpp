@@ -44,7 +44,11 @@ void ebox::PlaylistForm::processPlaylistButtonPanel()
     size_t spacingLength = getCurrentWindowSize().x - (numberOfButtons * 35);
     m_removeAllButton.setSpacing(spacingLength);
     if(m_removeAllButton.process())
+    {
         removeAllItems();
+        m_filemapping.setCurrentPage(0);
+
+    }
     ImGui::EndChild();
     ImGui::Separator();
 }
