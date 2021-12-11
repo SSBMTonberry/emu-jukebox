@@ -119,6 +119,8 @@ void ebox::PlaylistForm::processHotkeys()
 void ebox::PlaylistForm::initialize()
 {
     m_filemapping.setHasParentNode(false);
+    m_filemapping.setPagingSize(3000);
+
     m_shuffleButton.setOnSameLine(true);
     m_shuffleButton.setTooltip(std::make_optional<pmgui::Tooltip>("Shuffle (<Alt>+S)"));
     m_repeatButton.setOnSameLine(true);

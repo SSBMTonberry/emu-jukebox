@@ -53,15 +53,29 @@ bool ebox::FilelistForm::onDraw()
     int spacing = getCurrentWindowSize().x - m_filterTextbox.getControlSize().x - (45 * scaleFactor) - buttonSpace;
 
     //m_addAllButton.setSpacing(spacing); //(40); //getCurrentWindowSize().x);
-    if(m_addAllButton.process())
-        addAllTracksToPlaylist();
+    if(m_addAllButton.process() && !m_isAddingTracksToPlaylist)
+    {
+        m_isAddingTracksToPlaylist = true;
+        m_progressbar.setCurrentProgress(0.f);
+        m_filesLoaded = 0;
+        m_totalTracks = 0;
+        m_fileLoadTimer.reset();
+        m_fileLoadTimer.start();
+    }
 
     m_removeAllButton.setSpacing(spacing); //(40); //getCurrentWindowSize().x);
     if(m_removeAllButton.process())
         removeAllTracks();
 
     ImGui::EndChild();
+
     ImGui::Separator();
+    if(m_isAddingTracksToPlaylist)
+    {
+        addAllTracksToPlaylist();
+        m_progressbar.process();
+        ImGui::Separator();
+    }
 
     ImGui::BeginChild("filelist_panel", {-1, -1}, false, 0);
     for (auto &[id, value] : m_filelist)
@@ -82,6 +96,7 @@ void ebox::FilelistForm::initialize()
     m_addAllButton.setTooltip(pmgui::Tooltip("Add all tracks to playlist"));
     m_removeAllButton.setOnSameLine(true);
     m_removeAllButton.setTooltip(std::make_optional<pmgui::Tooltip>("Remove all"));
+    m_progressbar.setCurrentProgress(10.f);
     //m_filelist.setHasParentNode(false);
 }
 
@@ -357,34 +372,47 @@ void ebox::FilelistForm::removeAllTracks()
 void ebox::FilelistForm::addAllTracksToPlaylist()
 {
     size_t totalFiles = m_fileMap.size();
-    size_t filesLoaded = 0;
-    size_t totalTracks = 0;
-    const size_t MAX_FILES = 50000;
-    if(totalFiles > MAX_FILES)
-    {
-        std::string warning = fmt::format("A total of {0} files were found! For performance reasons only the first {1} files will be processed!", totalFiles, MAX_FILES);
-        SystemLog::get()->addWarning(warning);
-    }
+//    size_t filesLoaded = 0;
+//    size_t totalTracks = 0;
+//    const size_t MAX_FILES = 50000;
+//    if(totalFiles > MAX_FILES)
+//    {
+//        std::string warning = fmt::format("A total of {0} files were found! For performance reasons only the first {1} files will be processed!", totalFiles, MAX_FILES);
+//        SystemLog::get()->addWarning(warning);
+//    }
 
-    Timer timer;
-    timer.start();
-    for(auto &[id, emuFile] : m_fileMap)
+//    Timer timer;
+//    timer.start();
+    int currentlyLoadedFiles = 0;
+    int fileBatchSize = 100;
+    //for(auto &[id, emuFile] : m_fileMap)
+    for(int i = m_filesLoaded; i < totalFiles; ++i)
     {
+        auto it = std::next(m_fileMap.begin(), i);
+        auto &emuFile = it->second;
         emuFile.loadEmuDataIfNotLoaded();
         size_t tracks = emuFile.getTracks().size();
         for(int i = 0; i < tracks; ++i)
         {
             m_playlist->add(emuFile, i);
-            ++totalTracks;
+            ++m_totalTracks;
         }
-        ++filesLoaded;
-
-        if(filesLoaded >= MAX_FILES)
+        ++m_filesLoaded;
+        ++currentlyLoadedFiles;
+        if(currentlyLoadedFiles >= fileBatchSize)
             break;
     }
-    timer.end();
-    std::string msg = fmt::format("Added a total of {0} tracks from {1} files (of {2}) to playlist!", totalTracks, filesLoaded, totalFiles);
-    SystemLog::get()->addInfo(timer.getTimeElapsedMessage(msg));
+
+    float progress = ((float)m_filesLoaded / (float)totalFiles) * 100;
+    m_progressbar.setCurrentProgress(progress);
+
+    if(m_filesLoaded >= totalFiles)
+    {
+        m_isAddingTracksToPlaylist = false;
+        m_fileLoadTimer.end();
+        std::string msg = fmt::format("Added a total of {0} tracks from {1} files (of {2}) to playlist!", m_totalTracks, m_filesLoaded, totalFiles);
+        SystemLog::get()->addInfo(m_fileLoadTimer.getTimeElapsedMessage(msg));
+    }
 }
 
 void ebox::FilelistForm::setIniFile(IniFile *iniFile)
