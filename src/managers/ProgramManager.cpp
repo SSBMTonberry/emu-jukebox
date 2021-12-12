@@ -493,9 +493,12 @@ void ebox::ProgramManager::onSavePlaylist(const fs::path& path)//(const std::str
     file.setName(data["name"].get<std::string>());
     json files = data["files"];
     int i = 0;
+
     for(auto const &item : files)
     {
-        file.add(fs::path(item["path"].get<std::string>()), item["name"].get<std::string>(), item["track_no"].get<int>());
+        auto rel = fs::relative(fs::path(item["path"].get<std::string>()), path.parent_path());
+        //file.add(fs::path(item["path"].get<std::string>()), item["name"].get<std::string>(), item["track_no"].get<int>());
+        file.add(rel, item["name"].get<std::string>(), item["track_no"].get<int>());
         ++i;
     }
     file.write();

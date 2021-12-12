@@ -5,7 +5,7 @@
 #include "JsonFile.h"
 
 
-void ebox::JsonFile::   createByFile(const std::string &path)
+void ebox::JsonFile::createByFile(const std::string &path)
 {
     m_data.clear();
     std::ifstream i(path);
