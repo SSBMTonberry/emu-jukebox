@@ -372,25 +372,18 @@ void ebox::FilelistForm::removeAllTracks()
 void ebox::FilelistForm::addAllTracksToPlaylist()
 {
     size_t totalFiles = m_fileMap.size();
-//    size_t filesLoaded = 0;
-//    size_t totalTracks = 0;
-//    const size_t MAX_FILES = 50000;
-//    if(totalFiles > MAX_FILES)
-//    {
-//        std::string warning = fmt::format("A total of {0} files were found! For performance reasons only the first {1} files will be processed!", totalFiles, MAX_FILES);
-//        SystemLog::get()->addWarning(warning);
-//    }
-
-//    Timer timer;
-//    timer.start();
     int currentlyLoadedFiles = 0;
     int fileBatchSize = 100;
     //for(auto &[id, emuFile] : m_fileMap)
     for(int i = m_filesLoaded; i < totalFiles; ++i)
     {
         auto it = std::next(m_fileMap.begin(), i);
+        auto &id = it->first;
         auto &emuFile = it->second;
-        emuFile.loadEmuDataIfNotLoaded();
+
+        if(emuFile.loadEmuDataIfNotLoaded())
+            addTracksToFileList(id, m_fileMap[id]);
+
         size_t tracks = emuFile.getTracks().size();
         for(int i = 0; i < tracks; ++i)
         {
