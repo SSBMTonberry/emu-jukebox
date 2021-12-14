@@ -17,9 +17,9 @@ namespace ebox
     {
         public:
             EmuTrackInfo();
-            EmuTrackInfo(Music_Emu *emu, int trackNumber);
+            EmuTrackInfo(Music_Emu *emu, int trackNumber, const std::string &filename);
 
-            bool load(Music_Emu *emu, int trackNumber);
+            bool load(Music_Emu *emu, int trackNumber, const std::string &filename);
 
             void setTempo(float tempo);
             void setTrackNumber(int trackNumber);
@@ -35,22 +35,23 @@ namespace ebox
             void setIntroLength(int introLength);
             void setLoopLength(int loopLength);
 
-            float getTempo() const;
-            int getTrackNumber() const;
+            [[nodiscard]] float getTempo() const;
+            [[nodiscard]] int getTrackNumber() const;
             //int getNumberOfTracks() const;
-            const std::string &getSystem() const;
-            const std::string &getGame() const;
-            const std::string &getAuthor() const;
-            const std::string &getCopyright() const;
-            const std::string &getComment() const;
-            const std::string &getDumper() const;
-            const std::string &getSong() const;
-            int getLength() const;
-            int getPlayLength() const;
-            int getIntroLength() const;
-            int getLoopLength() const;
+            [[nodiscard]] const std::string &getSystem() const;
+            [[nodiscard]] const std::string &getGame() const;
+            [[nodiscard]] const std::string &getAuthor() const;
+            [[nodiscard]] const std::string &getCopyright() const;
+            [[nodiscard]] const std::string &getComment() const;
+            [[nodiscard]] const std::string &getDumper() const;
+            [[nodiscard]] const std::string &getSong() const;
+            [[nodiscard]] const std::string &getFilename() const;
 
-            const std::string &getErrorText() const;
+            [[nodiscard]] int getLength() const;
+            [[nodiscard]] int getPlayLength() const;
+            [[nodiscard]] int getIntroLength() const;
+            [[nodiscard]] int getLoopLength() const;
+            [[nodiscard]] const std::string &getErrorText() const;
 
         private:
             Music_Emu *m_emu;
@@ -65,6 +66,7 @@ namespace ebox
             std::string m_dumper;
             std::string m_song;
             std::string m_errorText;
+            std::string m_filename;
             float m_tempo = 1.f;
             int m_length = -1;
             int m_introLength = -1;

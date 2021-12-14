@@ -178,6 +178,10 @@ void ebox::PlaylistForm::add(const ebox::EmuFileInfo &fileInfo, int trackNumber)
     std::string trackInfo = fmt::format("{0} ({1})", fileInfo.getTracks()[trackNumber], timeStr);
 
     auto *item = m_filemapping.add(id, fmt::format("{0} - {1}", fileInfo.getGameName(), trackInfo));
+    
+    //RBP 14.12.2021 - Tooltips doesn't seem to work with this kind of Control, but would be a nice to have in the future
+    //if(!fileInfo.getFilename().empty())
+    //    item->setTooltip(std::make_optional<Tooltip>(fileInfo.getFilename()));
 
     //item->registerOnFocusedCallback(std::bind(&PlaylistForm::onFocusedChildNode, this, std::placeholders::_1));
     item->registerOnChosenCallback(std::bind(&PlaylistForm::onChosenChildNode, this, std::placeholders::_1));

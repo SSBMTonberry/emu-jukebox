@@ -83,7 +83,7 @@ bool ebox::EmuFile::initializeEmu(float tempo)
     for(int i = 0; i < m_numberOfTracks; ++i)
     {
         m_tracks.emplace_back();
-        bool success = m_tracks[i].load(m_emu, i);
+        bool success = m_tracks[i].load(m_emu, i, m_filename);
         if(!success)
             SystemLog::get()->addError(fmt::format("Error loading track: {0}: {1}", i, m_tracks[i].getErrorText()));
     }

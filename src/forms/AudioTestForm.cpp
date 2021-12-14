@@ -166,7 +166,7 @@ void ebox::AudioTestForm::drawAudioButtons()
         fs::path path = m_loadFromFileText.getValue();
         if(fs::exists(path) && fs::is_regular_file(path))
         {
-            m_stream.initializeFile(path.string(), m_stream.getInfoFromCurrentTrack().getTrackNumber());
+            m_stream.initializeFile(path, m_stream.getInfoFromCurrentTrack().getTrackNumber());
         }
     }
     ImGui::EndChild();

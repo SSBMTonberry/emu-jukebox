@@ -33,7 +33,7 @@ namespace ebox
             };
 
             EmuStream();
-            EmuStream(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
+            EmuStream(const fs::path &path, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             EmuStream(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100);
             EmuStream(const EmuStream &other);
             EmuStream(EmuStream &&other); //Move contructor
@@ -41,7 +41,7 @@ namespace ebox
 
             EmuStream& operator=(const EmuStream &other);
 
-            void initializeFile(const std::string &filename, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100, bool printAsDebug = false);
+            void initializeFile(const fs::path &path, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100, bool printAsDebug = false);
             void initializeMemory(void *data, size_t size, int track = 0, uint32_t channelCount = 2, uint32_t sampleRate = 44100, bool printAsDebug = false);
 
             void muteChannel(int channelNo, bool mute);
@@ -71,6 +71,9 @@ namespace ebox
 
             Mode getLoadMode() const;
             const std::string &getFilename() const;
+
+            const fs::path &getPath() const;
+
             int getTrack() const;
             uint32_t getChannelCount() const;
             uint32_t getEmuSampleRate() const;
@@ -112,7 +115,8 @@ namespace ebox
             std::string m_errorText;
 
             std::string m_id;
-            std::string m_filename; //if loaded by file
+            std::string m_filename; //if loaded by file - Just the filename
+            fs::path    m_path; //if loaded by file
             void *m_data; //If loaded by memory
             size_t m_dataSize; //If loaded by memory
 

@@ -234,6 +234,7 @@ void ebox::AudioPlayerForm::drawAudioInfo()
     float scaleFactor = m_iniFile->getFontManager()->getFontSizeFactor();
     ImGui::BeginChild("audio_info", {-1, 250 * scaleFactor}, true, 0);
     ImGui::BeginChild("audio_info_sub1", {(static_cast<float>(getCurrentWindowSize().x) / 2), -1}, true, 0);
+    ImGui::Text(fmt::format("Filename: {0}", m_stream->getInfoFromCurrentTrack().getFilename()).c_str());
     ImGui::Text(fmt::format("Track: {0} of {1}", m_stream->getInfoFromCurrentTrack().getTrackNumber() + 1, m_stream->getNumberOfTracks()).c_str());
     ImGui::Text(fmt::format("Song: {0}", m_stream->getInfoFromCurrentTrack().getSong()).c_str());
     ImGui::Text(fmt::format("Intro length: {0}", m_stream->getInfoFromCurrentTrack().getIntroLength()).c_str());

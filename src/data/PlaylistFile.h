@@ -31,6 +31,7 @@ namespace ebox
             void parseData();
 
             fs::path m_path;
+            bool m_isRelative = true;
             std::string m_name;
             std::vector<PlaylistData> m_playlistData;
     };

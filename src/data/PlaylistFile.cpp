@@ -20,6 +20,7 @@ void ebox::PlaylistFile::load()
 
 void ebox::PlaylistFile::write()
 {
+    m_data["is_relative"] = true;
     m_data["name"] = m_name;
     std::vector<json> files;
     for(auto const & data : m_playlistData)
@@ -33,12 +34,23 @@ void ebox::PlaylistFile::write()
 void ebox::PlaylistFile::parseData()
 {
     if(m_data.count("name") > 0) m_name = m_data["name"].get<std::string>();
+    if(m_data.count("is_relative") > 0)
+        m_isRelative = m_data["is_relative"].get<bool>();
+    else
+        m_isRelative = false; //Support old files
+
     if(m_data.count("files") > 0)
     {
         json files = m_data["files"];
         for(auto const & file : files)
         {
-            PlaylistData data { fs::path(file["path"].get<std::string>()), file["name"].get<std::string>(), file["track_no"].get<int>(), false };
+
+            PlaylistData data;
+            if(!m_isRelative)
+                data = { fs::path(file["path"].get<std::string>()), file["name"].get<std::string>(), file["track_no"].get<int>(), false };
+            else
+                data = { m_path.parent_path() / fs::path(file["path"].get<std::string>()), file["name"].get<std::string>(), file["track_no"].get<int>(), false };
+
             if(data.loadEmuFile())
             {
                 m_playlistData.push_back(data);
