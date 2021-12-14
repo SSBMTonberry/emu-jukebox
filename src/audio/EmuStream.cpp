@@ -26,7 +26,7 @@ void ebox::EmuStream::move(ebox::EmuStream &&other)
 {
     if(other.getLoadMode() == Mode::File)
     {
-        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
+        initializeFile(other.getPath(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
     }
     else if(other.getLoadMode() == Mode::Memory)
     {
@@ -38,7 +38,7 @@ void ebox::EmuStream::copy(const EmuStream &other)
 {
     if(other.getLoadMode() == Mode::File)
     {
-        initializeFile(other.getFilename(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
+        initializeFile(other.getPath(), other.getTrack(), other.getChannelCount(), other.getEmuSampleRate(), true);
     }
     else if(other.getLoadMode() == Mode::Memory)
     {
@@ -60,9 +60,9 @@ ebox::EmuStream &ebox::EmuStream::operator=(const ebox::EmuStream &other)
  * @param sampleRate Sample rate. 44100 is default and is the best quality. Anything below will take less space, but will
    also get worse quality on the sound.
  */
-ebox::EmuStream::EmuStream(const std::string &filename, int track, uint32_t channelCount, uint32_t sampleRate)
+ebox::EmuStream::EmuStream(const fs::path &path, int track, uint32_t channelCount, uint32_t sampleRate)
 {
-    initializeFile(filename, track, channelCount, sampleRate);
+    initializeFile(path, track, channelCount, sampleRate);
 }
 
 
@@ -71,12 +71,13 @@ ebox::EmuStream::EmuStream(void *data, size_t size, int track, uint32_t channelC
     initializeMemory(data, size, track, channelCount, sampleRate);
 }
 
-void ebox::EmuStream::initializeFile(const std::string &filename, int track, uint32_t channelCount, uint32_t sampleRate, bool printAsDebug)
+void ebox::EmuStream::initializeFile(const fs::path &path, int track, uint32_t channelCount, uint32_t sampleRate, bool printAsDebug)
 {
     m_loadMode = Mode::File;
     m_channelCount = channelCount;
     m_sampleRate = sampleRate;
-    m_filename = filename;
+    m_filename = path.filename();
+    m_path = path;
     m_track = track;
 
     // Resize the internal buffer so that it can contain 1/7 second of audio samples
@@ -202,7 +203,7 @@ bool ebox::EmuStream::initializeEmu()
 
     if(m_loadMode == Mode::File)
     {
-        if(handleError( gme_identify_file( m_filename.c_str(), &file_type ) )) return false;
+        if(handleError( gme_identify_file( m_path.u8string().c_str(), &file_type ) )) return false;
     }
     else if(m_loadMode == Mode::Memory)
     {
@@ -223,7 +224,7 @@ bool ebox::EmuStream::initializeEmu()
 
     if(m_loadMode == Mode::File)
     {
-        if(handleError(m_emu->load_file(m_filename.c_str()))) return false;
+        if(handleError(m_emu->load_file(m_path.u8string().c_str()))) return false;
     }
     else if(m_loadMode == Mode::Memory)
     {
@@ -238,7 +239,7 @@ bool ebox::EmuStream::initializeEmu()
     for(int i = 0; i < m_numberOfTracks; ++i)
     {
         m_tracks.emplace_back();
-        bool success = m_tracks[i].load(m_emu, i);
+        bool success = m_tracks[i].load(m_emu, i, m_filename);
         if(!success)
             SystemLog::get()->addError(fmt::format("Error loading track: {0}: {1}", i, m_tracks[i].getErrorText()));
     }
@@ -460,4 +461,9 @@ void ebox::EmuStream::setNumberOfPlays(int numberOfPlays)
 void ebox::EmuStream::incrementNumberOfPlays()
 {
     ++m_numberOfPlays;
+}
+
+const fs::path &ebox::EmuStream::getPath() const
+{
+    return m_path;
 }

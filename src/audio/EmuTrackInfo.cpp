@@ -9,12 +9,12 @@ ebox::EmuTrackInfo::EmuTrackInfo()
 
 }
 
-ebox::EmuTrackInfo::EmuTrackInfo(Music_Emu *emu, int trackNumber)
+ebox::EmuTrackInfo::EmuTrackInfo(Music_Emu *emu, int trackNumber, const std::string &filename)
 {
-    load(m_emu, m_trackNumber);
+    load(m_emu, m_trackNumber, filename);
 }
 
-bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber)
+bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber, const std::string &filename)
 {
     m_emu = emu;
     m_trackNumber = trackNumber;
@@ -34,6 +34,7 @@ bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber)
     m_playLength = info->play_length;
     m_introLength = info->intro_length;
     m_loopLength = info->loop_length;
+    m_filename = filename;
     //m_numberOfTracks = gme_track_count(m_emu);
     m_tempo = 1.f;
 
@@ -193,4 +194,9 @@ void ebox::EmuTrackInfo::setTempo(float tempo)
 const std::string &ebox::EmuTrackInfo::getErrorText() const
 {
     return m_errorText;
+}
+
+const std::string &ebox::EmuTrackInfo::getFilename() const
+{
+    return m_filename;
 }
