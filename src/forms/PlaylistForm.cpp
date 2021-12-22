@@ -159,7 +159,9 @@ void ebox::PlaylistForm::createByJson(json playlist)
     json files = playlist["files"];
     for(auto &i : files)
     {
-        EmuFileInfo emufile {fs::path(tools::string::String2Wstring(i["path"].get<std::string>())), false };
+        std::string str = i["path"].get<std::string>();
+        //std::wstring wstr = tools::string::String2Wstring(str);
+        EmuFileInfo emufile {fs::path(str), false };
         int trackNo {i["track_no"].get<int>()};
         if(emufile.loadEmuData())
         {

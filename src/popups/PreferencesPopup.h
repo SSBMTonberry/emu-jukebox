@@ -51,6 +51,7 @@ namespace ebox
             pmgui::Checkbox m_filePreviewsPlayForever {"file_previews_plays_forever", "Play tracks from file explorer forever"};
             pmgui::ColorPicker m_backgroundColor {"background_color", "Background color", ColorPicker::ColorPickerType::ColorEdit3, {35, 65, 90, 255}};
             pmgui::InputInt m_numberOfRepeats {"no_of_repeats", "Number of repeats (0 = infinite)", 0, 100, 1, 2};
+            pmgui::InputInt m_defaultTrackLength {"default_track_length", "Default track length (seconds)", 150, 1000, 1, 10};
             pmgui::Button m_resetButton {"reset_button", "Reset to default values", {200, 30}};
 
             MessagePopup m_resetPopup {"msg_popup_reset", "Reset preferences?", MessagePopupType::YesNo};

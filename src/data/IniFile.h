@@ -44,21 +44,23 @@ namespace ebox
             void setCurrentTheme(const std::string &currentTheme);
             void setNumberOfRepeats(int numberOfRepeats);
             void setOpenLastPlaylistOnStartup(bool openLastPlaylistOnStartup);
+            void setDefaultTrackLength(int defaultTrackLength);
 
-            const fs::path &getPath() const;
-            const fs::path &getLastOpenedFolder() const;
-            const fs::path &getLastOpenedFile() const;
-            const std::string &getCurrentFont() const;
-            bool loopPreviewTracksForever() const;
-            bool openLastOpenedItemOnStartup() const;
-            const sf::Color &getBackgroundColor() const;
-            bool isLastItemFolder() const;
-            float getLastVolume() const;
+            [[nodiscard]] const fs::path &getPath() const;
+            [[nodiscard]] const fs::path &getLastOpenedFolder() const;
+            [[nodiscard]] const fs::path &getLastOpenedFile() const;
+            [[nodiscard]] const std::string &getCurrentFont() const;
+            [[nodiscard]] bool loopPreviewTracksForever() const;
+            [[nodiscard]] bool openLastOpenedItemOnStartup() const;
+            [[nodiscard]] const sf::Color &getBackgroundColor() const;
+            [[nodiscard]] bool isLastItemFolder() const;
+            [[nodiscard]] float getLastVolume() const;
             json getPlaylistData();
-            const std::string &getCurrentTheme() const;
+            [[nodiscard]] const std::string &getCurrentTheme() const;
             ebox::FontManager *getFontManager();
-            int getNumberOfRepeats() const;
-            bool openLastPlaylistOnStartup() const;
+            [[nodiscard]] int getNumberOfRepeats() const;
+            [[nodiscard]] bool openLastPlaylistOnStartup() const;
+            [[nodiscard]] int getDefaultTrackLength() const;
 
             void applyTheme();
 
@@ -83,6 +85,7 @@ namespace ebox
             std::string m_currentTheme = "dark";
             float m_lastVolume = 100.f;
             int m_numberOfRepeats = 0; //0 = infinite, 1 = once(like no repeat), 2 = twice etc...
+            int m_defaultTrackLength = 150; //150
 
             ebox::FontManager m_fonts;
 

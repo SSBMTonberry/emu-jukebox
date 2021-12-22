@@ -77,6 +77,9 @@ void ebox::PreferencesPopup::drawGeneralTab()
     ImGui::PushItemWidth(100.f * m_scaleFactor);
     m_numberOfRepeats.process();
 
+    ImGui::PushItemWidth(100.f * m_scaleFactor);
+    m_defaultTrackLength.process();
+
     ImGui::NewLine();
     if(m_resetButton.process())
         m_resetPopup.setOpen(true);
@@ -127,6 +130,7 @@ void ebox::PreferencesPopup::onOpen()
     m_backgroundColor.setColor(m_iniFile->getBackgroundColor());
     m_themes.setValue(m_iniFile->getCurrentTheme());
     m_numberOfRepeats.setValue(m_iniFile->getNumberOfRepeats());
+    m_defaultTrackLength.setValue(m_iniFile->getDefaultTrackLength());
 }
 
 void ebox::PreferencesPopup::updateIniData()
@@ -142,6 +146,7 @@ void ebox::PreferencesPopup::updateIniData()
     m_iniFile->applyTheme();
     m_iniFile->getFontManager()->setChosenFontAsDefaultFont();
     m_iniFile->setNumberOfRepeats(m_numberOfRepeats.getValue());
+    m_iniFile->setDefaultTrackLength(m_defaultTrackLength.getValue());
 
     Font *font = m_iniFile->getFontManager()->getChosenFont();
     m_iniFile->setCurrentFont((font == nullptr) ? "" : font->getName());

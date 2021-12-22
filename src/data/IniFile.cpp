@@ -45,6 +45,8 @@ void ebox::IniFile::write()
     m_data["volume"] = m_lastVolume;
     m_data["theme"] = m_currentTheme;
     m_data["no_of_repeats"] = m_numberOfRepeats;
+    m_data["default_track_length"] = m_defaultTrackLength;
+
 
     writeToFile(filepath);
 }
@@ -90,6 +92,7 @@ void ebox::IniFile::parseData()
     if(m_data.count("open_last_playlist_on_startup") > 0) m_openLastPlaylistOnStartup = m_data["open_last_playlist_on_startup"].get<bool>();
     if(m_data.count("theme") > 0) m_currentTheme = m_data["theme"].get<std::string>();
     if(m_data.count("no_of_repeats") > 0) m_numberOfRepeats = m_data["no_of_repeats"].get<int>();
+    if(m_data.count("default_track_length") > 0) m_defaultTrackLength = m_data["default_track_length"].get<int>();
 
     if(m_data.count("bg_color") > 0)
     {
@@ -228,6 +231,16 @@ void ebox::IniFile::reset()
     m_backgroundColor = {35, 65, 90, 255};
     setCurrentTheme("dark");
     applyTheme();
+}
+
+int ebox::IniFile::getDefaultTrackLength() const
+{
+    return m_defaultTrackLength;
+}
+
+void ebox::IniFile::setDefaultTrackLength(int defaultTrackLength)
+{
+    m_defaultTrackLength = defaultTrackLength;
 }
 
 #if APPLE
