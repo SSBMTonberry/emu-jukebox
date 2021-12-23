@@ -114,7 +114,7 @@ bool ebox::EmuFileInfo::loadEmuData()
             m_tracks.emplace_back(fmt::format("{0} - {1}", trackNumber, info->song));
 
         m_trackPlayLengths.push_back(info->play_length);
-
+        m_trackLengthDefined.push_back(info->has_defined_length);
         gme_free_info( info );
     }
     m_displayName = fmt::format("{0} ({1})", m_gameName, m_extension);

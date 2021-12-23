@@ -237,7 +237,7 @@ bool ebox::EmuFile::createSamplesAndFillBuffer(uint64_t startPos, float tempo)
 
     EmuTrackInfo *info = getInfoFromCurrentTrack();
     long songLength = 0;
-    while ((songLength = m_emu->tell()) > -1 && songLength <= (info->getPlayLength() / tempo))
+    while ((songLength = m_emu->tell()) > -1 && songLength <= (info->getPlayLength(nullptr) / tempo))
     {
         m_samples.resize(i * sampleSize);
         m_emu->play(sampleSize, &m_samples[0]+(sampleSize*(i-1)));
