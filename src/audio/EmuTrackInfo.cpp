@@ -34,6 +34,7 @@ bool ebox::EmuTrackInfo::load(Music_Emu *emu, int trackNumber, const std::string
     m_playLength = info->play_length;
     m_introLength = info->intro_length;
     m_loopLength = info->loop_length;
+    m_hasDefinedTrackLength = info->has_defined_length;
     m_filename = filename;
     //m_numberOfTracks = gme_track_count(m_emu);
     m_tempo = 1.f;
@@ -115,9 +116,9 @@ void ebox::EmuTrackInfo::setLength(int length)
     m_length = length;
 }
 
-int ebox::EmuTrackInfo::getPlayLength() const
+int ebox::EmuTrackInfo::getPlayLength(const ebox::IniFile *iniFile) const
 {
-    return m_playLength; //(m_tempo != 0) ? m_playLength / m_tempo : m_playLength;
+    return (iniFile == nullptr || m_hasDefinedTrackLength) ? m_playLength : iniFile->getDefaultTrackLength() * 1000; //(m_tempo != 0) ? m_playLength / m_tempo : m_playLength;
 }
 
 void ebox::EmuTrackInfo::setPlayLength(int playLength)
@@ -199,4 +200,9 @@ const std::string &ebox::EmuTrackInfo::getErrorText() const
 const std::string &ebox::EmuTrackInfo::getFilename() const
 {
     return m_filename;
+}
+
+bool ebox::EmuTrackInfo::hasDefinedTrackLength() const
+{
+    return m_hasDefinedTrackLength;
 }

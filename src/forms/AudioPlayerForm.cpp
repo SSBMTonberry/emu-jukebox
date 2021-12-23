@@ -173,13 +173,13 @@ void ebox::AudioPlayerForm::drawAudioPanel()
     ImGui::PushItemWidth(-1);
     int dummy = 0;
     if(ImGui::SliderInt("###Time: ", (m_stream != nullptr) ? m_stream->getTimePlayedPtr() : &dummy, 0,
-            (m_stream != nullptr) ? m_stream->getInfoFromCurrentTrack().getPlayLength() : 0, getAudioTimestamp().c_str()))
+            (m_stream != nullptr) ? m_stream->getInfoFromCurrentTrack().getPlayLength(m_iniFile) : 0, getAudioTimestamp().c_str()))
     {
         if(m_stream != nullptr)
             m_stream->setPlayingOffset(sf::milliseconds(m_stream->getTimePlayed()));
     }
 
-    if(m_stream != nullptr && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength())
+    if(m_stream != nullptr && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength(m_iniFile))
     {
         m_stream->incrementNumberOfPlays();
 
@@ -239,7 +239,7 @@ void ebox::AudioPlayerForm::drawAudioInfo()
     ImGui::Text(fmt::format("Song: {0}", m_stream->getInfoFromCurrentTrack().getSong()).c_str());
     ImGui::Text(fmt::format("Intro length: {0}", m_stream->getInfoFromCurrentTrack().getIntroLength()).c_str());
     ImGui::Text(fmt::format("Loop length: {0}", m_stream->getInfoFromCurrentTrack().getLoopLength()).c_str());
-    ImGui::Text(fmt::format("Play length: {0}", m_stream->getInfoFromCurrentTrack().getPlayLength()).c_str());
+    ImGui::Text(fmt::format("Play length: {0}", m_stream->getInfoFromCurrentTrack().getPlayLength(m_iniFile)).c_str());
     ImGui::Text(fmt::format("Game: {0}", m_stream->getInfoFromCurrentTrack().getGame()).c_str());
     ImGui::Text(fmt::format("Author: {0}", m_stream->getInfoFromCurrentTrack().getAuthor()).c_str());
     ImGui::Text(fmt::format("Comment: {0}", m_stream->getInfoFromCurrentTrack().getComment()).c_str());
@@ -267,7 +267,7 @@ void ebox::AudioPlayerForm::drawEqualizer()
 std::string ebox::AudioPlayerForm::getAudioTimestamp()
 {
     return fmt::format("{0}/{1}", getMillisecondsAsTimeString((m_stream != nullptr) ? m_stream->getTimePlayed() : 0),
-            getMillisecondsAsTimeString((m_stream != nullptr) ? m_stream->getInfoFromCurrentTrack().getPlayLength() : 0));
+            getMillisecondsAsTimeString((m_stream != nullptr) ? m_stream->getInfoFromCurrentTrack().getPlayLength(m_iniFile) : 0));
 }
 
 std::string ebox::AudioPlayerForm::getMillisecondsAsTimeString(int milliseconds)

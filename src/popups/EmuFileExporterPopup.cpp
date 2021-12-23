@@ -35,7 +35,7 @@ void ebox::EmuFileExporterPopup::setExportInfo(const fs::path &path, int trackNo
     m_useCustomLength.setChecked(false);
     m_customStart.setValues({0});
     m_customStart.setWidth(100);
-    m_customStop.setValues({m_file.getInfoFromCurrentTrack()->getPlayLength()});
+    m_customStop.setValues({m_file.getInfoFromCurrentTrack()->getPlayLength(nullptr)});
     m_customStop.setWidth(100);
     m_tempo.setValue(tempo);
     m_tempo.setOnSameLine(true);

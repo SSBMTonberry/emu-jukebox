@@ -80,6 +80,7 @@ namespace ebox
             std::string m_displayName; //Name displayed in list
             std::vector<std::string> m_tracks;
             std::vector<int> m_trackPlayLengths;
+            std::vector<bool> m_trackLengthDefined;
     };
 }
 

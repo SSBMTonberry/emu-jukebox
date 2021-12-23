@@ -8,6 +8,7 @@
 #include "AudioCommon.h"
 #include "SFML/Audio.hpp"
 #include "pmgui.h"
+#include "../data/IniFile.h"
 //#include "fmt/format.h"
 #include <Music_Emu.h>
 
@@ -46,12 +47,13 @@ namespace ebox
             [[nodiscard]] const std::string &getDumper() const;
             [[nodiscard]] const std::string &getSong() const;
             [[nodiscard]] const std::string &getFilename() const;
-
             [[nodiscard]] int getLength() const;
-            [[nodiscard]] int getPlayLength() const;
+            [[nodiscard]] int getPlayLength(const ebox::IniFile *iniFile) const;
             [[nodiscard]] int getIntroLength() const;
             [[nodiscard]] int getLoopLength() const;
             [[nodiscard]] const std::string &getErrorText() const;
+            [[nodiscard]] bool hasDefinedTrackLength() const;
+
 
         private:
             Music_Emu *m_emu;
@@ -72,7 +74,7 @@ namespace ebox
             int m_introLength = -1;
             int m_loopLength = -1;
             int m_playLength = -1;
-
+            bool m_hasDefinedTrackLength = false;
 
     };
 }

@@ -338,7 +338,12 @@ BLARGG_EXPORT gme_err_t gme_track_info( Music_Emu const* me, gme_info_t** out, i
 	{
 		info->play_length = info->intro_length + 2 * info->loop_length; // intro + 2 loops
 		if ( info->play_length <= 0 )
-			info->play_length = 150 * 1000; // 2.5 minutes
+        {
+            info->has_defined_length = false;
+            info->play_length = 150 * 1000; // 2.5 minutes
+        }
+        else
+            info->has_defined_length = true;
 	}
 	
 	*out = info;
