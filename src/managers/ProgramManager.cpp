@@ -452,7 +452,7 @@ void ebox::ProgramManager::openExportPopup()
     EmuStream * stream = audioPlayer->getCurrentStream();
     if(stream != nullptr)
     {
-        m_fileExporter.setExportInfo(fs::path(stream->getFilename()), stream->getTrack(), audioPlayer->getTempo());
+        m_fileExporter.setExportInfo(stream->getPath(), stream->getTrack(), audioPlayer->getTempo());
         m_fileExporter.transferVoiceStates(stream->getVoices());
         m_fileExporter.setOpen(true);
     }
