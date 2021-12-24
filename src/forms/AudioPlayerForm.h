@@ -101,6 +101,7 @@ namespace ebox
             IniFile *m_iniFile;
 
             bool *m_playlistRepeat;
+            bool m_playIndefinitely = false;
             //float m_previousVolume = 100.f;
 
             pmgui::ImageButton m_previousButton {"test_previous_button", files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG, files_mapper::gui::ebox::_PREVIOUS_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
@@ -108,6 +109,8 @@ namespace ebox
             pmgui::ImageButton m_pauseButton {"test_pause_button", files_mapper::gui::ebox::_PAUSE_16_PNG, files_mapper::gui::ebox::_PAUSE_16_PNG_SIZE, sf::Vector2i(30, 30)};
             pmgui::ImageButton m_playButton {"test_play_button", files_mapper::gui::ebox::_PLAY_16_PNG, files_mapper::gui::ebox::_PLAY_16_PNG_SIZE, sf::Vector2i(30, 30)};
             pmgui::ImageButton m_nextButton {"test_next_button", files_mapper::gui::ebox::_NEXT_TRACK_16_PNG, files_mapper::gui::ebox::_NEXT_TRACK_16_PNG_SIZE, sf::Vector2i(30, 30)};
+            pmgui::ImageButton m_infinityButton {"infinity_button", files_mapper::gui::ebox::_INFINITY_16X16_PNG, files_mapper::gui::ebox::_INFINITY_16X16_PNG_SIZE, sf::Vector2i(30, 30)};
+
             pmgui::DragFloat m_volume {"volume_control", "volume", 0.f, 100.f, 0};
             pmgui::InputFloat m_tempo {"tempo_float", "tempo", 0.1, 5, 0.1, 0.3};
             ebox::Visualizer m_visualizer{"visualizer", "viz"};
