@@ -34,9 +34,13 @@ void ebox::AudioPlayerForm::initialize()
     m_pauseButton.getImage()->setColor(sf::Color::Yellow);
     m_stopButton.getImage()->setColor(sf::Color::Red);
 
+    m_infinityButton.setTooltip(std::make_optional<pmgui::Tooltip>("Play current track indefinitely"));
+    m_volume.setOnSameLine(true);
     m_tempo.setOnSameLine(true);
     m_tempo.setValue(1);
     m_state = AudioPlayerState::Stopped;
+
+    setPlayIndefinitely(m_playIndefinitely);
 }
 
 void ebox::AudioPlayerForm::handleEvents()
@@ -179,7 +183,7 @@ void ebox::AudioPlayerForm::drawAudioPanel()
             m_stream->setPlayingOffset(sf::milliseconds(m_stream->getTimePlayed()));
     }
 
-    if(m_stream != nullptr && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength(m_iniFile))
+    if(m_stream != nullptr && !m_playIndefinitely && m_stream->getTimePlayed() >= m_stream->getInfoFromCurrentTrack().getPlayLength(m_iniFile))
     {
         m_stream->incrementNumberOfPlays();
 
@@ -199,6 +203,12 @@ void ebox::AudioPlayerForm::drawAudioPanel()
     }
     ImGui::NewLine();
     ImGui::SameLine(0, spacingLength + spacingLength2);
+
+    if(m_infinityButton.process())
+    {
+        setPlayIndefinitely(!m_playIndefinitely);
+        //m_shuffleButton.getImage()->setColor(shuffle ? sf::Color(20, 240, 20, 255) : sf::Color(173, 22, 22, 255));
+    }
     ImGui::PushItemWidth(100 * scaleFactor);
     if(m_volume.process())
     {
@@ -444,4 +454,15 @@ float ebox::AudioPlayerForm::getTempo()
 void ebox::AudioPlayerForm::setPlaylistRepeatPtr(bool *playlistRepeat)
 {
     m_playlistRepeat = playlistRepeat;
+}
+
+bool ebox::AudioPlayerForm::playIndefinitely() const
+{
+    return m_playIndefinitely;
+}
+
+void ebox::AudioPlayerForm::setPlayIndefinitely(bool playIndefinitely)
+{
+    m_playIndefinitely = playIndefinitely;
+    m_infinityButton.getImage()->setColor(playIndefinitely ? sf::Color(20, 240, 20, 255) : sf::Color(173, 22, 22, 255));
 }
