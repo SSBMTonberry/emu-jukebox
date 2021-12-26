@@ -18,7 +18,19 @@ The file formats that are supported:
 ## Cross-platform
 Emu-Jukebox is designed to be cross-platform. That means that whether you use Windows, Linux or Mac (OS X), you should be able to use this program! This project utilizes CMake to make it possible to easily compile the program on different systems without any problem!
 
-## Features that are implemented (as of version 0.8):
+## What's new in v0.9.0 alpha?
+- Infinite play toggle button ([#79](https://github.com/SSBMTonberry/emu-jukebox/issues/79))
+- A custom length can now be defined for songs with undefined lengths ([#59](https://github.com/SSBMTonberry/emu-jukebox/issues/59))
+- Filename of current track is now displayed in track info ([#82](https://github.com/SSBMTonberry/emu-jukebox/issues/82))
+- Playlists now stores relative paths ([#57](https://github.com/SSBMTonberry/emu-jukebox/issues/57))
+- There is now a button to transfer all tracks from file explorer to playlist ([#74](https://github.com/SSBMTonberry/emu-jukebox/issues/74))
+- Better handling of multiple monitors ([#81](https://github.com/SSBMTonberry/emu-jukebox/issues/81))
+- Greatly improved CMake script, which should introduce proper support for 64-bit windows builds. ([#78](https://github.com/SSBMTonberry/emu-jukebox/issues/78))
+- Greatly improved CMake script, which should introduce proper support for 64-bit windows builds. ([#78](https://github.com/SSBMTonberry/emu-jukebox/issues/78))
+- Greatly improved CMake script, which should introduce proper support for 64-bit windows builds. ([#78](https://github.com/SSBMTonberry/emu-jukebox/issues/78))
+- Likely fixed a strange bug where the application would appear as frozen on startup, and you would have to re-focus it to make it respond ([#80](https://github.com/SSBMTonberry/emu-jukebox/issues/80), [#58](https://github.com/SSBMTonberry/emu-jukebox/issues/58)) 
+
+## Other features
 - The possibility to load either single files or entire folders of files.
 - The possibility to play all formats either from a file explorer or an own playlist.
 - The possibility to control the tempo of the files you play.
@@ -55,12 +67,10 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 Since Emu-Jukebox is using CMake, it should be pretty straightforward to compile, as long as CMake is installed. Since Emu-Jukebox is using C++17 functionality, like `std::filesystem`, a compiler that is supporting this is required. By design Emu-Jukebox is copiled with static libraries, and is compiling all its resources statically, the program should (at least in version 1.0) be able to work as one single executable! Emu-Jukebox is using [f2src](https://github.com/SSBMTonberry/f2src) to generate header files with its file data. The required external dependencies are included in this project, and should make the compilation pretty traight forward. 
 
 ### Windows
-*NB! Currently only got support for builing with Win32/x86 settings.*
-
-Load the CMakeLists.txt into `CMake`, then generate a `Visual Studio 2017 project`. Then you should be all good. There are also libs for `MinGW`, but these are not compiling as of now. The application is almost fully statically linked, except for `openal32.dll` (OpenAL-Soft), which sadly is a standalone dependency due to its license. This can however be solved by either including the openal.dll in the same folder, or just put it inside `System32`-folder and make it a part of your system wide libraries. There are plans to make this a statically part of the application in the future, as it doesn't violate the license due to being a totally open-sourced application for anyone to build or modify, but it will require some extra work. 
+Load the CMakeLists.txt into `CMake`, then generate a `Visual Studio 20xx project`. Then you should be all good. The application is almost fully statically linked, except for `openal32.dll` (OpenAL-Soft), which sadly is a standalone dependency due to its license. This can however be solved by either including the openal.dll in the same folder, or just put it inside `System32`-folder and make it a part of your system wide libraries. There are plans to make this a statically part of the application in the future, as it doesn't violate the license due to being a totally open-sourced application for anyone to build or modify, but it will require some extra work. 
 
 ### Linux
-Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `GCC 8.1.1`. Thus it's recommended using `GCC 8.X something` for compilation. Nevertheless, you will need a compiler that supports the features of `std::filesystem`. You can easily compile the program by console by going into the directory of the project, where the `CMakeLists.txt`file is located and call these commands:
+Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `GCC` using the `C++17` standard. You will especially need a compiler that supports the features of `std::filesystem`. You can easily compile the program by console by going into the directory of the project, where the `CMakeLists.txt`file is located and call these commands:
 - `cmake ./`
 - `make`
 
