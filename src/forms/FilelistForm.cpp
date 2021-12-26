@@ -356,7 +356,11 @@ bool ebox::FilelistForm::onPreviousTrack(AudioPlayerForm *player)
 
 bool ebox::FilelistForm::onTrackEnded(AudioPlayerForm *player, EmuStream *stream)
 {
-    return (m_iniFile->loopPreviewTracksForever()) ? true : false;
+    if(!player->playIndefinitely())
+    {
+        player->stop();
+    }
+    return false; //(m_iniFile->loopPreviewTracksForever()) ? true : false;
 }
 
 void ebox::FilelistForm::removeAllTracks()

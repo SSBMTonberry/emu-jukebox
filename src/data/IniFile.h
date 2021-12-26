@@ -35,7 +35,7 @@ namespace ebox
             void setLastOpenedFolder(const fs::path &lastOpenedFolder);
             void setLastOpenedFile(const fs::path &lastOpenedFile);
             void setCurrentFont(const std::string &currentFont);
-            void setLoopPreviewTracksForever(bool loopPreviewTracksForever);
+            //void setLoopPreviewTracksForever(bool loopPreviewTracksForever);
             void setOpenLastOpenedItemOnStartup(bool openLastOpenedFolderOnStartup);
             void setBackgroundColor(const sf::Color &backgroundColor);
             void setLastItemIsFolder(bool lastItemIsFolder);
@@ -50,7 +50,7 @@ namespace ebox
             [[nodiscard]] const fs::path &getLastOpenedFolder() const;
             [[nodiscard]] const fs::path &getLastOpenedFile() const;
             [[nodiscard]] const std::string &getCurrentFont() const;
-            [[nodiscard]] bool loopPreviewTracksForever() const;
+            //[[nodiscard]] bool loopPreviewTracksForever() const;
             [[nodiscard]] bool openLastOpenedItemOnStartup() const;
             [[nodiscard]] const sf::Color &getBackgroundColor() const;
             [[nodiscard]] bool isLastItemFolder() const;
@@ -77,7 +77,7 @@ namespace ebox
             fs::path m_lastOpenedFolder = "";
             fs::path m_lastOpenedFile = "";
             bool m_lastItemIsFolder = true;
-            bool m_loopPreviewTracksForever = true;
+            //bool m_loopPreviewTracksForever = true;
             bool m_openLastOpenedItemOnStartup = false;
             bool m_openLastPlaylistOnStartup = true;
             sf::Color m_backgroundColor {35, 65, 90, 255};
