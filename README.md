@@ -26,8 +26,6 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 - There is now a button to transfer all tracks from file explorer to playlist ([#74](https://github.com/SSBMTonberry/emu-jukebox/issues/74))
 - Better handling of multiple monitors ([#81](https://github.com/SSBMTonberry/emu-jukebox/issues/81))
 - Greatly improved CMake script, which should introduce proper support for 64-bit windows builds. ([#78](https://github.com/SSBMTonberry/emu-jukebox/issues/78))
-- Greatly improved CMake script, which should introduce proper support for 64-bit windows builds. ([#78](https://github.com/SSBMTonberry/emu-jukebox/issues/78))
-- Greatly improved CMake script, which should introduce proper support for 64-bit windows builds. ([#78](https://github.com/SSBMTonberry/emu-jukebox/issues/78))
 - Likely fixed a strange bug where the application would appear as frozen on startup, and you would have to re-focus it to make it respond ([#80](https://github.com/SSBMTonberry/emu-jukebox/issues/80), [#58](https://github.com/SSBMTonberry/emu-jukebox/issues/58)) 
 
 ## Other features
