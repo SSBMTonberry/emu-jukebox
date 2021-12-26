@@ -23,9 +23,13 @@ void ebox::AboutPopup::initialize(const sf::Vector2<int> &size)
 
 bool ebox::AboutPopup::onDraw()
 {
-
-    ImGui::Text(fmt::format("EMU-JUKEBOX v{0}.{1}.{2}", EBOX_PROJECT_VERSION_MAJOR,
-                                EBOX_PROJECT_VERSION_MINOR, EBOX_PROJECT_VERSION_PATCH).c_str());
+    #if PROJECT_VERSION_IS_ALPHA
+    const std::string a = "alpha";
+    #else
+    const std::string a = "";
+    #endif
+    ImGui::Text(fmt::format("EMU-JUKEBOX v{0}.{1}.{2} {3}", EBOX_PROJECT_VERSION_MAJOR,
+                                EBOX_PROJECT_VERSION_MINOR, EBOX_PROJECT_VERSION_PATCH, a).c_str());
     ImGui::Text("Project URL: https://github.com/SSBMTonberry/emu-jukebox");
     ImGui::NewLine();
     ImGui::Separator();
