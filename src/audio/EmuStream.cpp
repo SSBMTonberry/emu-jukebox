@@ -76,7 +76,7 @@ void ebox::EmuStream::initializeFile(const fs::path &path, int track, uint32_t c
     m_loadMode = Mode::File;
     m_channelCount = channelCount;
     m_sampleRate = sampleRate;
-    m_filename = path.filename();
+    m_filename = path.filename().u8string();
     m_path = path;
     m_track = track;
 

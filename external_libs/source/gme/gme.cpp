@@ -345,6 +345,8 @@ BLARGG_EXPORT gme_err_t gme_track_info( Music_Emu const* me, gme_info_t** out, i
         else
             info->has_defined_length = true;
 	}
+	else
+		info->has_defined_length = true;
 	
 	*out = info;
 	
