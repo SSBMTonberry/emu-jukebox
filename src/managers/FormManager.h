@@ -72,7 +72,6 @@ namespace ebox
             //pmgui::EventManager *m_events;
             bool m_showImguiDemoWindow;
             ImGuiStyle *m_style = nullptr;
-            ImGuiIO *m_io = nullptr;
             sf::Clock m_deltaClock;
     };
 }

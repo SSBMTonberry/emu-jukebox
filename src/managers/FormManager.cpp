@@ -14,17 +14,16 @@ void ebox::FormManager::initialize(sf::RenderWindow *window, IniFile *iniFile)//
     ImGui::CreateContext(); //IMGUI 1.60
     m_window = window;
     m_style = &ImGui::GetStyle();
-    m_io = &ImGui::GetIO();
     //m_events = events;
     m_iniFile = iniFile;
 
     ImGui::SFML::Init(*m_window);
     //Enable Ctrl+TAB (New in ImGui 1.63)
     //m_io->ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; //Removed - 18.03.2019 - Disabled due to interrupting hotkeys...
-    m_io->ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleFonts;
-    m_io->ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports;
+    ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleFonts;
+    ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DpiEnableScaleViewports;
     //Enable docking (New in ImGui 1.66 WIP) - Downloaded 14.10.2018
-    m_io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     m_filelistForm.setPlaylist(&m_playlistForm);
     m_filelistForm.setAudioPlayer(&m_audioPlayerForm);
