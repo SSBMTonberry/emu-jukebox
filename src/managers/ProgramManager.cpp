@@ -313,7 +313,6 @@ void ebox::ProgramManager::drawDock()
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::Begin(DOCK_ROOT_ID.c_str(), &open, window_flags);
     ImGui::PopStyleVar();
-
     ImGui::PopStyleVar(2);
 
     if (ImGui::DockBuilderGetNode(ImGui::GetID(DOCKSPACE_ID.c_str())) == nullptr)
@@ -336,7 +335,7 @@ void ebox::ProgramManager::createDock()
     ImGui::DockBuilderRemoveNode(dockspace_id); // Clear out existing layout
 
     //ImGui::DockBuilderAddNode(dockspace_id); //viewport->Size); // Add empty node
-    ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_Dockspace); // Add empty node
+    ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace); // Add empty node
     ImGui::DockBuilderSetNodeSize(dockspace_id, viewport->Size);
 
     ImGuiID dock_main_id = dockspace_id; // This variable will track the document node, however we are not using it here as we aren't docking anything into it.
