@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        gccver: [ 7, 8, 9, 10, 11 ]
+        gccver: [ 9, 10, 11 ]
     steps:
       - name: Set up cmake
         uses: jwlawson/actions-setup-cmake@v1.13
@@ -22,10 +22,8 @@ jobs:
         uses: egor-tensin/setup-gcc@v1
         with:
           version: ${{ matrix.gccver }}
-          platform: x64
-
-      - uses: actions/checkout@v2
-        with:
+          platform: x64      - name: Install OpenGL and UDev
+        run: sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libudev-dev
           submodules: recursive
 
       - name: Install SFML dependencies
