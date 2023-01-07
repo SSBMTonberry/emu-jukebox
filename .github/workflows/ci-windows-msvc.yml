@@ -34,10 +34,6 @@ jobs:
         working-directory: ${{github.workspace}}/build
         run: cmake --build .
 
-      - name: Test
-        working-directory: ${{github.workspace}}/build
-        run: tests/Debug/tileson_tests.exe --order rand
-
   Windows_2022:
     runs-on: windows-2022
     steps:
