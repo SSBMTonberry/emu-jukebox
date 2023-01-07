@@ -28,6 +28,8 @@ jobs:
         with:
           submodules: recursive
 
+      - uses: openrndr/setup-opengl@v1.1
+
       - name: Make build folder
         working-directory: ${{github.workspace}}
         run: mkdir build
