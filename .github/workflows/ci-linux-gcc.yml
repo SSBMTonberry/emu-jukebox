@@ -28,8 +28,8 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install OpenGL
-        run: sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
+      - name: Install OpenGL and UDev
+        run: sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libudev-dev
 
       - name: Make build folder
         working-directory: ${{github.workspace}}
