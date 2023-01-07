@@ -22,8 +22,10 @@ jobs:
         uses: egor-tensin/setup-gcc@v1
         with:
           version: ${{ matrix.gccver }}
-          platform: x64      - name: Install OpenGL and UDev
-        run: sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libudev-dev
+          platform: x64
+
+      - uses: actions/checkout@v2
+        with:
           submodules: recursive
 
       - name: Install SFML dependencies
