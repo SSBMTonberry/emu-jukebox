@@ -25,6 +25,8 @@ jobs:
           platform: x64
 
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Make build folder
         working-directory: ${{github.workspace}}

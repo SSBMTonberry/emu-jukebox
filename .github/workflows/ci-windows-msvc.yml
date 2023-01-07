@@ -48,6 +48,8 @@ jobs:
           cmake-version: '3.21.x'
 
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Make build folder
         working-directory: ${{github.workspace}}
