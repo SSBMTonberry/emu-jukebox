@@ -19,6 +19,8 @@ The file formats that are supported:
 Emu-Jukebox is designed to be cross-platform. That means that whether you use Windows, Linux or Mac (OS X), you should be able to use this program! This project utilizes CMake to make it possible to easily compile the program on different systems without any problem!
 
 ## What's new in v0.9.0 alpha?
+- Fixed broken OSX CMake script and improved the build process to produced a fully functioning `.app` ([#5](https://github.com/SSBMTonberry/emu-jukebox/issues/5)[#87](https://github.com/SSBMTonberry/emu-jukebox/issues/87)) 
+- Added Continuous Integration for Windows (MSVC), Linux (GCC) and Mac OSX (Clang). ([#85](https://github.com/SSBMTonberry/emu-jukebox/issues/85), [#86](https://github.com/SSBMTonberry/emu-jukebox/issues/86))
 - Infinite play toggle button ([#79](https://github.com/SSBMTonberry/emu-jukebox/issues/79))
 - A custom length can now be defined for songs with undefined lengths ([#59](https://github.com/SSBMTonberry/emu-jukebox/issues/59))
 - Filename of current track is now displayed in track info ([#82](https://github.com/SSBMTonberry/emu-jukebox/issues/82))
@@ -62,7 +64,7 @@ Emu-Jukebox is designed to be cross-platform. That means that whether you use Wi
 ![alt text](https://github.com/SSBMTonberry/emu-jukebox/blob/master/logo/emu-jukebox_0.8.0_2.png "Emu Jukebox Screenshot") 
 
 ## Compiling
-Since Emu-Jukebox is using CMake, it should be pretty straightforward to compile, as long as CMake is installed. Since Emu-Jukebox is using C++17 functionality, like `std::filesystem`, a compiler that is supporting this is required. By design Emu-Jukebox is copiled with static libraries, and is compiling all its resources statically, the program should (at least in version 1.0) be able to work as one single executable! Emu-Jukebox is using [f2src](https://github.com/SSBMTonberry/f2src) to generate header files with its file data. The required external dependencies are included in this project, and should make the compilation pretty traight forward. 
+Since Emu-Jukebox is using CMake, it should be pretty straightforward to compile, as long as CMake is installed. Since Emu-Jukebox is using C++17 functionality, like `std::filesystem`, a compiler that is supporting this is required. By design Emu-Jukebox is compiled with static libraries, and is compiling all its resources statically, the program should (at least in version 1.0) be able to work as one single executable! Emu-Jukebox is using [f2src](https://github.com/SSBMTonberry/f2src) to generate header files with its file data. The required external dependencies are included in this project, and should make the compilation pretty traight forward. 
 
 ### Windows
 Load the CMakeLists.txt into `CMake`, then generate a `Visual Studio 20xx project`. Then you should be all good. The application is almost fully statically linked, except for `openal32.dll` (OpenAL-Soft), which sadly is a standalone dependency due to its license. This can however be solved by either including the openal.dll in the same folder, or just put it inside `System32`-folder and make it a part of your system wide libraries. There are plans to make this a statically part of the application in the future, as it doesn't violate the license due to being a totally open-sourced application for anyone to build or modify, but it will require some extra work. 
@@ -73,7 +75,7 @@ Emu-Jukebox has primarily been developed on Linux (Manjaro / Arch Linux), with `
 - `make`
 
 ### Mac (OS X)
-Requires the `llvm`/`clang` version obtained by `homebrew` (worked for some years now). If you have MacOS 10.15 (Catalina) with XCode 11, you should also be able to compile this program (untested). You will need to either put the third party libraries provided in this project in a common `Library` folder, or in the same folder as the .app file is built, to make the program run without problems. You can, alternatively, just use the .app file attached to a release (includes all dependencies).
+Clang version 11 or newer is officially supported, but any version of `LLVM`/`Clang` with proper support for `std::filesystem` should work. 
 
 ## Libraries used by Emu-Jukebox
 - [Game_Music_Emu](http://blargg.8bitalley.com/libs/audio.html#Game_Music_Emu) - Used for emulating the sound chip of each retro console.

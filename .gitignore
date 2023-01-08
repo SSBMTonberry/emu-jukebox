@@ -50,3 +50,5 @@ Win32/
 \.DS_Store
 
 cmake-build-minsizerel/
+
+cmake-build-relwithdebinfo/
