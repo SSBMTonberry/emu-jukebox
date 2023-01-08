@@ -55,6 +55,10 @@ else()
     set(MINGW 0)
 endif()
 
+# Makes sure everything is statically linked
+set(BUILD_SHARED_LIBS OFF)
+# set(SFML_BUILD_STATIC 1)
+
 add_subdirectory(external_libs/submodules/pmgui)
 
 configure_file (
@@ -122,7 +126,7 @@ elseif(WIN32)
         target_link_libraries(EmuJukebox pmgui stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     endif()
 elseif(APPLE)
-    set(SFML_BUILD_STATIC 1)
+    # set(SFML_BUILD_STATIC 1)
 
     set(MY_STATIC_LIBS sfml-network sfml-audio sfml-graphics sfml-window sfml-system)
     set(FRAMEWORK_LIBS_BASE "-framework Carbon" "-framework OpenGL" "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework CoreFoundation")
