@@ -57,6 +57,7 @@ endif()
 
 # Makes sure everything is statically linked
 set(BUILD_SHARED_LIBS OFF)
+set(BUILD_EMU_TESTS OFF)
 # set(SFML_BUILD_STATIC 1)
 
 add_subdirectory(external_libs/submodules/pmgui)
@@ -148,4 +149,6 @@ elseif(APPLE)
 
 endif()
 
-add_subdirectory(tests)
+if(BUILD_EMU_TESTS)
+    add_subdirectory(tests)
+endif()
