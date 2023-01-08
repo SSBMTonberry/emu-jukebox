@@ -31,7 +31,6 @@ if(UNIX AND NOT APPLE)
     set(MSVC 0)
     set(MINGW 0)
 elseif(APPLE)
-    link_directories(/usr/local/opt/llvm/lib/)
     set(LINUX 0)
     set(WINDOWS 0)
     set(APPLE 1)
@@ -55,6 +54,10 @@ else()
     set(MSVC 0)
     set(MINGW 0)
 endif()
+
+# Makes sure everything is statically linked
+set(BUILD_SHARED_LIBS OFF)
+# set(SFML_BUILD_STATIC 1)
 
 add_subdirectory(external_libs/submodules/pmgui)
 
@@ -123,8 +126,6 @@ elseif(WIN32)
         target_link_libraries(EmuJukebox pmgui stdc++fs ${MY_STATIC_LIBS} ${SFML_DEPENDENCIES})
     endif()
 elseif(APPLE)
-    set(SFML_BUILD_STATIC 1)
-
     set(MY_STATIC_LIBS sfml-network sfml-audio sfml-graphics sfml-window sfml-system)
     set(FRAMEWORK_LIBS_BASE "-framework Carbon" "-framework OpenGL" "-framework Cocoa" "-framework IOKit" "-framework CoreVideo" "-framework CoreFoundation")
 
@@ -139,17 +140,12 @@ elseif(APPLE)
     set_source_files_properties(${PROJECT_SOURCE_DIR}/logo/AppIcon.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
     add_executable(EmuJukebox MACOSX_BUNDLE main.cpp ${SOURCE_FILES} ${GUI_SOURCE_FILES} ${GME_SOURCE_FILES})
 
-    #stdc++
-    if(SFML_BUILD_STATIC)
-        target_link_libraries(EmuJukebox pmgui stdc++ -ObjC /usr/local/opt/llvm/lib/libc++experimental.a /usr/local/opt/llvm/lib/libc++fs.a ${MY_STATIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
-    else()
-        target_link_libraries(EmuJukebox pmgui stdc++ -ObjC /usr/local/opt/llvm/lib/libc++experimental.a /usr/local/opt/llvm/lib/libc++fs.a ${MY_DYNAMIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
-        set_target_properties(EmuJukebox PROPERTIES
-                MACOSX_BUNDLE TRUE
-                MACOSX_FRAMEWORK_IDENTIFIER org.cmake.ExecutableTarget
-                FRAMEWORK ${MY_DYNAMIC_LIBS})
+    target_link_libraries(EmuJukebox pmgui stdc++ -ObjC ${MY_STATIC_LIBS} ${FRAMEWORK_LIBS_BASE} ${SFML_DEPENDENCIES})
+    set_target_properties(EmuJukebox PROPERTIES
+            MACOSX_BUNDLE TRUE)
+    file(COPY ${CMAKE_SOURCE_DIR}/logo/AppIcon.icns DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/EmuJukebox.app/Contents/Resources)
+    file(COPY ${CMAKE_SOURCE_DIR}/external_libs/osx-frameworks/Frameworks DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/EmuJukebox.app/Contents)
 
-    endif()
 endif()
 
 add_subdirectory(tests)
